@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PushNotification</string>
+    <string name="firebase_notification_channel_id">test</string>
 </resources>
