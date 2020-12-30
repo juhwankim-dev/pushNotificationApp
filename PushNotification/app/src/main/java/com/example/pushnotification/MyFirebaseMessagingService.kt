@@ -11,8 +11,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.json.JSONObject
-import java.lang.Exception
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -31,36 +29,23 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        // Handle FCM messages here.
-        // If the application is in the foreground handle both data and notification messages here.
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated.
         Log.d(TAG, "From: " + remoteMessage!!.from)
         //Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
-        Log.d(TAG, remoteMessage.data["body"].toString())
+        //Log.d(TAG, remoteMessage.data["body"].toString())
 
-        sendNotification()
+        if(remoteMessage.data.isNotEmpty()){
+            Log.i("바디: ", remoteMessage.data["body"].toString())
+            Log.i("타이틀: ", remoteMessage.data["title"].toString())
+            sendNotification(remoteMessage)
+        }
+
+        else {
+            Log.i("수신에러: ", "data가 비어있습니다. 메시지를 수신하지 못했습니다.")
+            Log.i("data값: ", remoteMessage.data.toString())
+        }
     }
 
-/*    private fun sendNotification(remoteMessage: RemoteMessage?) {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val notificationBuilder = NotificationCompat.Builder(this)
-            //.setContentText(remoteMessage?.notification?.body)
-            .setContentText(remoteMessage!!.data["body"])
-            .setAutoCancel(true)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setSound(defaultSoundUri)
-            .setContentIntent(pendingIntent)
-
-        val notificatioManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        notificatioManager.notify(0, notificationBuilder.build())
-    }*/
-
-    private fun sendNotification() {
+    private fun sendNotification(remoteMessage: RemoteMessage) {
         // RequestCode, Id를 고유값으로 지정하여 알림이 개별 표시되도록 함
         val uniId: Int = (System.currentTimeMillis() / 7).toInt()
 
@@ -68,19 +53,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // PendingIntent : Intent 의 실행 권한을 외부의 어플리케이션에게 위임한다.
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Activity Stack 을 경로만 남긴다. A-B-C-D-B => A-B
-        val pendingIntent =
-            PendingIntent.getActivity(this, uniId, intent, PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = PendingIntent.getActivity(this, uniId, intent, PendingIntent.FLAG_ONE_SHOT)
 
         // 알림 채널 이름
         val channelId = getString(R.string.firebase_notification_channel_id)    // Notice
+
         // 알림 소리
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         // 알림에 대한 UI 정보와 작업을 지정한다.
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)                      // 아이콘
-            .setContentTitle("테스트제목")               // 제목
-            .setContentText("테스트내용")              // 세부내용
+            .setContentTitle(remoteMessage.data["body"].toString())               // 제목
+            .setContentText(remoteMessage.data["title"].toString())              // 세부내용
             .setAutoCancel(true)
             .setSound(soundUri)
             .setContentIntent(pendingIntent)                          // 알림 실행 시 Intent
@@ -90,8 +75,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =
-                NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_DEFAULT)
+            val channel = NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
 
