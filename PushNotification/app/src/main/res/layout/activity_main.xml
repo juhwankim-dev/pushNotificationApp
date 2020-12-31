@@ -36,4 +36,16 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_unsub"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/editText_keyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="69dp"
+        android:ems="10"
+        android:hint="키워드를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_unsub" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

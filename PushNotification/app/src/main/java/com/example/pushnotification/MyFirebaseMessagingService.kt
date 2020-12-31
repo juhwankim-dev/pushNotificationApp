@@ -20,6 +20,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String?) {
         Log.d(TAG, "new Token: $token")
 
+        // 토큰 값을 따로 저장해둔다.
         val pref = this.getSharedPreferences("token", Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.putString("token", token).apply()
@@ -30,8 +31,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         Log.d(TAG, "From: " + remoteMessage!!.from)
-        //Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
-        //Log.d(TAG, remoteMessage.data["body"].toString())
+
+        // Notification 메시지를 수신할 경우는
+        // remoteMessage.notification?.body!! 여기에 내용이 저장되어있다.
+        // Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
 
         if(remoteMessage.data.isNotEmpty()){
             Log.i("바디: ", remoteMessage.data["body"].toString())
@@ -56,24 +59,24 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val pendingIntent = PendingIntent.getActivity(this, uniId, intent, PendingIntent.FLAG_ONE_SHOT)
 
         // 알림 채널 이름
-        val channelId = getString(R.string.firebase_notification_channel_id)    // Notice
+        val channelId = getString(R.string.firebase_notification_channel_id)
 
         // 알림 소리
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         // 알림에 대한 UI 정보와 작업을 지정한다.
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)                      // 아이콘
-            .setContentTitle(remoteMessage.data["body"].toString())               // 제목
-            .setContentText(remoteMessage.data["title"].toString())              // 세부내용
+            .setSmallIcon(R.mipmap.ic_launcher) // 아이콘 설정
+            .setContentTitle(remoteMessage.data["body"].toString()) // 제목
+            .setContentText(remoteMessage.data["title"].toString()) // 메시지 내용
             .setAutoCancel(true)
-            .setSound(soundUri)
-            .setContentIntent(pendingIntent)                          // 알림 실행 시 Intent
+            .setSound(soundUri) // 알림 소리
+            .setContentIntent(pendingIntent) // 알림 실행 시 Intent
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Since android Oreo notification channel is needed.
+        // 오레오 버전 이후에는 채널이 필요하다.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(channelId, "Notice", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
