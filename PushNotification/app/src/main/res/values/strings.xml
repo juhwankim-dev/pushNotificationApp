@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">PushNotification</string>
+    <string name="app_name">안양대 알리미</string>
     <string name="firebase_notification_channel_id">test</string>
 </resources>

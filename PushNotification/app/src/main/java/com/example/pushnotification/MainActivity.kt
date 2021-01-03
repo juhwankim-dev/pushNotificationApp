@@ -8,12 +8,12 @@ import com.github.kimcore.inko.Inko
 import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
     private val databaseReference = FirebaseDatabase.getInstance().reference
     private lateinit var map: Map<String, String> // 서버에 있는 키워드를 가져와서 저장할 변수
+    lateinit private var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         txt_token.text = token*/
 
         /*--------------- DB 불러오기 ----------------*/
-        val db = Room.databaseBuilder(
+        db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database-name"
         ).allowMainThreadQueries()
@@ -33,57 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         txt_my_keywords.text = db.keywordDao().getAll().toString()
 
-        importKeywords()
-
-        btn_sub.setOnClickListener {
-            var keyword = KoreanToEnglish()
-
-            if (map.containsValue(keyword)) {
-                Log.i("태그", "키워드가 이미 존재합니다.")
-            } else {
-                databaseReference.child("keywords").push().setValue(keyword)
-                db.keywordDao().insert(Keyword(keyword))
-                txt_my_keywords.text = db.keywordDao().getAll().toString()
-                Log.i("태그", "키워드가 존재하지 않아 업로드 하였습니다.")
-            }
-
-            FirebaseMessaging.getInstance().subscribeToTopic(keyword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.i("결과: ", "구독 요청 성공")
-                        txt_token.text = "구독 중 입니다."
-                    } else {
-                        Log.i("결과: ", "구독 요청 실패")
-                    }
-                }
-        }
-
-        btn_unsub.setOnClickListener {
-            var keyword = KoreanToEnglish()
-
-            FirebaseMessaging.getInstance().unsubscribeFromTopic(keyword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.i("결과: ", "구독 해제 요청 성공")
-                        db.keywordDao().deleteBytitle(keyword)
-                        txt_my_keywords.text = db.keywordDao().getAll().toString()
-                        txt_token.text = "구독 하세요"
-                    } else {
-                        Log.i("결과: ", "구독 해제 요청 실패")
-                    }
-                }
-        }
-    }
-
-    private fun KoreanToEnglish(): String {
-        var keyword = editText_keyword.text.toString()
-
-        val inko = Inko()
-        keyword = inko.ko2en(keyword)
-        return keyword
-    }
-
-    private fun importKeywords() {
+        // 데이터들을 불러온다.
         FirebaseDatabase.getInstance().reference
             .child("keywords")
             .addValueEventListener(object : ValueEventListener {
@@ -95,5 +45,64 @@ class MainActivity : AppCompatActivity() {
                     map = p0.value as Map<String, String>
                 }
             })
+
+        btn_sub.setOnClickListener {
+            subscribe()
+        }
+
+        btn_unsub.setOnClickListener {
+            unSubscribe()
+        }
+    }
+
+    private fun KoreanToEnglish(): String {
+        var keyword = editText_keyword.text.toString()
+
+        val inko = Inko()
+        keyword = inko.ko2en(keyword)
+        return keyword
+    }
+
+    private fun subscribe() {
+        var keyword = KoreanToEnglish()
+
+        if (map.containsKey(keyword)) {
+            Log.i("태그", "키워드가 이미 존재합니다.")
+            var num = map.getValue(keyword).toInt() + 1 // 구독자 수 +1
+            databaseReference.child("keywords").child(keyword).setValue(num.toString())
+        } else {
+            databaseReference.child("keywords").child(keyword).setValue("1")
+            db.keywordDao().insert(Keyword(keyword))
+            txt_my_keywords.text = db.keywordDao().getAll().toString()
+            Log.i("태그", "키워드가 존재하지 않아 업로드 하였습니다.")
+        }
+
+        FirebaseMessaging.getInstance().subscribeToTopic(keyword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.i("결과: ", "구독 요청 성공")
+                    txt_token.text = "구독 중 입니다."
+                } else {
+                    Log.i("결과: ", "구독 요청 실패")
+                }
+            }
+    }
+
+    private fun unSubscribe() {
+        var keyword = KoreanToEnglish()
+        Log.i("!!!!","!!!!!!!!!!!!")
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(keyword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.i("결과: ", "구독 해제 요청 성공")
+                    var num = map.getValue(keyword).toInt() - 1 // 구독자 수 -1
+                    databaseReference.child("keywords").child(keyword).setValue(num.toString())
+                    db.keywordDao().deleteBytitle(keyword)
+                    txt_my_keywords.text = db.keywordDao().getAll().toString()
+                    txt_token.text = "구독 하세요"
+                } else {
+                    Log.i("결과: ", "구독 해제 요청 실패")
+                }
+            }
     }
 }
