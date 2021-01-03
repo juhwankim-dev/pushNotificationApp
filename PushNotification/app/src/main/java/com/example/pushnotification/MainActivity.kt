@@ -3,106 +3,47 @@ package com.example.pushnotification
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import com.github.kimcore.inko.Inko
-import com.google.firebase.database.*
-import com.google.firebase.messaging.FirebaseMessaging
+import androidx.fragment.app.Fragment
+import com.example.pushnotification.fragments.home.HomeFragment
+import com.example.pushnotification.fragments.keyword.KeywordFragment
+import com.example.pushnotification.fragments.setting.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private val databaseReference = FirebaseDatabase.getInstance().reference
-    private lateinit var map: Map<String, String> // 서버에 있는 키워드를 가져와서 저장할 변수
-    lateinit private var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*val pref = this.getSharedPreferences("token", 0)
-        val token: String = pref.getString("token", "default token")!!
-        txt_token.text = token*/
+        /* -------------------------------프래그먼트 관련--------------------------------*/
+        /* 래그먼트 변수*/
+        val homeFragment =
+            HomeFragment()
+        val keywordFragment =
+            KeywordFragment()
+        val settingFragment =
+            SettingFragment()
 
-        /*--------------- DB 불러오기 ----------------*/
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-name"
-        ).allowMainThreadQueries()
-            .build()
-        /*--------------- DB 불러오기 ----------------*/
+        // 현재 프래그먼트 화면을 생성하는 메소드
+        makeCurrentFragment(homeFragment)
 
-        txt_my_keywords.text = db.keywordDao().getAll().toString()
-
-        // 데이터들을 불러온다.
-        FirebaseDatabase.getInstance().reference
-            .child("keywords")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    // 읽어오지 못했을 때
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    map = p0.value as Map<String, String>
-                }
-            })
-
-        btn_sub.setOnClickListener {
-            subscribe()
-        }
-
-        btn_unsub.setOnClickListener {
-            unSubscribe()
-        }
-    }
-
-    private fun KoreanToEnglish(): String {
-        var keyword = editText_keyword.text.toString()
-
-        val inko = Inko()
-        keyword = inko.ko2en(keyword)
-        return keyword
-    }
-
-    private fun subscribe() {
-        var keyword = KoreanToEnglish()
-
-        if (map.containsKey(keyword)) {
-            Log.i("태그", "키워드가 이미 존재합니다.")
-            var num = map.getValue(keyword).toInt() + 1 // 구독자 수 +1
-            databaseReference.child("keywords").child(keyword).setValue(num.toString())
-        } else {
-            databaseReference.child("keywords").child(keyword).setValue("1")
-            db.keywordDao().insert(Keyword(keyword))
-            txt_my_keywords.text = db.keywordDao().getAll().toString()
-            Log.i("태그", "키워드가 존재하지 않아 업로드 하였습니다.")
-        }
-
-        FirebaseMessaging.getInstance().subscribeToTopic(keyword)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.i("결과: ", "구독 요청 성공")
-                    txt_token.text = "구독 중 입니다."
-                } else {
-                    Log.i("결과: ", "구독 요청 실패")
-                }
+        // 프래그먼트가 클릭 되면 할 행동 (화면 전환)
+        nav_view.setOnNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.navigation_home -> makeCurrentFragment(homeFragment)
+                R.id.navigation_home2 -> makeCurrentFragment(keywordFragment)
+                R.id.navigation_home3 -> makeCurrentFragment(settingFragment)
             }
+            true
+        }
+        /*-------------------------------------------------------------------------*/
     }
 
-    private fun unSubscribe() {
-        var keyword = KoreanToEnglish()
-        Log.i("!!!!","!!!!!!!!!!!!")
-        FirebaseMessaging.getInstance().unsubscribeFromTopic(keyword)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.i("결과: ", "구독 해제 요청 성공")
-                    var num = map.getValue(keyword).toInt() - 1 // 구독자 수 -1
-                    databaseReference.child("keywords").child(keyword).setValue(num.toString())
-                    db.keywordDao().deleteBytitle(keyword)
-                    txt_my_keywords.text = db.keywordDao().getAll().toString()
-                    txt_token.text = "구독 하세요"
-                } else {
-                    Log.i("결과: ", "구독 해제 요청 실패")
-                }
-            }
-    }
+    // 현재 프래그먼트 화면을 생성하는 메소드
+    private fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment, fragment)
+            commit()
+        }
 }

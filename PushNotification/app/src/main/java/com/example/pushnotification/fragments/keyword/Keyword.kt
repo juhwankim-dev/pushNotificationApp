@@ -1,4 +1,4 @@
-package com.example.pushnotification
+package com.example.pushnotification.fragments.keyword
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

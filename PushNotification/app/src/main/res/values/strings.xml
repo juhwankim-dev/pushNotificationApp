@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">안양대 알리미</string>
     <string name="firebase_notification_channel_id">test</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

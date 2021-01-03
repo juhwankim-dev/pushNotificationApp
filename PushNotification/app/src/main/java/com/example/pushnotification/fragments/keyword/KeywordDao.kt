@@ -1,6 +1,7 @@
-package com.example.pushnotification
+package com.example.pushnotification.fragments.keyword
 
 import androidx.room.*
+import com.example.pushnotification.fragments.keyword.Keyword
 
 @Dao
 interface KeywordDao {
