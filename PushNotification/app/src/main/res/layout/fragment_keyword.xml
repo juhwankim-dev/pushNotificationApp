@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/keywordLayout"
     tools:context=".fragments.keyword.KeywordFragment">
 
     <TextView
@@ -36,6 +37,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txt_my_keywords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2" />
@@ -58,11 +60,12 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="키워드를 입력하세요"
+            android:layout_weight="1"
             android:inputType="textPersonName" />
 
         <com.skydoves.elasticviews.ElasticButton
             android:id="@+id/btn_sub"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="등록"
             android:textColor="@android:color/white"
@@ -72,9 +75,17 @@
             app:button_scale="0.87" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylcerView_keywords"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylcerView_keywords"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

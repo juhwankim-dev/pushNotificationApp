@@ -21,7 +21,6 @@ class KeywordsAdapter(items: List<Keyword>, listener: OnItemClick) : RecyclerVie
     override fun onBindViewHolder(holder: KeywordsViewHolder, position: Int) { // 생선된 뷰홀더에 데이터 삽입
         holder.keyword.text = items.get(position).keyword
         holder.btnDelete.setOnClickListener {
-            Log.i("버튼이", "눌렸세여")
             mCallback.onClick(items.get(position).keyword)
         }
     }

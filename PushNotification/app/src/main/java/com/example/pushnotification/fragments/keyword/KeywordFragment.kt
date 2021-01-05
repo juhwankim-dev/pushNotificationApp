@@ -1,6 +1,8 @@
 package com.example.pushnotification.fragments.keyword
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.pushnotification.R
 import com.github.kimcore.inko.Inko
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -53,8 +56,11 @@ class KeywordFragment : Fragment(), OnItemClick {
         return inflater.inflate(R.layout.fragment_keyword, container, false)
     }
 
+    //TODO 이미 등록한 키워드를 다시 등록했을때 아무것도 하지 말고 토스트 메시지 띄우기
+    //TODO 개수제한 설정하기
     private fun subscribe() {
         val koreanKeyword = editText_keyword.text.toString()
+        editText_keyword.text = null
         val inko = Inko()
         var englishkeyword = inko.ko2en(koreanKeyword)
 
@@ -72,9 +78,9 @@ class KeywordFragment : Fragment(), OnItemClick {
         FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i("결과: ", "구독 요청 성공")
+                    Snackbar.make(keywordLayout, "알림 설정이 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    Log.i("결과: ", "구독 요청 실패")
+                    Snackbar.make(keywordLayout, "알림 설정을 실패하였습니다.", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
@@ -90,8 +96,36 @@ class KeywordFragment : Fragment(), OnItemClick {
         btn_sub.setOnClickListener {
             subscribe()
         }
+
+        // 키워드 적는 칸 리스너
+        editText_keyword.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(p0.toString().trim().isNotEmpty()){
+                    btn_sub.isEnabled = true
+                    btn_sub.setBackgroundResource(R.drawable.border_blue_fill_round)
+                } else {
+                    btn_sub.isEnabled = false
+                    btn_sub.setBackgroundResource(R.drawable.border_gray_fill_round)
+                }
+            }
+        })
+
+        refresh_layout.setOnRefreshListener {
+            refreshPage()
+
+            // 새로고침 완료시,
+            // 새로고침 아이콘이 사라질 수 있게 isRefreshing = false
+            refresh_layout.isRefreshing = false
+        }
     }
 
+    // 리사이클러뷰 안에 있는 'X'를 누른 경우
     override fun onClick(koreanKeyword: String) {
         val inko = Inko()
         var englishKeyword = inko.ko2en(koreanKeyword)
@@ -99,21 +133,26 @@ class KeywordFragment : Fragment(), OnItemClick {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i("결과: ", "구독 해제 요청 성공")
+                    Snackbar.make(keywordLayout, "알림 삭제가 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
                     var num = map.getValue(englishKeyword).toInt() - 1 // 구독자 수 -1
                     databaseReference.child("keywords").child(englishKeyword).setValue(num.toString())
                     db.keywordDao().deleteBytitle(koreanKeyword)
                     refreshPage()
                 } else {
-                    Log.i("결과: ", "구독 해제 요청 실패")
+                    Snackbar.make(keywordLayout, "알림 삭제를 실패하였습니다.", Snackbar.LENGTH_SHORT).show();
                 }
             }
     }
 
+    //TODO 전체 목록을 refresh하지 말고 변화된 부분만 새로고침하도록 방법을 강구
     private fun refreshPage(){
-        recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this) // 어댑터 생성
+        // 리사이클러뷰 새로고침
+        recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
         var keywordsAdapter = recylcerView_keywords.adapter
         keywordsAdapter!!.notifyDataSetChanged()
+
+        // 등록한 키워드 개수 새로고침
+        txt_my_keywords.text = db.keywordDao().getAll().size.toString()
     }
 }
 
