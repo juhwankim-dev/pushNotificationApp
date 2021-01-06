@@ -23,4 +23,9 @@
         android:layout_height="10dp"
         android:background="@color/colorGray"
         android:orientation="vertical"></LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_notices"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

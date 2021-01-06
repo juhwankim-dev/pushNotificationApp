@@ -25,6 +25,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -40,6 +48,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
     // 한영 변환 라이브러리
     implementation 'im.kimcore:inko.kt:1.1'
@@ -60,4 +69,16 @@ dependencies {
 
     // 버튼 라이브러리
     implementation "com.github.skydoves:elasticviews:2.0.9"
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    /* optional - RxJava support for Room */
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+
+    /* optional - Guava support for Room, including Optional and ListenableFuture */
+    implementation "android.arch.persistence.room:guava:1.1.1"
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }
