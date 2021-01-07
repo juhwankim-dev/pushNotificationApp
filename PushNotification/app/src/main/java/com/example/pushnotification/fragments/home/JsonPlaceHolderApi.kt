@@ -10,6 +10,6 @@ interface JsonPlaceHolderApi {
 
     @FormUrlEncoded
     @POST("boardList.do")
-    fun createPost(@FieldMap fields: MutableMap<String, String>): Call<Result?>?
+    fun boardListPost(@FieldMap fields: MutableMap<String, String>): Call<Result?>?
     // (= Call<Result> createPost(@FieldMap Map<String, String> fields); )
 }

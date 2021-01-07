@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pushnotification.R
-import com.example.pushnotification.SplashActivity.Companion.notices
+import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
 import kotlinx.android.synthetic.main.notice_list_item.view.*
 
 class MyNoticeAdapter : RecyclerView.Adapter<MyNoticeAdapter.MyNoticeViewHolder>(){
@@ -21,10 +21,6 @@ class MyNoticeAdapter : RecyclerView.Adapter<MyNoticeAdapter.MyNoticeViewHolder>
     override fun onBindViewHolder(holder: MyNoticeAdapter.MyNoticeViewHolder, position: Int) {
         holder.title.text = notices.get(position).title
         holder.info.text = notices.get(position).info
-
- /*       var url = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&bIdx="
-        url += notices.get(position).url
-        url += "&page=1&menuId=23&bcIdx=0&searchCondition=SUBJECT&searchKeyword="*/
 
         holder.itemView.setOnClickListener {v->
             //var goUnivHomepage = Intent(Intent.ACTION_VIEW, Uri.parse(url))
