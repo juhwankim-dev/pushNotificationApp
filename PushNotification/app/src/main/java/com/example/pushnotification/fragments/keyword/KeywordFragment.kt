@@ -115,14 +115,6 @@ class KeywordFragment : Fragment(), OnItemClick {
                 }
             }
         })
-
-        refresh_layout.setOnRefreshListener {
-            refreshPage()
-
-            // 새로고침 완료시,
-            // 새로고침 아이콘이 사라질 수 있게 isRefreshing = false
-            refresh_layout.isRefreshing = false
-        }
     }
 
     // 리사이클러뷰 안에 있는 'X'를 누른 경우

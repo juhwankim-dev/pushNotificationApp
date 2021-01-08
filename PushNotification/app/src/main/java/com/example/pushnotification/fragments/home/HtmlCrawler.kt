@@ -36,7 +36,7 @@ class HtmlCrawler {
     }
 
     fun activateBot(page: Int) {
-        Log.i("00000", page.toString() + "를 크롤링합니당@@@@@@")
+        Log.i("00000", page.toString() + "페이지를 불러옵니다.")
         this.page = page.toString()
         val thread = ThreadClass();
         thread.start();
@@ -106,6 +106,8 @@ class HtmlCrawler {
                             position++
                         }
                     }
+
+                    notices.add(NoticeList(" ", " ", " ")) // 맨끝에 null을 넣고 싶은데 안돼서 이거를...
                 }
 
                 /* 응답을 하지 않는다면 */
