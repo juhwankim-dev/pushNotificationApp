@@ -21,12 +21,15 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.fragment_keyword.*
 
+const val KEYWORD_LIMIT = 10
 
 class KeywordFragment : Fragment(), OnItemClick {
 
     private val databaseReference = FirebaseDatabase.getInstance().reference
     private lateinit var map: Map<String, String> // 서버에 있는 키워드를 가져와서 저장할 변수
-    lateinit private var db: AppDatabase
+    private lateinit var db: AppDatabase
+    private lateinit var myKeywords: List<Keyword>
+    //private lateinit var keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,45 +59,18 @@ class KeywordFragment : Fragment(), OnItemClick {
         return inflater.inflate(R.layout.fragment_keyword, container, false)
     }
 
-    //TODO 이미 등록한 키워드를 다시 등록했을때 아무것도 하지 말고 토스트 메시지 띄우기
-    //TODO 개수제한 설정하기
-    private fun subscribe() {
-        val koreanKeyword = editText_keyword.text.toString()
-        editText_keyword.text = null
-        val inko = Inko()
-        var englishkeyword = inko.ko2en(koreanKeyword)
-
-        if (map.containsKey(englishkeyword)) {
-            Log.i("태그", "키워드가 이미 존재합니다.")
-            var num = map.getValue(englishkeyword).toInt() + 1 // 구독자 수 +1
-            databaseReference.child("keywords").child(englishkeyword).setValue(num.toString())
-        } else {
-            databaseReference.child("keywords").child(englishkeyword).setValue("1")
-            Log.i("태그", "키워드가 존재하지 않아 업로드 하였습니다.")
-        }
-
-        db.keywordDao().insert(Keyword(koreanKeyword))
-
-        FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Snackbar.make(keywordLayout, "알림 설정이 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
-                } else {
-                    Snackbar.make(keywordLayout, "알림 설정을 실패하였습니다.", Snackbar.LENGTH_SHORT).show();
-                }
-            }
-
-        refreshPage()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recylcerView_keywords.layoutManager = LinearLayoutManager(context)
+        myKeywords = db.keywordDao().getAll()
+        recylcerView_keywords.adapter = KeywordsAdapter(myKeywords, this)
+
         refreshPage()
 
         btn_sub.setOnClickListener {
             subscribe()
+            refreshPage()
         }
 
         // 키워드 적는 칸 리스너
@@ -117,8 +93,55 @@ class KeywordFragment : Fragment(), OnItemClick {
         })
     }
 
+    private fun subscribe() {
+        val koreanKeyword = editText_keyword.text.toString()
+
+        if(checkExistence(koreanKeyword)){
+            Snackbar.make(keywordLayout, "이미 등록된 키워드입니다.", Snackbar.LENGTH_SHORT).show();
+        } else if(checkLimitOver()){
+            Snackbar.make(keywordLayout, "키워드는 10개까지 등록 가능합니다.", Snackbar.LENGTH_SHORT).show();
+        } else {
+            editText_keyword.text = null
+            val inko = Inko()
+            var englishkeyword = inko.ko2en(koreanKeyword)
+
+            if (map.containsKey(englishkeyword)) {
+                Log.i("태그", "키워드가 이미 존재합니다.")
+                var num = map.getValue(englishkeyword).toInt() + 1 // 구독자 수 +1
+                databaseReference.child("keywords").child(englishkeyword).setValue(num.toString())
+            } else {
+                databaseReference.child("keywords").child(englishkeyword).setValue("1")
+                Log.i("태그", "키워드가 존재하지 않아 업로드 하였습니다.")
+            }
+
+            db.keywordDao().insert(Keyword(koreanKeyword))
+
+            FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Snackbar.make(keywordLayout, "알림 설정이 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(keywordLayout, "알림 설정을 실패하였습니다.", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+        }
+    }
+
+    fun checkExistence(koreanKeyword: String): Boolean {
+        var test = db.keywordDao().getAll()
+        if(test.contains(Keyword(koreanKeyword))){
+            return true
+        }
+        return false
+    }
+
+    fun checkLimitOver(): Boolean {
+        if(KEYWORD_LIMIT < db.keywordDao().getAll().size) return true
+        return false
+    }
+
     // 리사이클러뷰 안에 있는 'X'를 누른 경우
-    override fun onClick(koreanKeyword: String) {
+    override fun deleteKeyword(koreanKeyword: String) {
         val inko = Inko()
         var englishKeyword = inko.ko2en(koreanKeyword)
 
@@ -137,9 +160,8 @@ class KeywordFragment : Fragment(), OnItemClick {
     }
 
     //TODO 전체 목록을 refresh하지 말고 변화된 부분만 새로고침하도록 방법을 강구
-    private fun refreshPage(){
+    private fun refreshPage() {
         // 리사이클러뷰 새로고침
-        recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
         var keywordsAdapter = recylcerView_keywords.adapter
         keywordsAdapter!!.notifyDataSetChanged()
 

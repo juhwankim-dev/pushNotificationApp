@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
 
         refresh_layout.setOnRefreshListener {
             refreshPage(keywordAdapter)
-            // 새로고침 완료시, 새로고침 아이콘이 사라질 수 있게 isRefreshing = false
+            // 새로고침을 완료하면 아이콘을 없앤다.
             refresh_layout.isRefreshing = false
         }
     }
@@ -94,3 +94,4 @@ class HomeFragment : Fragment() {
 }
 
 
+//refresh_layout.setColorSchemeColors( R.color.colorRefresh )
