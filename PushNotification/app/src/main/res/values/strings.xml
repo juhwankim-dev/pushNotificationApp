@@ -2,6 +2,7 @@
     <string name="app_name">안양대 알리미</string>
     <string name="firebase_notification_channel_id">test</string>
     <string name="email">juhwan.dev@gmail.com</string>
+    <string name="guide">서버에서 평일 9시 ~ 6시 사이에\n1시간 간격으로 공지사항을 체크하여 알림을 보냅니다.</string>
 
     <string name="source_1">inko library</string>
     <string name="license_1">MIT License

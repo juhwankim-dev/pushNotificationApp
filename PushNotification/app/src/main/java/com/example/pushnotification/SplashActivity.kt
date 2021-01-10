@@ -20,5 +20,7 @@ class SplashActivity : AppCompatActivity(){
         var crawler = HtmlCrawler()
         crawler.setURLAPI()
         crawler.activateBot(1)
+
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout)
     }
 }

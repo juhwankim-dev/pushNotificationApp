@@ -81,4 +81,10 @@ dependencies {
     /* optional - Guava support for Room, including Optional and ListenableFuture */
     implementation "android.arch.persistence.room:guava:1.1.1"
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    // 리사이클러뷰 라이브러리
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
+    // 초코바 메시지
+    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
 }

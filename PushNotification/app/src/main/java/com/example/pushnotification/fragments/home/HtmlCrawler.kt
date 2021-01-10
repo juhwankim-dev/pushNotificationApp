@@ -80,7 +80,7 @@ class HtmlCrawler {
                 {
                     /* 응답이 성공적이지 않을때 할 행동, 만약 응답이 없었다면 response에는 코드가 저장되게 된다. (에러 404)*/
                     if (!response.isSuccessful()) {
-                        notices.add(0, NoticeList("페이지를 표시할 수 없습니다.", response.code().toString(), " "))
+                        notices.add(0, NoticeList("네트워크가 불안정 합니다. 새로고침을 해주세요. ", response.code().toString(), " "))
                         //txt.text = "code: " + response.code()
                         return
                     }
@@ -89,31 +89,35 @@ class HtmlCrawler {
                     /* 그걸 Result형 객체를 하나 만들어서 저장한거임 아래 문장이 */
                     val postResponse: Result? = response.body()
 
-                    // 메인에 띄울 가장 최신 공지사항 하나만 따옴
-                    if (postResponse != null) {
-                        mainNotice = postResponse.resultList.get(0).SUBJECT.toString()
-                    }
-
-                    /* for-each문 돌면서.. Result에 있는 데이터중에 ResultList에 있는거 가져옴. 그래서 한줄씩 검사할거임 */
-                    if (postResponse != null) {
-                        var position = 0
-
-                        for (post in postResponse.resultList) {
-                            var title = post.SUBJECT.toString()
-                            var info = post.WRITER.toString() + "   |   " + post.WRITE_DATE2.toString()
-                            var url = post.B_IDX.toString()
-                            notices.add(NoticeList(title, info, url))
-                            position++
+                    // TODO Attempt to read from null array: 사이트와의 연결이 불안정할때 이런 에러가 뜸
+                    try{
+                        // 메인에 띄울 가장 최신 공지사항 하나만 따옴
+                        if (postResponse != null) {
+                            mainNotice = postResponse.resultList.get(0).SUBJECT.toString()
                         }
-                    }
 
-                    notices.add(NoticeList(" ", " ", " ")) // 맨끝에 null을 넣고 싶은데 안돼서 이거를...
+                        /* for-each문 돌면서.. Result에 있는 데이터중에 ResultList에 있는거 가져옴. 그래서 한줄씩 검사할거임 */
+                        if (postResponse != null) {
+                            var position = 0
+
+                            for (post in postResponse.resultList) {
+                                var title = post.SUBJECT.toString()
+                                var info = post.WRITE_DATE2.toString() + "   |   " + post.WRITER.toString()
+                                var url = post.B_IDX.toString()
+                                notices.add(NoticeList(title, info, url))
+                                position++
+                            }
+                        }
+
+                        notices.add(NoticeList(" ", " ", " ")) // 맨끝에 null을 넣고 싶은데 안돼서 이거를...
+                    } catch (e: Exception){
+                        notices.add(0, NoticeList("네트워크가 불안정 합니다. ", "새로고침을 해주세요.", " "))
+                    }
                 }
 
                 /* 응답을 하지 않는다면 */
                 override fun onFailure(call: Call<Result?>, t: Throwable) {
-                    notices.add(0, NoticeList("페이지를 표시할 수 없습니다.", "사이트 관리자에게 문의하세요.", " "))
-                    //txt.text = t.message
+                    notices.add(0, NoticeList("네트워크가 불안정 합니다. ", "새로고침을 해주세요.", " "))
                 }
             })
         }

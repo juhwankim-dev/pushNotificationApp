@@ -7,38 +7,35 @@
     android:orientation="vertical"
     tools:context=".fragments.setting.SettingFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="설정"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_gravity="center_horizontal"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/colorGray"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="@dimen/appBarMargin"
+        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/headerText"
+            android:id="@+id/textView"
+            android:padding="15dp"
+            android:text="설정"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_profileEdit"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:padding="@dimen/activity_margin"
         android:background="@drawable/border_layout_bottom"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/bodyText"
             android:layout_gravity="center_vertical"
             android:text="알림 설정"
-            android:textColor="#000000"
-            android:layout_weight="1"
-            android:textSize="14dp" />
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -52,16 +49,14 @@
         android:layout_height="70dp"
         android:id="@+id/layout_send_email"
         android:background="@drawable/border_layout_bottom"
+        android:padding="@dimen/activity_margin"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/bodyText"
             android:layout_gravity="center_vertical"
             android:text="개발자에게 문의하기"
-            android:textColor="#000000"
-            android:layout_weight="1"
-            android:textSize="14dp" />
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -74,17 +69,16 @@
         android:id="@+id/layout_license"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/border_layout_bottom"
+        android:background="@color/colorWhite"
+        android:padding="@dimen/activity_margin"
+        android:elevation="2dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/bodyText"
             android:layout_gravity="center_vertical"
             android:text="오픈소스 라이선스 확인"
-            android:textColor="#000000"
-            android:layout_weight="1"
-            android:textSize="14dp" />
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -104,17 +98,15 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="@drawable/border_layout_bottom">
+        android:padding="@dimen/activity_margin"
+        android:elevation="2dp"
+        android:background="@color/colorWhite">
 
         <TextView
+            style="@style/bodyText"
             android:id="@+id/txt_current_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="현재 버전 1.0.0"
-            android:textSize="14dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:textColor="#000000"/>
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout

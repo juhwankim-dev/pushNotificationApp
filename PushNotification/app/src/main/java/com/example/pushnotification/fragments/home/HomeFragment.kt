@@ -1,19 +1,18 @@
 package com.example.pushnotification.fragments.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.baoyz.widget.PullRefreshLayout
 import com.example.pushnotification.R
 import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
 import com.google.android.material.snackbar.Snackbar
+import com.pd.chocobar.ChocoBar
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_loading.*
 
 
 class HomeFragment : Fragment() {
@@ -25,7 +24,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -61,11 +59,11 @@ class HomeFragment : Fragment() {
             }
         })
 
-        refresh_layout.setOnRefreshListener {
+        refresh_layout.setOnRefreshListener(PullRefreshLayout.OnRefreshListener {
             refreshPage(keywordAdapter)
             // 새로고침을 완료하면 아이콘을 없앤다.
-            refresh_layout.isRefreshing = false
-        }
+            refresh_layout.setRefreshing(false)
+        })
     }
 
     private fun refreshPage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
@@ -81,7 +79,7 @@ class HomeFragment : Fragment() {
             keywordAdapter!!.notifyDataSetChanged()
         }, 1000)
 
-        Snackbar.make(home_linearlayout, "새로고침 하였습니다.", Snackbar.LENGTH_SHORT).show();
+        greenChocoBar("새로고침 하였습니다.")
     }
 
     private fun loadMorePage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
@@ -90,6 +88,15 @@ class HomeFragment : Fragment() {
         keywordAdapter!!.notifyItemRangeInserted(page*15,15)
 
         keywordAdapter.notifyDataSetChanged()
+    }
+
+    private fun greenChocoBar(message: String) {
+        ChocoBar.builder().setView(home_linearlayout)
+            .setText(message)
+            .setDuration(ChocoBar.LENGTH_SHORT)
+            .setActionText("확인")
+            .green()  // in built green ChocoBar
+            .show();
     }
 }
 

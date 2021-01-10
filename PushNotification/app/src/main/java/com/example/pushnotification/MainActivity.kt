@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity() {
         nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.navigation_home -> makeCurrentFragment(homeFragment)
-                R.id.navigation_home2 -> makeCurrentFragment(keywordFragment)
+                R.id.navigation_home2 -> {
+                    makeCurrentFragment(keywordFragment)
+                }
                 R.id.navigation_home3 -> makeCurrentFragment(settingFragment)
             }
             true
