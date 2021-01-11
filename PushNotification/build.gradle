@@ -22,7 +22,6 @@ allprojects {
         google()
         jcenter()
 
-        // 한영 변환 라이브러리
         maven { url 'https://jitpack.io' }
     }
 }

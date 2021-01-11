@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fragments.setting.ProfileActivity"></activity>
         <activity android:name=".fragments.setting.LicenseActivity" />
         <activity android:name=".fragments.home.WebViewActivity" />
         <activity

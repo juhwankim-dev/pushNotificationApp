@@ -3,7 +3,6 @@ package com.example.pushnotification.fragments.keyword
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,11 +65,10 @@ class KeywordFragment : Fragment(), OnItemClick {
         var keywordsAdapter = recylcerView_keywords.adapter!!
         recylcerView_keywords.layoutManager = LinearLayoutManager(context)
 
-        refreshPage(keywordsAdapter)
+        refreshPage(keywordsAdapter, 0)
 
         btn_subscribe.setOnClickListener {
             subscribe()
-            refreshPage(keywordsAdapter)
         }
 
         // 키워드 적는 칸 리스너
@@ -109,6 +107,7 @@ class KeywordFragment : Fragment(), OnItemClick {
             FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        normalChocoBar("잠시만 기다려주세요.")
                         if (map.containsKey(englishkeyword)) {
                             var num = map.getValue(englishkeyword).toInt() + 1 // 구독자 수 +1
                             databaseReference.child("keywords").child(englishkeyword).setValue(num.toString())
@@ -117,9 +116,7 @@ class KeywordFragment : Fragment(), OnItemClick {
                         }
 
                         db.keywordDao().insert(Keyword(koreanKeyword))
-
-                        greenChocoBar("알림을 설정하였습니다.")
-                        //Snackbar.make(keywordLayout, "알림 설정이 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
+                        refreshPage(recylcerView_keywords.adapter!!, 1)
                     } else {
                         redChocoBar("네트워크 상태가 불안정 합니다.")
                     }
@@ -150,19 +147,22 @@ class KeywordFragment : Fragment(), OnItemClick {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    normalChocoBar("잠시만 기다려주세요.")
                     //Snackbar.make(keywordLayout, "알림 삭제가 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
                     var num = map.getValue(englishKeyword).toInt() - 1 // 구독자 수 -1
                     databaseReference.child("keywords").child(englishKeyword).setValue(num.toString())
                     db.keywordDao().deleteBytitle(koreanKeyword)
-                    refreshPage(recylcerView_keywords.adapter!!)
-                    greenChocoBar("알림을 삭제하였습니다.")
+                    refreshPage(recylcerView_keywords.adapter!!, 2)
                 } else {
                     redChocoBar("네트워크 상태가 불안정 합니다.")
                 }
             }
     }
 
-    private fun refreshPage(keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+    private fun refreshPage(
+        keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
+        messageRequest: Int
+    ) {
         val handler = android.os.Handler()
 
         handler.postDelayed({
@@ -170,12 +170,18 @@ class KeywordFragment : Fragment(), OnItemClick {
                 // 리사이클러뷰 새로고침
                 recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
                 keywordsAdapter!!.notifyDataSetChanged()
+                when (messageRequest){
+                    1 -> {
+                        greenChocoBar("알림을 설정하였습니다.")
+                    }
+                    2 -> {
+                        greenChocoBar("알림을 삭제하였습니다.")
+                    }
+                }
             } catch (e: Exception){
                 // TODO 화면을 너무 빨리 전환하면 recyclerView_keywords null 에러가 남
             }
         }, 1000)
-
-
 
         // 등록한 키워드 개수 새로고침
         txt_my_keywords.text = db.keywordDao().getAll().size.toString()
@@ -196,6 +202,14 @@ class KeywordFragment : Fragment(), OnItemClick {
             .setDuration(ChocoBar.LENGTH_SHORT)
             .setActionText("확인")
             .red()   // in built red ChocoBar
+            .show();
+    }
+
+    private fun normalChocoBar(message: String){
+        ChocoBar.builder().setView(keywordLayout)
+            .setText(message)
+            .setDuration(ChocoBar.LENGTH_SHORT)
+            .build()   // in built red ChocoBar
             .show();
     }
 }

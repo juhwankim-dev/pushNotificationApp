@@ -7,8 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="48dp"
         android:background="@color/colorWhite"
         android:elevation="2dp"
         android:orientation="horizontal">
@@ -18,13 +17,18 @@
             style="@style/bodyText"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:textSize="14sp"
             android:text="TextView"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/btn_delete"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_gravity="right"
             app:srcCompat="@drawable/ic_clear_black_24dp" />
 
     </LinearLayout>

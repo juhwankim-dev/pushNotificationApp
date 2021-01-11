@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="88dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginLeft="@dimen/activity_margin"
     android:layout_marginRight="@dimen/activity_margin"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     android:background="@drawable/border_layout_bottom"
     android:gravity="center_vertical">
 
@@ -23,7 +25,7 @@
         <TextView
             style="@style/explainText"
             android:id="@+id/txtNoticeInfo"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="국제처   |   2019-09-30"
             android:textSize="12sp" />
 

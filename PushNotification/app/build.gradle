@@ -87,4 +87,7 @@ dependencies {
 
     // 초코바 메시지
     implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+
+    // 리사이클러뷰 애니메이션
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.0'
 }

@@ -22,6 +22,13 @@
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
+    <style name="appBarText">
+        <item name="android:textSize">@dimen/appBarTextSize</item>
+        <item name="android:textColor">@color/colorBlackHighEmphasis</item>
+        <item name="android:textStyle">bold</item>
+        <item name="background">@color/mainBlue</item>
+    </style>
+
     <style name="headerText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,8 @@ import com.example.pushnotification.R
 import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
 import com.google.android.material.snackbar.Snackbar
 import com.pd.chocobar.ChocoBar
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -24,7 +28,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -32,6 +36,18 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView_notices.adapter = MyNoticeAdapter(context) // 어댑터 생성
+        //recyclerView_notices.adapter = AlphaInAnimationAdapter(MyNoticeAdapter(context))
+    /*    recyclerView_notices.adapter = AlphaInAnimationAdapter(MyNoticeAdapter(context)).apply {
+            // Change the durations.
+            setDuration(5000)
+            // Change the interpolator.
+            setInterpolator(OvershootInterpolator(5f))
+            // Disable the first scroll mode.
+            setFirstOnly(false)
+        }*/
+     /*   val alphaAdapter = AlphaInAnimationAdapter(MyNoticeAdapter(context))
+        recyclerView_notices.adapter = ScaleInAnimationAdapter(alphaAdapter)*/
+
         var keywordAdapter = recyclerView_notices.adapter
         recyclerView_notices.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
 
@@ -86,8 +102,6 @@ class HomeFragment : Fragment() {
         // 한 페이지당 게시물이 15개씩 들어있음.
         // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
         keywordAdapter!!.notifyItemRangeInserted(page*15,15)
-
-        keywordAdapter.notifyDataSetChanged()
     }
 
     private fun greenChocoBar(message: String) {

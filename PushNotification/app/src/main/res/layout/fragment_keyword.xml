@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,91 +9,105 @@
     android:id="@+id/keywordLayout"
     tools:context=".fragments.keyword.KeywordFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_keywrod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:fitsSystemWindows="true">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/headerText"
+            android:id="@+id/app_toolbar_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/appBarMargin"
+            app:titleTextColor="@color/colorWhite"
+            app:title="키워드 알림 설정"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/appBarMargin"
-        android:gravity="center"
+        android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:elevation="4dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layoutAnimation="@anim/layout_animation"
         android:orientation="vertical">
 
         <TextView
-            style="@style/headerText"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:padding="15dp"
-            android:text="키워드 알림 설정" />
+            style="@style/explainText"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/guide" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_margin"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:ems="10"
+                android:textSize="14sp"
+                android:hint="알림을 받을 키워드를 입력하세요."
+                android:background="@drawable/edittext_outline_left"
+                android:focusedByDefault="true"
+                android:layout_weight="1"
+                android:padding="12dp"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btn_subscribe"
+                android:layout_width="60dp"
+                android:layout_height="44dp"
+                android:background="@drawable/edittext_outline_right"
+                android:text="등록"
+                android:textColor="@color/colorBlackDisabled2"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/headerText"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="알림 받을 키워드"/>
+
+            <TextView
+                android:id="@+id/txt_my_keywords"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mainBlue"
+                android:text="-1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlackHighEmphasis"
+                android:text="/10" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylcerView_keywords"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_margin"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/headerText"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:text="알림 받을 키워드"/>
-
-        <TextView
-            android:id="@+id/txt_my_keywords"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/mainBlue"
-            android:text="-1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorBlackHighEmphasis"
-            android:text="/10" />
-    </LinearLayout>
-
-    <TextView
-        style="@style/explainText"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="@string/guide" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_margin"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editText_keyword"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:ems="10"
-            android:textSize="14sp"
-            android:hint="알림을 받을 키워드를 입력하세요."
-            android:background="@drawable/edittext_outline_left"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/btn_subscribe"
-            android:layout_width="60dp"
-            android:layout_height="44dp"
-            android:background="@drawable/edittext_outline_right"
-            android:text="등록"
-            android:textColor="@color/colorBlackDisabled2"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylcerView_keywords"
-        android:padding="@dimen/activity_margin"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="메인" />
+        android:title="공지사항" />
 
     <item
         android:id="@+id/navigation_home2"

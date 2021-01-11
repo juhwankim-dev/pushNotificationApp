@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,26 +9,31 @@
     android:id="@+id/home_linearlayout"
     tools:context=".fragments.home.HomeFragment">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/appBarMargin"
-        android:gravity="center"
-        android:background="@color/colorWhite"
+        android:layout_height="wrap_content"
         android:elevation="4dp"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <TextView
+        <androidx.appcompat.widget.Toolbar
             style="@style/headerText"
-            android:id="@+id/textView"
-            android:padding="15dp"
-            android:text="메인"
-            android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
+            android:id="@+id/app_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/appBarMargin"
+            app:titleTextColor="@color/colorWhite"
+            app:title="공지사항"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.baoyz.widget.PullRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:layoutAnimation="@anim/layout_animation"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:refreshColor="@color/mainBlue">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -37,4 +43,4 @@
 
     </com.baoyz.widget.PullRefreshLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
