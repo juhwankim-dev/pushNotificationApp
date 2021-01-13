@@ -23,7 +23,7 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
+    /*override fun onBackPressed() {
         if(webView.canGoBack()) webView.goBack()
         else {
             if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
@@ -33,5 +33,5 @@ class WebViewActivity : AppCompatActivity() {
             lastTimeBackPressed = System.currentTimeMillis()
             Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 }

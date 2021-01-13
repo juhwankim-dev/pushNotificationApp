@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
-import com.pd.chocobar.ChocoBar
 import kotlinx.android.synthetic.main.fragment_keyword.*
 import java.lang.Exception
 
@@ -61,11 +61,14 @@ class KeywordFragment : Fragment(), OnItemClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 등록한 키워드 개수
+        txt_my_keywords.text = db.keywordDao().getAll().size.toString()
+
         recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
         var keywordsAdapter = recylcerView_keywords.adapter!!
         recylcerView_keywords.layoutManager = LinearLayoutManager(context)
 
-        refreshPage(keywordsAdapter, 0)
+        refreshPage(keywordsAdapter)
 
         btn_subscribe.setOnClickListener {
             subscribe()
@@ -93,6 +96,7 @@ class KeywordFragment : Fragment(), OnItemClick {
 
     private fun subscribe() {
         val koreanKeyword = editText_keyword.text.toString()
+        showProgress()
 
         if(checkExistence(koreanKeyword)){
             Snackbar.make(keywordLayout, "이미 등록된 키워드입니다.", Snackbar.LENGTH_SHORT).show();
@@ -107,26 +111,24 @@ class KeywordFragment : Fragment(), OnItemClick {
             FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        normalChocoBar("잠시만 기다려주세요.")
-                        if (map.containsKey(englishkeyword)) {
-                            var num = map.getValue(englishkeyword).toInt() + 1 // 구독자 수 +1
-                            databaseReference.child("keywords").child(englishkeyword).setValue(num.toString())
+                        if (map.containsKey(koreanKeyword)) {
+                            var num = map.getValue(koreanKeyword).toInt() + 1 // 구독자 수 +1
+                            databaseReference.child("keywords").child(koreanKeyword).setValue(num.toString())
                         } else {
-                            databaseReference.child("keywords").child(englishkeyword).setValue("1")
+                            databaseReference.child("keywords").child(koreanKeyword).setValue("1")
                         }
-
                         db.keywordDao().insert(Keyword(koreanKeyword))
-                        refreshPage(recylcerView_keywords.adapter!!, 1)
+                        refreshPage(recylcerView_keywords.adapter!!)
                     } else {
-                        redChocoBar("네트워크 상태가 불안정 합니다.")
+                        Snackbar.make(keywordLayout, "네트워크 상태가 불안정 합니다.", Snackbar.LENGTH_SHORT).show();
                     }
                 }
         }
     }
 
     fun checkExistence(koreanKeyword: String): Boolean {
-        var test = db.keywordDao().getAll()
-        if(test.contains(Keyword(koreanKeyword))){
+        var myKeywords = db.keywordDao().getAll()
+        if(myKeywords.contains(Keyword(koreanKeyword))){
             return true
         }
         return false
@@ -141,27 +143,26 @@ class KeywordFragment : Fragment(), OnItemClick {
     override fun deleteKeyword(
         koreanKeyword: String
     ) {
+        showProgress()
+
         val inko = Inko()
         var englishKeyword = inko.ko2en(koreanKeyword)
 
         FirebaseMessaging.getInstance().unsubscribeFromTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    normalChocoBar("잠시만 기다려주세요.")
-                    //Snackbar.make(keywordLayout, "알림 삭제가 완료되었습니다.", Snackbar.LENGTH_SHORT).show();
-                    var num = map.getValue(englishKeyword).toInt() - 1 // 구독자 수 -1
-                    databaseReference.child("keywords").child(englishKeyword).setValue(num.toString())
+                    var num = map.getValue(koreanKeyword).toInt() - 1 // 구독자 수 -1
+                    databaseReference.child("keywords").child(koreanKeyword).setValue(num.toString())
                     db.keywordDao().deleteBytitle(koreanKeyword)
-                    refreshPage(recylcerView_keywords.adapter!!, 2)
+                    refreshPage(recylcerView_keywords.adapter!!)
                 } else {
-                    redChocoBar("네트워크 상태가 불안정 합니다.")
+                    Snackbar.make(keywordLayout, "네트워크 상태가 불안정 합니다.", Snackbar.LENGTH_SHORT).show();
                 }
             }
     }
 
     private fun refreshPage(
-        keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
-        messageRequest: Int
+        keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     ) {
         val handler = android.os.Handler()
 
@@ -170,47 +171,24 @@ class KeywordFragment : Fragment(), OnItemClick {
                 // 리사이클러뷰 새로고침
                 recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
                 keywordsAdapter!!.notifyDataSetChanged()
-                when (messageRequest){
-                    1 -> {
-                        greenChocoBar("알림을 설정하였습니다.")
-                    }
-                    2 -> {
-                        greenChocoBar("알림을 삭제하였습니다.")
-                    }
-                }
+                hideProgress()
+
+                // 등록한 키워드 개수 새로고침
+                txt_my_keywords.text = db.keywordDao().getAll().size.toString()
             } catch (e: Exception){
                 // TODO 화면을 너무 빨리 전환하면 recyclerView_keywords null 에러가 남
             }
         }, 1000)
-
-        // 등록한 키워드 개수 새로고침
-        txt_my_keywords.text = db.keywordDao().getAll().size.toString()
     }
 
-    private fun greenChocoBar(message: String) {
-        ChocoBar.builder().setView(keywordLayout)
-            .setText(message)
-            .setDuration(ChocoBar.LENGTH_SHORT)
-            .setActionText("확인")
-            .green()  // in built green ChocoBar
-            .show();
+    private fun showProgress(){
+        activity!!.window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        progressBar_keyword.visibility = View.VISIBLE
     }
 
-    private fun redChocoBar(message: String){
-        ChocoBar.builder().setView(keywordLayout)
-            .setText(message)
-            .setDuration(ChocoBar.LENGTH_SHORT)
-            .setActionText("확인")
-            .red()   // in built red ChocoBar
-            .show();
-    }
-
-    private fun normalChocoBar(message: String){
-        ChocoBar.builder().setView(keywordLayout)
-            .setText(message)
-            .setDuration(ChocoBar.LENGTH_SHORT)
-            .build()   // in built red ChocoBar
-            .show();
+    private fun hideProgress() {
+        activity!!.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        progressBar_keyword.visibility = View.GONE
     }
 }
 

@@ -18,8 +18,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:text="TextView"
-            android:textStyle="bold" />
+            android:text="TextView" />
 
         <ImageView
             android:id="@+id/btn_delete"

@@ -85,8 +85,8 @@ dependencies {
     // 리사이클러뷰 라이브러리
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 
-    // 초코바 메시지
-    implementation 'com.github.Pradyuman7:ChocoBar:V1.0'
+    // jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
 
     // 리사이클러뷰 애니메이션
     implementation 'jp.wasabeef:recyclerview-animators:4.0.0'

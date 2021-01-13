@@ -13,9 +13,6 @@ import com.baoyz.widget.PullRefreshLayout
 import com.example.pushnotification.R
 import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
 import com.google.android.material.snackbar.Snackbar
-import com.pd.chocobar.ChocoBar
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -36,17 +33,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView_notices.adapter = MyNoticeAdapter(context) // 어댑터 생성
-        //recyclerView_notices.adapter = AlphaInAnimationAdapter(MyNoticeAdapter(context))
-    /*    recyclerView_notices.adapter = AlphaInAnimationAdapter(MyNoticeAdapter(context)).apply {
-            // Change the durations.
-            setDuration(5000)
-            // Change the interpolator.
-            setInterpolator(OvershootInterpolator(5f))
-            // Disable the first scroll mode.
-            setFirstOnly(false)
-        }*/
-     /*   val alphaAdapter = AlphaInAnimationAdapter(MyNoticeAdapter(context))
-        recyclerView_notices.adapter = ScaleInAnimationAdapter(alphaAdapter)*/
 
         var keywordAdapter = recyclerView_notices.adapter
         recyclerView_notices.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
@@ -95,22 +81,12 @@ class HomeFragment : Fragment() {
             keywordAdapter!!.notifyDataSetChanged()
         }, 1000)
 
-        greenChocoBar("새로고침 하였습니다.")
     }
 
     private fun loadMorePage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
         // 한 페이지당 게시물이 15개씩 들어있음.
         // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
         keywordAdapter!!.notifyItemRangeInserted(page*15,15)
-    }
-
-    private fun greenChocoBar(message: String) {
-        ChocoBar.builder().setView(home_linearlayout)
-            .setText(message)
-            .setDuration(ChocoBar.LENGTH_SHORT)
-            .setActionText("확인")
-            .green()  // in built green ChocoBar
-            .show();
     }
 }
 

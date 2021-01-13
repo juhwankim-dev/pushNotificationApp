@@ -1,15 +1,12 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- margin 값 -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="notice_margin">20dp</dimen>
     <dimen name="appBarMargin">54dp</dimen>
 
-    <!--dimes for design 3-->
-    <dimen name="newsMoreTextSize">12sp</dimen>
-    <dimen name="loginCardRadius">20dp</dimen>
-    <dimen name="loginViewsMargin">20dp</dimen>
-
+    <!-- 폰트 크기 값 -->
     <dimen name="appBarTextSize">18sp</dimen>
     <dimen name="bodyTextSize">16sp</dimen>
     <dimen name="explainTextSize">12sp</dimen>

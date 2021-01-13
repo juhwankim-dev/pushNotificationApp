@@ -14,12 +14,16 @@
 
     <TextView
         style="@style/bodyText"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:id="@+id/txtNoticeTitle"
         android:text="2019학년도 제 2학기 등록 안내(학부생)" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:orientation="horizontal">
 
         <TextView
