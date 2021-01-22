@@ -88,6 +88,6 @@ dependencies {
     // jsoup
     implementation 'org.jsoup:jsoup:1.11.3'
 
-    // 리사이클러뷰 애니메이션
-    implementation 'jp.wasabeef:recyclerview-animators:4.0.0'
+    // floating button
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
 }

@@ -9,6 +9,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.pushnotification.fragments.home.WebViewActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -37,8 +38,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
 
         if(remoteMessage.data.isNotEmpty()){
-            Log.i("바디: ", remoteMessage.data["body"].toString())
             Log.i("타이틀: ", remoteMessage.data["title"].toString())
+            Log.i("url: ", remoteMessage.data["url"].toString())
             sendNotification(remoteMessage)
         }
 
@@ -54,7 +55,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // 일회용 PendingIntent
         // PendingIntent : Intent 의 실행 권한을 외부의 어플리케이션에게 위임한다.
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, WebViewActivity::class.java)
+        intent.putExtra("url", remoteMessage.data["url"])
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Activity Stack 을 경로만 남긴다. A-B-C-D-B => A-B
         val pendingIntent = PendingIntent.getActivity(this, uniId, intent, PendingIntent.FLAG_ONE_SHOT)
 
@@ -66,8 +68,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // 알림에 대한 UI 정보와 작업을 지정한다.
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher) // 아이콘 설정
-            .setContentTitle(remoteMessage.data["body"].toString()) // 제목
+            .setSmallIcon(R.mipmap.ic_sheep_notification) // 아이콘 설정
+            .setContentTitle("공지사항") // 제목
             .setContentText(remoteMessage.data["title"].toString()) // 메시지 내용
             .setAutoCancel(true)
             .setSound(soundUri) // 알림 소리

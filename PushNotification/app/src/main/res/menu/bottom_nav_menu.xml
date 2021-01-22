@@ -3,17 +3,14 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_school_black_24dp"
-        android:title="공지사항" />
+        android:icon="@drawable/ic_home" />
 
     <item
         android:id="@+id/navigation_keyword"
-        android:icon="@drawable/nav_icon_notification"
-        android:title="알림" />
+        android:icon="@drawable/ic_notification" />
 
     <item
         android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="설정" />
+        android:icon="@drawable/ic_settings"/>
 
 </menu>
