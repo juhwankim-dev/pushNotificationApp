@@ -170,7 +170,7 @@ class KeywordFragment : Fragment(), OnItemClick {
             try{
                 // 리사이클러뷰 새로고침
                 recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
-                keywordsAdapter!!.notifyDataSetChanged()
+                keywordsAdapter.notifyDataSetChanged()
                 hideProgress()
 
                 // 등록한 키워드 개수 새로고침

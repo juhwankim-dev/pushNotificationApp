@@ -10,6 +10,10 @@
         android:icon="@drawable/ic_notification" />
 
     <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_calendar"/>
+
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings"/>
 

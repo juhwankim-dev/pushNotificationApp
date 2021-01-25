@@ -3,9 +3,9 @@ package com.example.pushnotification
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pushnotification.fragments.calendar.CalendarFragment
 import com.example.pushnotification.fragments.home.HomeFragment
 import com.example.pushnotification.fragments.keyword.KeywordFragment
 import com.example.pushnotification.fragments.setting.SettingFragment
@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
             KeywordFragment()
         val settingFragment =
             SettingFragment()
+        val calendarFragment =
+            CalendarFragment()
 
         // 현재 프래그먼트 화면을 생성하는 메소드
         makeCurrentFragment(homeFragment)
@@ -36,10 +38,9 @@ class MainActivity : AppCompatActivity() {
         nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.navigation_home -> makeCurrentFragment(homeFragment)
-                R.id.navigation_keyword -> {
-                    makeCurrentFragment(keywordFragment)
-                }
+                R.id.navigation_keyword -> makeCurrentFragment(keywordFragment)
                 R.id.navigation_settings -> makeCurrentFragment(settingFragment)
+                R.id.navigation_calendar -> makeCurrentFragment(calendarFragment)
             }
             true
         }
@@ -49,27 +50,6 @@ class MainActivity : AppCompatActivity() {
     // 현재 프래그먼트 화면을 생성하는 메소드
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            //addToBackStack(null)
-            replace(R.id.nav_host_fragment, fragment)
-            commit()
-        }
-
-    private fun firstFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            setCustomAnimations(
-                R.anim.slide_in_left,
-                R.anim.slide_out_left)
-            //addToBackStack(null)
-            replace(R.id.nav_host_fragment, fragment)
-            commit()
-        }
-
-    private fun thirdFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            setCustomAnimations(
-                R.anim.slide_in_right,
-                R.anim.slide_out_right)
-            //addToBackStack(null)
             replace(R.id.nav_host_fragment, fragment)
             commit()
         }

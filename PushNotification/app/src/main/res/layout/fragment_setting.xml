@@ -45,6 +45,7 @@
             android:id="@+id/layout_profileEdit"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:elevation="2dp"
             android:padding="@dimen/activity_margin"
             android:background="@drawable/border_layout_bottom"
             android:orientation="horizontal">
@@ -66,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:id="@+id/layout_send_email"
+            android:elevation="2dp"
             android:background="@drawable/border_layout_bottom"
             android:padding="@dimen/activity_margin"
             android:orientation="horizontal">
@@ -73,7 +75,29 @@
             <TextView
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:text="개발자에게 문의하기"
+                android:text="문의하기"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_arrow_right_24dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:elevation="2dp"
+            android:id="@+id/layout_profile"
+            android:background="@drawable/border_layout_bottom"
+            android:padding="@dimen/activity_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/bodyText"
+                android:layout_gravity="center_vertical"
+                android:text="개발자 정보"
                 android:layout_weight="1" />
 
             <ImageView
@@ -87,15 +111,15 @@
             android:id="@+id/layout_license"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/colorWhite"
-            android:padding="@dimen/activity_margin"
             android:elevation="2dp"
+            android:background="@drawable/border_layout_bottom"
+            android:padding="@dimen/activity_margin"
             android:orientation="horizontal">
 
             <TextView
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:text="오픈소스 라이선스 확인"
+                android:text="오픈소스 라이센스"
                 android:layout_weight="1" />
 
             <ImageView
@@ -107,30 +131,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/colorGray"
-            android:orientation="vertical">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:orientation="horizontal"
-            android:padding="@dimen/activity_margin"
             android:elevation="2dp"
-            android:background="@color/colorWhite">
+            android:background="@drawable/border_layout_bottom"
+            android:padding="@dimen/activity_margin"
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/bodyText"
                 android:id="@+id/txt_current_version"
+                android:layout_gravity="center_vertical"
                 android:text="현재 버전 1.0.0"
-                android:layout_gravity="center" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@color/colorGray"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView

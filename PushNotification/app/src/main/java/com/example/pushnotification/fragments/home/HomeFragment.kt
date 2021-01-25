@@ -1,18 +1,15 @@
 package com.example.pushnotification.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.OvershootInterpolator
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.baoyz.widget.PullRefreshLayout
 import com.example.pushnotification.R
-import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -32,8 +29,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView_notices.adapter = MyNoticeAdapter(context) // 어댑터 생성
-
+        var notices = ArrayList<NoticeList>()
+        RxEventBusHelper.mSubject.subscribe { notices = it }
+        Log.v("아뭔데", notices[0].title +"@@@@@@@@@@@@@@@@@@@@@@@")
+        recyclerView_notices.adapter = MyNoticeAdapter(context, notices) // 어댑터 생성
         var keywordAdapter = recyclerView_notices.adapter
         recyclerView_notices.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
 
@@ -47,14 +46,16 @@ class HomeFragment : Fragment() {
                     // lastindex가 -1 이라는 것은 위쪽 끝에 도달했다는 뜻이다. 왜지?
                     if(notices.lastIndex != -1){
                         notices.removeAt(notices.lastIndex)
-                        crawler.setURLAPI()
                         crawler.activateBot(++page)
+                        //notices.addAll(newNotices)
 
                         // 너무 빨리 데이터가 로드되면 스크롤 되는 Ui 를 확인하기 어려우므로,
                         // Handler 를 사용하여 1초간 postDelayed 시켰다
                         val handler = android.os.Handler()
                         handler.postDelayed({
-                            loadMorePage(keywordAdapter)
+                            // 한 페이지당 게시물이 15개씩 들어있음.
+                            // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
+                            keywordAdapter!!.notifyItemRangeInserted(page*15,15)
                         }, 1000)
                     }
                 }
@@ -70,10 +71,10 @@ class HomeFragment : Fragment() {
 
     private fun refreshPage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
         // 목록을 싹 다 지우고 다시 크롤링을 해옴
-        notices.clear()
+        //notices.clear()
         page = 1
-        crawler.setURLAPI()
-        crawler.activateBot(page)
+        var newNotices = crawler.activateBot(page)
+
 
         // 크롤링 해오는 속도가 UI 업데이트(notifyDataSetChanged)하는 속도보다 느리기 때문에 핸들러를 사용함
         val handler = android.os.Handler()
@@ -82,13 +83,4 @@ class HomeFragment : Fragment() {
         }, 1000)
 
     }
-
-    private fun loadMorePage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
-        // 한 페이지당 게시물이 15개씩 들어있음.
-        // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
-        keywordAdapter!!.notifyItemRangeInserted(page*15,15)
-    }
 }
-
-
-//refresh_layout.setColorSchemeColors( R.color.colorRefresh )

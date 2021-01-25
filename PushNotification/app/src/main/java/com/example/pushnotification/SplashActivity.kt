@@ -6,10 +6,12 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
+import android.util.Log
 import com.example.pushnotification.fragments.home.HtmlCrawler
+import com.example.pushnotification.fragments.home.RxEventBusHelper
 
 class SplashActivity : AppCompatActivity(){
-    val SPLASH_VIEW_TIME: Long = 500 // 1초간 스플래시 화면을 보여줌 (ms)
+    val SPLASH_VIEW_TIME: Long = 2400 // 1초간 스플래시 화면을 보여줌 (ms)
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,14 +19,12 @@ class SplashActivity : AppCompatActivity(){
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_splash)
 
+        HtmlCrawler().activateBot(1)
+
         Handler().postDelayed({ //delay를 위한 handler
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
-
-        var crawler = HtmlCrawler()
-        crawler.setURLAPI()
-        crawler.activateBot(1)
 
         overridePendingTransition(R.anim.nothing, R.anim.fadeout)
     }

@@ -7,7 +7,6 @@ import com.example.pushnotification.R
 import kotlinx.android.synthetic.main.keywords_list_item.view.*
 
 class KeywordsAdapter(items: List<Keyword>, listener: OnItemClick) : RecyclerView.Adapter<KeywordsAdapter.KeywordsViewHolder>() {
-    //val items = arrayListOf<String>()
     var items = items
     var mCallback = listener
 

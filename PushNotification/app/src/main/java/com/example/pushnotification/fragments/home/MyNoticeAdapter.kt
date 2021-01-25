@@ -2,20 +2,22 @@ package com.example.pushnotification.fragments.home
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pushnotification.R
-import com.example.pushnotification.fragments.home.HtmlCrawler.Companion.notices
 import kotlinx.android.synthetic.main.item_loading.view.*
 import kotlinx.android.synthetic.main.notice_list_item.view.*
 
 
-class MyNoticeAdapter(context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MyNoticeAdapter(
+    context: Context?,
+    notices: ArrayList<NoticeList>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     val context = context
+    private val notices = notices
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
 

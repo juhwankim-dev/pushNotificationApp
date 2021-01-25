@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.pushnotification.fragments.home.WebViewActivity
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -19,33 +18,22 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     // FirebaseInstanceIdService는 이제 사라짐. 이제 이걸 사용함
     override fun onNewToken(token: String?) {
-        Log.d(TAG, "new Token: $token")
-
         // 토큰 값을 따로 저장해둔다.
         val pref = this.getSharedPreferences("token", Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.putString("token", token).apply()
         editor.commit()
-
-        Log.i("로그: ", "성공적으로 토큰을 저장함")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        Log.d(TAG, "From: " + remoteMessage!!.from)
-
         // Notification 메시지를 수신할 경우는
         // remoteMessage.notification?.body!! 여기에 내용이 저장되어있다.
         // Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
 
-        if(remoteMessage.data.isNotEmpty()){
-            Log.i("타이틀: ", remoteMessage.data["title"].toString())
-            Log.i("url: ", remoteMessage.data["url"].toString())
+        if(remoteMessage!!.data.isNotEmpty()){
             sendNotification(remoteMessage)
-        }
-
-        else {
-            Log.i("수신에러: ", "data가 비어있습니다. 메시지를 수신하지 못했습니다.")
-            Log.i("data값: ", remoteMessage.data.toString())
+        } else {
+            // 수신하지 못한 경우. 따로 처리는 하지 않았다.
         }
     }
 

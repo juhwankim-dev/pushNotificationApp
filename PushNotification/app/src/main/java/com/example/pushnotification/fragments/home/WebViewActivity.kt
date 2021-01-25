@@ -16,10 +16,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.pushnotification.R
 import kotlinx.android.synthetic.main.activity_web_view.*
+import java.net.URLDecoder
 
 class WebViewActivity : AppCompatActivity() {
-
-    var lastTimeBackPressed = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,35 +28,36 @@ class WebViewActivity : AppCompatActivity() {
 
         webView.webViewClient = WebViewClient()
 
-        webView.setDownloadListener(DownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
+        webView.setDownloadListener(DownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
+            var contentDisposition = contentDisposition
             try {
-                val request =
-                    DownloadManager.Request(Uri.parse(url))
-                request.setMimeType(mimeType)
+                val request = DownloadManager.Request(Uri.parse(url))
+                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                contentDisposition = URLDecoder.decode(contentDisposition, "UTF-8") // 파일명이 한글일때 깨지는 현상을 위해 디코딩을 함.
+                val fileName = contentDisposition.replace("attachment; filename=", "") // 파일명 앞에 attachment; filename*=UTF-8'' 이런 쓰잘데기 없는 문구가 붙음. 그래서 삭제하는 거임.
+                request.setMimeType(mimetype) // mimetype은 파일의 확장자를 뜻함. 이걸 안드로이드에게 안 알려주면 전부 bin 확장자로 다운로드 받아짐.
                 request.addRequestHeader("User-Agent", userAgent)
-                request.setDescription("Downloading file")
-                var fileName =
-                    contentDisposition.replace("inline; filename=", "")
-                fileName = fileName.replace("\"".toRegex(), "")
+                request.setDescription("Downloading File")
+                request.setAllowedOverMetered(true)
+                request.setAllowedOverRoaming(true)
                 request.setTitle(fileName)
-                request.allowScanningByMediaScanner()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    request.setRequiresCharging(false)
+                }
+                request.setAllowedOverMetered(true)
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 request.setDestinationInExternalPublicDir(
                     Environment.DIRECTORY_DOWNLOADS,
                     fileName
                 )
-                val dm =
-                    getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                 dm.enqueue(request)
-                Toast.makeText(applicationContext, "Downloading File", Toast.LENGTH_LONG)
-                    .show()
-            } catch (e: Exception) {
+                Toast.makeText(applicationContext, "파일이 다운로드됩니다.", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) { // 권한이 없어서 실패하는 경우
                 if (ContextCompat.checkSelfPermission(
                         this@WebViewActivity,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    )
-                    != PackageManager.PERMISSION_GRANTED
-                ) { // Should we show an explanation?
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(
                             this@WebViewActivity,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -65,24 +65,24 @@ class WebViewActivity : AppCompatActivity() {
                     ) {
                         Toast.makeText(
                             baseContext,
-                            "다운로드를 위해\n동의가 필요합니다.",
+                            "다운로드를 위해\n권한이 필요합니다.",
                             Toast.LENGTH_LONG
                         ).show()
                         ActivityCompat.requestPermissions(
                             this@WebViewActivity,
                             arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                            110
+                            1004
                         )
                     } else {
                         Toast.makeText(
                             baseContext,
-                            "다운로드를 위해\n동의가 필요합니다.",
+                            "다운로드를 위해\n권한이 필요합니다.",
                             Toast.LENGTH_LONG
                         ).show()
                         ActivityCompat.requestPermissions(
                             this@WebViewActivity,
                             arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                            110
+                            1004
                         )
                     }
                 }
@@ -107,16 +107,3 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 }
-
-/*override fun onBackPressed() {
-    if(webView.canGoBack()) webView.goBack()
-    else {
-        if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
-            finish()
-            return
-        }
-        lastTimeBackPressed = System.currentTimeMillis()
-        Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-    }
-}*/
-
