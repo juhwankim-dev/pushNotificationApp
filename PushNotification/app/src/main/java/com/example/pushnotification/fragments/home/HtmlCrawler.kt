@@ -10,38 +10,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.HashMap
 import java.util.concurrent.ExecutionException
 
-class HtmlCrawler {
+class HtmlCrawler(listener: ManageData){
     private val BASEURL = "http://www.anyang.ac.kr/bbs/ajax/" // 베이스 URL
     private var jsonPlaceHolderApi: JsonPlaceHolderApi? = null // JSON 사용하려면 적어야하는거? API
-    private var page = "1"
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASEURL)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    constructor() {
-        setURLAPI()
+    var callback = listener
+
+    companion object{
+        var notices = arrayListOf<NoticeList>()
     }
 
-    fun activateBot(page: Int) {
-        this.page = page.toString()
-        requestPost()
-    }
-
-    fun setURLAPI() {
-        /* ------------------------------ 게시글 POST 요청하기 -------------------------------*/
-        /* 몰라 Retrofit을 사용하려고 선언한다는 느낌? */
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASEURL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
+    fun requestPost(page: Int) {
         /* JSON API에 retrofit을 ... 연동?  */
         /* 안에 적어준 JsonPlaceHolderAPi는.. 따로 만들어준 자바 클래스인갑다. */
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi::class.java)
-        /* ------------------------------ 게시글 POST 요청하기 -------------------------------*/
-        Log.v("@@@@@@@@@", "00000000000000000000000000000000000000")
-    }
 
-    private fun requestPost() {
-        var notices = arrayListOf<NoticeList>() // 공지사항 리스트
         val data: MutableMap<String, String> = HashMap() // Map 선언
         /*
         * menuId: 아리커뮤니티
@@ -52,7 +40,7 @@ class HtmlCrawler {
         data["menuId"] = "23"
         data["bsIdx"] = "61"
         data["bcIdx"] = "20"
-        data["page"] = page
+        data["page"] = page.toString()
 
         // Retrofit에서 만들어놓은 Call이라는 클래스를 사용해서 객체를 하나 만들꺼야.
         // JsonApi랑... map.... 을 이용해서 말이지... map에 .. 아..아니야... 포스트에보낼 데이터 같은게 들어있어...
@@ -92,9 +80,6 @@ class HtmlCrawler {
                         }
                     }
                     notices.add(NoticeList(" ", " ", " ")) // 맨끝에 null을 넣고 싶은데 안돼서 이거를...
-                    Log.v("@@@@@@@@@", notices[0].title + "88888888888888888")
-                    Log.v("@@@@@@@@@", notices[1].title + "9999999999999999")
-                    RxEventBusHelper.sendEvent(notices)
                 }
 
                 /* 응답을 하지 않는다면 */
@@ -105,6 +90,7 @@ class HtmlCrawler {
         } catch (e: Exception) {
             detectError(notices)
         }
+       callback.refreshAllData()
     }
 
     private fun detectError(notices: ArrayList<NoticeList>) {

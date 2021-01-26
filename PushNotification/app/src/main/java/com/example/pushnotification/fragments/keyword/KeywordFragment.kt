@@ -126,7 +126,7 @@ class KeywordFragment : Fragment(), OnItemClick {
         }
     }
 
-    fun checkExistence(koreanKeyword: String): Boolean {
+    private fun checkExistence(koreanKeyword: String): Boolean {
         var myKeywords = db.keywordDao().getAll()
         if(myKeywords.contains(Keyword(koreanKeyword))){
             return true
@@ -134,12 +134,13 @@ class KeywordFragment : Fragment(), OnItemClick {
         return false
     }
 
-    fun checkLimitOver(): Boolean {
+    private fun checkLimitOver(): Boolean {
         if(KEYWORD_LIMIT < db.keywordDao().getAll().size) return true
         return false
     }
 
     // 리사이클러뷰 안에 있는 'X'를 누른 경우
+    // OnItemClick 인터페이스에 있는 deleteKeyword를 오버라이딩 한 것.
     override fun deleteKeyword(
         koreanKeyword: String
     ) {
@@ -191,8 +192,3 @@ class KeywordFragment : Fragment(), OnItemClick {
         progressBar_keyword.visibility = View.GONE
     }
 }
-
-
-/*      val pref = this.getSharedPreferences("token", 0)
-      val token: String = pref.getString("token", "default token")!!
-      txt_token.text = token*/

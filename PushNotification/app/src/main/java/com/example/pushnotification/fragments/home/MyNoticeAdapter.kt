@@ -2,6 +2,7 @@ package com.example.pushnotification.fragments.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,7 @@ class MyNoticeAdapter(
 
     // 뷰의 타입을 정해주는 곳이다.
     override fun getItemViewType(position: Int): Int {
-        if(notices.get(position).title == " "){
+        if(notices[position].title == " "){
             return  VIEW_TYPE_LOADING
         }
         return VIEW_TYPE_ITEM
@@ -54,14 +55,12 @@ class MyNoticeAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is MyNoticeViewHolder) {
-            holder.title.text = notices.get(position).title
-            holder.info.text = notices.get(position).info
-
+            holder.title.text = notices[position].title
+            holder.info.text = notices[position].info
             holder.itemView.setOnClickListener { v ->
-                //var goUnivHomepage = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 var goUnivHomepage = Intent(v.context, WebViewActivity::class.java)
                 var url = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&bIdx=" +
-                        notices.get(position).url + "&page=1&menuId=23&bcIdx=0&searchCondition=SUBJECT&searchKeyword="
+                        notices[position].url + "&page=1&menuId=23&bcIdx=0&searchCondition=SUBJECT&searchKeyword="
 
                 goUnivHomepage.putExtra("url", url)
                 v.context.startActivity(goUnivHomepage);

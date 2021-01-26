@@ -17,14 +17,14 @@ class KeywordsAdapter(items: List<Keyword>, listener: OnItemClick) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: KeywordsViewHolder, position: Int) { // 생선된 뷰홀더에 데이터 삽입
-        holder.keyword.text = items.get(position).keyword
+        holder.keyword.text = items[position].keyword
         holder.btnDelete.setOnClickListener {
-            mCallback.deleteKeyword(items.get(position).keyword)
+            mCallback.deleteKeyword(items[position].keyword)
         }
     }
 
     override fun getItemId(position: Int): Long {
-        return items.get(position).hashCode().toLong()
+        return items[position].hashCode().toLong()
     }
 
     inner class KeywordsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
