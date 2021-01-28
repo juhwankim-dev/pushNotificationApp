@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fragments.setting.ExplanationLicenseActivity"></activity>
+        <activity android:name=".fragments.setting.PushSettingActivity"></activity>
+        <activity android:name=".fragments.setting.ExplanationLicenseActivity" />
         <activity android:name=".fragments.setting.ProfileActivity" />
 
         <meta-data

@@ -27,6 +27,11 @@ class SettingFragment : Fragment() {
 
         txt_current_version.text = "현재 버전 " + getAppVersion(context!!)
 
+        // 알림 설정
+        layout_push_setting.setOnClickListener {
+            startActivity((Intent(activity, PushSettingActivity::class.java)))
+        }
+        
         // 문의하기
         layout_send_email.setOnClickListener {
             sendEmail()

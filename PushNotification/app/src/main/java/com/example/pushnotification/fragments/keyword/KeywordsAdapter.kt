@@ -30,7 +30,7 @@ class KeywordsAdapter(items: List<Keyword>, listener: OnItemClick) : RecyclerVie
     inner class KeywordsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
         (LayoutInflater.from(parent.context).inflate(R.layout.keywords_list_item, parent, false)){
 
-        val keyword = itemView.txt_keyword
-        val btnDelete = itemView.btn_delete
+        val keyword = itemView.txt_keyword!!
+        val btnDelete = itemView.btn_delete!!
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/sheep" />
+        app:srcCompat="@drawable/icon_sheep" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView_heart"
