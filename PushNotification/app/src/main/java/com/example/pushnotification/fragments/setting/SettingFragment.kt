@@ -1,16 +1,26 @@
 package com.example.pushnotification.fragments.setting
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.example.pushnotification.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_setting.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.math.abs
 
 class SettingFragment : Fragment() {
 
@@ -26,12 +36,23 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         txt_current_version.text = "현재 버전 " + getAppVersion(context!!)
+        hasNewNotice()
 
-        // 알림 설정
-        layout_push_setting.setOnClickListener {
-            startActivity((Intent(activity, PushSettingActivity::class.java)))
+        val pref = context!!.getSharedPreferences("pushNotificaiton", 0)
+        val isPushOn = pref.getBoolean("isPushOn", true)!!
+        switch_push_notification.isChecked = isPushOn
+
+        switch_push_notification.setOnCheckedChangeListener { buttonView, isChecked ->
+            val pref = context!!.getSharedPreferences("pushNotificaiton", MODE_PRIVATE)
+            val editor = pref.edit()
+            editor.putBoolean("isPushOn", isChecked).apply()
+            editor.commit()
         }
-        
+
+        layout_notice.setOnClickListener {
+            startActivity((Intent(activity, AppNoticeActivity::class.java)))
+        }
+
         // 문의하기
         layout_send_email.setOnClickListener {
             sendEmail()
@@ -60,7 +81,6 @@ class SettingFragment : Fragment() {
     }
 
     private fun sendEmail(){
-
         var address = arrayOf(getString(R.string.email))
 
         var email = Intent(Intent.ACTION_SEND);
@@ -76,5 +96,40 @@ class SettingFragment : Fragment() {
         );
         email.type = "message/rfc822";
         startActivity(email);
+    }
+
+    private fun hasNewNotice(){
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+        val today = current.format(formatter)
+        var dayOfLastNotice = "2020.02.20" // 디폴트 값
+
+        FirebaseDatabase.getInstance().reference
+            .child("notices")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    // 읽어오지 못했을 때
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var map = p0.children.elementAt(p0.childrenCount.toInt()-1).value as Map<String, String> // 가장 마지막 공지사항의 값들을 가져옴
+                    dayOfLastNotice = map["date"].toString()
+
+                    try{
+                        var format = SimpleDateFormat("yyyy.MM.dd")
+                        var firstDate = format.parse(today)
+                        var secondDate = format.parse(dayOfLastNotice)
+
+                        var calDate = firstDate.time - secondDate.time
+                        var calDateDays = calDate / (24*60*60*1000)
+
+                        if(calDateDays <= 7){ // 일주일 이내의 게시물이 존재한다면
+                            imageView_new.visibility = View.VISIBLE
+                        }
+                    }catch (e: Exception){
+
+                    }
+                }
+            })
     }
 }

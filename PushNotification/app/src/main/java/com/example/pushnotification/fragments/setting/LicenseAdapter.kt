@@ -19,7 +19,8 @@ class LicenseAdapter() : RecyclerView.Adapter<LicenseAdapter.LicenseViewHolder>(
         License("rxjava2", "apache", "Copyright (c) 2016-present, RxJava Contributors."),
         License("MaterialAbout+", "mit", "Copyright (c) 2016 Arleu Cezar Vansuita Júnior"),
         License("pullrefreshlayout", "mit", "Copyright (c) 2014 baoyongzhang"),
-        License("material-calendar-view", "apache", "Copyright 2017, Applandeo sp. z o.o.")
+        License("material-calendar-view", "apache", "Copyright 2017, Applandeo sp. z o.o."),
+        License("AwesomeDialog", "apache", "Copyright 2020 Muhammad Nouman")
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LicenseViewHolder {

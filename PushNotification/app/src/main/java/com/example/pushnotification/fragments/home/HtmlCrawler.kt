@@ -33,7 +33,7 @@ class HtmlCrawler {
         * */
         data["menuId"] = "23"
         data["bsIdx"] = "61"
-        data["bcIdx"] = "20"
+        data["bcIdx"] = "0" // 20이 대학교 0이 전체
         data["page"] = page.toString()
 
         // Retrofit에서 만들어놓은 Call이라는 클래스를 사용해서 객체를 하나 만들꺼야.

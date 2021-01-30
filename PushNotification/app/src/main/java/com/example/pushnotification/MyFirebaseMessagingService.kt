@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.pushnotification.fragments.home.WebViewActivity
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -23,17 +24,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val editor = pref.edit()
         editor.putString("token", token).apply()
         editor.commit()
+
+        Log.v("토큰값: ", token.toString())
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        // Notification 메시지를 수신할 경우는
-        // remoteMessage.notification?.body!! 여기에 내용이 저장되어있다.
-        // Log.d(TAG, "Notification Message Body: " + remoteMessage.notification?.body!!)
-
-        if(remoteMessage!!.data.isNotEmpty()){
-            sendNotification(remoteMessage)
-        } else {
-            // 수신하지 못한 경우. 따로 처리는 하지 않았다.
+        val pref = this.getSharedPreferences("pushNotificaiton", 0)
+        val isPushOn = pref.getBoolean("isPushOn", true)!! // 푸시알림 On한 경우
+        if(isPushOn){
+            if(remoteMessage!!.data.isNotEmpty()){
+                sendNotification(remoteMessage)
+            } else {
+                // 수신하지 못한 경우. 따로 처리는 하지 않았다.
+            }
         }
     }
 

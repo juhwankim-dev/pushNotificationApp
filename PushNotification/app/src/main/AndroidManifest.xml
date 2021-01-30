@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fragments.setting.PushSettingActivity"></activity>
+        <activity android:name=".fragments.setting.NoticeContentActivity"></activity>
+        <activity android:name=".fragments.setting.AppNoticeActivity" />
+        <activity android:name=".fragments.setting.PushSettingActivity" />
         <activity android:name=".fragments.setting.ExplanationLicenseActivity" />
         <activity android:name=".fragments.setting.ProfileActivity" />
 

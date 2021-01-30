@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.pushnotification"
-        minSdkVersion 23
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0.0"
@@ -96,4 +96,7 @@ dependencies {
 
     // lottie
     implementation 'com.airbnb.android:lottie:3.6.0'
+
+    // dialog
+    implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 }

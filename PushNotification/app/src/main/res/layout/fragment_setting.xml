@@ -53,14 +53,52 @@
             <TextView
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:text="알림 설정"
+                android:text="알림 수신 설정"
                 android:layout_weight="1" />
 
-            <ImageView
+            <Switch
+                android:id="@+id/switch_push_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/layout_notice"
+            android:elevation="2dp"
+            android:background="@drawable/border_layout_bottom"
+            android:padding="@dimen/activity_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_right_24dp" />
+                android:text="공지사항" />
+
+            <ImageView
+                android:id="@+id/imageView_new"
+                android:layout_marginLeft="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"
+                android:src="@drawable/ic_new" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_arrow_right_24dp" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
