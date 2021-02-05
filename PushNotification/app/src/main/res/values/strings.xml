@@ -2,7 +2,7 @@
     <string name="app_name">아냥이</string>
     <string name="firebase_notification_channel_id">test</string>
     <string name="email">juhwan.dev@gmail.com</string>
-    <string name="guide">서버에서 10분 간격으로 공지사항을 체크하여 알림을 보냅니다.</string>
+    <string name="guide">학교 서버에 부담을 주지 않기 위해 10분 간격으로\n공지사항을 체크하여 알림을 보내고 있습니다.</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">
         com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
     </string>

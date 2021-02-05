@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pushnotification">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.juhwan.anyang_yi">
     <!-- 인터넷 접속 허락 받기 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,20 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fragments.setting.NoticeContentActivity"></activity>
-        <activity android:name=".fragments.setting.AppNoticeActivity" />
-        <activity android:name=".fragments.setting.PushSettingActivity" />
-        <activity android:name=".fragments.setting.ExplanationLicenseActivity" />
-        <activity android:name=".fragments.setting.ProfileActivity" />
+        <activity android:name="com.juhwan.anyang_yi.fragments.setting.NoticeContentActivity"></activity>
+        <activity android:name="com.juhwan.anyang_yi.fragments.setting.AppNoticeActivity" />
+        <activity android:name="com.juhwan.anyang_yi.fragments.setting.ExplanationLicenseActivity" />
+        <activity android:name="com.juhwan.anyang_yi.fragments.setting.ProfileActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
 
-        <activity android:name=".fragments.setting.LicenseActivity" />
-        <activity android:name=".fragments.home.WebViewActivity" />
+        <activity android:name="com.juhwan.anyang_yi.fragments.setting.LicenseActivity" />
+        <activity android:name="com.juhwan.anyang_yi.fragments.home.WebViewActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:configChanges="orientation|screenSize"
+            android:name="com.juhwan.anyang_yi.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,10 +35,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Splash Activity -->
-        <activity android:name=".MainActivity" />
-
+        <activity android:name="com.juhwan.anyang_yi.MainActivity"
+            android:configChanges="orientation|screenSize"/>
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="com.juhwan.anyang_yi.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".fragments.calendar.CalendarFragment">
+    tools:context="com.juhwan.anyang_yi.fragments.calendar.CalendarFragment">
 
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"
