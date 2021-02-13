@@ -1,26 +1,21 @@
 package com.juhwan.anyang_yi.fragments.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.fragments.home.HtmlCrawler.Companion.notices
+import com.juhwan.anyang_yi.SplashActivity.Companion.initialPost
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CallbackPost {
 
     private var page = 1       // 현재 페이지
-    private var crawler = HtmlCrawler()
+    private var crawler = HtmlCrawler(this)
+    var allNotices = arrayListOf<NoticeList>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +28,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView_notices.adapter =
-            MyNoticeAdapter(context) // 어댑터 생성
+        allNotices.addAll(initialPost) // 스플래시에서 가져온 공지사항 1페이지
+        if(allNotices.isEmpty()) crawler.requestPost(1) // 스플래시에서 페이지를 가져오 못했다면 다시 시도
 
-        var keywordAdapter = recyclerView_notices.adapter
+        recyclerView_notices.adapter = MyNoticeAdapter(context, allNotices) // 어댑터 생성
         recyclerView_notices.layoutManager = LinearLayoutManager(context)
 
         // 스크롤 리스너
@@ -51,26 +46,31 @@ class HomeFragment : Fragment() {
                 if (!recyclerView_notices.canScrollVertically(1) &&
                     lastVisibleItemPosition == itemTotalCount
                     ) {
-                    loadMorePage(keywordAdapter)
+                    allNotices.removeAt(allNotices.lastIndex)
+                    crawler.requestPost(++page)
                 }
             }
         })
+
+        refresh_layout.setOnRefreshListener {
+            allNotices.clear()
+            page = 1
+            crawler.requestPost(page)
+            refresh_layout.isRefreshing = false // 새로고침을 완료하면 아이콘을 없앤다.
+        }
     }
 
-    private fun loadMorePage(keywordAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>?) {
-        CoroutineScope(Dispatchers.Main).launch {
-            val html = CoroutineScope(Dispatchers.IO).async {
-                notices.removeAt(notices.lastIndex)
-                crawler.requestPost(++page)
-                Log.v("여기","들어옴")
-            }.await()
+    override fun loadPage(notices: ArrayList<NoticeList>, page: Int) {
+        allNotices.addAll(notices)
+        var keywordAdapter = recyclerView_notices.adapter
 
-            // 한 페이지당 게시물이 15개씩 들어있음.
-            // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
-            //keywordAdapter!!.notifyItemRangeInserted(page * 15, 15)
-            Log.v("22222", notices.count().toString())
-
-            Toast.makeText(context, notices[20].title, Toast.LENGTH_SHORT).show()
+        when(page){
+            1 -> keywordAdapter!!.notifyDataSetChanged()
+            else -> {
+                // 한 페이지당 게시물이 15개씩 들어있음.
+                // 새로운 게시물이 추가되었다는 것을 알려줌 (추가된 부분만 새로고침)
+                keywordAdapter!!.notifyItemRangeInserted((page-1) * 15, 15)
+            }
         }
     }
 }

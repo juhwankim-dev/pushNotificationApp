@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.fragments.home.HtmlCrawler.Companion.notices
 import kotlinx.android.synthetic.main.item_loading.view.*
 import kotlinx.android.synthetic.main.notice_list_item.view.*
 
 
-class MyNoticeAdapter(context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MyNoticeAdapter(
+    context: Context?,
+    notices: ArrayList<NoticeList>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
+    var notices = notices
     val context = context
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
