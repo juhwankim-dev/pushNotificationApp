@@ -20,7 +20,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.fragment_keyword.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.regex.Pattern
 
 const val KEYWORD_LIMIT = 10
 
@@ -96,47 +101,59 @@ class KeywordFragment : Fragment(), OnItemClick {
 
     private fun subscribe() {
         val koreanKeyword = editText_keyword.text.toString()
-        showProgress()
 
-        if(checkExistence(koreanKeyword)){
-            Snackbar.make(keywordLayout, "이미 등록된 키워드입니다.", Snackbar.LENGTH_SHORT).show();
-            editText_keyword.text = null
-        } else if(checkLimitOver()){
-            Snackbar.make(keywordLayout, "키워드는 10개까지 등록 가능합니다.", Snackbar.LENGTH_SHORT).show();
-        } else {
-            editText_keyword.text = null
-            val inko = Inko()
-            var englishkeyword = inko.ko2en(koreanKeyword)
+        when {
+            checkTextType(koreanKeyword) -> {
+                Snackbar.make(keywordLayout, "한글과 숫자만 등록 가능합니다.", Snackbar.LENGTH_SHORT).show()
+            }
+            checkExistence(koreanKeyword) -> {
+                Snackbar.make(keywordLayout, "이미 등록된 키워드입니다.", Snackbar.LENGTH_SHORT).show()
+            }
+            checkLimitOver() -> {
+                Snackbar.make(keywordLayout, "키워드는 10개까지 등록 가능합니다.", Snackbar.LENGTH_SHORT).show()
+            }
+            else -> {
+                showProgress()
+                val inko = Inko()
+                var englishkeyword = inko.ko2en(koreanKeyword)
 
-            FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        if (map.containsKey(koreanKeyword)) {
-                            var num = map.getValue(koreanKeyword).toInt() + 1 // 구독자 수 +1
-                            databaseReference.child("keywords").child(koreanKeyword).setValue(num.toString())
+                FirebaseMessaging.getInstance().subscribeToTopic(englishkeyword)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            var num = "1" // 기본값 1
+                            if (map.containsKey(koreanKeyword)) {
+                                num = (map.getValue(koreanKeyword).toInt() + 1).toString() // 구독자 수 +1
+                            }
+
+                            CoroutineScope(Dispatchers.Main).launch {
+                                val temp = CoroutineScope(Dispatchers.Default).async {
+                                    databaseReference.child("keywords").child(koreanKeyword).setValue(num)
+                                }.await()
+                                db.keywordDao().insert(Keyword(koreanKeyword))
+                                refreshPage(recylcerView_keywords.adapter!!)
+                            }
                         } else {
-                            databaseReference.child("keywords").child(koreanKeyword).setValue("1")
+                            Snackbar.make(keywordLayout, "네트워크 상태가 불안정 합니다.", Snackbar.LENGTH_SHORT).show();
+                            hideProgress()
                         }
-                        db.keywordDao().insert(Keyword(koreanKeyword))
-                        refreshPage(recylcerView_keywords.adapter!!)
-                    } else {
-                        Snackbar.make(keywordLayout, "네트워크 상태가 불안정 합니다.", Snackbar.LENGTH_SHORT).show();
                     }
-                }
+            }
         }
+        editText_keyword.text = null
     }
 
     private fun checkExistence(koreanKeyword: String): Boolean {
         var myKeywords = db.keywordDao().getAll()
-        if(myKeywords.contains(Keyword(koreanKeyword))){
-            return true
-        }
-        return false
+        return myKeywords.contains(Keyword(koreanKeyword))
     }
 
     private fun checkLimitOver(): Boolean {
-        if(KEYWORD_LIMIT < db.keywordDao().getAll().size) return true
-        return false
+        return KEYWORD_LIMIT < db.keywordDao().getAll().size
+    }
+
+    private fun checkTextType(koreanKeyword: String): Boolean {
+        var ps = Pattern.compile("^[0-9ㄱ-ㅎ가-힣]+$");
+        return !ps.matcher(koreanKeyword).matches()
     }
 
     // 리사이클러뷰 안에 있는 'X'를 누른 경우
@@ -152,12 +169,17 @@ class KeywordFragment : Fragment(), OnItemClick {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var num = map.getValue(koreanKeyword).toInt() - 1 // 구독자 수 -1
-                    databaseReference.child("keywords").child(koreanKeyword).setValue(num.toString())
-                    db.keywordDao().deleteBytitle(koreanKeyword)
-                    refreshPage(recylcerView_keywords.adapter!!)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val temp = CoroutineScope(Dispatchers.Default).async {
+                            var num = map.getValue(koreanKeyword).toInt() - 1 // 구독자 수 -1
+                            databaseReference.child("keywords").child(koreanKeyword).setValue(num.toString())
+                            db.keywordDao().deleteBytitle(koreanKeyword)
+                        }.await()
+                        refreshPage(recylcerView_keywords.adapter!!)
+                    }
                 } else {
                     Snackbar.make(keywordLayout, "네트워크 상태가 불안정 합니다.", Snackbar.LENGTH_SHORT).show();
+                    hideProgress()
                 }
             }
     }
@@ -165,21 +187,17 @@ class KeywordFragment : Fragment(), OnItemClick {
     private fun refreshPage(
         keywordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     ) {
-        val handler = android.os.Handler()
+        try{
+            // 리사이클러뷰 새로고침
+            recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
+            keywordsAdapter.notifyDataSetChanged()
+            hideProgress()
 
-        handler.postDelayed({
-            try{
-                // 리사이클러뷰 새로고침
-                recylcerView_keywords.adapter = KeywordsAdapter(db.keywordDao().getAll(), this)
-                keywordsAdapter.notifyDataSetChanged()
-                hideProgress()
-
-                // 등록한 키워드 개수 새로고침
-                txt_my_keywords.text = db.keywordDao().getAll().size.toString()
-            } catch (e: Exception){
-                // TODO 화면을 너무 빨리 전환하면 recyclerView_keywords null 에러가 남
-            }
-        }, 1000)
+            // 등록한 키워드 개수 새로고침
+            txt_my_keywords.text = db.keywordDao().getAll().size.toString()
+        } catch (e: Exception){
+            // 혹시 모를 경우를 대비해..
+        }
     }
 
     private fun showProgress(){
