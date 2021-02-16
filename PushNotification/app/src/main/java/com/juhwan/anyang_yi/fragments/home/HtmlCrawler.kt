@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.HashMap
 
-class HtmlCrawler(listener: CallbackPost){
+class HtmlCrawler(listener: PostListener){
     var mCallback = listener
     private val BASEURL = "http://www.anyang.ac.kr/bbs/ajax/" // 베이스 URL
     private var jsonPlaceHolderApi: JsonPlaceHolderApi? = null // JSON 사용하려면 적어야하는거? API

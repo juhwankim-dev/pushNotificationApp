@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.juhwan.anyang_yi.fragments.home.CallbackPost
+import com.juhwan.anyang_yi.fragments.home.PostListener
 import com.juhwan.anyang_yi.fragments.home.HtmlCrawler
 import com.juhwan.anyang_yi.fragments.home.NoticeList
 
-class SplashActivity : AppCompatActivity(), CallbackPost {
+class SplashActivity : AppCompatActivity(), PostListener {
 
     companion object{
         var initialPost = ArrayList<NoticeList>()

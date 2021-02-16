@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.juhwan.anyang_yi.fragments.calendar.CalendarFragment">
 
-    <com.applandeo.materialcalendarview.CalendarView
-        android:id="@+id/calendarView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:type="one_day_picker"
-        app:headerColor="@color/mainBlue"
-        app:selectionColor="@color/mainBlue"
-        app:selectionLabelColor="@color/colorWhite"/>
+        android:elevation="4dp"
+        android:fitsSystemWindows="true">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylcerview_schedule"
+        <androidx.appcompat.widget.Toolbar
+            style="@style/headerText"
+            android:id="@+id/app_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/appBarMargin"
+            app:titleTextColor="@color/colorWhite"
+            app:title="학사일정"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_gravity="center"
+            android:contentInsetLeft="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetRight="0dp"
+            android:contentInsetEnd="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="7dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <xyz.sangcomz.stickytimelineview.TimeLineRecyclerView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/recyclerview_timeline"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

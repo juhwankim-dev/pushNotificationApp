@@ -100,4 +100,7 @@ dependencies {
 
     // dialog
     implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
+
+    // timeline
+    implementation 'com.github.sangcomz:StickyTimeLine:v0.1.1'
 }
