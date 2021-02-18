@@ -1,10 +1,13 @@
 <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/graphic_image.png" width="100%" height="100%">
 
+
+
 # Introduce
 아냥이는 안양대학교 학생들을 위한 공지사항 알림 애플리케이션 입니다.
 
 
 장학금, 학사일정 소식 등을 빠르고 간편하게 확인해보세요!
+
 
 
 <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/screenshot.png" width="100%">
@@ -19,7 +22,7 @@
 
 
 
-## Announcement
+## Announcement🚨
 안양대학교 공식 앱이 아님을 알려드립니다.
 
 
@@ -31,11 +34,11 @@ juhwan.dev@gmail.com
 
 
 
-## Server
+## Server🔗
 [서버 github 주소](https://github.com/juhwankim-dev/univWebCrawler)
 
 
-## License
+## License📝
 ```
 Copyright 2021 Juhwan Kim
 
