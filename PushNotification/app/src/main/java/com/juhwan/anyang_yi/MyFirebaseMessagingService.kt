@@ -31,12 +31,22 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         val pref = this.getSharedPreferences("pushNotificaiton", 0)
         val isPushOn = pref.getBoolean("isPushOn", true) // 푸시알림 On한 경우
+
         if(isPushOn){
-            if(remoteMessage!!.data.isNotEmpty()){
-                sendNotification(remoteMessage)
-            } else {
-                // 수신하지 못한 경우. 따로 처리는 하지 않았다.
+            val currentTitle = remoteMessage!!.data["title"]
+            val prefNotice = this.getSharedPreferences("lastTitle", Context.MODE_PRIVATE)
+            val lastTitle = prefNotice.getString("lastTitle", "null")
+
+            if(currentTitle != lastTitle){ // 연달아 중복으로 온 메시지가 아니라면
+                if(remoteMessage!!.data.isNotEmpty()){
+                    sendNotification(remoteMessage)
+                }
+
+                val editor = prefNotice.edit()
+                editor.putString("lastTitle", remoteMessage!!.data["title"]).apply()
+                editor.commit()
             }
+            // 중복해서 왔으면 키워드가 여러개 포함돼서 그런거니까 그냥 무시 ..
         }
     }
 
@@ -61,7 +71,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_sheep_notification) // 아이콘 설정
             .setContentTitle("공지사항") // 제목
-            .setContentText(remoteMessage.data["title"].toString()) // 메시지 내용
+            .setContentText(remoteMessage.data["title"]) // 메시지 내용
             .setAutoCancel(true)
             .setSound(soundUri) // 알림 소리
             .setContentIntent(pendingIntent) // 알림 실행 시 Intent

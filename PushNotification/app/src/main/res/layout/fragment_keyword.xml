@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/keywordLayout"
+    android:background="@color/colorWhite"
     tools:context=".fragments.keyword.KeywordFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -39,7 +40,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
         android:layoutAnimation="@anim/layout_animation"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -65,7 +65,7 @@
                 android:maxLength="10"
                 android:maxLines="1"
                 android:ems="10"
-                android:hint="알림을 받을 키워드를 입력하세요."
+                android:hint="알림 받을 키워드를 입력하세요."
                 android:inputType="textPersonName"
                 android:padding="12dp"
                 android:textSize="14sp">

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.google.firebase.database.DataSnapshot
@@ -11,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_notice.*
+import kotlinx.android.synthetic.main.fragment_setting.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,10 +36,9 @@ class AppNoticeActivity : AppCompatActivity() {
         var format = SimpleDateFormat("yyyy.MM.dd")
         var firstDate = format.parse(today)
 
-        // 데이터들을 불러온다.
         FirebaseDatabase.getInstance().reference
             .child("notices")
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     // 읽어오지 못했을 때
                 }
@@ -48,23 +49,15 @@ class AppNoticeActivity : AppCompatActivity() {
                         var content = " "
                         var date = " "
                         var title = " "
-                        var isNew = false
+                        var isNew = " "
                         it.children.forEach {notice ->
                             when(notice.key){
                                 "content" -> content = notice.value.toString()
                                 "date" -> date = notice.value.toString()
                                 "title" -> title = notice.value.toString()
+                                "isNew" -> isNew = notice.value.toString()
                             }
                         }
-                        try{
-                            var secondDate = format.parse(date)
-                            var calDate = firstDate.time - secondDate.time
-                            var calDateDays = calDate / (24*60*60*1000)
-
-                            if(calDateDays <= 7){ // 일주일 이내의 게시물이 존재한다면
-                                isNew = true
-                            }
-                        }catch (e: Exception){}
 
                         notices.add(0, AppNotice(content, date, title, isNew)) // 최근 게시물을 맨 위로
                     }

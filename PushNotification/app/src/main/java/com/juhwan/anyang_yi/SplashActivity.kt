@@ -1,6 +1,7 @@
 package com.juhwan.anyang_yi
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -15,7 +16,7 @@ import com.juhwan.anyang_yi.fragments.home.NoticeList
 class SplashActivity : AppCompatActivity(), PostListener {
 
     companion object{
-        var initialPost = ArrayList<NoticeList>()
+        var allNotices = ArrayList<NoticeList>()
     }
     private val SPLASH_VIEW_TIME: Long = 2400 // 1초간 스플래시 화면을 보여줌 (ms)
 
@@ -61,6 +62,6 @@ class SplashActivity : AppCompatActivity(), PostListener {
     }
 
     override fun loadPage(notices: ArrayList<NoticeList>, page: Int) {
-        initialPost = notices
+        allNotices = notices
     }
 }

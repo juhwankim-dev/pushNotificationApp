@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.SplashActivity.Companion.initialPost
+import com.juhwan.anyang_yi.SplashActivity.Companion.allNotices
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,6 @@ class HomeFragment : Fragment(), PostListener {
 
     private var page = 1       // 현재 페이지
     private var crawler = HtmlCrawler(this)
-    var allNotices = arrayListOf<NoticeList>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +30,6 @@ class HomeFragment : Fragment(), PostListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        allNotices.addAll(initialPost) // 스플래시에서 가져온 공지사항 1페이지
-        if(allNotices.isEmpty()) crawler.requestPost(1) // 스플래시에서 페이지를 가져오 못했다면 다시 시도
 
         recyclerView_notices.adapter = MyNoticeAdapter(context, allNotices) // 어댑터 생성
         recyclerView_notices.layoutManager = LinearLayoutManager(context)
@@ -80,6 +76,4 @@ class HomeFragment : Fragment(), PostListener {
             }
         }
     }
-    
-    // 다른페이지갓다가 오면 맨 마지막 인덱스가 사라지지 않고 그대로 있는거... 기존꺼에 1페이지가 또 그대로추가되는거같아
 }

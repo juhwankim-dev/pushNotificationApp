@@ -10,9 +10,19 @@ import com.example.awesomedialog.AwesomeDialog
 import com.example.awesomedialog.body
 import com.example.awesomedialog.icon
 import com.example.awesomedialog.title
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.juhwan.anyang_yi.R
 import com.vansuita.materialabout.builder.AboutBuilder
 import com.vansuita.materialabout.views.AboutView
+import kotlinx.android.synthetic.main.fragment_keyword.*
+import kotlinx.android.synthetic.main.fragment_setting.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -30,10 +40,10 @@ class ProfileActivity : AppCompatActivity() {
             .setBrief("안녕하세요! 컴퓨터공학과 김주환입니다.")
             .setAppIcon(R.drawable.icon_sheep)
             .setAppName(R.string.app_name)
-            .addLink(R.mipmap.google_play_store, "Play Store", "mdown.blog.me")
-            //.addGooglePlayStoreLink("8002078663318221363")
+            //.addLink(R.mipmap.google_play_store, "Play Store", "mdown.blog.me")
+            .addGooglePlayStoreLink("6396811699168376907")
             .addLink(R.mipmap.github, "GitHub", "https://github.com/juhwankim-dev")
-            .addLink(R.drawable.ic_tistory, "티스토리", "https://todaycode.tistory.com/category/%ED%82%A4%EC%9B%8C%EB%93%9C%20%EC%95%8C%EB%A6%BC%20%EC%95%B1%20%EC%A0%9C%EC%9E%91%EA%B8%B0")
+            .addLink(R.drawable.ic_tistory, "티스토리", "https://todaycode.tistory.com/")
             .addLink(R.drawable.ic_blog, "블로그", "https://blog.naver.com/mdown")
             .addEmailLink("juhwan.dev@gmail.com")
             .addAction(R.mipmap.donate, "Thanks To", View.OnClickListener {

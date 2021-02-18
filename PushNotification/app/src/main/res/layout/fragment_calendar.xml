@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorGray"
     tools:context="com.juhwan.anyang_yi.fragments.calendar.CalendarFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,5 +39,5 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/recyclerview_timeline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

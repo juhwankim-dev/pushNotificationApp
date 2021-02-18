@@ -22,7 +22,7 @@ class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
     }
 
     override fun onBindViewHolder(holder: AppNoticeViewHolder, position: Int) {
-        if(items[position].isNew){
+        if(items[position].isNew == "true"){
             holder.imageViewNew.visibility = View.VISIBLE
         }
 

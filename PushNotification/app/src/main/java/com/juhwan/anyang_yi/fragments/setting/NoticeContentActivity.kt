@@ -19,12 +19,12 @@ class NoticeContentActivity : AppCompatActivity() {
         var title = intent.getStringExtra("title")
         var date = intent.getStringExtra("date")
         var content = intent.getStringExtra("content")
-        var isNew = intent.getBooleanExtra("isNew", false)
+        var isNew = intent.getStringExtra("isNew")
 
         txt_app_notice_title.text = title
         txt_app_notice_date.text = date
         txt_app_notice_content.text = content
-        if(isNew) imageView_new.visibility = View.VISIBLE
+        if(isNew == "true") imageView_new.visibility = View.VISIBLE
 
         imageView_back.setOnClickListener {
             finish()
