@@ -41,9 +41,11 @@ juhwan.dev@gmail.com
 
 
 
-
-## Server 🔗
+## Link 🔗
+[구글 플레이스토어에서 다운로드](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
+[제작 과정 보기](https://todaycode.tistory.com/)
 [서버 github 주소](https://github.com/juhwankim-dev/univWebCrawler)
+
 
 
 ## License 📝
