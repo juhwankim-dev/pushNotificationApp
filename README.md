@@ -20,9 +20,15 @@
 등록한 키워드에 맞는 공지가 올라오면 푸시 알림을 보내드립니다.
 
 
+<p align="center"><img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/push_notification.gif" width="700"></p>
+이제는 공지사항이 올라올 때까지 홈페이지를 새로 고침 하지 마세요!
 
 
-## Announcement🚨
+아냥이가 알려드립니다 :)
+
+
+
+## Announcement 🚨
 안양대학교 공식 앱이 아님을 알려드립니다.
 
 
@@ -34,11 +40,11 @@ juhwan.dev@gmail.com
 
 
 
-## Server🔗
+## Server 🔗
 [서버 github 주소](https://github.com/juhwankim-dev/univWebCrawler)
 
 
-## License📝
+## License 📝
 ```
 Copyright 2021 Juhwan Kim
 
