@@ -23,7 +23,7 @@
 
 
 <p align="center"><img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/push_notification.gif" width="300"></p>
-이제는 공지사항이 올라올 때까지 홈페이지를 새로 고침 하지 마세요!
+이젠 공지사항이 올라올 때까지 계속 새로 고침 하지 마세요!
 
 
 아냥이가 알려드립니다 :)
@@ -43,7 +43,11 @@ juhwan.dev@gmail.com
 
 ## Link 🔗
 [구글 플레이스토어에서 다운로드](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
+
+
 [제작 과정 보기](https://todaycode.tistory.com/)
+
+
 [서버 github 주소](https://github.com/juhwankim-dev/univWebCrawler)
 
 
