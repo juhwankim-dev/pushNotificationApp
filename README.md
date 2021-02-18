@@ -20,7 +20,9 @@
 등록한 키워드에 맞는 공지가 올라오면 푸시 알림을 보내드립니다.
 
 
-<p align="center"><img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/push_notification.gif" width="700"></p>
+
+
+<p align="center"><img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/push_notification.gif" width="300"></p>
 이제는 공지사항이 올라올 때까지 홈페이지를 새로 고침 하지 마세요!
 
 
