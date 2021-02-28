@@ -37,6 +37,7 @@
         </activity> <!-- Splash Activity -->
         <activity android:name="com.juhwan.anyang_yi.MainActivity"
             android:configChanges="orientation|screenSize"/>
+
         <service
             android:name="com.juhwan.anyang_yi.MyFirebaseMessagingService"
             android:enabled="true"

@@ -38,12 +38,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val lastTitle = prefNotice.getString("lastTitle", "null")
 
             if(currentTitle != lastTitle){ // 연달아 중복으로 온 메시지가 아니라면
-                if(remoteMessage!!.data.isNotEmpty()){
+                if(remoteMessage.data.isNotEmpty()){
                     sendNotification(remoteMessage)
                 }
 
                 val editor = prefNotice.edit()
-                editor.putString("lastTitle", remoteMessage!!.data["title"]).apply()
+                editor.putString("lastTitle", remoteMessage.data["title"]).apply()
                 editor.commit()
             }
             // 중복해서 왔으면 키워드가 여러개 포함돼서 그런거니까 그냥 무시 ..

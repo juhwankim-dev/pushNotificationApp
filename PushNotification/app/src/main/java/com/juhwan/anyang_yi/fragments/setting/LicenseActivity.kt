@@ -18,5 +18,9 @@ class LicenseActivity : AppCompatActivity() {
 
         recyclerView_license.adapter = LicenseAdapter()
         recyclerView_license.layoutManager = LinearLayoutManager(this)
+
+        imageView_back.setOnClickListener {
+            finish()
+        }
     }
 }

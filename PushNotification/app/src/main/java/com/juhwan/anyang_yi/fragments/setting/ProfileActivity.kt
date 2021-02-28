@@ -42,7 +42,7 @@ class ProfileActivity : AppCompatActivity() {
             .setAppName(R.string.app_name)
             //.addLink(R.mipmap.google_play_store, "Play Store", "mdown.blog.me")
             .addGooglePlayStoreLink("6396811699168376907")
-            .addLink(R.mipmap.github, "GitHub", "https://github.com/juhwankim-dev")
+            .addLink(R.mipmap.github, "GitHub", "https://github.com/juhwankim-dev/pushNotificationApp")
             .addLink(R.drawable.ic_tistory, "티스토리", "https://todaycode.tistory.com/")
             .addLink(R.drawable.ic_blog, "블로그", "https://blog.naver.com/mdown")
             .addEmailLink("juhwan.dev@gmail.com")

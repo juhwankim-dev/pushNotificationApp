@@ -40,7 +40,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutAnimation="@anim/layout_animation"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -50,7 +49,7 @@
             android:paddingTop="16dp"
             android:text="@string/guide" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -58,43 +57,55 @@
 
             <EditText
                 android:id="@+id/editText_keyword"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="44dp"
-                android:layout_weight="1"
                 android:background="@drawable/edittext_outline_left"
-                android:maxLength="10"
-                android:maxLines="1"
                 android:ems="10"
                 android:hint="알림 받을 키워드를 입력하세요."
                 android:inputType="textPersonName"
+                android:maxLength="10"
+                android:maxLines="1"
                 android:padding="12dp"
-                android:textSize="14sp">
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintRight_toLeftOf="@id/btn_subscribe"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+
                 <requestFocus />
             </EditText>
 
             <Button
                 android:id="@+id/btn_subscribe"
                 android:layout_width="60dp"
-                android:layout_height="44dp"
+                android:layout_height="0dp"
                 android:background="@drawable/edittext_outline_right"
                 android:text="등록"
                 android:textColor="@color/colorBlackDisabled2"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/editText_keyword"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintLeft_toRightOf="@id/editText_keyword"
+                app:layout_constraintTop_toTopOf="@+id/editText_keyword" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_margin"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/guide_text"
                 style="@style/headerText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
                 android:text="알림 받을 키워드"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/txt_my_keywords"/>
 
             <TextView
                 android:id="@+id/txt_my_keywords"
@@ -102,7 +113,11 @@
                 android:layout_height="wrap_content"
                 android:text="-1"
                 android:textColor="@color/mainBlue"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/guide_text"
+                app:layout_constraintLeft_toRightOf="@id/guide_text"
+                app:layout_constraintTop_toTopOf="@+id/guide_text" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,8 +125,11 @@
                 android:layout_weight="1"
                 android:text="/10"
                 android:textColor="@color/colorBlackHighEmphasis"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_my_keywords"
+                app:layout_constraintLeft_toRightOf="@id/txt_my_keywords"
+                app:layout_constraintTop_toTopOf="@+id/txt_my_keywords" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylcerView_keywords"

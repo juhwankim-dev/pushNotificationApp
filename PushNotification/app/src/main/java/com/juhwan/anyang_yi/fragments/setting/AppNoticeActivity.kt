@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.google.firebase.database.DataSnapshot
@@ -12,10 +11,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_notice.*
-import kotlinx.android.synthetic.main.fragment_setting.*
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 // 앱 공지사항 리스트 보여주는 액티비티
 class AppNoticeActivity : AppCompatActivity() {
@@ -29,12 +24,6 @@ class AppNoticeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_notice)
 
         recyclerView_app_notices.layoutManager = LinearLayoutManager(applicationContext)
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
-        val today = current.format(formatter)
-
-        var format = SimpleDateFormat("yyyy.MM.dd")
-        var firstDate = format.parse(today)
 
         FirebaseDatabase.getInstance().reference
             .child("notices")

@@ -28,7 +28,7 @@ class WebViewActivity : AppCompatActivity() {
 
         webView.webViewClient = WebViewClient()
 
-        webView.setDownloadListener(DownloadListener { url, userAgent, contentDisposition, mimetype, _ ->
+        webView.setDownloadListener(DownloadListener { _, userAgent, contentDisposition, mimetype, _ ->
             var contentDisposition = contentDisposition
             try {
                 val request = DownloadManager.Request(Uri.parse(url))

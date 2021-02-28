@@ -26,5 +26,9 @@ class ExplanationLicenseActivity : AppCompatActivity() {
         } else if(type == "lottie"){
             txt_license_content.text = "Love Explosion Animation by Chris Gannon\nThank you for sharing this animation file. Below is the link\nhttps://lottiefiles.com/439-love-explosion"
         }
+
+        imageView_back.setOnClickListener {
+            finish()
+        }
     }
 }

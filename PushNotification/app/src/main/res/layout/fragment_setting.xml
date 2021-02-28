@@ -34,171 +34,218 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:orientation="vertical">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_push_setting"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:elevation="2dp"
-            android:padding="@dimen/activity_margin"
             android:background="@drawable/border_layout_bottom"
-            android:orientation="horizontal">
+            android:elevation="2dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/text_setting_push"
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
                 android:text="알림 수신 설정"
-                android:layout_weight="1" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/switch_push_notification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
                 android:id="@+id/switch_push_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/text_setting_push"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_notice"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:id="@+id/layout_notice"
-            android:elevation="2dp"
             android:background="@drawable/border_layout_bottom"
+            android:elevation="2dp"
+            android:orientation="horizontal"
             android:padding="@dimen/activity_margin"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/layout_push_setting">
 
             <TextView
+                android:id="@+id/text_notice"
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:text="공지사항" />
+                android:text="공지사항"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView_new"
-                android:layout_marginLeft="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_new"
                 android:visibility="gone"
-                android:src="@drawable/ic_new" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_notice"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_right_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_arrow_right_24dp" />
-            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_send_email"
-            android:elevation="2dp"
-            android:background="@drawable/border_layout_bottom"
-            android:padding="@dimen/activity_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/bodyText"
-                android:layout_gravity="center_vertical"
-                android:text="문의하기"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_right_24dp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:elevation="2dp"
-            android:id="@+id/layout_profile"
             android:background="@drawable/border_layout_bottom"
+            android:elevation="2dp"
+            android:orientation="horizontal"
             android:padding="@dimen/activity_margin"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_notice">
 
             <TextView
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
-                android:text="개발자 정보"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="문의하기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_right_24dp" />
-        </LinearLayout>
+                android:src="@drawable/ic_arrow_right_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_profile"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/border_layout_bottom"
+            android:elevation="2dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_send_email">
+
+            <TextView
+                style="@style/bodyText"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="개발자 정보"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_arrow_right_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_license"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:elevation="2dp"
             android:background="@drawable/border_layout_bottom"
+            android:elevation="2dp"
+            android:orientation="horizontal"
             android:padding="@dimen/activity_margin"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_profile">
 
             <TextView
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:text="오픈소스 라이센스"
-                android:layout_weight="1" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow_right_24dp" />
-        </LinearLayout>
+                android:src="@drawable/ic_arrow_right_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:elevation="2dp"
             android:background="@drawable/border_layout_bottom"
+            android:elevation="2dp"
+            android:orientation="horizontal"
             android:padding="@dimen/activity_margin"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_license">
 
             <TextView
-                style="@style/bodyText"
                 android:id="@+id/txt_current_version"
+                style="@style/bodyText"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:text="현재 버전 1.0.0"
-                android:layout_weight="1" />
-        </LinearLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorGray"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="10dp"
-                android:textSize="9dp"
-                android:text="Copyright Juhwan Kim, All Rights Reserved." />
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Copyright Juhwan Kim, All Rights Reserved."
+            android:textSize="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

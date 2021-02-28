@@ -35,6 +35,8 @@ class HtmlCrawler(listener: PostListener){
         data["menuId"] = "23"
         data["bsIdx"] = "61"
         data["bcIdx"] = "0" // 20이 대학교 0이 전체
+/*        data["searchCondition"] = "SUBJECT"
+        data["searchKeyword"] = "대학교"*/
         data["page"] = page.toString()
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -61,11 +63,13 @@ class HtmlCrawler(listener: PostListener){
                 call: Call<Result?>,
                 response: Response<Result?>
             ) {
+                if(page == 1) notices.add(NoticeList("search", " ", " "))
+
                 /* 응답이 잘 되었다면 response에는 body가 저장되어있는데. 요청한 결과가 저장되어있는거임 */
                 /* 그걸 Result형 객체를 하나 만들어서 저장한거임 아래 문장이 */
                 try {
                     var position = 0
-                    val posts = response!!.body()!!.resultList
+                    val posts = response.body()!!.resultList
                     for (post in posts) {
                         var title = post.SUBJECT.toString()
                         var info = post.WRITE_DATE2.toString() + "   |   " + post.WRITER.toString()

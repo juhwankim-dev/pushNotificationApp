@@ -2,12 +2,14 @@ package com.juhwan.anyang_yi.fragments.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
 import kotlinx.android.synthetic.main.item_loading.view.*
+import kotlinx.android.synthetic.main.item_search.view.*
 import kotlinx.android.synthetic.main.notice_list_item.view.*
 
 
@@ -20,6 +22,7 @@ class MyNoticeAdapter(
     val context = context
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
+    private val VIEW_TYPE_SEARCH = 2
 
     // 아이템뷰에 게시물이 들어가는 경우
     inner class MyNoticeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -32,23 +35,36 @@ class MyNoticeAdapter(
         val progressBar = itemView.progressBar
     }
 
+    // 아이템뷰에 서치뷰가 들어가는 경우
+    inner class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        //val searchView = itemView.searchView
+    }
+
     // 뷰의 타입을 정해주는 곳이다.
     override fun getItemViewType(position: Int): Int {
-        if(notices[position].title == "loading"){
-            return  VIEW_TYPE_LOADING
+        return when (notices[position].title){
+            "loading" -> VIEW_TYPE_LOADING
+            "search" -> VIEW_TYPE_SEARCH
+            else -> VIEW_TYPE_ITEM
         }
-        return VIEW_TYPE_ITEM
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
 
-        return if (viewType == VIEW_TYPE_ITEM) {
-            view = LayoutInflater.from(context).inflate(R.layout.notice_list_item, parent, false)
-            MyNoticeViewHolder(view)
-        } else {
-            view = LayoutInflater.from(context).inflate(R.layout.item_loading, parent, false)
-            LoadingViewHolder(view)
+        return when(viewType){
+            VIEW_TYPE_ITEM -> {
+                view = LayoutInflater.from(context).inflate(R.layout.notice_list_item, parent, false)
+                MyNoticeViewHolder(view)
+            }
+            VIEW_TYPE_LOADING -> {
+                view = LayoutInflater.from(context).inflate(R.layout.item_loading, parent, false)
+                LoadingViewHolder(view)
+            }
+            else -> {
+                view = LayoutInflater.from(context).inflate(R.layout.item_search, parent, false)
+                SearchViewHolder(view)
+            }
         }
     }
 

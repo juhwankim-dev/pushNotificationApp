@@ -89,9 +89,6 @@ dependencies {
     // floating button
     implementation 'com.getbase:floatingactionbutton:1.10.1'
 
-    // Calendar
-    implementation 'com.applandeo:material-calendar-view:1.7.0'
-
     // profile
     implementation 'com.github.jrvansuita:MaterialAbout:+'
 

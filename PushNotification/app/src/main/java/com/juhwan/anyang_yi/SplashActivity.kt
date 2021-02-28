@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.fragments.home.PostListener
@@ -31,7 +32,7 @@ class SplashActivity : AppCompatActivity(), PostListener {
 
         userIdCheck()
 
-        Handler().postDelayed({ //delay를 위한 handler
+        Handler(Looper.getMainLooper()).postDelayed({ //delay를 위한 handler
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
