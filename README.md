@@ -30,18 +30,33 @@
 
 
 
-## Announcement 🚨
-안양대학교 공식 앱이 아님을 알려드립니다.
+## 😫 Problem & Solve
+[token값 노출에 대한 고민](https://todaycode.tistory.com/16)
 
 
-개인적으로 제작하였기 때문에 모든 문의 및 건의사항은 이메일로 보내주세요.
+[Firebase 보안에 대한 고민](https://todaycode.tistory.com/19)
 
 
-juhwan.dev@gmail.com
+[최적의 크롤링 방법 고민](https://todaycode.tistory.com/21)
+
+
+[사용자 친화적인 UI 고민](https://todaycode.tistory.com/14)
+
+
+[FCM 푸시알림 구현](https://todaycode.tistory.com/8)
+
+
+[크롤링 봇 제작](https://todaycode.tistory.com/11)
+
+
+[Server](https://todaycode.tistory.com/22)
+
+
+[푸시알림 방식](https://todaycode.tistory.com/9)
 
 
 
-## Link 🔗
+## 🔗 Link
 [구글 플레이스토어에서 다운로드](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
 
 
@@ -52,7 +67,18 @@ juhwan.dev@gmail.com
 
 
 
-## License 📝
+## 🚨 Announcement
+안양대학교 공식 앱이 아님을 알려드립니다.
+
+
+개인적으로 제작하였기 때문에 모든 문의 및 건의사항은 이메일로 보내주세요.
+
+
+juhwan.dev@gmail.com
+
+
+
+## 📝 License
 ```
 Copyright 2021 Juhwan Kim
 
