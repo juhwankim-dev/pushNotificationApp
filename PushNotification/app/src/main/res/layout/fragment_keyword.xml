@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/keywordLayout"
+    android:id="@+id/keywordFragment"
     android:background="@color/colorWhite"
-    tools:context=".fragments.keyword.KeywordFragment">
+    tools:context=".ui.keyword.KeywordFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_keywrod"
@@ -56,7 +56,7 @@
             android:padding="@dimen/activity_margin">
 
             <EditText
-                android:id="@+id/editText_keyword"
+                android:id="@+id/et_keyword"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
                 android:background="@drawable/edittext_outline_left"
@@ -83,11 +83,11 @@
                 android:text="등록"
                 android:textColor="@color/colorBlackDisabled2"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/editText_keyword"
+                app:layout_constraintBottom_toBottomOf="@+id/et_keyword"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintLeft_toRightOf="@id/editText_keyword"
-                app:layout_constraintTop_toTopOf="@+id/editText_keyword" />
+                app:layout_constraintLeft_toRightOf="@id/et_keyword"
+                app:layout_constraintTop_toTopOf="@+id/et_keyword" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,10 +105,10 @@
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/txt_my_keywords"/>
+                app:layout_constraintRight_toLeftOf="@id/tv_registered_keyword"/>
 
             <TextView
-                android:id="@+id/txt_my_keywords"
+                android:id="@+id/tv_registered_keyword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-1"
@@ -126,13 +126,13 @@
                 android:text="/10"
                 android:textColor="@color/colorBlackHighEmphasis"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_my_keywords"
-                app:layout_constraintLeft_toRightOf="@id/txt_my_keywords"
-                app:layout_constraintTop_toTopOf="@+id/txt_my_keywords" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_registered_keyword"
+                app:layout_constraintLeft_toRightOf="@id/tv_registered_keyword"
+                app:layout_constraintTop_toTopOf="@+id/tv_registered_keyword" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylcerView_keywords"
+            android:id="@+id/rv_keyword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="@dimen/activity_margin"

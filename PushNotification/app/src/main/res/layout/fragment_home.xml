@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite"
-    android:id="@+id/home_linearlayout"
-    tools:context="com.juhwan.anyang_yi.fragments.home.HomeFragment">
+    android:id="@+id/homeFragment"
+    tools:context="com.juhwan.anyang_yi.ui.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -45,7 +45,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_notices"
+            android:id="@+id/rv_notice"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

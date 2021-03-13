@@ -14,20 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.juhwan.anyang_yi.fragments.setting.NoticeContentActivity"></activity>
-        <activity android:name="com.juhwan.anyang_yi.fragments.setting.AppNoticeActivity" />
-        <activity android:name="com.juhwan.anyang_yi.fragments.setting.ExplanationLicenseActivity" />
-        <activity android:name="com.juhwan.anyang_yi.fragments.setting.ProfileActivity" />
+        <activity android:name=".ui.setting.appnotice.content.NoticeContentActivity"></activity>
+        <activity android:name=".ui.setting.appnotice.AppNoticeActivity" />
+        <activity android:name=".ui.setting.license.explanation.ExplanationLicenseActivity" />
+        <activity android:name=".ui.setting.profile.ProfileActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
 
-        <activity android:name="com.juhwan.anyang_yi.fragments.setting.LicenseActivity" />
-        <activity android:name="com.juhwan.anyang_yi.fragments.home.WebViewActivity" />
+        <activity android:name=".ui.setting.license.LicenseActivity" />
+        <activity android:name=".ui.home.WebViewActivity" />
         <activity
             android:configChanges="orientation|screenSize"
-            android:name="com.juhwan.anyang_yi.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,11 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Splash Activity -->
-        <activity android:name="com.juhwan.anyang_yi.MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:configChanges="orientation|screenSize"/>
 
         <service
-            android:name="com.juhwan.anyang_yi.MyFirebaseMessagingService"
+            android:name=".MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

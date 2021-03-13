@@ -9,7 +9,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.juhwan.anyang_yi.fragments.home.WebViewActivity
+import com.juhwan.anyang_yi.ui.home.WebViewActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

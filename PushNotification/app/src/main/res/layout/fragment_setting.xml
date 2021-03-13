@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.setting.SettingFragment">
+    android:id="@+id/settingFragment"
+    tools:context=".ui.setting.SettingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_keywrod"
@@ -94,7 +95,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView_new"
+                android:id="@+id/iv_new"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
@@ -225,7 +226,7 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_license">
 
             <TextView
-                android:id="@+id/txt_current_version"
+                android:id="@+id/tv_current_version"
                 style="@style/bodyText"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
@@ -236,7 +237,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
