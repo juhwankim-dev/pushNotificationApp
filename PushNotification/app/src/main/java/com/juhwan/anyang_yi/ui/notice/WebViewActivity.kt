@@ -1,4 +1,4 @@
-package com.juhwan.anyang_yi.ui.home
+package com.juhwan.anyang_yi.ui.notice
 
 import android.Manifest
 import android.app.DownloadManager

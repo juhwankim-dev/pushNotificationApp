@@ -4,15 +4,10 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityMainBinding
-import com.juhwan.anyang_yi.ui.schedule.ScheduleFragment
-import com.juhwan.anyang_yi.ui.home.HomeFragment
-import com.juhwan.anyang_yi.ui.keyword.KeywordFragment
-import com.juhwan.anyang_yi.ui.setting.SettingFragment
 
 
 class MainActivity : AppCompatActivity() {

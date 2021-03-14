@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorWhite"
     tools:context=".ui.MainActivity"
     android:weightSum="1">
 
@@ -23,6 +24,7 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu"/>
 
 </LinearLayout>

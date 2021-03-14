@@ -1,15 +1,21 @@
 package com.juhwan.anyang_yi.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.juhwan.anyang_yi.network.NoticeNetwork
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.HashMap
 import com.juhwan.anyang_yi.network.Result
+import com.juhwan.anyang_yi.network.ResultList
 
 class NoticeRepository {
-    private val parameter: MutableMap<String, String> = HashMap()
+
+
+
+/*    private val parameter: MutableMap<String, String> = HashMap()
     var _noticeInfo = MutableLiveData<Result>()
 
     init {
@@ -40,5 +46,5 @@ class NoticeRepository {
 
             }
         })
-    }
+    }*/
 }

@@ -12,7 +12,7 @@ class KeywordAdapter(listener: DeleteButtonListener) : RecyclerView.Adapter<Keyw
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : KeywordsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemKeywordBinding.inflate(layoutInflater)
+        val binding = ItemKeywordBinding.inflate(layoutInflater, parent, false)
         return KeywordsViewHolder(binding)
     }
 

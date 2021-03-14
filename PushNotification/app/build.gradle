@@ -72,28 +72,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
     // Room
-    //implementation "android.arch.persistence.room:runtime:1.1.1"
-    //kapt "android.arch.persistence.room:compiler:1.1.1"
-    //kaptTest "android.arch.persistence.room:testing:1.1.1"
     def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     // Navigation Bottom Bar
-    //implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    //implementation 'androidx.navigation:navigation-ui:2.0.0'
-    //implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
-    //implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
-
     def nav_version = "2.3.3"
-    // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // AAC
     def lifecycle_version = "2.3.0"
-    // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     // Retrofit
@@ -128,4 +118,8 @@ dependencies {
 
     // timeline
     implementation 'com.github.sangcomz:StickyTimeLine:v0.1.1'
+
+    // Paging Library
+    def paging_version = "2.1.2"
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }
