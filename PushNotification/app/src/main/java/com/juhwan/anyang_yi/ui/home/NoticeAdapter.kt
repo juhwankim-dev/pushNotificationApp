@@ -1,22 +1,19 @@
-package com.juhwan.anyang_yi.ui.notice
+package com.juhwan.anyang_yi.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
-import com.juhwan.anyang_yi.network.ResultList
+import com.juhwan.anyang_yi.network.Result
 
 
-class NoticeAdapter : PagedListAdapter<ResultList, NoticeAdapter.NoticeViewHolder>(NoticeDiffCallback()) {
+class NoticeAdapter : RecyclerView.Adapter<NoticeAdapter.NoticeViewHolder>(){
 
-    private val items = ArrayList<ResultList>()
+    private val items = ArrayList<Result>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : NoticeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemNoticeBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemNoticeBinding.inflate(layoutInflater)
         return NoticeViewHolder(binding)
     }
 
@@ -28,32 +25,20 @@ class NoticeAdapter : PagedListAdapter<ResultList, NoticeAdapter.NoticeViewHolde
         holder.bind(items[position])
     }
 
-    fun setList(notice: PagedList<ResultList>) {
+    fun setList(noticeInfo: Result) {
         items.clear()
-        items.addAll(notice)
+        items.addAll(listOf(noticeInfo))
     }
 
-    inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class NoticeViewHolder(private val binding: ItemNoticeBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bind(notice: ResultList) {
-            binding.tvNoticeTitle.text = notice.SUBJECT
-            binding.tvNoticeDateWriter.text = notice.WRITE_DATE2 + "   |   " + notice.WRITER
+        fun bind(noticeInfo: Result){
+            binding.tvNoticeTitle.text = noticeInfo.resultList[0].SUBJECT
+            binding.tvNoticeDateWriter.text = noticeInfo.resultList[0].WRITER
+            //TODO 링크랑 이거 htmlcrawler보고 수정하기
         }
     }
 
-    class NoticeDiffCallback : DiffUtil.ItemCallback<ResultList>() {
-        override fun areItemsTheSame(oldItem: ResultList, newItem: ResultList): Boolean {
-            return oldItem.B_IDX == newItem.B_IDX
-        }
-
-        override fun areContentsTheSame(oldItem: ResultList, newItem: ResultList): Boolean {
-            return oldItem.SUBJECT == newItem.SUBJECT
-                    && oldItem.WRITE_DATE2 == newItem.WRITE_DATE2
-                    && oldItem.WRITER == newItem.WRITER
-        }
-    }
-}
 /*    var notices = notices
     val context = context
     private val VIEW_TYPE_ITEM = 0
@@ -114,3 +99,4 @@ class NoticeAdapter : PagedListAdapter<ResultList, NoticeAdapter.NoticeViewHolde
     override fun getItemCount(): Int {
         return notices.size
     }*/
+}

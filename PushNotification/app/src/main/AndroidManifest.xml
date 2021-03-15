@@ -24,7 +24,7 @@
             android:resource="@mipmap/ic_launcher" />
 
         <activity android:name=".ui.setting.license.LicenseActivity" />
-        <activity android:name=".ui.notice.WebViewActivity" />
+        <activity android:name=".ui.home.WebViewActivity" />
         <activity
             android:configChanges="orientation|screenSize"
             android:name=".ui.SplashActivity"

@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite"
-    android:id="@+id/noticeFragment"
-    tools:context="com.juhwan.anyang_yi.ui.notice.NoticeFragment">
+    android:id="@+id/homeFragment"
+    tools:context="com.juhwan.anyang_yi.ui.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
