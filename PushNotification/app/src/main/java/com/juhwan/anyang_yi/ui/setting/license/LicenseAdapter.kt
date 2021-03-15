@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemLicenseBinding
-import com.juhwan.anyang_yi.ui.home.WebViewActivity
+import com.juhwan.anyang_yi.ui.notice.WebViewActivity
 import com.juhwan.anyang_yi.ui.setting.license.explanation.ExplanationLicenseActivity
 
 class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseAdapter.LicenseViewHolder>() {

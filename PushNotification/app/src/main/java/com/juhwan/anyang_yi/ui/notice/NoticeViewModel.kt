@@ -1,11 +1,11 @@
-package com.juhwan.anyang_yi.ui.home
+package com.juhwan.anyang_yi.ui.notice
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.juhwan.anyang_yi.network.Result
 import com.juhwan.anyang_yi.repository.NoticeRepository
 
-class HomeViewModel: ViewModel() {
+class NoticeViewModel: ViewModel() {
     private val repository = NoticeRepository()
 
     private val noticeInfo: LiveData<Result>

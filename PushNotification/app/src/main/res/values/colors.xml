@@ -6,14 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGray">#f9f9f9</color>
     <color name="mainBlue">#173190</color>
-    <color name="colorBlack">#000000</color>
-
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="colorBlack">#FF000000</color>
 
     <color name="colorBlackHighEmphasis">#D9000000</color>
     <color name="colorBlackMediumEmphasis">#99000000</color>

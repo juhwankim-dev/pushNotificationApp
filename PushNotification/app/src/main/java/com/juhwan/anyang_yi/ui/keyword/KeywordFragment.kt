@@ -3,6 +3,7 @@ package com.juhwan.anyang_yi.ui.keyword
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.github.kimcore.inko.Inko
@@ -38,7 +40,7 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
     private var binding: FragmentKeywordBinding? = null
     private val model: KeywordViewModel by viewModels()
     private lateinit var adapter: KeywordAdapter
-    private lateinit var myKeywordList: MutableList<Keyword>
+    private var myKeywordList = arrayListOf<Keyword>()
     private val inko = Inko()
 
     override fun onCreateView(
@@ -69,13 +71,11 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
         initRecyclerView()
 
         model.getAll().observe(viewLifecycleOwner, Observer {
-            showProgress()
             adapter.setList(it)
             adapter.notifyDataSetChanged()
             binding!!.tvRegisteredKeyword.text = it.size.toString()
             myKeywordList.clear()
             myKeywordList.addAll(it)
-            hideProgress()
         })
 
 
@@ -119,10 +119,10 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
     }
 
     private fun isValidKeyword(enteredKeyword: String): Boolean {
-        return !isExceed() && isCorrectType(enteredKeyword) && !isExist(enteredKeyword)
+        return isNotExceed() && isCorrectType(enteredKeyword) && isNotRegistered(enteredKeyword)
     }
 
-    private fun isExceed(): Boolean {
+    private fun isNotExceed(): Boolean {
         if (KEYWORD_LIMIT > binding!!.tvRegisteredKeyword.text.toString().toInt()) return true
         showMessage("키워드는 10개까지 등록 가능합니다.")
         return false
@@ -135,15 +135,15 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
         return false
     }
 
-    private fun isExist(enteredKeyword: String): Boolean {
-        if (myKeywordList.contains(Keyword(enteredKeyword))) return true
+    private fun isNotRegistered(enteredKeyword: String): Boolean {
+        if (!myKeywordList.contains(Keyword(enteredKeyword))) return true
         showMessage("이미 등록된 키워드입니다.")
         return false
     }
 
     private fun subscribe(enteredKeyword: String) {
         var englishKeyword = inko.ko2en(enteredKeyword)
-
+        showProgress()
         FirebaseMessaging.getInstance().subscribeToTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -152,17 +152,15 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
                         num = (map.getValue(enteredKeyword).toInt() + 1).toString() // 구독자 수 +1
                     }
 
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val temp = CoroutineScope(Dispatchers.Default).async {
-                            databaseReference.child("keywords").child(enteredKeyword).setValue(num)
-                        }.await()
-
+                    lifecycleScope.launch(Dispatchers.IO){
+                        databaseReference.child("keywords").child(enteredKeyword).setValue(num)
                         model.insert(Keyword(enteredKeyword))
                     }
+
                 } else {
                     showMessage("네트워크 상태가 불안정 합니다.")
-                    hideProgress()
                 }
+                hideProgress()
             }
         binding!!.etKeyword.text = null
     }
@@ -174,31 +172,25 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val temp = CoroutineScope(Dispatchers.Default).async {
-                            var num = map.getValue(keyword).toInt() - 1 // 구독자 수 -1
-                            databaseReference.child("keywords").child(keyword).setValue(num.toString())
-                            model.deleteKeywordByTitle(keyword)
-                        }.await()
+                    lifecycleScope.launch(Dispatchers.IO){
+                        var num = map.getValue(keyword).toInt() - 1 // 구독자 수 -1
+                        databaseReference.child("keywords").child(keyword).setValue(num.toString())
+                        model.deleteKeywordByTitle(keyword)
                     }
                 } else {
                     showMessage("네트워크 상태가 불안정 합니다.")
-                    hideProgress()
                 }
+                hideProgress()
             }
     }
 
     private fun showProgress() {
-        requireActivity().window.setFlags(
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-        )
         binding!!.progressBarKeyword.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        binding!!.progressBarKeyword.visibility = View.GONE
+        //requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        binding!!.progressBarKeyword.visibility = View.GONE // TODO 이슈 해결하기
     }
 
     private fun showMessage(msg: String) {
