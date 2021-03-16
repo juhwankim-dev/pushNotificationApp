@@ -19,9 +19,9 @@
         app:layout_constraintBottom_toTopOf="@id/tv_notice_date_writer"/>
 
     <TextView
-        android:id="@+id/tv_notice_date_writer"
+        android:id="@+id/tv_notice_date"
         style="@style/explainText"
-        android:text="국제처   |   2019-09-30"
+        android:text="2019-09-30"
         android:textSize="12sp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="20dp"

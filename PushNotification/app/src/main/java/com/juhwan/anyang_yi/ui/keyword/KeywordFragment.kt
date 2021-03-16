@@ -3,11 +3,9 @@ package com.juhwan.anyang_yi.ui.keyword
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,10 +21,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.juhwan.anyang_yi.database.Keyword
 import com.juhwan.anyang_yi.databinding.FragmentKeywordBinding
+import com.juhwan.anyang_yi.repository.MainNoticeRepository
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
@@ -80,6 +77,8 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
 
 
         binding!!.btnSubscribe.setOnClickListener {
+            var test = MainNoticeRepository()
+
             var enteredKeyword = binding!!.etKeyword.text.toString()
             if (isValidKeyword(enteredKeyword)) {
                 subscribe(enteredKeyword)

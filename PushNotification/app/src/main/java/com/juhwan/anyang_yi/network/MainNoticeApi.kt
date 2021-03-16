@@ -8,15 +8,15 @@ import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface JsonPlaceHolderApi {
+interface MainNoticeApi {
 
     @FormUrlEncoded
     @POST("boardList.do")
     fun boardListPost(@FieldMap fields: MutableMap<String, String>): Call<Result>
 }
 
-object NoticeNetwork {
-    private const val baseUrl = "http://www.anyang.ac.kr/bbs/ajax/" // 베이스 URL
+object MainNoticeNetwork {
+    private val baseUrl = "http://www.anyang.ac.kr/bbs/ajax/" // 베이스 URL
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
@@ -24,7 +24,7 @@ object NoticeNetwork {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun getJsonApi(): JsonPlaceHolderApi {
-        return retrofit.create(JsonPlaceHolderApi::class.java)
+    fun getJsonApi(): MainNoticeApi {
+        return retrofit.create(MainNoticeApi::class.java)
     }
 }

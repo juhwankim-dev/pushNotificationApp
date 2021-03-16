@@ -20,12 +20,14 @@ import java.net.URLDecoder
 class WebViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWebViewBinding
-    private val url = intent.getStringExtra("url")
+    private lateinit var url: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        url = intent.getStringExtra("url").toString()
 
         binding.webView.webViewClient = WebViewClient()
 
