@@ -31,25 +31,25 @@ class SettingAdapter() : RecyclerView.Adapter<SettingAdapter.SettingViewHolder>(
         fun bind(str: String) {
             when(str){
                 "공지사항" -> {
-                    binding!!.tvSetting.text = "공지사항"
+                    binding.tvSetting.text = "공지사항"
                     binding.layoutSetting.setOnClickListener {
                         it.context.startActivity((Intent(it.context, AppNoticeActivity::class.java)))
                     }
                 }
                 "문의하기" -> {
-                    binding!!.tvSetting.text = "문의하기"
+                    binding.tvSetting.text = "문의하기"
                     binding.layoutSetting.setOnClickListener {
 
                     }
                 }
                 "개발자 정보" -> {
-                    binding!!.tvSetting.text = "개발자 정보"
+                    binding.tvSetting.text = "개발자 정보"
                     binding.layoutSetting.setOnClickListener {
                         it.context.startActivity((Intent(it.context, ProfileActivity::class.java)))
                     }
                 }
                 "오픈소스 라이센스" -> {
-                    binding!!.tvSetting.text = "오픈소스 라이센스"
+                    binding.tvSetting.text = "오픈소스 라이센스"
                     binding.layoutSetting.setOnClickListener {
                         it.context.startActivity((Intent(it.context, LicenseActivity::class.java)))
                     }

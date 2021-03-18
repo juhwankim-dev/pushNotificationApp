@@ -92,9 +92,9 @@ class MainNoticeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setList(notice: Array<ResultList>) {
-        items.addAll(notice)
-        items.add(ResultList()) // progress bar를 넣기 위해 빈 element 하나 삽입
+    fun setList(notice: ArrayList<ResultList>) {
+        items = notice
+        //items.add(ResultList()) // progress bar를 넣기 위해 빈 element 하나 삽입
     }
 
     fun deleteLoding(){

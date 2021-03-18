@@ -8,8 +8,13 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.R
+import com.juhwan.anyang_yi.network.AriNotice
+import com.juhwan.anyang_yi.network.ResultList
+import com.juhwan.anyang_yi.repository.MainNoticeRepository
+import com.juhwan.anyang_yi.ui.notice.NoticeViewModel
 
 class SplashActivity : AppCompatActivity(){
 

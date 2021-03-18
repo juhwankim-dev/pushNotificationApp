@@ -47,10 +47,6 @@ class AriNoticeRepository {
                             ariNotice.add(AriNotice(e.attr("href"), e.text(), elementDate[i*4+2].text()))
                         }
 
-/*                        // 2,6,10,14,18,22,26,30,34,38
-                        for(i in 2..elementDate.size step(4)){
-                            elementDate[i].text()
-                        }*/
                         listener.update(ariNotice)
                     }catch (e: Exception){
 

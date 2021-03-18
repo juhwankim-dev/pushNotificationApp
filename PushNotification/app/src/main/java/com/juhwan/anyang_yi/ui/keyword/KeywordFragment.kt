@@ -77,8 +77,6 @@ class KeywordFragment : Fragment(), DeleteButtonListener {
 
 
         binding!!.btnSubscribe.setOnClickListener {
-            var test = MainNoticeRepository()
-
             var enteredKeyword = binding!!.etKeyword.text.toString()
             if (isValidKeyword(enteredKeyword)) {
                 subscribe(enteredKeyword)

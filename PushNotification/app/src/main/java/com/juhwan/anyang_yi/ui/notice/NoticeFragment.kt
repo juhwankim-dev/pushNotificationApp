@@ -8,8 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
 import com.juhwan.anyang_yi.ui.notice.menu.AriNoticeFragment
-import com.juhwan.anyang_yi.ui.notice.menu.EntireFragment
-import com.juhwan.anyang_yi.ui.notice.menu.UnivFragment
+import com.juhwan.anyang_yi.ui.notice.menu.MainNoticeFragment
 
 class NoticeFragment : Fragment() {
 
@@ -36,7 +35,7 @@ class NoticeFragment : Fragment() {
     }
 
     private fun initTabLayout() {
-        val tabTextList = arrayListOf("전체", "대학교", "비교과")
+        val tabTextList = arrayListOf("메인", "비교과")
 
         binding!!.viewPagerNotice.adapter = CustomFragmentStateAdapter(requireActivity())
         TabLayoutMediator(binding!!.tabLayout, binding!!.viewPagerNotice) {
@@ -48,13 +47,12 @@ class NoticeFragment : Fragment() {
     inner class CustomFragmentStateAdapter(fragmentActivity: FragmentActivity):
         FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int {
-            return 3
+            return 2
         }
 
         override fun createFragment(position: Int): Fragment {
             return when(position) {
-                0 -> EntireFragment()
-                1 -> UnivFragment()
+                0 -> MainNoticeFragment()
                 else -> AriNoticeFragment()
             }
         }

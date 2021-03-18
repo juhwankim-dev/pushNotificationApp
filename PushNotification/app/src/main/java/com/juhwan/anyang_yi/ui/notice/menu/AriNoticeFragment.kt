@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.databinding.FragmentAriNoticeBinding
 import com.juhwan.anyang_yi.network.AriNotice
+import com.juhwan.anyang_yi.ui.notice.NoticeViewModel
 
 class AriNoticeFragment : Fragment(),
     AriUpdateListener {
 
     private var binding: FragmentAriNoticeBinding? = null
-    private val model: AriNoticeViewModel by viewModels()
+    private lateinit var model: NoticeViewModel
     private lateinit var adapter: AriNoticeAdapter
     private var page = 1
 
@@ -24,6 +26,7 @@ class AriNoticeFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAriNoticeBinding.inflate(inflater, container, false)
+        model = ViewModelProvider(this).get(NoticeViewModel::class.java)
 
         return binding?.root
     }
@@ -33,8 +36,9 @@ class AriNoticeFragment : Fragment(),
 
         initRecyclerView()
 
-        model.getAriNotices(page, this)
+/*        model.getAriNotices(page, this)
 
+        var test = model.getAriApplyNotices()*/
     }
 
     override fun onDestroyView() {
