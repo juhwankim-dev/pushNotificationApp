@@ -30,14 +30,13 @@ class WebViewActivity : AppCompatActivity() {
         url = intent.getStringExtra("url").toString()
 
         binding.webView.webViewClient = WebViewClient()
+        binding.webView.settings.javaScriptEnabled = true // to load mobile version
 
         binding.webView.setDownloadListener(DownloadListener { _, userAgent, contentDisposition, mimeType, _ ->
             setDownloadLogic(userAgent, contentDisposition, mimeType)
         })
 
-        if (url != null) {
-            binding.webView.loadUrl(url)
-        }
+        binding.webView.loadUrl(url)
 
         binding.btnBrowser.setOnClickListener {
             var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

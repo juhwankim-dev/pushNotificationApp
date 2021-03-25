@@ -1,20 +1,22 @@
 package com.juhwan.anyang_yi.ui.schedule
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.databinding.FragmentScheduleBinding
+import com.juhwan.anyang_yi.repository.ScheduleRepository
 import xyz.sangcomz.stickytimelineview.callback.SectionCallback
 import xyz.sangcomz.stickytimelineview.model.SectionInfo
 
 class ScheduleFragment : Fragment() {
 
     private var binding: FragmentScheduleBinding? = null
-    private val model: ScheduleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +30,16 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var univSchedule = model.requestSchedule()
-        initRecyclerView(univSchedule)
+        if(ScheduleRepository.isFinished.value == null){
+            ScheduleRepository.loadSchedule()
+            binding!!.lottieViewSheep.visibility = View.VISIBLE
+            binding!!.lottieViewSheep.playAnimation()
+        }
+
+        ScheduleRepository.isFinished.observe(viewLifecycleOwner, Observer{
+            binding!!.lottieViewSheep.visibility = View.GONE
+            initRecyclerView()
+        })
     }
 
     override fun onDestroyView() {
@@ -37,13 +47,15 @@ class ScheduleFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun initRecyclerView(univSchedule: List<Schedule>) {
+    private fun initRecyclerView() {
         binding!!.rvTimeline.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding!!.rvTimeline.addItemDecoration(getSectionCallback(univSchedule))
-        binding!!.rvTimeline.adapter = ScheduleAdapter(univSchedule)
+        binding!!.rvTimeline.addItemDecoration(getSectionCallback())
+        binding!!.rvTimeline.adapter = ScheduleAdapter()
     }
 
-    private fun getSectionCallback(items: List<Schedule>): SectionCallback {
+    private fun getSectionCallback(): SectionCallback {
+        var items = ScheduleRepository.schedule
+
         return object : SectionCallback {
             //In your data, implement a method to determine if this is a section.
             override fun isSection(position: Int): Boolean =
@@ -52,7 +64,7 @@ class ScheduleFragment : Fragment() {
             //Implement a method that returns a SectionHeader.
             override fun getSectionHeader(position: Int): SectionInfo? {
                 val schedule = items[position]
-                return SectionInfo("2020." + schedule.date.substring(0, 2), "학사일정")
+                return SectionInfo("2021." + schedule.date.substring(0, 2), "학사일정")
             }
         }
     }

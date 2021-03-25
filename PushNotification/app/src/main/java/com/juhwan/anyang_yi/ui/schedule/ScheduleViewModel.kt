@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.juhwan.anyang_yi.repository.ScheduleRepository
 
 class ScheduleViewModel: ViewModel() {
-    private val repository = ScheduleRepository()
+/*    private val repository = ScheduleRepository()
 
     fun requestSchedule(): List<Schedule> {
         return repository.requestSchedule()
-    }
+    }*/
 }

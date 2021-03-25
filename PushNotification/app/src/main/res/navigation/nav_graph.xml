@@ -11,18 +11,19 @@
         android:label="fragment_notice"
         tools:layout="@layout/fragment_notice" />
     <fragment
-        android:id="@+id/keywordFragment"
-        android:name="com.juhwan.anyang_yi.ui.keyword.KeywordFragment"
-        android:label="fragment_keyword"
-        tools:layout="@layout/fragment_keyword" />
-    <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.juhwan.anyang_yi.ui.schedule.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.juhwan.anyang_yi.ui.contact.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
         android:id="@+id/settingFragment"
         android:name="com.juhwan.anyang_yi.ui.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+
 </navigation>

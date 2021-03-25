@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:id="@+id/layout_keyword"
+    tools:context=".ui.notice.keyword.KeywordActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/toolBarText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/appBarMargin"
+            android:layout_gravity="center"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/toolBarText"
+                    android:text="키워드 설정"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/app_bar">
+
+        <TextView
+            android:id="@+id/txt_explain"
+            style="@style/explainText"
+            android:text="@string/guide"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/et_keyword"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:background="@drawable/edittext_outline_left"
+            android:ems="10"
+            android:hint="알림 받을 키워드를 입력하세요."
+            android:inputType="textPersonName"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_subscribe"
+            app:layout_constraintTop_toBottomOf="@id/txt_explain">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/btn_subscribe"
+            style="@style/explainText"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:background="@drawable/edittext_outline_right"
+            android:gravity="center"
+            android:text="등록"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_keyword"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@id/et_keyword"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_keyword" />
+
+        <TextView
+            android:id="@+id/guide_text"
+            style="@style/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알림 받을 키워드"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_registered_keyword"
+            app:layout_constraintTop_toBottomOf="@id/et_keyword" />
+
+        <TextView
+            android:id="@+id/tv_registered_keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="-1"
+            android:textColor="@color/mainBlue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guide_text"
+            app:layout_constraintLeft_toRightOf="@id/guide_text"
+            app:layout_constraintTop_toTopOf="@+id/guide_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="/10"
+            android:textColor="@color/colorBlackHighEmphasis"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_registered_keyword"
+            app:layout_constraintLeft_toRightOf="@id/tv_registered_keyword"
+            app:layout_constraintTop_toTopOf="@+id/tv_registered_keyword" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_keyword"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

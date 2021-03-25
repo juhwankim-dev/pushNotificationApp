@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_apply"
+    android:layout_width="170dp"
+    android:layout_marginLeft="8dp"
+    android:layout_height="230dp">
+
+    <ImageView
+        android:id="@+id/iv_thumbnail"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="2dp"
+        tools:srcCompat="@tools:sample/avatars"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/bodyText"
+        android:layout_width="150dp"
+        android:text="2021-1학기 ARI 멘토링"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="12dp"
+        android:maxLines="2"
+        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/d_day"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_d_day"
+        style="@style/toolBarText"
+        android:includeFontPadding="false"
+        android:text="D-23"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

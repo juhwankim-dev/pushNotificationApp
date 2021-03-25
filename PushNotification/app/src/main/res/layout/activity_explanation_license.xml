@@ -8,58 +8,69 @@
     android:background="@color/colorWhite"
     tools:context=".ui.setting.license.explanation.ExplanationLicenseActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:elevation="4dp"
-        android:background="@drawable/border_layout_bottom"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:padding="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
-
-        <TextView
-            style="@style/headerText"
+        <androidx.appcompat.widget.Toolbar
+            style="@style/toolBarText"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:text="오픈소스 라이센스"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="@dimen/appBarMargin"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_gravity="center"
+            android:contentInsetLeft="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetRight="0dp"
+            android:contentInsetEnd="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/toolBarText"
+                    android:text="오픈소스 라이센스"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        style="@style/headerText"
         android:id="@+id/tv_license_copyright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginTop="40dp"
-        android:textColor="#000000"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="copyright" />
+        tools:text="copyright" />
 
     <TextView
+        style="@style/bodyText"
         android:id="@+id/tv_license_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:lineSpacingExtra="5dp"
         android:lineSpacingMultiplier="1.1"
-        android:text="본문 내용"
-        android:textColor="#000000"
+        tools:text="본문 내용"
         android:textSize="13dp" />
 
 </LinearLayout>

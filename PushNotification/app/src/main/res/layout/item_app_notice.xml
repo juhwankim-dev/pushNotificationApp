@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
+    android:paddingTop="20dp"
     android:id="@+id/layout_app_notice">
 
     <TextView
-        android:id="@+id/tv_app_notice_title"
         style="@style/bodyText"
-        android:text="공지사항 예시"
-        android:layout_marginTop="20dp"
+        android:id="@+id/tv_app_notice_title"
+        android:text="앱 공지사항 예시"
+        android:includeFontPadding="false"
         android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_app_notice_date"
-        app:layout_constraintRight_toLeftOf="@id/iv_new"/>
-
-    <ImageView
-        android:id="@+id/iv_new"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_new"
-        app:layout_constraintLeft_toRightOf="@id/tv_app_notice_title"
-        app:layout_constraintTop_toTopOf="@id/tv_app_notice_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_app_notice_title"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_app_notice_date"/>
 
     <TextView
         android:id="@+id/tv_app_notice_date"
         style="@style/explainText"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="20dp"
-        android:text="2021.01.09"
+        android:includeFontPadding="false"
+        android:text="2019-09-30"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_app_notice_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_title"
         app:layout_constraintTop_toBottomOf="@id/tv_app_notice_title" />
+
+    <ImageView
+        android:id="@+id/iv_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_app_notice_title"
+        app:layout_constraintLeft_toRightOf="@id/tv_app_notice_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_app_notice_title"
+        app:srcCompat="@drawable/icon_new" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -57,4 +58,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

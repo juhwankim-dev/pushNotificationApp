@@ -7,8 +7,9 @@
     <dimen name="appBarMargin">54dp</dimen>
 
     <!-- 폰트 크기 값 -->
-    <dimen name="appBarTextSize">18sp</dimen>
-    <dimen name="bodyTextSize">16sp</dimen>
-    <dimen name="explainTextSize">12sp</dimen>
+    <dimen name="toolBarTextSize">18sp</dimen>
+    <dimen name="headerTextSize">16sp</dimen>
+    <dimen name="bodyTextSize">14sp</dimen>
+    <dimen name="explainTextSize">10sp</dimen>
 
 </resources>

@@ -1,14 +1,24 @@
 package com.juhwan.anyang_yi.ui.notice
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
-import com.juhwan.anyang_yi.ui.notice.menu.AriNoticeFragment
-import com.juhwan.anyang_yi.ui.notice.menu.MainNoticeFragment
+import com.juhwan.anyang_yi.repository.InitialRepository
+import com.juhwan.anyang_yi.repository.KakaoRepository
+import com.juhwan.anyang_yi.ui.notice.keyword.KeywordActivity
+import com.juhwan.anyang_yi.ui.notice.all.AllApplyActivity
+import com.juhwan.anyang_yi.ui.notice.all.AllAriNoticeActivity
+import com.juhwan.anyang_yi.ui.notice.all.AllMainNoticeActivity
+import com.juhwan.anyang_yi.ui.notice.homepage.HomepageFragment
+import com.juhwan.anyang_yi.ui.notice.sns.SNSFragment
 
 class NoticeFragment : Fragment() {
 
@@ -20,13 +30,17 @@ class NoticeFragment : Fragment() {
     ): View? {
         binding = FragmentNoticeBinding.inflate(inflater, container, false)
 
+        initViewPager2()
+
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initTabLayout()
+        binding!!.ivNotification.setOnClickListener {
+            startActivity(Intent(context, KeywordActivity::class.java))
+        }
     }
 
     override fun onDestroyView() {
@@ -34,11 +48,13 @@ class NoticeFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun initTabLayout() {
-        val tabTextList = arrayListOf("메인", "비교과")
+    private fun initViewPager2() {
+        binding!!.tabLayoutNotice.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
+        val tabTextList = arrayListOf("홈페이지", "SNS")
 
         binding!!.viewPagerNotice.adapter = CustomFragmentStateAdapter(requireActivity())
-        TabLayoutMediator(binding!!.tabLayout, binding!!.viewPagerNotice) {
+        binding!!.viewPagerNotice.isUserInputEnabled = false
+        TabLayoutMediator(binding!!.tabLayoutNotice, binding!!.viewPagerNotice) {
                 tab, position ->
             tab.text = tabTextList[position]
         }.attach()
@@ -52,8 +68,8 @@ class NoticeFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return when(position) {
-                0 -> MainNoticeFragment()
-                else -> AriNoticeFragment()
+                0 -> HomepageFragment()
+                else -> SNSFragment()
             }
         }
     }

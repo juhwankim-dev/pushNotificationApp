@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/keywordFragment"
-        android:icon="@drawable/ic_notification" />
-
-    <item
         android:id="@+id/scheduleFragment"
         android:icon="@drawable/ic_calendar"/>
+
+    <item
+        android:id="@+id/contactFragment"
+        android:icon="@drawable/ic_contact" />
 
     <item
         android:id="@+id/settingFragment"

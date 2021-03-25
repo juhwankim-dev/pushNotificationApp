@@ -2,10 +2,12 @@
     <string name="app_name">아냥이</string>
     <string name="firebase_notification_channel_id">test</string>
     <string name="email">juhwan.dev@gmail.com</string>
-    <string name="guide">학교 서버에 부담을 주지 않기 위해 10분 간격으로\n공지사항을 체크하여 알림을 보내고 있습니다.</string>
+    <string name="guide">현재 학교 공지사항 알림만 지원하고 있습니다.</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">
         com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
     </string>
+    <string name="my_comment">\"앞으로도 많이 이용해주세요\"</string>
+    <string name="helper_comment">\"여기에 무슨 말을 쓰면 좋을까\"</string>
 
     <string name="mit_license">MIT License
 

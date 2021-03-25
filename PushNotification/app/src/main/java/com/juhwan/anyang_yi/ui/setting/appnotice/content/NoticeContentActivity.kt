@@ -22,9 +22,6 @@ class NoticeContentActivity : AppCompatActivity() {
         binding.tvAppNoticeDate.text = intent.getStringExtra("date")
         binding.tvAppNoticeContent.text = intent.getStringExtra("content")
 
-        var isNew = intent.getStringExtra("isNew")
-        if(isNew == "true") binding.ivNew.visibility = View.VISIBLE
-
         binding.ivBack.setOnClickListener {
             finish()
         }

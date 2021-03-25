@@ -8,17 +8,14 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.network.AriNotice
-import com.juhwan.anyang_yi.network.ResultList
-import com.juhwan.anyang_yi.repository.MainNoticeRepository
-import com.juhwan.anyang_yi.ui.notice.NoticeViewModel
+import com.juhwan.anyang_yi.repository.InitialRepository
+import com.juhwan.anyang_yi.ui.setting.profile.ProfileActivity
 
 class SplashActivity : AppCompatActivity(){
 
-    private val SPLASH_VIEW_TIME: Long = 2400 // 1초간 스플래시 화면을 보여줌 (ms)
+    private val SPLASH_VIEW_TIME: Long = 2200 // 1초간 스플래시 화면을 보여줌 (ms)
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +23,14 @@ class SplashActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        InitialRepository.loadInitialData()
         userIdCheck()
 
         Handler(Looper.getMainLooper()).postDelayed({ //delay를 위한 handler
             startActivity(Intent(this, MainActivity::class.java))
+            //startActivity(Intent(this, ProfileActivity::class.java))
             finish()
         }, SPLASH_VIEW_TIME)
-
-        overridePendingTransition(R.anim.nothing, R.anim.fadeout)
     }
 
     private fun userIdCheck(){

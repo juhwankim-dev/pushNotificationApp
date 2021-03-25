@@ -46,21 +46,6 @@ class LicenseRepository {
                 "Copyright (c) 2016 Arleu Cezar Vansuita Júnior"
             ),
             License(
-                "pullrefreshlayout",
-                "mit",
-                "Copyright (c) 2014 baoyongzhang"
-            ),
-            License(
-                "material-calendar-view",
-                "apache",
-                "Copyright 2017, Applandeo sp. z o.o."
-            ),
-            License(
-                "AwesomeDialog",
-                "apache",
-                "Copyright 2020 Muhammad Nouman"
-            ),
-            License(
                 "StickyTimeLine",
                 "apache",
                 "Copyright 2019 Jeong Seok-Won"

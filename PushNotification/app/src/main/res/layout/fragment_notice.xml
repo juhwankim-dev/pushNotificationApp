@@ -11,19 +11,15 @@
     tools:context="com.juhwan.anyang_yi.ui.notice.NoticeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
+        android:background="@color/colorWhite"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
-            style="@style/headerText"
-            android:id="@+id/app_toolbar"
-            android:layout_width="wrap_content"
+            style="@style/toolBarText"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/appBarMargin"
-            app:titleTextColor="@color/colorWhite"
-            app:title="공지사항"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_gravity="center"
             android:contentInsetLeft="0dp"
@@ -33,8 +29,31 @@
             android:contentInsetRight="0dp"
             android:contentInsetEnd="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetEnd="7dp"/>
+            app:contentInsetEnd="0dp">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/toolBarText"
+                    android:text="공지사항"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_notification"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -44,19 +63,22 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
+            android:id="@+id/tabLayout_notice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/mainBlue"
+            app:tabIndicatorHeight="3dp"
+            app:tabTextAppearance="@style/tab_text">
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                tools:text="홈페이지" />
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                tools:text="SNS" />
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
@@ -64,5 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

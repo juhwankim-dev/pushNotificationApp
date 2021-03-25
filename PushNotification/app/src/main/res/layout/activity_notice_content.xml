@@ -4,87 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorWhite"
+    android:orientation="vertical"
     tools:context=".ui.setting.appnotice.content.NoticeContentActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/toolBarText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/appBarMargin"
+            android:layout_gravity="center"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/toolBarText"
+                    android:text="앱 공지사항"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:elevation="4dp"
-        android:background="@drawable/border_layout_bottom"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:padding="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
-
-        <TextView
-            style="@style/headerText"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:text="공지사항"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="24dp">
 
         <TextView
             android:id="@+id/tv_app_notice_title"
             style="@style/headerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="제목" />
+            android:includeFontPadding="false"
+            android:text="제목"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_new"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_new" />
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_app_notice_date"
+            style="@style/explainText"
+            android:layout_marginTop="4dp"
+            android:includeFontPadding="false"
+            android:text="2020.01.29"
+            app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_notice_title" />
 
-    <TextView
-        android:id="@+id/tv_app_notice_date"
-        style="@style/explainText"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="24dp"
-        android:text="2020.01.29" />
+        <View
+            android:id="@+id/divide"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorBlackDisabled2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_notice_date" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="0.3dp"
-        android:layout_margin="20dp"
-        android:background="@color/colorBlackDisabled2"/>
+        <TextView
+            android:id="@+id/tv_app_notice_content"
+            style="@style/bodyText"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="5dp"
+            android:lineSpacingMultiplier="1.1"
+            android:text="본문 내용"
+            app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_date"
+            app:layout_constraintTop_toBottomOf="@id/divide" />
 
-    <TextView
-        android:id="@+id/tv_app_notice_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:lineSpacingExtra="5dp"
-        android:lineSpacingMultiplier="1.1"
-        android:text="본문 내용"
-        android:textColor="#000000"
-        android:textSize="13dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

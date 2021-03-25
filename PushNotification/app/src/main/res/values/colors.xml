@@ -5,6 +5,8 @@
     <color name="colorAccent">#173190</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGray">#f9f9f9</color>
+    <color name="lightGray">#f4f4f3</color>
+    <color name="buttonLightGray">#DDDDDD</color>
     <color name="mainBlue">#173190</color>
     <color name="colorBlack">#FF000000</color>
 

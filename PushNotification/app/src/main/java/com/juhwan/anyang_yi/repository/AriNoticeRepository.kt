@@ -1,9 +1,9 @@
 package com.juhwan.anyang_yi.repository
 
-import android.util.Log
-import com.juhwan.anyang_yi.network.AriNotice
-import com.juhwan.anyang_yi.network.AriNoticeNetwork
-import com.juhwan.anyang_yi.ui.notice.menu.AriNoticeFragment
+import androidx.lifecycle.MutableLiveData
+import com.juhwan.anyang_yi.data.AriNotice
+import com.juhwan.anyang_yi.data.AriNoticeList
+import com.juhwan.anyang_yi.network.AriNoticeApi
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -12,21 +12,19 @@ import retrofit2.Response
 import java.util.HashMap
 
 class AriNoticeRepository {
-    private val parameterForAri: MutableMap<String, String> = HashMap()
+    private val parameterAriNotice: MutableMap<String, String> = HashMap()
+    var _ariNotice = MutableLiveData<AriNotice>()
 
     init {
-        parameterForAri["schWord"] = " "
-        parameterForAri["noneChk"] = "2"
-        parameterForAri["bbsidx"] ="21"
+        parameterAriNotice["schWord"] = " "
+        parameterAriNotice["noneChk"] = "2"
+        parameterAriNotice["bbsidx"] ="21"
     }
 
-    fun getAriNotices(
-        page: Int,
-        listener: AriNoticeFragment
-    ){
-        parameterForAri["pageNo"] = page.toString()
+    fun loadAriNotice(page: Int) {
+        parameterAriNotice["pageNo"] = page.toString()
 
-        val call = AriNoticeNetwork.getJsonApi().boardListPost(parameterForAri)
+        val call = AriNoticeApi.createApi().getNotice(parameterAriNotice)
 
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(
@@ -34,20 +32,27 @@ class AriNoticeRepository {
                 response: Response<ResponseBody>
             ) {
                 if (response.isSuccessful) {
-                    var ariNotice = ArrayList<AriNotice>()
-
                     try{
-                        var doc = Jsoup.parse(response.body()!!.string())
+                        var notice = ArrayList<AriNoticeList>()
 
+                        var doc = Jsoup.parse(response.body()!!.string())
                         var elementTitle = doc.select(".alignL a")
                         var elementDate = doc.select(".alignC")
 
-                        // 0, 1, 2 .. 10
                         for((i, e) in elementTitle.withIndex()){
-                            ariNotice.add(AriNotice(e.attr("href"), e.text(), elementDate[i*4+2].text()))
+                            notice.add(AriNoticeList(e.attr("href"), e.text(), elementDate[i * 4 + 2].text().replace("/", "-")))
                         }
 
-                        listener.update(ariNotice)
+                        notice.add(AriNoticeList(" ", " ", " ")) // 프로그레스바를 위치할 곳
+
+                        when (page) {
+                            1 -> {
+                                InitialRepository.ariNotice.addAll(notice)
+                                InitialRepository.isFinished.value = InitialRepository.isFinished.value!!.plus(1)
+                            }
+                            else -> _ariNotice.value = AriNotice(notice)
+                        }
+
                     }catch (e: Exception){
 
                     }

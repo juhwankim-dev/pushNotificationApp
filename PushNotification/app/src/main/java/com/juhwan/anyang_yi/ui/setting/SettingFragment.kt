@@ -39,21 +39,9 @@ class SettingFragment : Fragment() {
 
         binding!!.rvSetting.adapter = SettingAdapter()
         binding!!.rvSetting.layoutManager = LinearLayoutManager(context)
+        binding!!.txtVersion.text = "현재 버전 " + getAppVersion(requireContext())
 
-
-/*        binding!!.tvCurrentVersion.text = "현재 버전 " + getAppVersion(requireContext())
-        hasNewNotice()
-
-        val pref = requireContext().getSharedPreferences("pushNotificaiton", 0)
-        val isPushOn = pref.getBoolean("isPushOn", true)
-        binding!!.switchPushNotification.isChecked = isPushOn
-
-        binding!!.switchPushNotification.setOnCheckedChangeListener { _, isChecked ->
-            val pref = requireContext().getSharedPreferences("pushNotificaiton", MODE_PRIVATE)
-            val editor = pref.edit()
-            editor.putBoolean("isPushOn", isChecked).apply()
-            editor.commit()
-        }*/
+        //hasNewNotice()
     }
 
     override fun onDestroyView() {
@@ -71,8 +59,6 @@ class SettingFragment : Fragment() {
         }
         return versionName
     }
-}
-
 
 /*    private fun hasNewNotice(){
         FirebaseDatabase.getInstance().reference
@@ -90,4 +76,5 @@ class SettingFragment : Fragment() {
                 }
             })
     }*/
+}
 

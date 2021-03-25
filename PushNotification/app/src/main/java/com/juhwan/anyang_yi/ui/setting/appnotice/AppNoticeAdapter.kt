@@ -39,7 +39,6 @@ class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
                 intent.putExtra("title", appNotice.title)
                 intent.putExtra("date", appNotice.date)
                 intent.putExtra("content", appNotice.content)
-                intent.putExtra("isNew", appNotice.isNew)
                 it.context.startActivity(intent)
             }
         }

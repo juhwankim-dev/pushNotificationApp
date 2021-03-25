@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
@@ -19,6 +19,7 @@
 
         <!-- Status Bar 글자색 -->
         <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
     <!--splash 화면에 사용될 테마-->
@@ -32,19 +33,21 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="appBarText">
-        <item name="android:textSize">@dimen/appBarTextSize</item>
+    <style name="toolBarText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/toolBarTextSize</item>
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
-        <item name="android:textStyle">bold</item>
         <item name="background">@color/mainBlue</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
     </style>
 
     <style name="headerText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/appBarTextSize</item>
+        <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
     </style>
 
     <style name="bodyText">
@@ -52,6 +55,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/bodyTextSize</item>
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
     </style>
 
     <style name="explainText">
@@ -59,5 +63,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/explainTextSize</item>
         <item name="android:textColor">@color/colorBlackDisabled</item>
+        <item name="android:fontFamily">@font/noto_sans_regular</item>
+    </style>
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:textSize">@dimen/headerTextSize</item>
     </style>
 </resources>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.notice.homepage.HomepageFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:id="@+id/txt_apply"
+                    style="@style/headerText"
+                    android:layout_marginLeft="16dp"
+                    android:text="비교과 프로그램 신청"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/see_all_apply"
+                    style="@style/bodyText"
+                    android:layout_marginRight="16dp"
+                    android:text="전체보기"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_apply"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_apply" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_apply"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_apply"/>
+
+                <View
+                    android:id="@+id/divide_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_apply" />
+
+                <TextView
+                    android:id="@+id/txt_main_notice"
+                    style="@style/headerText"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="학교 공지사항"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divide_1" />
+
+                <TextView
+                    android:id="@+id/see_all_main_notice"
+                    style="@style/bodyText"
+                    android:layout_marginRight="16dp"
+                    android:text="전체보기"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_main_notice"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_main_notice" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_main_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_main_notice"/>
+
+                <View
+                    android:id="@+id/divide_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_main_notice" />
+
+                <TextView
+                    android:id="@+id/txt_ari_notice"
+                    style="@style/headerText"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="아리 포트폴리오 공지사항"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divide_2" />
+
+                <TextView
+                    android:id="@+id/see_all_ari_notice"
+                    style="@style/bodyText"
+                    android:layout_marginRight="16dp"
+                    android:text="전체보기"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_ari_notice"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_ari_notice" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_ari_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_ari_notice"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieView_sheep"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_sheep"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

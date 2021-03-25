@@ -6,39 +6,43 @@
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:paddingTop="20dp"
-    android:layout_marginLeft="@dimen/activity_margin"
-    android:layout_marginRight="@dimen/activity_margin"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+
     android:id="@+id/layout_notice">
 
     <TextView
         style="@style/bodyText"
         android:id="@+id/tv_notice_title"
-        android:text="2019학년도 제 2학기 등록 안내(학부생)"
+        tools:text="2019학년도 제 2학기 등록 안내(학부생)"
+        android:includeFontPadding="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_notice_date_writer"/>
+        app:layout_constraintBottom_toTopOf="@id/tv_notice_date"/>
 
     <TextView
-        android:id="@+id/tv_notice_date_writer"
+        android:id="@+id/tv_notice_date"
         style="@style/explainText"
-        android:text="국제처   |   2019-09-30"
+        tools:text="2019-09-30"
         android:textSize="12sp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="20dp"
+        android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_notice_title"/>
 
     <ImageView
         android:id="@+id/iv_new"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_notice_date_writer"
-        app:layout_constraintLeft_toRightOf="@id/tv_notice_date_writer"
-        app:layout_constraintTop_toTopOf="@+id/tv_notice_date_writer"
-        app:srcCompat="@drawable/icon_new" />
+        android:layout_marginTop="1dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_notice_date"
+        app:layout_constraintLeft_toRightOf="@id/tv_notice_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_notice_date"
+        app:srcCompat="@drawable/ic_new" />
 
     <View
         android:layout_width="0dp"

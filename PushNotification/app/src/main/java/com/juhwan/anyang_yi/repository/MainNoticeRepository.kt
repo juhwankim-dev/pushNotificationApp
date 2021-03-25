@@ -1,30 +1,29 @@
 package com.juhwan.anyang_yi.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.juhwan.anyang_yi.network.MainNoticeNetwork
+import com.juhwan.anyang_yi.data.Result
+import com.juhwan.anyang_yi.data.ResultList
+import com.juhwan.anyang_yi.network.MainNoticeApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.HashMap
-import com.juhwan.anyang_yi.network.Result
-import com.juhwan.anyang_yi.network.ResultList
 
-object MainNoticeRepository {
-    private val parameterForMain: MutableMap<String, String> = HashMap()
-
+class MainNoticeRepository {
+    private val parameterMainNotice: MutableMap<String, String> = HashMap()
     var _mainNotice = MutableLiveData<Result>()
-    var all = ArrayList<ResultList>()
 
     init {
-        parameterForMain["menuId"] = "23"
-        parameterForMain["bsIdx"] = "61"
-        parameterForMain["bcIdx"] = "0"
+        parameterMainNotice["menuId"] = "23"
+        parameterMainNotice["bsIdx"] = "61"
+        parameterMainNotice["bcIdx"] = "0"
     }
 
-    fun getMainNotices(page: Int) {
-        parameterForMain["page"] = page.toString()
+    fun loadMainNotice(page: Int) {
+        parameterMainNotice["page"] = page.toString()
 
-        val call = MainNoticeNetwork.getJsonApi().boardListPost(parameterForMain)
+        val call = MainNoticeApi.createApi().getNotice(parameterMainNotice)
 
         call.enqueue(object : Callback<Result> {
             override fun onResponse(
@@ -32,11 +31,16 @@ object MainNoticeRepository {
                 response: Response<Result>
             ) {
                 if (response.isSuccessful) {
-                    try {
-                        all.addAll(response.body()!!.resultList)
-                        _mainNotice.value = Result(all)
-                    } catch (e: Exception) {
+                    var notice = ArrayList<ResultList>()
+                    notice.addAll(response.body()!!.resultList)
+                    notice.add(ResultList(" ", " ", " ", " ")) // 프로그레스바 위치할 자리
 
+                    when (page) {
+                        1 -> {
+                            InitialRepository.mainNotice.addAll(notice)
+                            InitialRepository.isFinished.value = InitialRepository.isFinished.value!!.plus(1)
+                        }
+                        else -> _mainNotice.value = Result(notice)
                     }
                 }
             }

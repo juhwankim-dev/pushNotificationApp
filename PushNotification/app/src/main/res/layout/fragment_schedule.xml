@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorGray"
+    android:background="@color/colorWhite"
     android:id="@+id/scheduleFragment"
     tools:context="com.juhwan.anyang_yi.ui.schedule.ScheduleFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:fitsSystemWindows="true">
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            style="@style/headerText"
-            android:id="@+id/app_toolbar"
-            android:layout_width="wrap_content"
+            style="@style/toolBarText"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/appBarMargin"
-            app:titleTextColor="@color/colorWhite"
-            app:title="학사일정"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_gravity="center"
             android:contentInsetLeft="0dp"
@@ -32,13 +31,43 @@
             android:contentInsetRight="0dp"
             android:contentInsetEnd="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetEnd="7dp"/>
+            app:contentInsetEnd="0dp">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/toolBarText"
+                    android:text="학사일정"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <xyz.sangcomz.stickytimelineview.TimeLineRecyclerView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/rv_timeline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:paddingBottom="56dp"
+        app:sectionBackgroundColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieView_sheep"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_sheep"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
