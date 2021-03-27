@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.setting.LaboratoryActivity"></activity>
         <activity android:name=".ui.InitialActivity" />
         <activity android:name=".ui.notice.all.AllAriNoticeActivity" />
         <activity android:name=".ui.notice.all.AllMainNoticeActivity" />

@@ -7,19 +7,19 @@
         com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
     </string>
     <string name="my_comment">\"앞으로도 많이 이용해주세요\"</string>
-    <string name="helper_comment">\"여기에 무슨 말을 쓰면 좋을까\"</string>
+    <string name="helper_comment">\"도와주셔서 감사합니다\"</string>
 
-    <string name="mit_license">MIT License
+    <string name="mit_license">MIT License\n\n
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+furnished to do so, subject to the following conditions:\n\n
 
 The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+copies or substantial portions of the Software.\n\n
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,19 +29,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
 
-    <string name="apache_license">Copyright 2013 Square, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
+    <string name="apache_license">Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+You may obtain a copy of the License at\n\n
 
-   http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0\n\n
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="lottie">\n\nLove Explosion Animation by Chris Gannon\n
+https://lottiefiles.com/439-love-explosion\n\n
+
+        Counting Sheep Animation by Yellow Slice Design\n
+https://lottiefiles.com/34928-counting-sheep\n\n
+
+        Developer Animation by Aysel Kalayci\n
+https://lottiefiles.com/18123-developer\n\n
+
+        Web Development Animation by Sheikh Sohel\n
+https://lottiefiles.com/43173-web-development
+
+    </string>
 </resources>

@@ -1,10 +1,8 @@
 package com.juhwan.anyang_yi.ui.contact
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.databinding.ItemContactBinding
 import com.juhwan.anyang_yi.data.Contact
 import com.juhwan.anyang_yi.databinding.ItemContactFilterBinding
 import com.juhwan.anyang_yi.repository.ContactRepository
@@ -63,18 +61,17 @@ class ContactFilterAdapter:
     inner class ContactFilterViewHolder(private val binding: ItemContactFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(contact: Contact) {
-            var msClass = ""
-            if (contact.mClass.isNotEmpty() && contact.sClass.isNotEmpty()) {
-                msClass = contact.mClass + "・" + contact.sClass
+
+            var msClass = if (contact.mClass.isNotEmpty() && contact.sClass.isNotEmpty()) {
+                contact.mClass + "・" + contact.sClass
             } else {
-                msClass = contact.mClass + contact.sClass
+                contact.mClass + contact.sClass
             }
 
             binding.tvContact.text = msClass
 
             binding.tvContact.setOnClickListener {
-                val dialog =
-                    ContactDialog(it.context)
+                val dialog = ContactDialog(it.context)
                 dialog.myDig(contact.lClass, msClass, contact.tel)
             }
         }

@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.initialKeyword
+import com.juhwan.anyang_yi.data.InitialKeyword
 import com.juhwan.anyang_yi.databinding.ItemInitialKeywordBinding
 
+/*
 class InitialKeywordAdapter(
-    items: ArrayList<initialKeyword>,
+    items: ArrayList<InitialKeyword>,
     listener: InitialActivity
 ) : RecyclerView.Adapter<InitialKeywordAdapter.InitialKeywordViewHolder>() {
     private val items = items
@@ -31,7 +32,7 @@ class InitialKeywordAdapter(
 
     inner class InitialKeywordViewHolder(private val binding: ItemInitialKeywordBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(items: initialKeyword) {
+        fun bind(items: InitialKeyword) {
             binding.tvKeyword.text = items.keyword
 
             binding.tvKeyword.setOnClickListener {
@@ -52,4 +53,4 @@ class InitialKeywordAdapter(
             }
         }
     }
-}
+}*/

@@ -3,6 +3,7 @@ package com.juhwan.anyang_yi.repository
 import androidx.lifecycle.MutableLiveData
 import com.juhwan.anyang_yi.data.*
 import com.juhwan.anyang_yi.network.ApplyApi
+import com.juhwan.anyang_yi.ui.SplashActivity
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -18,24 +19,22 @@ object InitialRepository {
     private var date1 = "$today 00:00:00"
     var todayDate = sf.parse(date1)
 
-    private val parameterApply: MutableMap<String, String> = HashMap()
-
     var mainNoticeRepository = MainNoticeRepository()
     var ariNoticeRepository = AriNoticeRepository()
 
     var apply = ArrayList<Apply>()
     var ariNotice = ArrayList<AriNoticeList>()
     var mainNotice = ArrayList<ResultList>()
+    var html = MutableLiveData<String>()
 
-    var isFinished = MutableLiveData<Int>(0)
-
-    fun loadInitialData(){
-        loadApplyNotice()
-        mainNoticeRepository.loadMainNotice(1)
+    fun loadInitialData() {
+        mainNoticeRepository.loadInitialMainNotice()
         ariNoticeRepository.loadAriNotice(1)
+        loadApplyNotice()
     }
 
-    private fun loadApplyNotice(){
+    private fun loadApplyNotice() {
+        val parameterApply: MutableMap<String, String> = HashMap()
         parameterApply["now"] = "0"
         val call = ApplyApi.createApi().getNotice(parameterApply)
 
@@ -46,7 +45,8 @@ object InitialRepository {
             ) {
                 if(response.isSuccessful) {
                     try {
-                        parsingApplyNotice(response.body()!!.string())
+                        html.value = response.body()!!.string()
+                        //parsingApplyNotice(, listener)
                     } catch (e: Exception) {
 
                     }
@@ -59,32 +59,30 @@ object InitialRepository {
         })
     }
 
-    fun parsingApplyNotice(html: String){
-        var doc = Jsoup.parse(html)
+    fun parsingApplyNotice(){
+        var doc = Jsoup.parse(html.value)
 
         var programList = doc.select(".list_program")[0]
         var elementDDay = programList.select(".txt_1")
         var elementImage = programList.select(".img img")
         var elementTitle = programList.select(".tit a")
+        var elementUrl = programList.select(".tit a")
         var elementPeriod = programList.select(".line")
         var elementApplicant = programList.select(".app strong")
-        var elementUrl = programList.select(".tit a")
 
         for(i in 0 until elementTitle.size){
-
             apply.add(
                 Apply(
                     elementImage[i].attr("src"),
                     elementTitle[i].text(),
-                    elementDDay[i].text().replace("ay", ""),
+                    elementDDay[i].text().replace("ay", "").replace("종료", "0"),
+                    elementUrl[i].attr("href"),
                     elementPeriod[i * 2 + 1].text(),
-                    elementApplicant[i * 2].text() + "/" + elementApplicant[i * 2 + 1].text(),
-                    elementUrl[i].attr("href")
+                    elementApplicant[i * 2].text() + "/" + elementApplicant[i * 2 + 1].text()
                 )
             )
         }
 
         apply.reverse()
-        isFinished.value = isFinished.value!!.plus(1)
     }
 }

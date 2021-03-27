@@ -27,7 +27,7 @@
                 <TextView
                     android:id="@+id/txt_apply"
                     style="@style/headerText"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="비교과 프로그램 신청"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
                 <TextView
                     android:id="@+id/see_all_apply"
                     style="@style/bodyText"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="전체보기"
                     app:layout_constraintBottom_toBottomOf="@+id/txt_apply"
                     app:layout_constraintRight_toRightOf="parent"
@@ -59,7 +59,7 @@
                     android:id="@+id/txt_main_notice"
                     style="@style/headerText"
                     android:layout_marginTop="24dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="학교 공지사항"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divide_1" />
@@ -67,7 +67,7 @@
                 <TextView
                     android:id="@+id/see_all_main_notice"
                     style="@style/bodyText"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="전체보기"
                     app:layout_constraintBottom_toBottomOf="@+id/txt_main_notice"
                     app:layout_constraintRight_toRightOf="parent"
@@ -91,7 +91,7 @@
                     android:id="@+id/txt_ari_notice"
                     style="@style/headerText"
                     android:layout_marginTop="24dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="아리 포트폴리오 공지사항"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divide_2" />
@@ -99,7 +99,7 @@
                 <TextView
                     android:id="@+id/see_all_ari_notice"
                     style="@style/bodyText"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="전체보기"
                     app:layout_constraintBottom_toBottomOf="@+id/txt_ari_notice"
                     app:layout_constraintRight_toRightOf="parent"

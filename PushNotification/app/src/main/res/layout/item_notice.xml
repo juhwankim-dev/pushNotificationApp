@@ -8,7 +8,6 @@
     android:paddingTop="20dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-
     android:id="@+id/layout_notice">
 
     <TextView
@@ -36,7 +35,7 @@
         android:id="@+id/iv_new"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_notice_date"

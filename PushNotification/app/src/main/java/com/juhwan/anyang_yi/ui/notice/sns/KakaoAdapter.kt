@@ -55,15 +55,16 @@ class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.K
             }
 
             try{
-                Glide.with(itemView.context).load(kakaoNotice.media[0].small_url).fitCenter()
-                    .apply(
-                        RequestOptions.bitmapTransform(RoundedCorners(20))
-                    ).into(binding.ivThumbnail)
+                if(kakaoNotice.media[0].small_url.isNotEmpty()){
+                    Glide.with(itemView.context).load(kakaoNotice.media[0].small_url).fitCenter()
+                        .apply(
+                            RequestOptions.bitmapTransform(RoundedCorners(20))
+                        ).into(binding.ivThumbnail)
+                } else {
+                    setDefaultImage()
+                }
             } catch (e: Exception){
-                Glide.with(itemView.context).load(R.drawable.no_image).fitCenter()
-                    .apply(
-                        RequestOptions.bitmapTransform(RoundedCorners(20))
-                    ).into(binding.ivThumbnail)
+                setDefaultImage()
             }
 
             binding.layoutKakaoNotice.setOnClickListener {
@@ -74,5 +75,11 @@ class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.K
             }
         }
 
+        fun setDefaultImage(){
+            Glide.with(itemView.context).load(R.drawable.no_image).fitCenter()
+                .apply(
+                    RequestOptions.bitmapTransform(RoundedCorners(20))
+                ).into(binding.ivThumbnail)
+        }
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@color/colorWhite"
-    android:paddingLeft="16dp">
+    android:paddingStart="16dp">
 
     <TextView
         android:id="@+id/tv_keyword"

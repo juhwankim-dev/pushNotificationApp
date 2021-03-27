@@ -16,8 +16,6 @@ import com.juhwan.anyang_yi.databinding.ActivityMainBinding
 import com.juhwan.anyang_yi.databinding.ActivityProfileBinding
 import com.juhwan.anyang_yi.ui.contact.ContactDialog
 import com.juhwan.anyang_yi.ui.notice.WebViewActivity
-import com.vansuita.materialabout.builder.AboutBuilder
-import com.vansuita.materialabout.views.AboutView
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -34,20 +32,18 @@ class ProfileActivity : AppCompatActivity() {
         var ani2 = AnimationUtils.loadAnimation(this, R.anim.fadein)
         var ani3 = AnimationUtils.loadAnimation(this, R.anim.fadein)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.layout1.visibility = View.VISIBLE
-            binding.layout1.startAnimation(ani)
-        }, 500L)
+        binding.layout1.visibility = View.VISIBLE
+        binding.layout1.startAnimation(ani)
 
         Handler(Looper.getMainLooper()).postDelayed({
             binding.layout2.visibility = View.VISIBLE
             binding.layout2.startAnimation(ani2)
-        }, 2000L)
+        }, 1000L)
 
         Handler(Looper.getMainLooper()).postDelayed({
             binding.layout3.visibility = View.VISIBLE
             binding.layout3.startAnimation(ani3)
-        }, 3500L)
+        }, 2000L)
 
         binding.ivTstoryBlog.setOnClickListener {
             var goPage = Intent(it.context, WebViewActivity::class.java)
@@ -70,7 +66,7 @@ class ProfileActivity : AppCompatActivity() {
             it.context.startActivity(goPage)
         }
 
-        binding!!.tvAppVersion.text = "현재 버전 " + getAppVersion(this)
+        binding.tvAppVersion.text = "현재 버전 " + getAppVersion(this)
     }
 
     private fun getAppVersion(context: Context): String? {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,6 +22,9 @@ class AppNoticeActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityAppNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.lottieViewSheep.visibility = View.VISIBLE
+        binding.lottieViewSheep.playAnimation()
 
         binding.rvAppNotice.layoutManager = LinearLayoutManager(applicationContext)
 
@@ -52,6 +56,7 @@ class AppNoticeActivity : AppCompatActivity() {
                     }
 
                     binding.rvAppNotice.adapter = AppNoticeAdapter(notices)
+                    binding.lottieViewSheep.visibility = View.GONE
                 }
             })
 

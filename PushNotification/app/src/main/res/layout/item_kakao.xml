@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_kakao_notice"
     android:layout_width="170dp"
-    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
     android:layout_height="250dp">
 
     <ImageView
@@ -21,9 +21,9 @@
         android:id="@+id/tv_title"
         style="@style/bodyText"
         android:layout_width="150dp"
-        android:text="2021-1학기 ARI 멘토링"
+        tools:text="2021-1학기 ARI 멘토링"
         android:layout_marginTop="4dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:maxLines="2"
         app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -32,7 +32,7 @@
         android:id="@+id/iv_new"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
         android:visibility="gone"
         app:srcCompat="@drawable/label_new"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
     <TextView
         style="@style/explainText"
         android:id="@+id/tv_date"
-        android:text="2020/03/12"
+        tools:text="2020/03/12"
         android:includeFontPadding="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_title"

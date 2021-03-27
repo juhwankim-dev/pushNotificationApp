@@ -54,23 +54,33 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        style="@style/headerText"
-        android:id="@+id/tv_license_copyright"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:textSize="20dp"
-        tools:text="copyright" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        style="@style/bodyText"
-        android:id="@+id/tv_license_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:lineSpacingExtra="5dp"
-        android:lineSpacingMultiplier="1.1"
-        tools:text="본문 내용"
-        android:textSize="13dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                style="@style/headerText"
+                android:id="@+id/tv_license_copyright"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:textSize="20dp"
+                tools:text="copyright" />
+
+            <TextView
+                style="@style/bodyText"
+                android:id="@+id/tv_license_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:lineSpacingExtra="5dp"
+                android:lineSpacingMultiplier="1.1"
+                tools:text="본문 내용"
+                android:textSize="13dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

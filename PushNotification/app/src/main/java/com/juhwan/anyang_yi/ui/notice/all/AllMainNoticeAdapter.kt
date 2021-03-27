@@ -16,13 +16,9 @@ class AllMainNoticeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
-    private val baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=20&bIdx="
+    private var baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=20&bIdx="
 
     private var items = ArrayList<ResultList>()
-
-    init {
-        items.addAll(InitialRepository.mainNotice)
-    }
 
     inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -92,6 +88,11 @@ class AllMainNoticeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setList(notice: ArrayList<ResultList>) {
         items.addAll(notice)
+    }
+
+    fun resetList(bcIdx: String) {
+        items.clear()
+        baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=$bcIdx&bIdx="
     }
 
     fun deleteLoading(){

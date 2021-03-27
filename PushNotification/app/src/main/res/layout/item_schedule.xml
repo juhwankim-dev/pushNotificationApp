@@ -16,7 +16,7 @@
         <TextView
             style="@style/bodyText"
             android:id="@+id/tv_schedule_title"
-            android:text="2019학년도 제 2학기 등록 안내(학부생)"
+            tools:text="스케쥴"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/tv_schedule_date"
             style="@style/explainText"
-            android:text="2019-09-30"
+            tools:text="2019-09-30~2019-10-30"
             android:textSize="12sp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="20dp"

@@ -40,8 +40,6 @@ class SettingFragment : Fragment() {
         binding!!.rvSetting.adapter = SettingAdapter()
         binding!!.rvSetting.layoutManager = LinearLayoutManager(context)
         binding!!.txtVersion.text = "현재 버전 " + getAppVersion(requireContext())
-
-        //hasNewNotice()
     }
 
     override fun onDestroyView() {
@@ -59,22 +57,5 @@ class SettingFragment : Fragment() {
         }
         return versionName
     }
-
-/*    private fun hasNewNotice(){
-        FirebaseDatabase.getInstance().reference
-            .child("notices")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {
-
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    var map = p0.children.elementAt(p0.childrenCount.toInt()-1).value as Map<String, String> // 가장 마지막 공지사항의 값들을 가져옴
-                    if( map["isNew"].toString() == "true" ){
-                        binding!!.ivNew.visibility = View.VISIBLE
-                    }
-                }
-            })
-    }*/
 }
 

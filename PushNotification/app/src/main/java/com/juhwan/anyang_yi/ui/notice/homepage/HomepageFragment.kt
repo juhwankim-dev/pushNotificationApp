@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentHomepageBinding
-import com.juhwan.anyang_yi.databinding.FragmentSNSBinding
-import com.juhwan.anyang_yi.repository.ContactRepository
 import com.juhwan.anyang_yi.repository.InitialRepository
 import com.juhwan.anyang_yi.ui.notice.ApplyAdapter
 import com.juhwan.anyang_yi.ui.notice.AriNoticeAdapter
@@ -20,7 +17,6 @@ import com.juhwan.anyang_yi.ui.notice.MainNoticeAdapter
 import com.juhwan.anyang_yi.ui.notice.all.AllApplyActivity
 import com.juhwan.anyang_yi.ui.notice.all.AllAriNoticeActivity
 import com.juhwan.anyang_yi.ui.notice.all.AllMainNoticeActivity
-import com.juhwan.anyang_yi.ui.notice.keyword.KeywordActivity
 
 class HomepageFragment : Fragment() {
 
@@ -41,16 +37,17 @@ class HomepageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(InitialRepository.isFinished.value!!.toInt() < 3){
-            binding!!.lottieViewSheep.visibility = View.VISIBLE
-            binding!!.lottieViewSheep.playAnimation()
-        }
+        initRecyclerView()
 
-        InitialRepository.isFinished.observe(viewLifecycleOwner, Observer{
-            if(it == 3){
-                binding!!.lottieViewSheep.visibility = View.GONE
-                initRecyclerView()
+        InitialRepository.html.observe(viewLifecycleOwner, Observer{
+            InitialRepository.parsingApplyNotice()
+
+            binding!!.rvApply.layoutManager = LinearLayoutManager(context).also {
+                it.orientation = LinearLayoutManager.HORIZONTAL
             }
+            applyAdapter = ApplyAdapter()
+            binding!!.rvApply.adapter = applyAdapter
+            applyAdapter.setList(InitialRepository.apply.subList(0, 10))
         })
 
         binding!!.seeAllApply.setOnClickListener {
@@ -72,17 +69,10 @@ class HomepageFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        binding!!.rvApply.layoutManager = LinearLayoutManager(context).also {
-            it.orientation = LinearLayoutManager.HORIZONTAL
-        }
-        applyAdapter = ApplyAdapter()
-        binding!!.rvApply.adapter = applyAdapter
-        applyAdapter.setList(InitialRepository.apply.subList(0, 10))
-
         binding!!.rvMainNotice.layoutManager = LinearLayoutManager(context)
         mainNoticeAdapter = MainNoticeAdapter()
         binding!!.rvMainNotice.adapter = mainNoticeAdapter
-        mainNoticeAdapter.setList(InitialRepository.mainNotice.subList(0, 5))
+        mainNoticeAdapter.setList(InitialRepository.mainNotice)
 
         binding!!.rvAriNotice.layoutManager = LinearLayoutManager(context)
         ariNoticeAdapter = AriNoticeAdapter()

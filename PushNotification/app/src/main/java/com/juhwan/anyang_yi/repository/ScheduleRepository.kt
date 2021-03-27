@@ -1,6 +1,5 @@
 package com.juhwan.anyang_yi.repository
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.juhwan.anyang_yi.data.Schedule
 import com.juhwan.anyang_yi.network.ScheduleApi
@@ -9,7 +8,6 @@ import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
 
 object ScheduleRepository {
 

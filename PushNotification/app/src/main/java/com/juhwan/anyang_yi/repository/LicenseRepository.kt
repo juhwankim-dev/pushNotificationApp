@@ -6,22 +6,7 @@ class LicenseRepository {
     fun requestLicense(): List<License> {
         return listOf(
             License(
-                "inko",
-                "mit",
-                "Copyright (c) 2020 kimcore"
-            ),
-            License(
-                "lottie",
-                "apache",
-                "Copyright 2018 Airbnb, Inc."
-            ),
-            License(
-                "firebase-database",
                 "firebase",
-                " "
-            ),
-            License(
-                "firebase-messaging",
                 "firebase",
                 " "
             ),
@@ -41,19 +26,24 @@ class LicenseRepository {
                 "Copyright (c) 2016-present, RxJava Contributors."
             ),
             License(
-                "MaterialAbout+",
+                "lottie",
+                "lottie",
+                "Copyright 2018 Airbnb, Inc."
+            ),
+            License(
+                "inko",
                 "mit",
-                "Copyright (c) 2016 Arleu Cezar Vansuita Júnior"
+                "Copyright (c) 2020 kimcore"
+            ),
+            License(
+                "FloatingActionButton",
+                "apache",
+                "Copyright 2014 Zendesk"
             ),
             License(
                 "StickyTimeLine",
                 "apache",
                 "Copyright 2019 Jeong Seok-Won"
-            ),
-            License(
-                "lottie Love Explosion Animation",
-                "lottie",
-                "CC by Chris Gannon"
             )
         )
     }

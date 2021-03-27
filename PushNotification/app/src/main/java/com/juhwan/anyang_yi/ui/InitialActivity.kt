@@ -16,14 +16,13 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.juhwan.anyang_yi.KeywordSelectListener
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.database.Keyword
-import com.juhwan.anyang_yi.databinding.ActivityInitialBinding
 import com.juhwan.anyang_yi.repository.InitialKeywordRepository
 import com.juhwan.anyang_yi.ui.notice.keyword.KeywordViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class InitialActivity : AppCompatActivity(), KeywordSelectListener {
-
+class InitialActivity : AppCompatActivity(){
+/*
     private val databaseReference = FirebaseDatabase.getInstance().reference
     private val model: KeywordViewModel by viewModels()
     private val inko = Inko()
@@ -121,5 +120,5 @@ class InitialActivity : AppCompatActivity(), KeywordSelectListener {
                     Snackbar.make(binding.layout, "네트워크 상태를 확인하세요", Snackbar.LENGTH_SHORT).show()
                 }
             }
-    }
+    }*/
 }

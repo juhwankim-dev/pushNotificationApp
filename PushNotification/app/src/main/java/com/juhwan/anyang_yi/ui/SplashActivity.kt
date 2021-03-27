@@ -8,29 +8,32 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.R
+import com.juhwan.anyang_yi.databinding.ActivityMainBinding
+import com.juhwan.anyang_yi.databinding.ActivitySplashBinding
 import com.juhwan.anyang_yi.repository.InitialRepository
-import com.juhwan.anyang_yi.ui.setting.profile.ProfileActivity
 
 class SplashActivity : AppCompatActivity(){
 
-    private val SPLASH_VIEW_TIME: Long = 2200 // 1초간 스플래시 화면을 보여줌 (ms)
+    private val WAITING_TIME: Long = 1500 // 4초 이상 지나면
+    private lateinit var binding: ActivitySplashBinding
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         InitialRepository.loadInitialData()
         userIdCheck()
 
-        Handler(Looper.getMainLooper()).postDelayed({ //delay를 위한 handler
+        Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
-            //startActivity(Intent(this, ProfileActivity::class.java))
             finish()
-        }, SPLASH_VIEW_TIME)
+        }, WAITING_TIME)
     }
 
     private fun userIdCheck(){

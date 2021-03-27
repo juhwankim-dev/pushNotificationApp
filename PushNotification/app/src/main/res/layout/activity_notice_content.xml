@@ -63,7 +63,7 @@
             android:id="@+id/tv_app_notice_title"
             style="@style/headerText"
             android:includeFontPadding="false"
-            android:text="제목"
+            tools:text="제목"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
             style="@style/explainText"
             android:layout_marginTop="4dp"
             android:includeFontPadding="false"
-            android:text="2020.01.29"
+            tools:text="2020.01.29"
             app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_app_notice_title" />
 
@@ -92,7 +92,7 @@
             android:includeFontPadding="false"
             android:lineSpacingExtra="5dp"
             android:lineSpacingMultiplier="1.1"
-            android:text="본문 내용"
+            tools:text="본문 내용"
             app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_date"
             app:layout_constraintTop_toBottomOf="@id/divide" />
 

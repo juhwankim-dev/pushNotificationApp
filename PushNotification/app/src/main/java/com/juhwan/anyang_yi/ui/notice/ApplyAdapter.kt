@@ -38,7 +38,6 @@ class ApplyAdapter : RecyclerView.Adapter<ApplyAdapter.ApplyViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(apply: Apply) {
             binding.tvTitle.text = apply.title
-
             binding.tvDDay.text = apply.dDay
 
             Glide.with(itemView.context).load(baseImageUrl + apply.imageUrl).fitCenter()
@@ -47,8 +46,6 @@ class ApplyAdapter : RecyclerView.Adapter<ApplyAdapter.ApplyViewHolder>() {
                 ).into(binding.ivThumbnail)
 
             binding.layoutApply.setOnClickListener {
-                Log.v("주소: ", baseUrl + apply.idx)
-
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
                 goPage.putExtra("url", baseUrl + apply.idx)

@@ -1,6 +1,7 @@
 package com.juhwan.anyang_yi.ui.notice.sns
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.databinding.FragmentSNSBinding
-import com.juhwan.anyang_yi.repository.ContactRepository
 import com.juhwan.anyang_yi.repository.KakaoRepository
 import com.juhwan.anyang_yi.ui.notice.WebViewActivity
 
@@ -39,13 +39,13 @@ class SNSFragment : Fragment() {
 
 
         binding!!.seeAllEdu.setOnClickListener {
-            goPage("https://pf.kakao.com/_jxehRd")
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
         }
         binding!!.seeAllJob.setOnClickListener {
-            goPage("https://pf.kakao.com/_iMxaFC")
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_iMxaFC")))
         }
         binding!!.seeAllAriPanel.setOnClickListener {
-            goPage("https://pf.kakao.com/_lNmNd")
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_lNmNd")))
         }
 
         return binding?.root

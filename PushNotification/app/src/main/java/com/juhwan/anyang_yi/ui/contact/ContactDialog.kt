@@ -1,6 +1,5 @@
 package com.juhwan.anyang_yi.ui.contact
 
-import android.Manifest
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -10,11 +9,8 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import com.google.android.material.snackbar.Snackbar
 import com.juhwan.anyang_yi.R
 import java.lang.Exception
 
@@ -44,13 +40,13 @@ class ContactDialog(context: Context) {
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
 
-        //val tv_lClass = dialog.findViewById<TextView>(R.id.lClass)
+        val tv_lClass = dialog.findViewById<TextView>(R.id.lClass)
         val tv_mClass = dialog.findViewById<TextView>(R.id.mClass)
         val tv_tel = dialog.findViewById<TextView>(R.id.tel)
         val btn_close = dialog.findViewById<TextView>(R.id.btn_close)
         val btn_call = dialog.findViewById<TextView>(R.id.btn_call)
 
-        //tv_lClass.text = lClass
+        tv_lClass.text = lClass
         tv_mClass.text = msClass
 
         if(tel.length == 3){

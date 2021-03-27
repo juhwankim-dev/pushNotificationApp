@@ -1,7 +1,6 @@
 package com.juhwan.anyang_yi.network
 
 import com.juhwan.anyang_yi.data.KakaoNotice
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

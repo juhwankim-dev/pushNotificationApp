@@ -1,37 +1,37 @@
 package com.juhwan.anyang_yi.repository
 
-import com.juhwan.anyang_yi.data.initialKeyword
+import com.juhwan.anyang_yi.data.InitialKeyword
 import kotlin.collections.ArrayList
 
 object InitialKeywordRepository {
 
-    var internalUnivKeyword = ArrayList<initialKeyword>(
+    var internalUnivKeyword = ArrayList<InitialKeyword>(
         listOf(
-            initialKeyword("튜터링", false),
-            initialKeyword("신공재전", false),
-            initialKeyword("교환학생", false),
-            initialKeyword("신입생", false),
-            initialKeyword("근로", false),
-            initialKeyword("장학", false)
+            InitialKeyword("튜터링", false),
+            InitialKeyword("신공재전", false),
+            InitialKeyword("교환학생", false),
+            InitialKeyword("신입생", false),
+            InitialKeyword("근로", false),
+            InitialKeyword("장학", false)
         )
     )
-    var externalUnivKeyword = ArrayList<initialKeyword>(
+    var externalUnivKeyword = ArrayList<InitialKeyword>(
         listOf(
-            initialKeyword("채용", false),
-            initialKeyword("인턴", false),
-            initialKeyword("창업", false),
-            initialKeyword("공모전", false),
-            initialKeyword("취업", false)
+            InitialKeyword("채용", false),
+            InitialKeyword("인턴", false),
+            InitialKeyword("창업", false),
+            InitialKeyword("공모전", false),
+            InitialKeyword("취업", false)
         )
     )
-    var univKeyword = ArrayList<initialKeyword>(
+    var univKeyword = ArrayList<InitialKeyword>(
         listOf(
-            initialKeyword("비대면", false),
-            initialKeyword("대면", false),
-            initialKeyword("휴학", false),
-            initialKeyword("복학", false),
-            initialKeyword("등록금", false),
-            initialKeyword("계절", false)
+            InitialKeyword("비대면", false),
+            InitialKeyword("대면", false),
+            InitialKeyword("휴학", false),
+            InitialKeyword("복학", false),
+            InitialKeyword("등록금", false),
+            InitialKeyword("계절", false)
         )
     )
 }

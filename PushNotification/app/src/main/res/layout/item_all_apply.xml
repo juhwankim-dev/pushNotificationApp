@@ -7,13 +7,13 @@
     android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="270dp"
-    android:layout_marginLeft="8dp">
+    android:layout_marginStart="8dp">
 
     <ImageView
         android:id="@+id/iv_thumbnail"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="150dp"
         android:layout_marginTop="4dp"
         android:maxLines="2"
-        android:text="2021-1학기 ARI 멘토링"
+        tools:text="2021-1학기 ARI 멘토링"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/iv_thumbnail"
         app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
@@ -33,7 +33,7 @@
     <TextView
         style="@style/explainText"
         android:id="@+id/tv_training_period"
-        android:text="2020/03/12 ~ 2020/03/15"
+        tools:text="2020/03/12 ~ 2020/03/15"
         android:includeFontPadding="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
@@ -43,7 +43,7 @@
         android:id="@+id/tv_applicant"
         style="@style/explainText"
         android:includeFontPadding="false"
-        android:text="인원 23 / 40"
+        tools:text="인원 23 / 40"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_training_period"
         app:layout_constraintTop_toBottomOf="@id/tv_training_period" />
@@ -62,7 +62,7 @@
         style="@style/toolBarText"
         android:layout_marginTop="2dp"
         android:includeFontPadding="false"
-        android:text="D-23"
+        tools:text="D-23"
         android:textColor="@color/colorWhite"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"

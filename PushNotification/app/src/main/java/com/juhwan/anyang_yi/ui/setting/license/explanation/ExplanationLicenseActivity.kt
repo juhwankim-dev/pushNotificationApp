@@ -29,7 +29,7 @@ class ExplanationLicenseActivity : AppCompatActivity() {
                 licenseContent = getString(R.string.apache_license)
             }
             "lottie" -> {
-                licenseContent = "Love Explosion Animation by Chris Gannon\nThank you for sharing this animation file. Below is the link\nhttps://lottiefiles.com/439-love-explosion"
+                licenseContent = getString(R.string.apache_license) + getString(R.string.lottie)
             }
         }
         binding.tvLicenseContent.text = licenseContent

@@ -46,10 +46,7 @@ class AriNoticeRepository {
                         notice.add(AriNoticeList(" ", " ", " ")) // 프로그레스바를 위치할 곳
 
                         when (page) {
-                            1 -> {
-                                InitialRepository.ariNotice.addAll(notice)
-                                InitialRepository.isFinished.value = InitialRepository.isFinished.value!!.plus(1)
-                            }
+                            1 -> InitialRepository.ariNotice.addAll(notice)
                             else -> _ariNotice.value = AriNotice(notice)
                         }
 

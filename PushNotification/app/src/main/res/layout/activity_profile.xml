@@ -98,7 +98,7 @@
             android:id="@+id/dev"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             android:layout_marginLeft="16dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
@@ -109,7 +109,7 @@
         <TextView
             android:id="@+id/txt_name"
             style="@style/toolBarText"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="36dp"
             android:layout_marginLeft="16dp"
             android:text="김주환 / 앱 개발"
             android:includeFontPadding="false"
@@ -127,19 +127,6 @@
             app:layout_constraintLeft_toLeftOf="@+id/txt_name"
             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
-        <TextView
-            android:id="@+id/txt_comment"
-            style="@style/explainText"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:includeFontPadding="false"
-            android:textSize="12sp"
-            android:text="@string/my_comment"
-            android:textStyle="italic"
-            app:layout_constraintLeft_toLeftOf="@+id/txt_job"
-            app:layout_constraintTop_toBottomOf="@+id/txt_job" />
-
         <LinearLayout
             android:id="@+id/iv_icon_list"
             android:layout_width="wrap_content"
@@ -148,7 +135,7 @@
             android:orientation="horizontal"
             android:layout_marginLeft="4dp"
             app:layout_constraintLeft_toRightOf="@+id/dev"
-            app:layout_constraintTop_toBottomOf="@+id/txt_comment">
+            app:layout_constraintTop_toBottomOf="@+id/txt_job">
 
             <ImageView
                 android:id="@+id/iv_tstory_blog"
@@ -187,7 +174,7 @@
             android:id="@+id/web_dev"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="16dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
@@ -198,9 +185,10 @@
         <TextView
             android:id="@+id/txt_helper_name"
             style="@style/toolBarText"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="28dp"
             android:layout_marginRight="16dp"
-            android:text="이선경 / Thanks to"
+            android:text="Special\nThanks to\n이선경"
+            android:gravity="right"
             android:includeFontPadding="false"
             app:layout_constraintRight_toLeftOf="@+id/web_dev"
             app:layout_constraintTop_toTopOf="@+id/web_dev"/>
@@ -210,21 +198,22 @@
             style="@style/bodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Web Developer"
             android:layout_marginTop="4dp"
             android:includeFontPadding="false"
+            android:text="Web Developer"
             app:layout_constraintEnd_toEndOf="@+id/txt_helper_name"
-            app:layout_constraintTop_toBottomOf="@id/txt_helper_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_helper_name"/>
 
         <TextView
             android:id="@+id/txt_helper_mention"
             style="@style/explainText"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
             android:layout_marginTop="24dp"
             android:includeFontPadding="false"
             android:text="@string/helper_comment"
+            android:textSize="12sp"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@+id/txt_helper_job"
             app:layout_constraintTop_toBottomOf="@id/txt_helper_job" />
 

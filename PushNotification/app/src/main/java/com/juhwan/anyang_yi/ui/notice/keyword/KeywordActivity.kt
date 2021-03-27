@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -27,7 +28,7 @@ import java.util.regex.Pattern
 
 const val KEYWORD_LIMIT = 10
 
-class KeywordActivity : AppCompatActivity(), DeleteButtonListener {
+class KeywordActivity : AppCompatActivity(), DeleteButtonListener, SignUpListener {
 
     private lateinit var map: Map<String, String>// 서버에 있는 키워드를 가져와서 저장할 변수
 
@@ -65,11 +66,24 @@ class KeywordActivity : AppCompatActivity(), DeleteButtonListener {
             myKeywordList.addAll(it)
         })
 
-        binding.btnSubscribe.setOnClickListener {
+        model.getResult().observe(this, Observer{
             var enteredKeyword = binding.etKeyword.text.toString()
-            if (isValidKeyword(enteredKeyword)) {
-                subscribe(enteredKeyword)
+
+            if(it.resultList.isEmpty()){
+                hideProgress()
+                val dialog = KeywordDialog(this, this)
+                dialog.myDig(enteredKeyword)
+            } else {
+                if (isValidKeyword(enteredKeyword)) {
+                    subscribe(enteredKeyword)
+                }
             }
+        })
+
+        binding.btnSubscribe.setOnClickListener {
+            showProgress()
+            var enteredKeyword = binding.etKeyword.text.toString()
+            model.searchKeyword(enteredKeyword) // 공지 이력 확인
         }
 
         binding.etKeyword.addTextChangedListener(object : TextWatcher {
@@ -128,7 +142,7 @@ class KeywordActivity : AppCompatActivity(), DeleteButtonListener {
 
     private fun subscribe(enteredKeyword: String) {
         var englishKeyword = inko.ko2en(enteredKeyword)
-        showProgress()
+
         FirebaseMessaging.getInstance().subscribeToTopic(englishKeyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -169,14 +183,25 @@ class KeywordActivity : AppCompatActivity(), DeleteButtonListener {
             }
     }
 
+    override fun signUpListener(keyword: String) {
+        showProgress()
+        if (isValidKeyword(keyword)) {
+            subscribe(keyword)
+        } else {
+            hideProgress()
+        }
+        binding.etKeyword.text = null
+    }
+
     private fun showProgress() {
-        binding.progressBarKeyword.visibility = View.VISIBLE
-        this.window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        binding.lottieViewSheep.visibility = View.VISIBLE
+        binding.lottieViewSheep.playAnimation()
+        //this.window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 
     private fun hideProgress() {
-        this.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        binding.progressBarKeyword.visibility = View.GONE // TODO 이슈 해결하기
+        //this.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        binding.lottieViewSheep.visibility = View.GONE
     }
 
     private fun showMessage(msg: String) {
