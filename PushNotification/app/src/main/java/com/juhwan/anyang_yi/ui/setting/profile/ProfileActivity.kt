@@ -10,23 +10,22 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.databinding.ActivityMainBinding
 import com.juhwan.anyang_yi.databinding.ActivityProfileBinding
-import com.juhwan.anyang_yi.ui.contact.ContactDialog
 import com.juhwan.anyang_yi.ui.notice.WebViewActivity
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.layout1.visibility = View.INVISIBLE
+        binding.layout2.visibility = View.INVISIBLE
+        binding.layout3.visibility = View.INVISIBLE
 
         var ani = AnimationUtils.loadAnimation(this, R.anim.fadein)
         var ani2 = AnimationUtils.loadAnimation(this, R.anim.fadein)

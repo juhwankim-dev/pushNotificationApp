@@ -42,7 +42,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_edu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/txt_edu" />
 
@@ -74,7 +74,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_job"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/txt_job" />
 
@@ -106,7 +106,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_ari_panel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/txt_ari_panel" />
 

@@ -2,6 +2,7 @@ package com.juhwan.anyang_yi.ui.notice.all
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,28 +22,10 @@ class AllApplyActivity : AppCompatActivity() {
 
         initRecyclerView()
 
-/*
-        var items = arrayOf("마감순", "최신순")
-        val spinnerAdapter = SpinnerAdapter(applicationContext, items)
-        binding.spinner.adapter = spinnerAdapter
-        binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                allApplyAdapter.arrangeList(position)
-            }
-        }*/
-
         binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId){
-                R.id.radio_btn_new -> {
-
-                }
-                R.id.radio_btn_deadline -> {
-
-                }
+                R.id.radio_btn_new -> allApplyAdapter.arrangeList(0)
+                R.id.radio_btn_deadline -> allApplyAdapter.arrangeList(1)
             }
         }
 

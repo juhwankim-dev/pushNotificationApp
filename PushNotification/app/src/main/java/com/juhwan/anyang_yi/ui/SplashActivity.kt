@@ -20,9 +20,9 @@ class SplashActivity : AppCompatActivity(){
     private val WAITING_TIME: Long = 1500 // 4초 이상 지나면
     private lateinit var binding: ActivitySplashBinding
 
-    @SuppressLint("SourceLockedOrientationActivity")
+    //@SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)

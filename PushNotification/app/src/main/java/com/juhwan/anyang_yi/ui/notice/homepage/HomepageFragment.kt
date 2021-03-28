@@ -40,7 +40,9 @@ class HomepageFragment : Fragment() {
         initRecyclerView()
 
         InitialRepository.html.observe(viewLifecycleOwner, Observer{
-            InitialRepository.parsingApplyNotice()
+            if(InitialRepository.apply.isEmpty()){
+                InitialRepository.parsingApplyNotice()
+            }
 
             binding!!.rvApply.layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
@@ -77,6 +79,6 @@ class HomepageFragment : Fragment() {
         binding!!.rvAriNotice.layoutManager = LinearLayoutManager(context)
         ariNoticeAdapter = AriNoticeAdapter()
         binding!!.rvAriNotice.adapter = ariNoticeAdapter
-        ariNoticeAdapter.setList(InitialRepository.ariNotice.subList(0, 5))
+        ariNoticeAdapter.setList(InitialRepository.ariNotice)
     }
 }

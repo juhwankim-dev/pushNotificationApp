@@ -13,7 +13,7 @@ class AllAriNoticeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAllAriNoticeBinding
     private val model: AriNoticeViewModel by viewModels()
     private lateinit var allAriNoticeAdapter: AllAriNoticeAdapter
-    private var page = 2
+    private var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +21,7 @@ class AllAriNoticeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initRecyclerView()
+        model.loadAriNotice(page)
 
         binding.ivBack.setOnClickListener {
             finish()

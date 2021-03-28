@@ -57,6 +57,7 @@
         android:id="@+id/tabLayout_main_notice_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabTextAppearance="@style/tab_text"
         app:tabMode="scrollable">
 
         <com.google.android.material.tabs.TabItem

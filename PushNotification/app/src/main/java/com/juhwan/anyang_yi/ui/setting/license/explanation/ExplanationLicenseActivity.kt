@@ -11,10 +11,8 @@ class ExplanationLicenseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityExplanationLicenseBinding
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityExplanationLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

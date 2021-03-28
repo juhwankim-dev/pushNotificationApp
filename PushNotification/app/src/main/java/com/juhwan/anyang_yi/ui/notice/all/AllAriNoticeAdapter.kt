@@ -19,10 +19,6 @@ class AllAriNoticeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = ArrayList<AriNoticeList>()
 
-    init {
-        items.addAll(InitialRepository.ariNotice)
-    }
-
     inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

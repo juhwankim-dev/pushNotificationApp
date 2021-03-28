@@ -16,10 +16,8 @@ class AppNoticeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAppNoticeBinding
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityAppNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

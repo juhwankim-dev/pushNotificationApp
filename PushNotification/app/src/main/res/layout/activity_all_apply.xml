@@ -98,7 +98,9 @@
                 <RadioGroup
                     android:id="@+id/radio_group_filter"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/txt_total"
@@ -106,21 +108,27 @@
 
                     <RadioButton
                         android:id="@+id/radio_btn_new"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_sans_regular"
-                        android:gravity="center"
-                        android:button="@android:color/transparent"
                         android:background="@drawable/button_segmented_left"
-                        android:textColor="@drawable/segmented_text_color"
-                        android:text="최신순" />
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:textStyle="bold"
+                        android:text="최신순"
+                        android:textColor="@drawable/segmented_text_color" />
 
                     <RadioButton
                         android:id="@+id/radio_btn_deadline"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/noto_sans_regular"
                         android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:layout_marginRight="16dp"
+                        android:textStyle="bold"
                         android:button="@android:color/transparent"
                         android:background="@drawable/button_segmented_right"
                         android:textColor="@drawable/segmented_text_color"
@@ -133,8 +141,6 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_total"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

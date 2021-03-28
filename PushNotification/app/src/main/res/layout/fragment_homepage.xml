@@ -44,7 +44,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_apply"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="230dp"
                     android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/txt_apply"/>
 

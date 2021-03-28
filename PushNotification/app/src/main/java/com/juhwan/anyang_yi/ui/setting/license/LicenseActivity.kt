@@ -13,10 +13,8 @@ class LicenseActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLicenseBinding
     private val model: LicenseViewModel by viewModels()
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityLicenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

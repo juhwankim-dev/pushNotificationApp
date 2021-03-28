@@ -29,7 +29,7 @@ object InitialRepository {
 
     fun loadInitialData() {
         mainNoticeRepository.loadInitialMainNotice()
-        ariNoticeRepository.loadAriNotice(1)
+        ariNoticeRepository.loadInitialAriNotice()
         loadApplyNotice()
     }
 
@@ -46,7 +46,6 @@ object InitialRepository {
                 if(response.isSuccessful) {
                     try {
                         html.value = response.body()!!.string()
-                        //parsingApplyNotice(, listener)
                     } catch (e: Exception) {
 
                     }

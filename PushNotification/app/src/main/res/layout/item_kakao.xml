@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_kakao_notice"
+    android:background="@color/clickable_background"
     android:layout_width="170dp"
     android:layout_marginStart="8dp"
-    android:layout_height="250dp">
+    android:layout_height="240dp">
 
     <ImageView
         android:id="@+id/iv_thumbnail"
@@ -21,7 +22,7 @@
         android:id="@+id/tv_title"
         style="@style/bodyText"
         android:layout_width="150dp"
-        tools:text="2021-1학기 ARI 멘토링"
+        tools:text="2021-1학기 ARI 멘토링\n2줄"
         android:layout_marginTop="4dp"
         android:layout_marginStart="12dp"
         android:maxLines="2"

@@ -45,11 +45,43 @@ class AriNoticeRepository {
 
                         notice.add(AriNoticeList(" ", " ", " ")) // 프로그레스바를 위치할 곳
 
-                        when (page) {
-                            1 -> InitialRepository.ariNotice.addAll(notice)
-                            else -> _ariNotice.value = AriNotice(notice)
+                        _ariNotice.value = AriNotice(notice)
+
+                    }catch (e: Exception){
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun loadInitialAriNotice() {
+        parameterAriNotice["pageNo"] = "1"
+
+        val call = AriNoticeApi.createApi().getNotice(parameterAriNotice)
+
+        call.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: Response<ResponseBody>
+            ) {
+                if (response.isSuccessful) {
+                    try{
+                        var notice = ArrayList<AriNoticeList>()
+
+                        var doc = Jsoup.parse(response.body()!!.string())
+                        var elementTitle = doc.select(".alignL a")
+                        var elementDate = doc.select(".alignC")
+
+                        for((i, e) in elementTitle.withIndex()){
+                            notice.add(AriNoticeList(e.attr("href"), e.text(), elementDate[i * 4 + 2].text().replace("/", "-")))
                         }
 
+                        InitialRepository.ariNotice.addAll(notice.subList(0, 5))
                     }catch (e: Exception){
 
                     }
