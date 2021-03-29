@@ -16,6 +16,11 @@
 
 [Goole Playstore](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
 
+## Release Note
+| Version | Release Date | Changes | Detail |
+|--------|--------------|---------|--------|
+| v1.1.0  | 2021.03.29   | 더 다양한 공지사항 확인, 연락처 검색, MVVM 구조로 변환, 버그 수정|[Blog](https://todaycode.tistory.com/37)
+
 ## Features
 
 - 여기저기 흩어져 있는 공지를 한 곳에서 확인
