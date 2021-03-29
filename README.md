@@ -1,9 +1,16 @@
-# 아냥이
+<h1 align="center">
+    <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/PushNotification/app/src/main/res/drawable-v24/icon_sheep.png" width="100" height="100" />
+    <br> 아냥이
+</h1>
 
-<img src="https://img.shields.io/badge/version-v1.1.0-blue">
+<p align="center">
+    <img src="https://img.shields.io/badge/version-v1.1.0-blue"> <img src="https://img.shields.io/badge/license-Apache--2.0-green">
+</p>
 
+<p align="center">
 아냥이는 안양대학교 학생들을 위한
 공지사항 푸시 알림 서비스 앱 입니다.
+</p>
 
 ## Installation
 
@@ -21,20 +28,23 @@
 <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/screenshot_2.png" width="100%">
 
 ## Flow Chart
-<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow1.png" width="100%">
-<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow2.png" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow1.jpg" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow2.jpg" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow3.jpg" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow4.jpg" width="100%">
 
 ## Project Architecture
 <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/project_architecture.png" width="100%">
 
 ViewModel, LiveData, Repository을 사용하여 MVVM 구조 기반으로 앱을 제작하였습니다.
+
 특성상 최초 한 번만 요청해도 되는 데이터는 ViewModel을 거치지 않고 싱글톤으로 사용하는 것이
+
 더 효율적이라 판단하여 위와 같은 구조로 변형을 하였습니다.
 
 ## Tech
 
 적용한 기술들을 나열하였습니다.
-블로그에 기록한 기술은 텍스트에 링크가 첨부되어있습니다.
 
 * Architecture
   - Livecycle
