@@ -1,84 +1,86 @@
-<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/graphic_image.png" width="100%" height="100%">
+# 아냥이
 
+<img src="https://img.shields.io/badge/version-v1.1.0-blue">
 
+아냥이는 안양대학교 학생들을 위한
+공지사항 푸시 알림 서비스 앱 입니다.
 
-# Introduce
-아냥이는 안양대학교 학생들을 위한 공지사항 알림 애플리케이션 입니다.
+## Installation
 
+[Goole Playstore](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
 
-장학금, 학사일정 소식 등을 빠르고 간편하게 확인해보세요!
+## Features
 
+- 여기저기 흩어져 있는 공지를 한 곳에서 확인
+- 키워드를 등록하면 공지가 올라왔을 때 푸시알림을 받음
+- 부서 연락처를 빠르게 검색
+- 학사 일정을 간편하게 확인
 
+## Screenshot
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/screenshot_1.png" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/screenshot_2.png" width="100%">
 
-<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/screenshot.png" width="100%">
-학교 공지사항을 앱 내에서 확인할 수 있습니다.
+## Flow Chart
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow1.png" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow2.png" width="100%">
 
+## Project Architecture
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/project_architecture.png" width="100%">
 
-월별로 정리된 학사일정을 확인할 수 있습니다.
+ViewModel, LiveData, Repository을 사용하여 MVVM 구조 기반으로 앱을 제작하였습니다.
+특성상 최초 한 번만 요청해도 되는 데이터는 ViewModel을 거치지 않고 싱글톤으로 사용하는 것이
+더 효율적이라 판단하여 위와 같은 구조로 변형을 하였습니다.
 
+## Tech
 
-등록한 키워드에 맞는 공지가 올라오면 푸시 알림을 보내드립니다.
+적용한 기술들을 나열하였습니다.
+블로그에 기록한 기술은 텍스트에 링크가 첨부되어있습니다.
 
+* Architecture
+  - Livecycle
+  - Livedata
+  - Navigation
+  - ViewModel
 
+* UI
+  - ConstraintLayout
+  - MaterialDesign
+  - RecyclerView
+  - Fragment
+  - ViewPager2
+  - TabLayout
+  - WebView
+  - SearchView
+  - Segmented button (custom)
+  - Transition animation
 
+* Third Party
+  - Firebase
+  - Retrofit2
+  - Jsoup
+  - Glide
+  - Kotlin Coroutine
+  - Lottie
+  - Room
+  - Inko
 
-<p align="center"><img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/push_notification.gif" width="300"></p>
-이젠 공지사항이 올라올 때까지 계속 새로 고침 하지 마세요!
+## Problem
 
+앱을 제작하며 맞닥뜨린 문제들을 고민하고 해결했던 과정을 기록해두었습니다.
 
-아냥이가 알려드립니다 :)
+| Problem | Blog Link |
+| ------ | ------ |
+| Token값 노출 | [https://todaycode.tistory.com/16][16] |
+| Firebase 보안 | [https://todaycode.tistory.com/19][19] |
+| 크롤링 방법 | [https://todaycode.tistory.com/21][21] |
+| UI | [https://todaycode.tistory.com/14][14] |
+| FCM 푸시 알림 | [https://todaycode.tistory.com/8][8] |
+| 크롤링 봇 제작 | [https://todaycode.tistory.com/11][11] |
+| Server | [https://todaycode.tistory.com/22][22] |
+| 푸시알림 방식 | [https://todaycode.tistory.com/9][9] |
 
+## License
 
-
-## 😫 Problem & Solve
-[token값 노출에 대한 고민](https://todaycode.tistory.com/16)
-
-
-[Firebase 보안에 대한 고민](https://todaycode.tistory.com/19)
-
-
-[최적의 크롤링 방법 고민](https://todaycode.tistory.com/21)
-
-
-[사용자 친화적인 UI 고민](https://todaycode.tistory.com/14)
-
-
-[FCM 푸시알림 구현](https://todaycode.tistory.com/8)
-
-
-[크롤링 봇 제작](https://todaycode.tistory.com/11)
-
-
-[Server](https://todaycode.tistory.com/22)
-
-
-[푸시알림 방식](https://todaycode.tistory.com/9)
-
-
-
-## 🔗 Link
-[구글 플레이스토어에서 다운로드](https://play.google.com/store/apps/details?id=com.juhwan.anyang_yi)
-
-
-[제작 과정 보기](https://todaycode.tistory.com/)
-
-
-[서버 github 주소](https://github.com/juhwankim-dev/univWebCrawler)
-
-
-
-## 🚨 Announcement
-안양대학교 공식 앱이 아님을 알려드립니다.
-
-
-개인적으로 제작하였기 때문에 모든 문의 및 건의사항은 이메일로 보내주세요.
-
-
-juhwan.dev@gmail.com
-
-
-
-## 📝 License
 ```
 Copyright 2021 Juhwan Kim
 
@@ -94,3 +96,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+
+**문의 및 건의사항은 이메일로 보내주세요.**
+**juhwan.dev@gmail.com**
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+   [Lifecycle]: <https://developer.android.com/topic/libraries/architecture/lifecycle>
+   [LiveData]: <https://developer.android.com/topic/libraries/architecture/livedata>
+   [Navigation]: <https://developer.android.com/guide/navigation>
+   [ViewModel]: <https://developer.android.com/topic/libraries/architecture/viewmodel>
+   
+   [16]: <https://todaycode.tistory.com/16>
+   [19]: <https://todaycode.tistory.com/19>
+   [21]: <https://todaycode.tistory.com/21>
+   [14]: <https://todaycode.tistory.com/14>
+   [8]: <https://todaycode.tistory.com/8>
+   [11]: <https://todaycode.tistory.com/11>
+   [22]: <https://todaycode.tistory.com/22>
+   [9]: <https://todaycode.tistory.com/9>
