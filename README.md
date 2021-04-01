@@ -39,13 +39,9 @@
 <img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/app_flow4.jpg" width="100%">
 
 ## Project Architecture
-<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/project_architecture.png" width="100%">
+<img src="https://github.com/juhwankim-dev/pushNotificationApp/blob/main/images/project_architecture2.png" width="100%">
 
 ViewModel, LiveData, Repository을 사용하여 MVVM 구조 기반으로 앱을 제작하였습니다.
-
-특성상 최초 한 번만 요청해도 되는 데이터는 ViewModel을 거치지 않고 싱글톤으로 사용하는 것이
-
-더 효율적이라 판단하여 위와 같은 구조로 변형을 하였습니다.
 
 ## Tech
 
