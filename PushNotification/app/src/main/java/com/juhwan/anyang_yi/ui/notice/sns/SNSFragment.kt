@@ -39,6 +39,7 @@ class SNSFragment : Fragment() {
 
 
         binding!!.seeAllEdu.setOnClickListener {
+            //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.kakao.com/home/@jxehRd")))
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
         }
         binding!!.seeAllJob.setOnClickListener {

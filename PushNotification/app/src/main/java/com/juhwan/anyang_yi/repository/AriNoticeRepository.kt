@@ -46,7 +46,6 @@ class AriNoticeRepository {
                         notice.add(AriNoticeList(" ", " ", " ")) // 프로그레스바를 위치할 곳
 
                         _ariNotice.value = AriNotice(notice)
-
                     }catch (e: Exception){
 
                     }

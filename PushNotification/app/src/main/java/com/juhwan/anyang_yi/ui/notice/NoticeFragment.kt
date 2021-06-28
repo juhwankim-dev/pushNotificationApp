@@ -3,8 +3,10 @@ package com.juhwan.anyang_yi.ui.notice
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -23,12 +25,16 @@ import com.juhwan.anyang_yi.ui.notice.sns.SNSFragment
 class NoticeFragment : Fragment() {
 
     private var binding: FragmentNoticeBinding? = null
+    private val model: NoticeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNoticeBinding.inflate(inflater, container, false)
+        //binding = FragmentNoticeBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.setContentView(this, R.layout.fragment_notice)
+        binding.model = model
+        binding.lifecycleOwner = this
 
         initViewPager2()
 
@@ -53,7 +59,7 @@ class NoticeFragment : Fragment() {
         val tabTextList = arrayListOf("홈페이지", "SNS")
 
         binding!!.viewPagerNotice.adapter = CustomFragmentStateAdapter(requireActivity())
-        binding!!.viewPagerNotice.isUserInputEnabled = false
+        //binding!!.viewPagerNotice.isUserInputEnabled = false // 스와이프 막는 설정
         TabLayoutMediator(binding!!.tabLayoutNotice, binding!!.viewPagerNotice) {
                 tab, position ->
             tab.text = tabTextList[position]

@@ -33,6 +33,10 @@ class MainNoticeAdapter : RecyclerView.Adapter<MainNoticeAdapter.MainNoticeViewH
 
     inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(notice: ResultList){
+
+            binding.notice = notice
+
+            /*
             binding.tvNoticeTitle.text = notice.SUBJECT
             binding.tvNoticeDate.text = notice.WRITE_DATE2 + "   |   " + notice.WRITER
 
@@ -52,6 +56,8 @@ class MainNoticeAdapter : RecyclerView.Adapter<MainNoticeAdapter.MainNoticeViewH
                 goPage.putExtra("url", baseUrl + notice.B_IDX)
                 it.context.startActivity(goPage)
             }
+
+             */
         }
     }
 }
