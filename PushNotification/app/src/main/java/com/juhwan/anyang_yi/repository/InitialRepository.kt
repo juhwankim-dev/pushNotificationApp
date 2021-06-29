@@ -19,17 +19,11 @@ object InitialRepository {
     private var date1 = "$today 00:00:00"
     var todayDate = sf.parse(date1)
 
-    var mainNoticeRepository = MainNoticeRepository()
-    var ariNoticeRepository = AriNoticeRepository()
-
     var apply = ArrayList<Apply>()
     var ariNotice = ArrayList<AriNoticeList>()
-    var mainNotice = ArrayList<ResultList>()
     var html = MutableLiveData<String>()
 
     fun loadInitialData() {
-        mainNoticeRepository.loadInitialMainNotice()
-        ariNoticeRepository.loadInitialAriNotice()
         loadApplyNotice()
     }
 

@@ -1,13 +1,10 @@
 package com.juhwan.anyang_yi.ui.notice
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.ResultList
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
-import com.juhwan.anyang_yi.repository.InitialRepository
 
 class MainNoticeAdapter : RecyclerView.Adapter<MainNoticeAdapter.MainNoticeViewHolder>() {
     private val items = ArrayList<ResultList>()
@@ -33,8 +30,7 @@ class MainNoticeAdapter : RecyclerView.Adapter<MainNoticeAdapter.MainNoticeViewH
 
     inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(notice: ResultList){
-
-            binding.notice = notice
+            binding.resultList = notice
 
             /*
             binding.tvNoticeTitle.text = notice.SUBJECT

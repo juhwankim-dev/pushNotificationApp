@@ -7,24 +7,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
-import com.juhwan.anyang_yi.repository.InitialRepository
-import com.juhwan.anyang_yi.repository.KakaoRepository
 import com.juhwan.anyang_yi.ui.notice.keyword.KeywordActivity
-import com.juhwan.anyang_yi.ui.notice.all.AllApplyActivity
-import com.juhwan.anyang_yi.ui.notice.all.AllAriNoticeActivity
-import com.juhwan.anyang_yi.ui.notice.all.AllMainNoticeActivity
 import com.juhwan.anyang_yi.ui.notice.homepage.HomepageFragment
 import com.juhwan.anyang_yi.ui.notice.sns.SNSFragment
 
 class NoticeFragment : Fragment() {
 
-    private var binding: FragmentNoticeBinding? = null
+    lateinit var binding: FragmentNoticeBinding
     private val model: NoticeViewModel by viewModels()
 
     override fun onCreateView(
@@ -32,7 +25,8 @@ class NoticeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //binding = FragmentNoticeBinding.inflate(inflater, container, false)
-        binding = DataBindingUtil.setContentView(this, R.layout.fragment_notice)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notice, container, false)
+        //binding = DataBindingUtil.setContentView(this, R.layout.fragment_notice)
         binding.model = model
         binding.lifecycleOwner = this
 
@@ -49,10 +43,12 @@ class NoticeFragment : Fragment() {
         }
     }
 
+    /*
     override fun onDestroyView() {
         binding = null
         super.onDestroyView()
     }
+    */
 
     private fun initViewPager2() {
         binding!!.tabLayoutNotice.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)

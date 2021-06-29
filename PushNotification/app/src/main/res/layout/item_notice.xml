@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="notice"
-            type="" />
+            name="ResultList"
+            type="com.juhwan.anyang_yi.data.ResultList" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/clickable_background"
@@ -20,7 +21,7 @@
         <TextView
             style="@style/bodyText"
             android:id="@+id/tv_notice_title"
-            tools:text="@{notice.title} 2019학년도 제 2학기 등록 안내(학부생)"
+            tools:text="@{notice.SUBJECT}"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

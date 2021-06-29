@@ -12,6 +12,7 @@ import java.util.HashMap
 class MainNoticeRepository {
     private val parameterMainNotice: MutableMap<String, String> = HashMap()
     var _mainNotice = MutableLiveData<Result>()
+    var _initMainNotice = MutableLiveData<Result>()
     var _searchResult = MutableLiveData<Result>()
 
     init {
@@ -61,7 +62,7 @@ class MainNoticeRepository {
                     var notice = ArrayList<ResultList>()
                     notice.addAll(response.body()!!.resultList.subList(0, 5))
 
-                    InitialRepository.mainNotice.addAll(notice)
+                    _initMainNotice.value = Result(notice)
                 }
             }
 
