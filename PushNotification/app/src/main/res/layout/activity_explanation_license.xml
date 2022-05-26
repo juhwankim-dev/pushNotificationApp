@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite"
-    tools:context=".ui.setting.license.explanation.ExplanationLicenseActivity">
+    tools:context=".present.views.setting.license.explanation.ExplanationLicenseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

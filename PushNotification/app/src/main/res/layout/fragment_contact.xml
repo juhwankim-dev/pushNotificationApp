@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/contactFragment"
     android:background="@color/colorWhite"
-    tools:context=".ui.contact.ContactFragment">
+    tools:context=".present.views.contact.ContactFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

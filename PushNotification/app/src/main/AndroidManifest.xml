@@ -16,23 +16,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.InitialActivity" />
-        <activity android:name=".ui.notice.all.AllAriNoticeActivity" />
-        <activity android:name=".ui.notice.all.AllMainNoticeActivity" />
-        <activity android:name=".ui.notice.all.AllApplyActivity" />
-        <activity android:name=".ui.notice.keyword.KeywordActivity" />
-        <activity android:name=".ui.setting.appnotice.content.NoticeContentActivity" />
-        <activity android:name=".ui.setting.appnotice.AppNoticeActivity" />
-        <activity android:name=".ui.setting.license.explanation.ExplanationLicenseActivity" />
-        <activity android:name=".ui.setting.profile.ProfileActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllAriNoticeActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllMainNoticeActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllApplyActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.notice.keyword.KeywordActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.appnotice.content.NoticeContentActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.appnotice.AppNoticeActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.license.explanation.ExplanationLicenseActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.profile.ProfileActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
 
-        <activity android:name=".ui.setting.license.LicenseActivity" />
-        <activity android:name=".ui.notice.WebViewActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.license.LicenseActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.notice.WebViewActivity" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".present.views.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -42,11 +42,11 @@
             </intent-filter>
         </activity> <!-- Splash Activity -->
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".present.views.MainActivity"
             android:configChanges="orientation|screenSize" />
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".present.service.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

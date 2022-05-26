@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.notice.all.AllMainNoticeActivity">
+    tools:context=".present.views.notice.all.AllMainNoticeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

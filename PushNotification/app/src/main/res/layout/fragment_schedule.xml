@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:id="@+id/scheduleFragment"
-    tools:context="com.juhwan.anyang_yi.ui.schedule.ScheduleFragment">
+    tools:context=".present.views.schedule.ScheduleFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
