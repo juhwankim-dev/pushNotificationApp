@@ -6,7 +6,7 @@
     <data>
         <variable
             name="ResultList"
-            type="com.juhwan.anyang_yi.data.ResultList" />
+            type="com.juhwan.anyang_yi.data.model.ResultList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

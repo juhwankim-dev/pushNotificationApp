@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/colorWhite"
     android:id="@+id/settingFragment"
-    tools:context=".ui.setting.SettingFragment">
+    tools:context=".present.views.setting.SettingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

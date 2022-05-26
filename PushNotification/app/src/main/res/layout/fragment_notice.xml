@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:background="@color/colorWhite"
         android:id="@+id/noticeFragment"
-        tools:context="com.juhwan.anyang_yi.ui.notice.NoticeFragment">
+        tools:context=".present.views.notice.NoticeFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

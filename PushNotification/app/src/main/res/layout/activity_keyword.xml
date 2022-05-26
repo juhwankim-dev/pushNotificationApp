@@ -7,7 +7,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:id="@+id/layout_keyword"
-    tools:context=".ui.notice.keyword.KeywordActivity">
+    tools:context=".present.views.notice.keyword.KeywordActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
