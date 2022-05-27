@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityAllMainNoticeBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class AllMainNoticeActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAllMainNoticeBinding
+class AllMainNoticeActivity : BaseActivity<ActivityAllMainNoticeBinding>(R.layout.activity_all_main_notice) {
     private val model: MainNoticeViewModel by viewModels()
     private lateinit var allMainNoticeAdapter: AllMainNoticeAdapter
     private var page = 1
@@ -21,8 +20,6 @@ class AllMainNoticeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAllMainNoticeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         initRecyclerView()
         initTabLayout()

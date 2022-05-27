@@ -1,24 +1,22 @@
 package com.juhwan.anyang_yi.present.views.notice.all
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityAllAriNoticeBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class AllAriNoticeActivity : AppCompatActivity() {
+class AllAriNoticeActivity : BaseActivity<ActivityAllAriNoticeBinding>(R.layout.activity_all_ari_notice) {
 
-    private lateinit var binding: ActivityAllAriNoticeBinding
     private val model: AriNoticeViewModel by viewModels()
     private lateinit var allAriNoticeAdapter: AllAriNoticeAdapter
     private var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAllAriNoticeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         initRecyclerView()
         model.loadAriNotice(page)

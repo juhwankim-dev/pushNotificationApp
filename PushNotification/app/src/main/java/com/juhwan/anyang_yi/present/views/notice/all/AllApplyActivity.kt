@@ -6,17 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityAllApplyBinding
 import com.juhwan.anyang_yi.data.repository.InitialRepository
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class AllApplyActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAllApplyBinding
+class AllApplyActivity : BaseActivity<ActivityAllApplyBinding>(R.layout.activity_all_apply) {
     private lateinit var allApplyAdapter: AllApplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAllApplyBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         initRecyclerView()
 
         binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->

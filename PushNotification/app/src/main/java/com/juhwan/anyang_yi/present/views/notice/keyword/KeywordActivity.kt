@@ -20,18 +20,18 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.data.db.Keyword
 import com.juhwan.anyang_yi.databinding.ActivityKeywordBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
 const val KEYWORD_LIMIT = 10
 
-class KeywordActivity : AppCompatActivity(), DeleteButtonListener, SignUpListener {
+class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_keyword), DeleteButtonListener, SignUpListener {
 
     private lateinit var map: Map<String, String>// 서버에 있는 키워드를 가져와서 저장할 변수
 
     private val databaseReference = FirebaseDatabase.getInstance().reference
-    private lateinit var binding: ActivityKeywordBinding
     private val model: KeywordViewModel by viewModels()
     private lateinit var adapter: KeywordAdapter
     private var myKeywordList = arrayListOf<Keyword>()
@@ -39,8 +39,6 @@ class KeywordActivity : AppCompatActivity(), DeleteButtonListener, SignUpListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityKeywordBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         FirebaseDatabase.getInstance().reference
             .child("keywords")

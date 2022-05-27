@@ -1,18 +1,13 @@
 package com.juhwan.anyang_yi.present.views.setting.license.explanation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityExplanationLicenseBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class ExplanationLicenseActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityExplanationLicenseBinding
-
+class ExplanationLicenseActivity : BaseActivity<ActivityExplanationLicenseBinding>(R.layout.activity_explanation_license) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityExplanationLicenseBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.tvLicenseCopyright.text = intent.getStringExtra("copyright")
 

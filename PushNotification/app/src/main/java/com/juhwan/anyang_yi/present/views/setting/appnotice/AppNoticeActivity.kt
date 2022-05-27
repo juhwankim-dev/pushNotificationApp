@@ -8,16 +8,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityAppNoticeBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class AppNoticeActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAppNoticeBinding
-
+class AppNoticeActivity : BaseActivity<ActivityAppNoticeBinding>(R.layout.activity_app_notice) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAppNoticeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.lottieViewSheep.visibility = View.VISIBLE
         binding.lottieViewSheep.playAnimation()

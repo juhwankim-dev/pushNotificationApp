@@ -2,19 +2,16 @@ package com.juhwan.anyang_yi.present.views.setting.license
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityLicenseBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 
-class LicenseActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityLicenseBinding
+class LicenseActivity : BaseActivity<ActivityLicenseBinding>(R.layout.activity_license) {
     private val model: LicenseViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLicenseBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         var licenseList = model.requestLicense()
         binding.rvLicense.adapter = LicenseAdapter(licenseList)
