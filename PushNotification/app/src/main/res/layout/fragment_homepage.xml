@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.juhwan.anyang_yi.ui.notice.homepage.HomepageViewModel" />
+            type="com.juhwan.anyang_yi.present.views.notice.homepage.HomepageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

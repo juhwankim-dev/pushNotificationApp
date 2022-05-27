@@ -23,7 +23,7 @@ object NoticeBindingAdapter {
 
         if(items != null) {
             mainNoticeAdatper.setList(items.resultList)
-            mainNoticeAdatper.notifyItemRangeInserted()
+            //mainNoticeAdatper.notifyItemRangeInserted()
         }
     }
 }

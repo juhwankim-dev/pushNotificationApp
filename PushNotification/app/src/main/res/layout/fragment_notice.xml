@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="com.juhwan.anyang_yi.ui.notice.NoticeViewModel" />
+            type="com.juhwan.anyang_yi.present.views.notice.NoticeViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

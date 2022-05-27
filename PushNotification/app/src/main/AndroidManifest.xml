@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.InitialActivity" />
         <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllAriNoticeActivity" />
         <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllMainNoticeActivity" />
         <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllApplyActivity" />
@@ -34,7 +33,8 @@
         <activity
             android:name=".present.views.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
