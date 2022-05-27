@@ -8,7 +8,7 @@ import com.juhwan.anyang_yi.present.views.notice.MainNoticeAdapter
 
 // 메인 공지사항 바인딩 어댑터
 
-object NoticeBindingAdapter {
+object BindingAdapter {
     private val mainNoticeAdatper: MainNoticeAdapter = MainNoticeAdapter()
 
     @JvmStatic
