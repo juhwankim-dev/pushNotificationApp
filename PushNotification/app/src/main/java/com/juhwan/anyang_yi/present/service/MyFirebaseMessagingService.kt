@@ -15,7 +15,7 @@ import com.juhwan.anyang_yi.R
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
             val currentTitle = remoteMessage!!.data["title"]
             val prefNotice = this.getSharedPreferences("lastTitle", Context.MODE_PRIVATE)
             val lastTitle = prefNotice.getString("lastTitle", "null")
