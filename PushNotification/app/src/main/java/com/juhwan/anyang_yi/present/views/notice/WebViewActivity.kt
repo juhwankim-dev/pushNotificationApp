@@ -7,34 +7,31 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.webkit.*
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityWebViewBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 import java.net.URLDecoder
 
-class WebViewActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityWebViewBinding
+class WebViewActivity : BaseActivity<ActivityWebViewBinding>(R.layout.activity_web_view) {
     private lateinit var url: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWebViewBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         url = intent.getStringExtra("url").toString()
 
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.javaScriptEnabled = true // to load mobile version
 
-        binding.webView.setDownloadListener(DownloadListener { _, userAgent, contentDisposition, mimeType, _ ->
+        binding.webView.setDownloadListener { _, userAgent, contentDisposition, mimeType, _ ->
             setDownloadLogic(userAgent, contentDisposition, mimeType)
-        })
+        }
 
         binding.webView.loadUrl(url)
 
@@ -61,8 +58,12 @@ class WebViewActivity : AppCompatActivity() {
         try {
             val request = DownloadManager.Request(Uri.parse(url))
             val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            contentDisposition = URLDecoder.decode(contentDisposition, "UTF-8") // 파일명이 한글일때 깨지는 현상을 위해 디코딩을 함.
-            val fileName = contentDisposition.replace("attachment; filename=", "") // 파일명 앞에 attachment; filename*=UTF-8'' 이런 쓰잘데기 없는 문구가 붙음. 그래서 삭제하는 거임.
+            contentDisposition =
+                URLDecoder.decode(contentDisposition, "UTF-8") // 파일명이 한글일때 깨지는 현상을 위해 디코딩을 함.
+            val fileName = contentDisposition.replace(
+                "attachment; filename=",
+                ""
+            ) // 파일명 앞에 attachment; filename*=UTF-8'' 이런 쓰잘데기 없는 문구가 붙음. 그래서 삭제하는 거임.
             request.setMimeType(mimeType) // mimetype은 파일의 확장자를 뜻함. 이걸 안드로이드에게 안 알려주면 전부 bin 확장자로 다운로드 받아짐.
             request.addRequestHeader("User-Agent", userAgent)
             request.setDescription("Downloading File")

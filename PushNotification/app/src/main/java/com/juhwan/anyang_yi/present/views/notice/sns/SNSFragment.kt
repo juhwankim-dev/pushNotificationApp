@@ -3,28 +3,22 @@ package com.juhwan.anyang_yi.present.views.notice.sns
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentSNSBinding
 import com.juhwan.anyang_yi.data.repository.KakaoRepository
+import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.notice.WebViewActivity
 
-class SNSFragment : Fragment() {
-
-    private var binding: FragmentSNSBinding? = null
+class SNSFragment : BaseFragment<FragmentSNSBinding>(R.layout.fragment_s_n_s) {
     private lateinit var eduAdapter: KakaoAdapter
     private lateinit var jobAdapter: KakaoAdapter
     private lateinit var ariPanelAdapter: KakaoAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSNSBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if(KakaoRepository.isFinished.value == null){
             KakaoRepository.loadInitialData()
@@ -37,7 +31,6 @@ class SNSFragment : Fragment() {
             initRecyclerView()
         })
 
-
         binding!!.seeAllEdu.setOnClickListener {
             //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.kakao.com/home/@jxehRd")))
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
@@ -48,13 +41,6 @@ class SNSFragment : Fragment() {
         binding!!.seeAllAriPanel.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_lNmNd")))
         }
-
-        return binding?.root
-    }
-
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
     }
 
     private fun initRecyclerView(){

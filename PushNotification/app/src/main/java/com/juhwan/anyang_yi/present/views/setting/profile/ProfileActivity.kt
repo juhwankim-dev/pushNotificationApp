@@ -2,7 +2,6 @@ package com.juhwan.anyang_yi.present.views.setting.profile
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,17 +9,13 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityProfileBinding
+import com.juhwan.anyang_yi.present.config.BaseActivity
 import com.juhwan.anyang_yi.present.views.notice.WebViewActivity
 
-class ProfileActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityProfileBinding
-
+class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        
         binding.layout1.visibility = View.INVISIBLE
         binding.layout2.visibility = View.INVISIBLE
         binding.layout3.visibility = View.INVISIBLE

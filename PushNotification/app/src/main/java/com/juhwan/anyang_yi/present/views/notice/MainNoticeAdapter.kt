@@ -30,7 +30,7 @@ class MainNoticeAdapter : RecyclerView.Adapter<MainNoticeAdapter.MainNoticeViewH
 
     inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(notice: ResultList){
-            binding.resultList = notice
+            //binding.resultList = notice
 
             /*
             binding.tvNoticeTitle.text = notice.SUBJECT
