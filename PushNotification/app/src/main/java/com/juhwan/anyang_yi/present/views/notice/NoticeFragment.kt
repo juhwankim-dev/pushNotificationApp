@@ -3,7 +3,6 @@ package com.juhwan.anyang_yi.present.views.notice
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
@@ -11,44 +10,24 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
+import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.notice.keyword.KeywordActivity
 import com.juhwan.anyang_yi.present.views.notice.homepage.HomepageFragment
 import com.juhwan.anyang_yi.present.views.notice.sns.SNSFragment
 
-class NoticeFragment : Fragment() {
-
-    lateinit var binding: FragmentNoticeBinding
+class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_notice) {
     private val model: NoticeViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //binding = FragmentNoticeBinding.inflate(inflater, container, false)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notice, container, false)
-        //binding = DataBindingUtil.setContentView(this, R.layout.fragment_notice)
-        binding.model = model
-        binding.lifecycleOwner = this
-
-        initViewPager2()
-
-        return binding?.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.model = model
+        initViewPager2()
 
         binding!!.ivNotification.setOnClickListener {
             startActivity(Intent(context, KeywordActivity::class.java))
         }
     }
-
-    /*
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-    */
 
     private fun initViewPager2() {
         binding!!.tabLayoutNotice.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)

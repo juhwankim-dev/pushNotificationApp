@@ -1,29 +1,17 @@
 package com.juhwan.anyang_yi.present.views.schedule
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.juhwan.anyang_yi.databinding.FragmentScheduleBinding
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.data.repository.ScheduleRepository
+import com.juhwan.anyang_yi.databinding.FragmentScheduleBinding
+import com.juhwan.anyang_yi.present.config.BaseFragment
 import xyz.sangcomz.stickytimelineview.callback.SectionCallback
 import xyz.sangcomz.stickytimelineview.model.SectionInfo
 
-class ScheduleFragment : Fragment() {
-
-    private var binding: FragmentScheduleBinding? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentScheduleBinding.inflate(inflater, container, false)
-
-        return binding?.root
-    }
+class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment_schedule) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,11 +26,6 @@ class ScheduleFragment : Fragment() {
             binding!!.lottieViewSheep.visibility = View.GONE
             initRecyclerView()
         })
-    }
-
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
     }
 
     private fun initRecyclerView() {
