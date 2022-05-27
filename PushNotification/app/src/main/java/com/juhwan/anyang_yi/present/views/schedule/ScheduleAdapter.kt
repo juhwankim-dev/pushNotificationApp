@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.model.Schedule
-import com.juhwan.anyang_yi.databinding.ItemScheduleBinding
 import com.juhwan.anyang_yi.data.repository.ScheduleRepository
+import com.juhwan.anyang_yi.databinding.ItemScheduleBinding
 
-class ScheduleAdapter() : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
     var items = ScheduleRepository.schedule
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ScheduleViewHolder {

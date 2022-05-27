@@ -25,7 +25,7 @@ class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseA
         holder.bind(items[position])
     }
 
-    inner class LicenseViewHolder(private val binding: ItemLicenseBinding):RecyclerView.ViewHolder(binding.root){
+    inner class LicenseViewHolder(private val binding: ItemLicenseBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(license: License) {
             binding.tvLibraryName.text = license.owner
             binding.layoutLibrary.setOnClickListener {
