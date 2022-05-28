@@ -10,7 +10,7 @@
         tools:context=".present.views.setting.profile.ProfileActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+            android:id="@+id/abl_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar">
+            app:layout_constraintTop_toBottomOf="@+id/abl_profile">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content">
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/dev"
+                        android:id="@+id/lottie_dev"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:layout_marginLeft="16dp"
@@ -115,25 +115,25 @@
                         app:lottie_rawRes="@raw/dev" />
 
                     <TextView
-                        android:id="@+id/txt_name"
+                        android:id="@+id/tv_name"
                         style="@style/toolBarText"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="36dp"
                         android:includeFontPadding="false"
                         android:text="김주환 / 앱 개발"
-                        app:layout_constraintLeft_toRightOf="@+id/dev"
-                        app:layout_constraintTop_toTopOf="@+id/dev" />
+                        app:layout_constraintLeft_toRightOf="@+id/lottie_dev"
+                        app:layout_constraintTop_toTopOf="@+id/lottie_dev" />
 
                     <TextView
-                        android:id="@+id/txt_job"
+                        android:id="@+id/tv_job"
                         style="@style/bodyText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:includeFontPadding="false"
                         android:text="Android Developer"
-                        app:layout_constraintLeft_toLeftOf="@+id/txt_name"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                     <LinearLayout
                         android:id="@+id/iv_icon_list"
@@ -142,11 +142,11 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="24dp"
                         android:orientation="horizontal"
-                        app:layout_constraintLeft_toRightOf="@+id/dev"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_job">
+                        app:layout_constraintLeft_toRightOf="@+id/lottie_dev"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_job">
 
                         <ImageView
-                            android:id="@+id/iv_tstory_blog"
+                            android:id="@+id/iv_tistory_blog"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_weight="1"
@@ -189,7 +189,7 @@
                         app:lottie_rawRes="@raw/web_dev" />
 
                     <TextView
-                        android:id="@+id/txt_helper_name"
+                        android:id="@+id/tv_helper_name"
                         style="@style/toolBarText"
                         android:layout_marginTop="28dp"
                         android:layout_marginRight="16dp"
@@ -200,18 +200,18 @@
                         app:layout_constraintTop_toTopOf="@+id/web_dev" />
 
                     <TextView
-                        android:id="@+id/txt_helper_job"
+                        android:id="@+id/tv_helper_job"
                         style="@style/bodyText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:includeFontPadding="false"
                         android:text="Web Developer"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_helper_name"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_helper_name" />
+                        app:layout_constraintEnd_toEndOf="@+id/tv_helper_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_helper_name" />
 
                     <TextView
-                        android:id="@+id/txt_helper_mention"
+                        android:id="@+id/tv_helper_mention"
                         style="@style/explainText"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
@@ -220,8 +220,8 @@
                         android:text="@string/helper_comment"
                         android:textSize="12sp"
                         android:textStyle="italic"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_helper_job"
-                        app:layout_constraintTop_toBottomOf="@id/txt_helper_job" />
+                        app:layout_constraintEnd_toEndOf="@+id/tv_helper_job"
+                        app:layout_constraintTop_toBottomOf="@id/tv_helper_job" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>

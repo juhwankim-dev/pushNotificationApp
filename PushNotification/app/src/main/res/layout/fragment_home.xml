@@ -70,7 +70,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout_notice"
+                android:id="@+id/tl_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="@color/mainBlue"
@@ -89,12 +89,9 @@
             </com.google.android.material.tabs.TabLayout>
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager_notice"
+                android:id="@+id/vp_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 </layout>

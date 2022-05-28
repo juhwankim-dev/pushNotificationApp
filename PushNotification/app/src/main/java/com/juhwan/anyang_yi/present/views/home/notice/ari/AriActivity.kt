@@ -30,7 +30,7 @@ class AriActivity : BaseActivity<ActivityAriBinding>(R.layout.activity_ari) {
             ariAdapter.notifyItemRangeInserted((page - 1) * 10, 10)
         })
 
-        binding.rvAllAriNotice.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.rvAriNotice.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -38,7 +38,7 @@ class AriActivity : BaseActivity<ActivityAriBinding>(R.layout.activity_ari) {
                     (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
                 val itemTotalCount = recyclerView.adapter!!.itemCount-1
 
-                if (!binding.rvAllAriNotice.canScrollVertically(1) &&
+                if (!binding.rvAriNotice.canScrollVertically(1) &&
                     lastVisibleItemPosition == itemTotalCount
                 ) {
                     ariAdapter.deleteLoading()
@@ -50,8 +50,8 @@ class AriActivity : BaseActivity<ActivityAriBinding>(R.layout.activity_ari) {
     }
 
     private fun initRecyclerView(){
-        binding.rvAllAriNotice.layoutManager = LinearLayoutManager(this)
+        binding.rvAriNotice.layoutManager = LinearLayoutManager(this)
         ariAdapter = AriAdapter()
-        binding.rvAllAriNotice.adapter = ariAdapter
+        binding.rvAriNotice.adapter = ariAdapter
     }
 }

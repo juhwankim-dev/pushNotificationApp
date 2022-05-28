@@ -60,7 +60,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout_main_notice_menu"
+            android:id="@+id/tl_univ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/tab_text"
@@ -98,7 +98,7 @@
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_all_main_notice"
+            android:id="@+id/rv_univ_notice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never" />

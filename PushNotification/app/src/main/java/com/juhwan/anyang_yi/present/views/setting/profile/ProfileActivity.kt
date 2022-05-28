@@ -37,7 +37,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
             binding.layout3.startAnimation(ani3)
         }, 2000L)
 
-        binding.ivTstoryBlog.setOnClickListener {
+        binding.ivTistoryBlog.setOnClickListener {
             var goPage = Intent(it.context, WebViewActivity::class.java)
 
             goPage.putExtra("url", "https://todaycode.tistory.com/")

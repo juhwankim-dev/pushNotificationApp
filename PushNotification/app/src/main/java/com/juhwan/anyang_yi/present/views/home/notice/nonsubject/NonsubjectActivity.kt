@@ -16,8 +16,8 @@ class NonsubjectActivity : BaseActivity<ActivityNonsubjectBinding>(R.layout.acti
 
         binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId){
-                R.id.radio_btn_new -> nonsubjectAdapter.arrangeList(0)
-                R.id.radio_btn_deadline -> nonsubjectAdapter.arrangeList(1)
+                R.id.rb_new -> nonsubjectAdapter.arrangeList(0)
+                R.id.rb_deadline -> nonsubjectAdapter.arrangeList(1)
             }
         }
 
@@ -28,9 +28,9 @@ class NonsubjectActivity : BaseActivity<ActivityNonsubjectBinding>(R.layout.acti
     }
 
     private fun initRecyclerView(){
-        binding.rvAllApply.layoutManager = GridLayoutManager(this, 2)
+        binding.rvNonsubject.layoutManager = GridLayoutManager(this, 2)
         nonsubjectAdapter = NonsubjectAdapter()
-        binding.rvAllApply.adapter = nonsubjectAdapter
+        binding.rvNonsubject.adapter = nonsubjectAdapter
         nonsubjectAdapter.setList(InitialRepository.apply)
     }
 }

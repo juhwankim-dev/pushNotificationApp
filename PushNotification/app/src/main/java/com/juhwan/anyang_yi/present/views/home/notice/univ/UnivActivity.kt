@@ -34,7 +34,7 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
             univAdapter.notifyItemRangeInserted((page - 1) * 15, 15)
         })
 
-        binding.rvAllMainNotice.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.rvUnivNotice.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -42,7 +42,7 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
                     (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
                 val itemTotalCount = recyclerView.adapter!!.itemCount-1
 
-                if (!binding.rvAllMainNotice.canScrollVertically(1) &&
+                if (!binding.rvUnivNotice.canScrollVertically(1) &&
                     lastVisibleItemPosition == itemTotalCount && !isListEmpty
                 ) {
                     univAdapter.deleteLoading()
@@ -53,14 +53,14 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
     }
 
     private fun initRecyclerView() {
-        binding.rvAllMainNotice.layoutManager = LinearLayoutManager(this)
+        binding.rvUnivNotice.layoutManager = LinearLayoutManager(this)
         univAdapter = UnivAdapter()
-        binding.rvAllMainNotice.adapter = univAdapter
+        binding.rvUnivNotice.adapter = univAdapter
     }
 
     private fun initTabLayout() {
-        binding.tabLayoutMainNoticeMenu.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
-        binding.tabLayoutMainNoticeMenu.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+        binding.tlUniv.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
+        binding.tlUniv.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }

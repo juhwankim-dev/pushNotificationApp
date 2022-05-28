@@ -35,12 +35,12 @@ class ContactFragment : Fragment(),
 
         if(ContactRepository.isFinished.value == null){
             ContactRepository.requestPost()
-            binding!!.lottieViewSheep.visibility = View.VISIBLE
-            binding!!.lottieViewSheep.playAnimation()
+            binding!!.lottieSheep.visibility = View.VISIBLE
+            binding!!.lottieSheep.playAnimation()
         }
 
         ContactRepository.isFinished.observe(viewLifecycleOwner, Observer{
-            binding!!.lottieViewSheep.visibility = View.GONE
+            binding!!.lottieSheep.visibility = View.GONE
             initRecyclerView()
         })
 

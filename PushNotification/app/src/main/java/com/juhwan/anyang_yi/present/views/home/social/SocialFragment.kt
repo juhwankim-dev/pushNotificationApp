@@ -22,23 +22,23 @@ class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_soc
 
         if(KakaoRepository.isFinished.value == null){
             KakaoRepository.loadInitialData()
-            binding!!.lottieViewSheep.visibility = View.VISIBLE
-            binding!!.lottieViewSheep.playAnimation()
+            binding!!.lottieSheep.visibility = View.VISIBLE
+            binding!!.lottieSheep.playAnimation()
         }
 
         KakaoRepository.isFinished.observe(viewLifecycleOwner, Observer{
-            binding!!.lottieViewSheep.visibility = View.GONE
+            binding!!.lottieSheep.visibility = View.GONE
             initRecyclerView()
         })
 
-        binding!!.seeAllEdu.setOnClickListener {
+        binding!!.tvSeeAllEdu.setOnClickListener {
             //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.kakao.com/home/@jxehRd")))
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
         }
-        binding!!.seeAllJob.setOnClickListener {
+        binding!!.tvSeeAllJob.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_iMxaFC")))
         }
-        binding!!.seeAllAriPanel.setOnClickListener {
+        binding!!.tvSeeAllAriPanel.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_lNmNd")))
         }
     }

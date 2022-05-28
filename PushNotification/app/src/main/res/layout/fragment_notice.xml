@@ -34,7 +34,7 @@
                     android:layout_marginTop="24dp">
 
                     <TextView
-                        android:id="@+id/txt_apply"
+                        android:id="@+id/tv_nonsubject"
                         style="@style/headerText"
                         android:layout_marginStart="16dp"
                         android:text="비교과 프로그램 신청"
@@ -42,30 +42,30 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/see_all_apply"
+                        android:id="@+id/tv_see_all_nonsubject"
                         style="@style/bodyText"
                         android:layout_marginEnd="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_apply"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_nonsubject"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_apply" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_nonsubject" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_apply"
+                        android:id="@+id/rv_nonsubject"
                         android:layout_width="match_parent"
                         android:layout_height="230dp"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_apply"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tv_nonsubject"/>
 
                     <View
                         android:id="@+id/divide_1"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
                         android:background="@color/lightGray"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_apply" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_nonsubject" />
 
                     <TextView
-                        android:id="@+id/txt_main_notice"
+                        android:id="@+id/tv_univ"
                         style="@style/headerText"
                         android:layout_marginTop="24dp"
                         android:layout_marginStart="16dp"
@@ -74,30 +74,30 @@
                         app:layout_constraintTop_toBottomOf="@+id/divide_1" />
 
                     <TextView
-                        android:id="@+id/see_all_main_notice"
+                        android:id="@+id/tv_see_all_univ"
                         style="@style/bodyText"
                         android:layout_marginEnd="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_main_notice"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_univ"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_main_notice" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_univ" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_main_notice"
+                        android:id="@+id/rv_univ"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_main_notice"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tv_univ"/>
 
                     <View
                         android:id="@+id/divide_2"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
                         android:background="@color/lightGray"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_main_notice" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_univ" />
 
                     <TextView
-                        android:id="@+id/txt_ari_notice"
+                        android:id="@+id/tv_ari"
                         style="@style/headerText"
                         android:layout_marginTop="24dp"
                         android:layout_marginStart="16dp"
@@ -106,27 +106,27 @@
                         app:layout_constraintTop_toBottomOf="@+id/divide_2" />
 
                     <TextView
-                        android:id="@+id/see_all_ari_notice"
+                        android:id="@+id/tv_see_all_ari"
                         style="@style/bodyText"
                         android:layout_marginEnd="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_ari_notice"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_ari"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_ari_notice" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_ari" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_ari_notice"
+                        android:id="@+id/rv_ari"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_ari_notice"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tv_ari"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieView_sheep"
+            android:id="@+id/lottie_sheep"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:visibility="gone"

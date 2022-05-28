@@ -67,7 +67,7 @@ class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.K
                 setDefaultImage()
             }
 
-            binding.layoutKakaoNotice.setOnClickListener {
+            binding.clKakaoNotice.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
                 goPage.putExtra("url", kakaoNotice.permalink)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_apply"
+        android:id="@+id/cl_nonsubject"
         android:background="@color/clickable_background"
         android:layout_width="170dp"
         android:layout_marginLeft="8dp"
@@ -32,7 +32,7 @@
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_d_day"
             android:layout_width="40dp"
             android:layout_height="35dp"
             app:srcCompat="@drawable/d_day"
@@ -48,8 +48,8 @@
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
             android:layout_marginTop="3dp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/iv_d_day"
+            app:layout_constraintStart_toStartOf="@+id/iv_d_day"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

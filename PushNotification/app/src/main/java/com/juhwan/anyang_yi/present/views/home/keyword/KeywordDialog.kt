@@ -5,10 +5,12 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import com.juhwan.anyang_yi.R
+import com.juhwan.anyang_yi.databinding.DialogKeywordBinding
 
 class KeywordDialog(
     context: Context,
@@ -35,17 +37,15 @@ class KeywordDialog(
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
 
-        val tvInfo = dialog.findViewById<TextView>(R.id.tv_info)
-        val btnCancel = dialog.findViewById<TextView>(R.id.btn_cancel)
-        val btnSignUp = dialog.findViewById<TextView>(R.id.btn_sign_up)
+        val binding = DialogKeywordBinding.inflate(LayoutInflater.from(context))
 
-        tvInfo.text = "\'$keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다. \n그래도 등록하시겠습니까?"
+        binding.tvInfo.text = "\'$keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다. \n그래도 등록하시겠습니까?"
 
-        btnCancel.setOnClickListener {
+        binding.tvCancel.setOnClickListener {
             dialog.dismiss()
         }
 
-        btnSignUp.setOnClickListener {
+        binding.tvSignUp.setOnClickListener {
             mCallback.signUpListener(keyword)
             dialog.dismiss()
         }

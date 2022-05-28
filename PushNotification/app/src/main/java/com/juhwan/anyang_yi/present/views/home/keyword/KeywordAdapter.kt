@@ -32,7 +32,7 @@ class KeywordAdapter(listener: DeleteButtonListener) : RecyclerView.Adapter<Keyw
     inner class KeywordsViewHolder(private val binding: ItemKeywordBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(keywordList: Keyword){
             binding.tvKeyword.text = keywordList.keyword
-            binding.btnDelete.setOnClickListener {
+            binding.ivDelete.setOnClickListener {
                 mCallback.unSubscribe(keywordList.keyword)
             }
         }

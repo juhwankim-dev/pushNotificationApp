@@ -30,12 +30,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun initViewPager2() {
-        binding!!.tabLayoutNotice.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
+        binding!!.tlHome.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
         val tabTextList = arrayListOf("홈페이지", "SNS")
 
-        binding!!.viewPagerNotice.adapter = CustomFragmentStateAdapter(requireActivity())
+        binding!!.vpHome.adapter = CustomFragmentStateAdapter(requireActivity())
         //binding!!.viewPagerNotice.isUserInputEnabled = false // 스와이프 막는 설정
-        TabLayoutMediator(binding!!.tabLayoutNotice, binding!!.viewPagerNotice) {
+        TabLayoutMediator(binding!!.tlHome, binding!!.vpHome) {
                 tab, position ->
             tab.text = tabTextList[position]
         }.attach()

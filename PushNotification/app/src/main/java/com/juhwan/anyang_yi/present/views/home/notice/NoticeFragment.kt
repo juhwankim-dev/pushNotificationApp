@@ -32,36 +32,36 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
                 InitialRepository.parsingApplyNotice()
             }
 
-            binding!!.rvApply.layoutManager = LinearLayoutManager(context).also {
+            binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }
             recentNonsubjectAdapter = RecentNonsubjectAdapter()
-            binding!!.rvApply.adapter = recentNonsubjectAdapter
+            binding!!.rvNonsubject.adapter = recentNonsubjectAdapter
             recentNonsubjectAdapter.setList(InitialRepository.apply.subList(0, 10))
         })
 
-        binding!!.seeAllApply.setOnClickListener {
+        binding!!.tvSeeAllNonsubject.setOnClickListener {
             startActivity(Intent(context, NonsubjectActivity::class.java))
         }
 
-        binding!!.seeAllMainNotice.setOnClickListener {
+        binding!!.tvSeeAllUniv.setOnClickListener {
             startActivity(Intent(context, UnivActivity::class.java))
         }
 
-        binding!!.seeAllAriNotice.setOnClickListener {
+        binding!!.tvSeeAllAri.setOnClickListener {
             startActivity(Intent(context, AriActivity::class.java))
         }
     }
 
     private fun initRecyclerView(){
-        binding!!.rvMainNotice.layoutManager = LinearLayoutManager(context)
+        binding!!.rvUniv.layoutManager = LinearLayoutManager(context)
         recentUnivAdapter = RecentUnivAdapter()
-        binding!!.rvMainNotice.adapter = recentUnivAdapter
+        binding!!.rvUniv.adapter = recentUnivAdapter
         //mainNoticeAdapter.setList(InitialRepository.mainNotice)
 
-        binding!!.rvAriNotice.layoutManager = LinearLayoutManager(context)
+        binding!!.rvAri.layoutManager = LinearLayoutManager(context)
         recentAriAdapter = RecentAriAdapter()
-        binding!!.rvAriNotice.adapter = recentAriAdapter
+        binding!!.rvAri.adapter = recentAriAdapter
         recentAriAdapter.setList(InitialRepository.ariNotice)
     }
 }

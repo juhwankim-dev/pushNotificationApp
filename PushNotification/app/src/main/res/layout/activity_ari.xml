@@ -56,7 +56,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_all_ari_notice"
+            android:id="@+id/rv_ari_notice"
             android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

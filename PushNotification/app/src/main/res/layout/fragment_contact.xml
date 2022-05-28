@@ -11,7 +11,7 @@
         tools:context=".present.views.contact.ContactFragment">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+            android:id="@+id/apl_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="56dp"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar"
+            app:layout_constraintTop_toBottomOf="@+id/apl_contact"
             android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -85,7 +85,7 @@
         </LinearLayout>
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieView_sheep"
+            android:id="@+id/lottie_sheep"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:visibility="gone"

@@ -74,7 +74,7 @@
 
                     <TextView
                         style="@style/bodyText"
-                        android:id="@+id/txt_total"
+                        android:id="@+id/tv_total"
                         android:text="총"
                         android:layout_marginStart="16dp"
                         app:layout_constraintTop_toTopOf="parent"
@@ -86,9 +86,9 @@
                         tools:text="32"
                         android:textSize="14sp"
                         android:layout_marginStart="4dp"
-                        app:layout_constraintLeft_toRightOf="@id/txt_total"
-                        app:layout_constraintTop_toTopOf="@id/txt_total"
-                        app:layout_constraintBottom_toBottomOf="@id/txt_total" />
+                        app:layout_constraintLeft_toRightOf="@id/tv_total"
+                        app:layout_constraintTop_toTopOf="@id/tv_total"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_total" />
 
                     <TextView
                         style="@style/bodyText"
@@ -105,11 +105,11 @@
                         android:gravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_total"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_total">
+                        app:layout_constraintTop_toTopOf="@+id/tv_total"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_total">
 
                         <RadioButton
-                            android:id="@+id/radio_btn_new"
+                            android:id="@+id/rb_new"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_segmented_left"
@@ -123,7 +123,7 @@
                             android:textColor="@drawable/segmented_text_color" />
 
                         <RadioButton
-                            android:id="@+id/radio_btn_deadline"
+                            android:id="@+id/rb_deadline"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -138,12 +138,12 @@
                     </RadioGroup>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_all_apply"
+                        android:id="@+id/rv_nonsubject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/txt_total" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_total" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>

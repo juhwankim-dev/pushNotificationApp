@@ -35,12 +35,12 @@ class WebViewActivity : BaseActivity<ActivityWebViewBinding>(R.layout.activity_w
 
         binding.webView.loadUrl(url)
 
-        binding.btnBrowser.setOnClickListener {
+        binding.fabBrowser.setOnClickListener {
             var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }
 
-        binding.btnShare.setOnClickListener {
+        binding.fabShare.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "아냥이")

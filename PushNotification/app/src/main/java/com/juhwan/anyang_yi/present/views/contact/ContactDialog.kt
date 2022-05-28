@@ -7,11 +7,13 @@ import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.juhwan.anyang_yi.R
+import com.juhwan.anyang_yi.databinding.DialogContactBinding
 import java.lang.Exception
 
 class ContactDialog(context: Context) {
@@ -40,22 +42,18 @@ class ContactDialog(context: Context) {
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
 
-        val tv_lClass = dialog.findViewById<TextView>(R.id.lClass)
-        val tv_mClass = dialog.findViewById<TextView>(R.id.mClass)
-        val tv_tel = dialog.findViewById<TextView>(R.id.tel)
-        val btn_close = dialog.findViewById<TextView>(R.id.btn_close)
-        val btn_call = dialog.findViewById<TextView>(R.id.btn_call)
+        val binding = DialogContactBinding.inflate(LayoutInflater.from(context))
 
-        tv_lClass.text = lClass
-        tv_mClass.text = msClass
+        binding.tvLClass.text = lClass
+        binding.tvMClass.text = msClass
 
         if(tel.length == 3){
-            tv_tel.text = "031-467-0700\n+ 내선번호($tel)"
+            binding.tvTel.text = "031-467-0700\n+ 내선번호($tel)"
         } else {
-            tv_tel.text = tel.replace(",", ", ")
+            binding.tvTel.text = tel.replace(",", ", ")
         }
 
-        btn_call.setOnClickListener {
+        binding.tvCall.setOnClickListener {
             var fullTel = parsingTel(tel)
 
             try{
@@ -66,7 +64,7 @@ class ContactDialog(context: Context) {
 
         }
 
-        btn_close.setOnClickListener {
+        binding.tvClose.setOnClickListener {
             dialog.dismiss()
         }
 

@@ -18,12 +18,12 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment
 
         if(ScheduleRepository.isFinished.value == null){
             ScheduleRepository.loadSchedule()
-            binding!!.lottieViewSheep.visibility = View.VISIBLE
-            binding!!.lottieViewSheep.playAnimation()
+            binding!!.lottieSheep.visibility = View.VISIBLE
+            binding!!.lottieSheep.playAnimation()
         }
 
         ScheduleRepository.isFinished.observe(viewLifecycleOwner, Observer{
-            binding!!.lottieViewSheep.visibility = View.GONE
+            binding!!.lottieSheep.visibility = View.GONE
             initRecyclerView()
         })
     }

@@ -61,7 +61,7 @@
             app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieView_sheep"
+            android:id="@+id/lottie_sheep"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:visibility="gone"

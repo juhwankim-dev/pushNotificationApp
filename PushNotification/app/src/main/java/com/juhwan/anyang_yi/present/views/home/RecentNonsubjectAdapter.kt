@@ -44,7 +44,7 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
                     RequestOptions.bitmapTransform(RoundedCorners(20))
                 ).into(binding.ivThumbnail)
 
-            binding.layoutApply.setOnClickListener {
+            binding.clNonsubject.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
                 goPage.putExtra("url", baseUrl + apply.idx)
