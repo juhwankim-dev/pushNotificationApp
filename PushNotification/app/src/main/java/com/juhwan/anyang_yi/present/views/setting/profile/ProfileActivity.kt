@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityProfileBinding
 import com.juhwan.anyang_yi.present.config.BaseActivity
-import com.juhwan.anyang_yi.present.views.notice.WebViewActivity
+import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.juhwan.anyang_yi.present.views.home.notice.NoticeViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".present.views.home.notice.NoticeFragment">
+        tools:context=".present.views.home.social.SocialFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
-            app:layout_constraintTop_toTopOf="parent">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,98 +25,98 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="24dp">
+                    android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/txt_apply"
+                        android:id="@+id/txt_edu"
                         style="@style/headerText"
-                        android:layout_marginStart="16dp"
-                        android:text="비교과 프로그램 신청"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="24dp"
+                        android:text="교육혁신원"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/see_all_apply"
+                        android:id="@+id/see_all_edu"
                         style="@style/bodyText"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_apply"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_edu"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_apply" />
+                        app:layout_constraintTop_toTopOf="@+id/txt_edu" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_apply"
+                        android:id="@+id/rv_edu"
                         android:layout_width="match_parent"
-                        android:layout_height="230dp"
+                        android:layout_height="250dp"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_apply"/>
+                        app:layout_constraintTop_toBottomOf="@+id/txt_edu" />
 
                     <View
                         android:id="@+id/divide_1"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
                         android:background="@color/lightGray"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_apply" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_edu" />
 
                     <TextView
-                        android:id="@+id/txt_main_notice"
+                        android:id="@+id/txt_job"
                         style="@style/headerText"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="24dp"
-                        android:layout_marginStart="16dp"
-                        android:text="학교 공지사항"
+                        android:text="취창업지원단"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divide_1" />
+                        app:layout_constraintTop_toBottomOf="@id/divide_1" />
 
                     <TextView
-                        android:id="@+id/see_all_main_notice"
+                        android:id="@+id/see_all_job"
                         style="@style/bodyText"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_main_notice"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_job"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_main_notice" />
+                        app:layout_constraintTop_toTopOf="@+id/txt_job" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_main_notice"
+                        android:id="@+id/rv_job"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="250dp"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_main_notice"/>
+                        app:layout_constraintTop_toBottomOf="@+id/txt_job" />
 
                     <View
                         android:id="@+id/divide_2"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
                         android:background="@color/lightGray"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_main_notice" />
+                        app:layout_constraintTop_toBottomOf="@+id/rv_job" />
 
                     <TextView
-                        android:id="@+id/txt_ari_notice"
+                        android:id="@+id/txt_ari_panel"
                         style="@style/headerText"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="24dp"
-                        android:layout_marginStart="16dp"
-                        android:text="아리 포트폴리오 공지사항"
+                        android:text="ARI패널"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divide_2" />
+                        app:layout_constraintTop_toBottomOf="@id/divide_2" />
 
                     <TextView
-                        android:id="@+id/see_all_ari_notice"
+                        android:id="@+id/see_all_ari_panel"
                         style="@style/bodyText"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:text="전체보기"
-                        app:layout_constraintBottom_toBottomOf="@+id/txt_ari_notice"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_ari_panel"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/txt_ari_notice" />
+                        app:layout_constraintTop_toTopOf="@+id/txt_ari_panel" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_ari_notice"
+                        android:id="@+id/rv_ari_panel"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="250dp"
                         android:overScrollMode="never"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_ari_notice"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintTop_toBottomOf="@+id/txt_ari_panel" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -135,6 +130,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

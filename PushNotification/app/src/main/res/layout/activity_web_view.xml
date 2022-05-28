@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".present.views.notice.WebViewActivity">
+        tools:context=".present.views.home.WebViewActivity">
 
         <WebView
             android:id="@+id/webView"

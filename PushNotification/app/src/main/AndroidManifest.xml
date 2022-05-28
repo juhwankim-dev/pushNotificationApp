@@ -16,13 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllAriNoticeActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllMainNoticeActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.notice.all.AllApplyActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.notice.keyword.KeywordActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.setting.appnotice.content.NoticeContentActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.home.notice.ari.AriActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.home.notice.nonsubject.NonsubjectActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.home.keyword.KeywordActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.appnotice.detail.AppNoticeDetailActivity" />
         <activity android:name="com.juhwan.anyang_yi.present.views.setting.appnotice.AppNoticeActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.setting.license.explanation.ExplanationLicenseActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.setting.license.detail.LicenseDetailActivity" />
         <activity android:name="com.juhwan.anyang_yi.present.views.setting.profile.ProfileActivity" />
 
         <meta-data
@@ -30,7 +30,7 @@
             android:resource="@mipmap/ic_launcher" />
 
         <activity android:name="com.juhwan.anyang_yi.present.views.setting.license.LicenseActivity" />
-        <activity android:name="com.juhwan.anyang_yi.present.views.notice.WebViewActivity" />
+        <activity android:name="com.juhwan.anyang_yi.present.views.home.WebViewActivity" />
         <activity
             android:name=".present.views.SplashActivity"
             android:configChanges="orientation|screenSize"
