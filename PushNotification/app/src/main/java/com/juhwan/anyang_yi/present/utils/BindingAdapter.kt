@@ -4,12 +4,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.model.Result
-import com.juhwan.anyang_yi.present.views.notice.MainNoticeAdapter
+import com.juhwan.anyang_yi.present.views.home.RecentUnivAdapter
 
 // 메인 공지사항 바인딩 어댑터
 
 object BindingAdapter {
-    private val mainNoticeAdatper: MainNoticeAdapter = MainNoticeAdapter()
+    private val RECENT_UNIV_ADATPER: RecentUnivAdapter = RecentUnivAdapter()
 
     @JvmStatic
     @BindingAdapter("items")
@@ -17,12 +17,12 @@ object BindingAdapter {
         // recyclerView 어댑터를 생성하지 않았다면 생성
         if(recyclerView.adapter == null) {
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-            recyclerView.adapter = mainNoticeAdatper
+            recyclerView.adapter = RECENT_UNIV_ADATPER
             recyclerView.itemAnimator = null
         }
 
         if(items != null) {
-            mainNoticeAdatper.setList(items.resultList)
+            RECENT_UNIV_ADATPER.setList(items.resultList)
             //mainNoticeAdatper.notifyItemRangeInserted()
         }
     }

@@ -8,7 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_kakao_notice"
+        android:id="@+id/cl_kakao_notice"
         android:background="@color/clickable_background"
         android:layout_width="170dp"
         android:layout_marginStart="8dp"

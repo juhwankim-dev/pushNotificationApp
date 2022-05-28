@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/noticeFragment"
-        android:name="com.juhwan.anyang_yi.present.views.notice.NoticeFragment"
+        android:name="com.juhwan.anyang_yi.present.views.home.HomeFragment"
         android:label="fragment_notice"
-        tools:layout="@layout/fragment_notice" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.juhwan.anyang_yi.present.views.schedule.ScheduleFragment"

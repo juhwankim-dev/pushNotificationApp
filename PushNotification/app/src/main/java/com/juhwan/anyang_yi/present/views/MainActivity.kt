@@ -16,10 +16,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         KakaoRepository.loadInitialData()
 
         // 네비게이션들을 담는 호스트
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
         // 네비게이션 컨트롤러
         val navController = navHostFragment.navController
         // 바템 네비게이션 뷰와 네비게이션을 묶어준다.
-        NavigationUI.setupWithNavController(binding.myBottomNav, navController)
+        NavigationUI.setupWithNavController(binding.bnvMain, navController)
     }
 }

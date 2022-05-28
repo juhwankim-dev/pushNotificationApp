@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemAppNoticeBinding
-import com.juhwan.anyang_yi.present.views.setting.appnotice.content.NoticeContentActivity
+import com.juhwan.anyang_yi.present.views.setting.appnotice.detail.AppNoticeDetailActivity
 
 class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
     RecyclerView.Adapter<AppNoticeAdapter.AppNoticeViewHolder>() {
@@ -35,7 +35,7 @@ class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
             if(appNotice.isNew == "true") binding.ivNew.visibility = View.VISIBLE
 
             binding.layoutAppNotice.setOnClickListener {
-                var intent = Intent(it.context, NoticeContentActivity::class.java)
+                var intent = Intent(it.context, AppNoticeDetailActivity::class.java)
                 intent.putExtra("title", appNotice.title)
                 intent.putExtra("date", appNotice.date)
                 intent.putExtra("content", appNotice.content)

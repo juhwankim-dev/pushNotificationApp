@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityProfileBinding
 import com.juhwan.anyang_yi.present.config.BaseActivity
-import com.juhwan.anyang_yi.present.views.notice.WebViewActivity
+import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
             binding.layout3.startAnimation(ani3)
         }, 2000L)
 
-        binding.ivTstoryBlog.setOnClickListener {
+        binding.ivTistoryBlog.setOnClickListener {
             var goPage = Intent(it.context, WebViewActivity::class.java)
 
             goPage.putExtra("url", "https://todaycode.tistory.com/")
