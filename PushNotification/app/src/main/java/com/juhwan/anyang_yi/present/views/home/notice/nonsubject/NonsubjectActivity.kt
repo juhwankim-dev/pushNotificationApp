@@ -3,7 +3,6 @@ package com.juhwan.anyang_yi.present.views.home.notice.nonsubject
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 import com.juhwan.anyang_yi.databinding.ActivityNonsubjectBinding
 import com.juhwan.anyang_yi.present.config.BaseActivity
 

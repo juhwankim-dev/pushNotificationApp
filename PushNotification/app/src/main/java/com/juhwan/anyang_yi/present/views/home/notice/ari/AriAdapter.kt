@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.model.AriNoticeList
 import com.juhwan.anyang_yi.databinding.ItemLoadingBinding
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class AriAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

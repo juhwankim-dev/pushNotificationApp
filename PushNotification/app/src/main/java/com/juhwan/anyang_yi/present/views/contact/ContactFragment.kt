@@ -10,7 +10,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.databinding.FragmentContactBinding
-import com.juhwan.anyang_yi.data.repository.ContactRepository
 
 class ContactFragment : Fragment(),
     SelectDepartmentListener  {
@@ -33,13 +32,13 @@ class ContactFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(ContactRepository.isFinished.value == null){
-            ContactRepository.requestPost()
+        if(ContactRepository_.isFinished.value == null){
+            ContactRepository_.requestPost()
             binding!!.lottieSheep.visibility = View.VISIBLE
             binding!!.lottieSheep.playAnimation()
         }
 
-        ContactRepository.isFinished.observe(viewLifecycleOwner, Observer{
+        ContactRepository_.isFinished.observe(viewLifecycleOwner, Observer{
             binding!!.lottieSheep.visibility = View.GONE
             initRecyclerView()
         })

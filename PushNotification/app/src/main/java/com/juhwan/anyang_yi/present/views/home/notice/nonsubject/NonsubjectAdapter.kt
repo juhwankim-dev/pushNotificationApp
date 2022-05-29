@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.juhwan.anyang_yi.data.model.Apply
 import com.juhwan.anyang_yi.databinding.ItemNonsubjectBinding
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class NonsubjectAdapter : RecyclerView.Adapter<NonsubjectAdapter.AllApplyViewHolder>() {
-    private val items = ArrayList<Apply>()
+    private val items = ArrayList<NonsubjectEntity>()
     private val baseImageUrl = "http://ari.anyang.ac.kr"
     private val baseUrl = "https://ari.anyang.ac.kr/user/subject/nsubject/"
     private var arrangeValue = 0
@@ -31,8 +30,8 @@ class NonsubjectAdapter : RecyclerView.Adapter<NonsubjectAdapter.AllApplyViewHol
         holder.bind(items[position])
     }
 
-    fun setList(apply: List<Apply>) {
-        items.addAll(apply)
+    fun setList(nonsubjectEntity: List<NonsubjectEntity>) {
+        items.addAll(nonsubjectEntity)
     }
 
     fun arrangeList(position: Int) {
@@ -45,14 +44,14 @@ class NonsubjectAdapter : RecyclerView.Adapter<NonsubjectAdapter.AllApplyViewHol
 
     inner class AllApplyViewHolder(private val binding: ItemNonsubjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(apply: Apply) {
-            binding.tvTitle.text = apply.title
-            binding.tvTrainingPeriod.text = "기간: " + apply.trainingPeriod.substring(5, apply.trainingPeriod.length)
-            binding.tvApplicant.text = "인원: " + apply.applicant
+        fun bind(nonsubjectEntity: NonsubjectEntity) {
+            binding.tvTitle.text = nonsubjectEntity.title
+            binding.tvTrainingPeriod.text = "기간: " + nonsubjectEntity.trainingPeriod.substring(5, nonsubjectEntity.trainingPeriod.length)
+            binding.tvApplicant.text = "인원: " + nonsubjectEntity.applicant
 
-            binding.tvDDay.text = apply.dDay
+            binding.tvDDay.text = nonsubjectEntity.dDay
 
-            Glide.with(itemView.context).load(baseImageUrl + apply.imageUrl).fitCenter()
+            Glide.with(itemView.context).load(baseImageUrl + nonsubjectEntity.imageUrl).fitCenter()
                 .apply(
                     RequestOptions.bitmapTransform(RoundedCorners(20))
                 ).into(binding.ivThumbnail)
@@ -60,7 +59,7 @@ class NonsubjectAdapter : RecyclerView.Adapter<NonsubjectAdapter.AllApplyViewHol
             binding.layoutApply.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
-                goPage.putExtra("url", baseUrl + apply.idx)
+                goPage.putExtra("url", baseUrl + nonsubjectEntity.idx)
                 it.context.startActivity(goPage)
             }
         }

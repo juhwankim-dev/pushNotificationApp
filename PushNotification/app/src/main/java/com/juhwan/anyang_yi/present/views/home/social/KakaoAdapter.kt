@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.data.model.Item
 import com.juhwan.anyang_yi.databinding.ItemKakaoBinding
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 import java.text.SimpleDateFormat
 

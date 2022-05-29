@@ -3,7 +3,6 @@ package com.juhwan.anyang_yi.present.views.home.notice.ari
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.juhwan.anyang_yi.data.model.AriNotice
-import com.juhwan.anyang_yi.data.repository.AriNoticeRepository
 
 class AriViewModel : ViewModel() {
 

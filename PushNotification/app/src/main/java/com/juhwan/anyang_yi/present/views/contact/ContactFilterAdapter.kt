@@ -3,14 +3,12 @@ package com.juhwan.anyang_yi.present.views.contact
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.Contact
 import com.juhwan.anyang_yi.databinding.ItemContactFilterBinding
-import com.juhwan.anyang_yi.data.repository.ContactRepository
 
 class ContactFilterAdapter:
     RecyclerView.Adapter<ContactFilterAdapter.ContactFilterViewHolder>() {
     var items = ArrayList<Contact>()
-    private val allItem = ContactRepository.contact
+    private val allItem = ContactRepository_.contact
 
     init {
         items.addAll(allItem)

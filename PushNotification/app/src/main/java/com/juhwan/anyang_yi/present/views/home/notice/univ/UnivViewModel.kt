@@ -2,8 +2,6 @@ package com.juhwan.anyang_yi.present.views.home.notice.univ
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.juhwan.anyang_yi.data.model.Result
-import com.juhwan.anyang_yi.data.repository.MainNoticeRepository
 
 class UnivViewModel : ViewModel() {
 

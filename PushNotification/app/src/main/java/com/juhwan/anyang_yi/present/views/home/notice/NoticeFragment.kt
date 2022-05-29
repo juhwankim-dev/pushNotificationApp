@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.RecentAriAdapter

@@ -7,7 +7,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.repository.KakaoRepository
 import com.juhwan.anyang_yi.databinding.FragmentSocialBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
@@ -20,13 +19,13 @@ class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_soc
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(KakaoRepository.isFinished.value == null){
-            KakaoRepository.loadInitialData()
+        if(KakaoRepository_.isFinished.value == null){
+            KakaoRepository_.loadInitialData()
             binding!!.lottieSheep.visibility = View.VISIBLE
             binding!!.lottieSheep.playAnimation()
         }
 
-        KakaoRepository.isFinished.observe(viewLifecycleOwner, Observer{
+        KakaoRepository_.isFinished.observe(viewLifecycleOwner, Observer{
             binding!!.lottieSheep.visibility = View.GONE
             initRecyclerView()
         })
@@ -47,19 +46,19 @@ class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_soc
         binding!!.rvEdu.layoutManager = LinearLayoutManager(context).also {
             it.orientation = LinearLayoutManager.HORIZONTAL
         }
-        eduAdapter = KakaoAdapter(KakaoRepository.eduNotice)
+        eduAdapter = KakaoAdapter(KakaoRepository_.eduNotice)
         binding!!.rvEdu.adapter = eduAdapter
 
         binding!!.rvJob.layoutManager = LinearLayoutManager(context).also {
             it.orientation = LinearLayoutManager.HORIZONTAL
         }
-        jobAdapter = KakaoAdapter(KakaoRepository.jobNotice)
+        jobAdapter = KakaoAdapter(KakaoRepository_.jobNotice)
         binding!!.rvJob.adapter = jobAdapter
 
         binding!!.rvAriPanel.layoutManager = LinearLayoutManager(context).also {
             it.orientation = LinearLayoutManager.HORIZONTAL
         }
-        ariPanelAdapter = KakaoAdapter(KakaoRepository.ariPanelNotice)
+        ariPanelAdapter = KakaoAdapter(KakaoRepository_.ariPanelNotice)
         binding!!.rvAriPanel.adapter = ariPanelAdapter
     }
 

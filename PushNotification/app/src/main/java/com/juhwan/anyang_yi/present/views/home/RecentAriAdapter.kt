@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.model.AriNoticeList
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 
 class RecentAriAdapter : RecyclerView.Adapter<RecentAriAdapter.AriNoticeViewHolder>() {
     private val items = ArrayList<AriNoticeList>()
