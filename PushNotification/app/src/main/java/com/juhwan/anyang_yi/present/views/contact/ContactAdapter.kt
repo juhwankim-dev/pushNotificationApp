@@ -6,13 +6,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ItemContactBinding
-import com.juhwan.anyang_yi.data.repository.ContactRepository
 
 class ContactAdapter(listener: ContactFragment) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     var mCallback = listener
-    var items = ContactRepository.departmentList
+    var items = ContactRepository_.departmentList
     private var selectedPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {

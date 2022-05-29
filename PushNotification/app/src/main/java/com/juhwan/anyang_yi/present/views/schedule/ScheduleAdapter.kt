@@ -3,12 +3,10 @@ package com.juhwan.anyang_yi.present.views.schedule
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.Schedule
-import com.juhwan.anyang_yi.data.repository.ScheduleRepository
 import com.juhwan.anyang_yi.databinding.ItemScheduleBinding
 
 class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
-    var items = ScheduleRepository.schedule
+    var items = ScheduleRepository_.schedule
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ScheduleViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

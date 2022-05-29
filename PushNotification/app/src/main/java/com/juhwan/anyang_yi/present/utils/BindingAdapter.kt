@@ -3,7 +3,6 @@ package com.juhwan.anyang_yi.present.utils
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.Result
 import com.juhwan.anyang_yi.present.views.home.RecentUnivAdapter
 
 // 메인 공지사항 바인딩 어댑터

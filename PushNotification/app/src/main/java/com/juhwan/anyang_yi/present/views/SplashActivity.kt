@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.repository.InitialRepository
 import com.juhwan.anyang_yi.databinding.ActivitySplashBinding
 import com.juhwan.anyang_yi.present.config.BaseActivity
 

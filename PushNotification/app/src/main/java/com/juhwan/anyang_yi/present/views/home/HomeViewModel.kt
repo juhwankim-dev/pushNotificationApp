@@ -2,9 +2,6 @@ package com.juhwan.anyang_yi.present.views.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.juhwan.anyang_yi.data.model.Result
-import com.juhwan.anyang_yi.data.repository.AriNoticeRepository
-import com.juhwan.anyang_yi.data.repository.MainNoticeRepository
 
 class HomeViewModel : ViewModel() {
     private var mainNoticeRepository = MainNoticeRepository()

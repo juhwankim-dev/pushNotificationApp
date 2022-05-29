@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.juhwan.anyang_yi.data.model.Apply
 import com.juhwan.anyang_yi.databinding.ItemRecentNonsubjectBinding
 
 class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.ApplyViewHolder>() {
-    private val items = ArrayList<Apply>()
+    private val items = ArrayList<NonsubjectEntity>()
     private val baseImageUrl = "http://ari.anyang.ac.kr"
     private val baseUrl = "https://ari.anyang.ac.kr/user/subject/nsubject/"
 
@@ -29,17 +28,17 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
         holder.bind(items[position])
     }
 
-    fun setList(apply: List<Apply>) {
-        items.addAll(apply)
+    fun setList(nonsubjectEntity: List<NonsubjectEntity>) {
+        items.addAll(nonsubjectEntity)
     }
 
     inner class ApplyViewHolder(private val binding: ItemRecentNonsubjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(apply: Apply) {
-            binding.tvTitle.text = apply.title
-            binding.tvDDay.text = apply.dDay
+        fun bind(nonsubjectEntity: NonsubjectEntity) {
+            binding.tvTitle.text = nonsubjectEntity.title
+            binding.tvDDay.text = nonsubjectEntity.dDay
 
-            Glide.with(itemView.context).load(baseImageUrl + apply.imageUrl).fitCenter()
+            Glide.with(itemView.context).load(baseImageUrl + nonsubjectEntity.imageUrl).fitCenter()
                 .apply(
                     RequestOptions.bitmapTransform(RoundedCorners(20))
                 ).into(binding.ivThumbnail)
@@ -47,7 +46,7 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
             binding.clNonsubject.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
-                goPage.putExtra("url", baseUrl + apply.idx)
+                goPage.putExtra("url", baseUrl + nonsubjectEntity.idx)
                 it.context.startActivity(goPage)
             }
         }

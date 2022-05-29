@@ -3,10 +3,8 @@ package com.juhwan.anyang_yi.present.views.home.keyword
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.juhwan.anyang_yi.data.model.Result
 import com.juhwan.anyang_yi.data.db.Keyword
 import com.juhwan.anyang_yi.data.repository.KeywordRepository
-import com.juhwan.anyang_yi.data.repository.MainNoticeRepository
 
 class KeywordViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = KeywordRepository(application)
