@@ -6,11 +6,11 @@ data class Result<out T>(
     val message:String?
 ){
     companion object{
-        fun <T> success(data:T?): Result<T> {
+        fun <T> success(data: T?): Result<T> {
             return Result(Status.SUCCESS, data, null)
         }
 
-        fun <T> error(msg:String, data:T?): Result<T> {
+        fun <T> error(msg: String, data: T?): Result<T> {
             return Result(Status.ERROR, data, msg)
         }
 
@@ -18,7 +18,7 @@ data class Result<out T>(
             return Result(Status.FAIL, null, null)
         }
 
-        fun <T> loading(data:T?): Result<T> {
+        fun <T> loading(data: T?): Result<T> {
             return Result(Status.LOADING, data, null)
         }
     }
