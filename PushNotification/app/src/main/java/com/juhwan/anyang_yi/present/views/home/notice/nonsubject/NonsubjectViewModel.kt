@@ -17,8 +17,8 @@ class NonsubjectViewModel @Inject constructor(
     private val getNonsubjectListUseCase: GetNonsubjectListUseCase,
 ): ViewModel() {
 
-    private val _NonsubjectNoticeList = MutableLiveData<List<Nonsubject>>()
-    val nonsubjectNoticeList: LiveData<List<Nonsubject>> get() = _NonsubjectNoticeList
+    private val _nonsubjectNoticeList = MutableLiveData<List<Nonsubject>>()
+    val nonsubjectNoticeList: LiveData<List<Nonsubject>> get() = _nonsubjectNoticeList
 
     private val _problem = MutableLiveData<Result<Any>>()
     val problem: LiveData<Result<Any>> get() = _problem
@@ -27,7 +27,7 @@ class NonsubjectViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getNonsubjectListUseCase()
             if(result.status == Status.SUCCESS) {
-                result.data.let { _NonsubjectNoticeList.postValue(it) }
+                result.data.let { _nonsubjectNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }

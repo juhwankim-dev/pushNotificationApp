@@ -26,4 +26,13 @@ class NonsubjectRepositoryImpl @Inject constructor(
             Result.fail()
         }
     }
+
+    override fun getRecentNonsubjectNoticeList(): Result<List<Nonsubject>> {
+        val result = getNonsubjectNoticeList()
+        return result.apply {
+            if(this.data != null && this.data.size > 10) {
+                this.data.subList(0, 10)
+            }
+        }
+    }
 }

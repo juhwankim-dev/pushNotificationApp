@@ -9,18 +9,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.juhwan.anyang_yi.R
-import com.juhwan.anyang_yi.data.model.Item
 import com.juhwan.anyang_yi.databinding.ItemKakaoBinding
+import com.juhwan.anyang_yi.domain.model.Kakao
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
-import java.text.SimpleDateFormat
 
-class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.KakaoViewHolder>() {
-    private val items = ArrayList<Item>()
-    private val sdf = SimpleDateFormat("yyyy-MM-dd")
-
-    init {
-        this.items.addAll(items.subList(0, 10))
-    }
+class KakaoAdapter : RecyclerView.Adapter<KakaoAdapter.KakaoViewHolder>() {
+    private val items = ArrayList<Kakao>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KakaoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -36,32 +30,28 @@ class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.K
         holder.bind(items[position])
     }
 
+    fun setList(list: List<Kakao>) {
+        items.clear()
+        items.addAll(list)
+    }
+
     inner class KakaoViewHolder(private val binding: ItemKakaoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(kakaoNotice: Item) {
-            var date = sdf.format(kakaoNotice.created_at)
+        fun bind(kakaoNotice: Kakao) {
             binding.tvTitle.text = kakaoNotice.title
-            binding.tvDate.text = date
+            binding.tvDate.text = kakaoNotice.date
 
-            var hms2 = "$date 00:00:00"
-            var writeDate = InitialRepository.sf.parse(hms2)
-            var calculateDate = (InitialRepository.todayDate.time - writeDate.time) / (60 * 60 * 24 * 1000)
-
-            if(calculateDate.toInt() < 2){
+            if(kakaoNotice.isNew){
                 binding.ivNew.visibility = View.VISIBLE
             } else {
                 binding.ivNew.visibility = View.GONE
             }
 
             try{
-                if(kakaoNotice.media[0].small_url.isNotEmpty()){
-                    Glide.with(itemView.context).load(kakaoNotice.media[0].small_url).fitCenter()
-                        .apply(
-                            RequestOptions.bitmapTransform(RoundedCorners(20))
-                        ).into(binding.ivThumbnail)
-                } else {
-                    setDefaultImage()
-                }
+                Glide.with(itemView.context).load(kakaoNotice.url).fitCenter()
+                    .apply(
+                        RequestOptions.bitmapTransform(RoundedCorners(20))
+                    ).into(binding.ivThumbnail)
             } catch (e: Exception){
                 setDefaultImage()
             }
@@ -69,12 +59,12 @@ class KakaoAdapter(items: ArrayList<Item>) : RecyclerView.Adapter<KakaoAdapter.K
             binding.clKakaoNotice.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
-                goPage.putExtra("url", kakaoNotice.permalink)
+                goPage.putExtra("url", kakaoNotice.webLink)
                 it.context.startActivity(goPage)
             }
         }
 
-        fun setDefaultImage(){
+        private fun setDefaultImage(){
             Glide.with(itemView.context).load(R.drawable.no_image).fitCenter()
                 .apply(
                     RequestOptions.bitmapTransform(RoundedCorners(20))

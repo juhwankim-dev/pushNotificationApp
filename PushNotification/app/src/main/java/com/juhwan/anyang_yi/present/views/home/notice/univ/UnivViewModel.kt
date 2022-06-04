@@ -17,17 +17,17 @@ class UnivViewModel @Inject constructor(
     private val getUnivListUseCase: GetUnivListUseCase
 ): ViewModel() {
 
-    private val _UnivNoticeList = MutableLiveData<List<Univ>>()
-    val univNoticeList: LiveData<List<Univ>> get() = _UnivNoticeList
+    private val _univNoticeList = MutableLiveData<List<Univ>>()
+    val univNoticeList: LiveData<List<Univ>> get() = _univNoticeList
 
     private val _problem = MutableLiveData<Result<Any>>()
     val problem: LiveData<Result<Any>> get() = _problem
 
-    fun getUnivNoticeList() {
+    fun getUnivNoticeList(categoryId: String, offset: Int) {
         viewModelScope.launch {
-            val result = getUnivListUseCase()
+            val result = getUnivListUseCase(categoryId, offset)
             if(result.status == Status.SUCCESS) {
-                result.data.let { _UnivNoticeList.postValue(it) }
+                result.data.let { _univNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }

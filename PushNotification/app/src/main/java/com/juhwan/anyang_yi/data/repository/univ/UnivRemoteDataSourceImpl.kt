@@ -9,7 +9,7 @@ class UnivRemoteDataSourceImpl @Inject constructor(
     private val univApi: UnivApi
 ) : UnivRemoteDataSource {
 
-    override fun getUnivNoticeList(fields: MutableMap<String, String>): Response<ResponseBody> {
-        return univApi.getUnivNoticeList(fields)
+    override fun getUnivNoticeList(categoryId: String, offset: String): Response<ResponseBody> {
+        return univApi.getUnivNoticeList(categoryId, offset)
     }
 }

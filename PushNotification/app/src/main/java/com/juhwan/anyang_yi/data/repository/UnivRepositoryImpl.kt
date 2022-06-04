@@ -5,21 +5,16 @@ import com.juhwan.anyang_yi.data.repository.univ.UnivRemoteDataSource
 import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.domain.repository.UnivRepository
 import com.juhwan.anyang_yi.present.utils.Result
+import com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity
 import javax.inject.Inject
 
 class UnivRepositoryImpl @Inject constructor(
     private val univRemoteDataSource: UnivRemoteDataSource
 ) : UnivRepository {
-    val field: MutableMap<String, String> = mutableMapOf(
-        "mode" to "list"
-    )
-
-    override fun getUnivNoticeList(): Result<List<Univ>> {
-        //field["page"] = page.toString()
-        // TODO: 리뉴얼된 홈페이지에 대응
+    override fun getUnivNoticeList(categoryId: String, offset: Int): Result<List<Univ>> {
 
         return try {
-            val response = univRemoteDataSource.getUnivNoticeList(field)
+            val response = univRemoteDataSource.getUnivNoticeList(categoryId, offset.toString())
 
             if(response.isSuccessful && response.body() != null) {
                 Result.success(UnivMapper(response.body()!!))
@@ -28,6 +23,15 @@ class UnivRepositoryImpl @Inject constructor(
             }
         } catch (error: Exception) {
             Result.fail()
+        }
+    }
+
+    override fun getRecentUnivNoticeList(): Result<List<Univ>> {
+        val result = getUnivNoticeList(UnivActivity.ALL, 0)
+        return result.apply {
+            if(this.data != null && this.data.size > 5) {
+                this.data.subList(0, 5)
+            }
         }
     }
 }

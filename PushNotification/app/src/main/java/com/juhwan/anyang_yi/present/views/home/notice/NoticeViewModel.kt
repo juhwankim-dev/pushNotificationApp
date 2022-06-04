@@ -8,7 +8,10 @@ import com.juhwan.anyang_yi.domain.model.Ari
 import com.juhwan.anyang_yi.domain.model.Nonsubject
 import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.domain.usecase.ari.GetAriListUseCase
+import com.juhwan.anyang_yi.domain.usecase.ari.GetRecentAriListUseCase
 import com.juhwan.anyang_yi.domain.usecase.nonsubject.GetNonsubjectListUseCase
+import com.juhwan.anyang_yi.domain.usecase.nonsubject.GetRecentNonsubjectListUseCase
+import com.juhwan.anyang_yi.domain.usecase.univ.GetRecentUnivListUseCase
 import com.juhwan.anyang_yi.domain.usecase.univ.GetUnivListUseCase
 import com.juhwan.anyang_yi.present.utils.Result
 import com.juhwan.anyang_yi.present.utils.Status
@@ -18,49 +21,49 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoticeViewModel @Inject constructor(
-    private val getAriListUseCase: GetAriListUseCase,
-    private val getNonsubjectListUseCase: GetNonsubjectListUseCase,
-    private val getUnivListUseCase: GetUnivListUseCase
+    private val getRecentAriListUseCase: GetRecentAriListUseCase,
+    private val getRecentNonsubjectListUseCase: GetRecentNonsubjectListUseCase,
+    private val getRecentUnivListUseCase: GetRecentUnivListUseCase
 ): ViewModel() {
-    private val _AriNoticeList = MutableLiveData<List<Ari>>()
-    val ariNoticeList: LiveData<List<Ari>> get() = _AriNoticeList
+    private val _recentAriNoticeList = MutableLiveData<List<Ari>>()
+    val recentAriNoticeList: LiveData<List<Ari>> get() = _recentAriNoticeList
 
-    private val _NonsubjectNoticeList = MutableLiveData<List<Nonsubject>>()
-    val nonsubjectNoticeList: LiveData<List<Nonsubject>> get() = _NonsubjectNoticeList
+    private val _recentNonsubjectNoticeList = MutableLiveData<List<Nonsubject>>()
+    val recentNonsubjectNoticeList: LiveData<List<Nonsubject>> get() = _recentNonsubjectNoticeList
 
-    private val _UnivNoticeList = MutableLiveData<List<Univ>>()
-    val univNoticeList: LiveData<List<Univ>> get() = _UnivNoticeList
+    private val _recentUnivNoticeList = MutableLiveData<List<Univ>>()
+    val recentUnivNoticeList: LiveData<List<Univ>> get() = _recentUnivNoticeList
 
     private val _problem = MutableLiveData<Result<Any>>()
     val problem: LiveData<Result<Any>> get() = _problem
 
-    fun getAriNoticeList(page: Int) {
+    fun getRecentAriNoticeList() {
         viewModelScope.launch {
-            val result = getAriListUseCase(page)
+            val result = getRecentAriListUseCase()
             if(result.status == Status.SUCCESS) {
-                result.data.let { _AriNoticeList.postValue(it) }
+                result.data.let { _recentAriNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }
         }
     }
 
-    fun getNonsubjectNoticeList() {
+    fun getRecentNonsubjectNoticeList() {
         viewModelScope.launch {
-            val result = getNonsubjectListUseCase()
+            val result = getRecentNonsubjectListUseCase()
             if(result.status == Status.SUCCESS) {
-                result.data.let { _NonsubjectNoticeList.postValue(it) }
+                result.data.let { _recentNonsubjectNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }
         }
     }
 
-    fun getUnivNoticeList() {
+    fun getRecentUnivNoticeList() {
         viewModelScope.launch {
-            val result = getUnivListUseCase()
+            val result = getRecentUnivListUseCase()
             if(result.status == Status.SUCCESS) {
-                result.data.let { _UnivNoticeList.postValue(it) }
+                result.data.let { _recentUnivNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }

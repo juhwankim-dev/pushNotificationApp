@@ -5,7 +5,6 @@ import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
 import com.juhwan.anyang_yi.domain.model.Ari
 import com.juhwan.anyang_yi.domain.repository.AriRepository
 import com.juhwan.anyang_yi.present.utils.Result
-import java.util.HashMap
 import javax.inject.Inject
 
 class AriRepositoryImpl @Inject constructor(
@@ -29,6 +28,15 @@ class AriRepositoryImpl @Inject constructor(
             }
         } catch (error: Exception) {
             Result.fail()
+        }
+    }
+
+    override fun getRecentAriNoticeList(): Result<List<Ari>> {
+        val result = getAriNoticeList(1)
+        return result.apply {
+            if(this.data != null && this.data.size > 5) {
+                this.data.subList(0, 5)
+            }
         }
     }
 }

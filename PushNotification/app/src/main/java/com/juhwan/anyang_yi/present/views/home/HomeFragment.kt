@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.juhwan.anyang_yi.R
@@ -16,12 +15,9 @@ import com.juhwan.anyang_yi.present.views.home.notice.NoticeFragment
 import com.juhwan.anyang_yi.present.views.home.social.SocialFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val model: HomeViewModel by viewModels()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.model = model
         initViewPager2()
 
         binding!!.ivNotification.setOnClickListener {
