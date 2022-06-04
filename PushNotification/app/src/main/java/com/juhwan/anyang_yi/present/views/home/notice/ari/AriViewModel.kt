@@ -20,8 +20,8 @@ class AriViewModel @Inject constructor(
     private val getNonsubjectListUseCase: GetNonsubjectListUseCase,
     private val getUnivListUseCase: GetUnivListUseCase
 ): ViewModel() {
-    private val _AriNoticeList = MutableLiveData<List<Ari>>()
-    val ariNoticeList: LiveData<List<Ari>> get() = _AriNoticeList
+    private val _ariNoticeList = MutableLiveData<List<Ari>>()
+    val ariNoticeList: LiveData<List<Ari>> get() = _ariNoticeList
 
     private val _problem = MutableLiveData<Result<Any>>()
     val problem: LiveData<Result<Any>> get() = _problem
@@ -30,7 +30,7 @@ class AriViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getAriListUseCase(page)
             if(result.status == Status.SUCCESS) {
-                result.data.let { _AriNoticeList.postValue(it) }
+                result.data.let { _ariNoticeList.postValue(it) }
             } else {
                 _problem.postValue(result)
             }
