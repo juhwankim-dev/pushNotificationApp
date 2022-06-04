@@ -4,5 +4,6 @@ data class Kakao(
     val isNew: Boolean,
     val url: String,
     val title: String,
-    val date: String
+    val date: String,
+    val webLink: String
 )

@@ -14,7 +14,8 @@ object KakaoMapper {
                     isNew = DateUtil.getLeftDay(i.created_at) < 2,
                     url = i.media[0].small_url,
                     title = i.title,
-                    date = DateUtil.millisecondToDate(i.created_at)
+                    date = DateUtil.millisecondToDate(i.created_at),
+                    webLink = i.permalink
                 )
             )
         }
