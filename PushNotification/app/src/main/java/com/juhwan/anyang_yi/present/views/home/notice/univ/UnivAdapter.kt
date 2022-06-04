@@ -5,32 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.ResultList
 import com.juhwan.anyang_yi.databinding.ItemLoadingBinding
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
-import com.juhwan.anyang_yi.data.repository.InitialRepository.sf
+import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
-    private var baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=20&bIdx="
 
-    private var items = ArrayList<ResultList>()
+    private var items = ArrayList<Univ>()
 
     inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(notice: ResultList) {
-            binding.tvNoticeTitle.text = notice.SUBJECT
-            binding.tvNoticeDate.text = notice.WRITE_DATE2 + "   |   " + notice.WRITER
+        fun bind(notice: Univ) {
+            binding.tvNoticeTitle.text = notice.title
+            binding.tvNoticeDate.text = notice.date
 
-            var hms2 = notice.WRITE_DATE2 + " 00:00:00"
-            var writeDate = sf.parse(hms2)
-            var calculateDate = (InitialRepository.todayDate.time - writeDate.time) / (60 * 60 * 24 * 1000)
-
-            if(calculateDate.toInt() == 0){
+            if(notice.isNew){
                 binding.ivNew.visibility = View.VISIBLE
             } else {
                 binding.ivNew.visibility = View.GONE
@@ -39,7 +32,7 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.layoutNotice.setOnClickListener {
                 var goUnivHomepage = Intent(it.context, WebViewActivity::class.java)
 
-                goUnivHomepage.putExtra("url", baseUrl + notice.B_IDX)
+                goUnivHomepage.putExtra("url", notice.url)
                 it.context.startActivity(goUnivHomepage)
             }
         }
@@ -52,10 +45,11 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // 뷰의 타입을 정해주는 곳이다.
     override fun getItemViewType(position: Int): Int {
-        return when (items[position].SUBJECT) {
-            " " -> VIEW_TYPE_LOADING
-            else -> VIEW_TYPE_ITEM
-        }
+//        return when (items[position].SUBJECT) {
+//            " " -> VIEW_TYPE_LOADING
+//            else -> VIEW_TYPE_ITEM
+//        }
+        return VIEW_TYPE_ITEM
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -85,13 +79,12 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setList(notice: ArrayList<ResultList>) {
+    fun setList(notice: List<Univ>) {
         items.addAll(notice)
     }
 
-    fun resetList(bcIdx: String) {
+    fun resetList() {
         items.clear()
-        baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=$bcIdx&bIdx="
     }
 
     fun deleteLoading(){

@@ -1,4 +1,4 @@
-package com.juhwan.anyang_yi.present.views.home
+package com.juhwan.anyang_yi.present.views.home.notice
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.juhwan.anyang_yi.databinding.ItemRecentNonsubjectBinding
+import com.juhwan.anyang_yi.domain.model.Nonsubject
+import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.ApplyViewHolder>() {
-    private val items = ArrayList<NonsubjectEntity>()
-    private val baseImageUrl = "http://ari.anyang.ac.kr"
-    private val baseUrl = "https://ari.anyang.ac.kr/user/subject/nsubject/"
+    private val items = ArrayList<Nonsubject>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApplyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -28,17 +28,17 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
         holder.bind(items[position])
     }
 
-    fun setList(nonsubjectEntity: List<NonsubjectEntity>) {
+    fun setList(nonsubjectEntity: List<Nonsubject>) {
         items.addAll(nonsubjectEntity)
     }
 
     inner class ApplyViewHolder(private val binding: ItemRecentNonsubjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(nonsubjectEntity: NonsubjectEntity) {
-            binding.tvTitle.text = nonsubjectEntity.title
-            binding.tvDDay.text = nonsubjectEntity.dDay
+        fun bind(nonsubject: Nonsubject) {
+            binding.tvTitle.text = nonsubject.title
+            binding.tvDDay.text = nonsubject.leftDay
 
-            Glide.with(itemView.context).load(baseImageUrl + nonsubjectEntity.imageUrl).fitCenter()
+            Glide.with(itemView.context).load(nonsubject.imageUrl).fitCenter()
                 .apply(
                     RequestOptions.bitmapTransform(RoundedCorners(20))
                 ).into(binding.ivThumbnail)
@@ -46,7 +46,7 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
             binding.clNonsubject.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
-                goPage.putExtra("url", baseUrl + nonsubjectEntity.idx)
+                goPage.putExtra("url", nonsubject.webLink)
                 it.context.startActivity(goPage)
             }
         }

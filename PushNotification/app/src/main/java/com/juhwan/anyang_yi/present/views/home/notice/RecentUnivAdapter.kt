@@ -1,14 +1,16 @@
-package com.juhwan.anyang_yi.present.views.home
+package com.juhwan.anyang_yi.present.views.home.notice
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.ResultList
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
+import com.juhwan.anyang_yi.domain.model.Univ
+import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewHolder>() {
-    private val items = ArrayList<ResultList>()
-    private val baseUrl = "http://www.anyang.ac.kr/bbs/boardView.do?bsIdx=61&menuId=23&bcIdx=20&bIdx="
+    private val items = ArrayList<Univ>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : MainNoticeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,23 +26,16 @@ class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewH
         holder.bind(items[position])
     }
 
-    fun setList(notice: MutableList<ResultList>) {
+    fun setList(notice: List<Univ>) {
         items.addAll(notice)
     }
 
     inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(notice: ResultList){
-            //binding.resultList = notice
+        fun bind(notice: Univ){
+            binding.tvNoticeTitle.text = notice.title
+            binding.tvNoticeDate.text = notice.date
 
-            /*
-            binding.tvNoticeTitle.text = notice.SUBJECT
-            binding.tvNoticeDate.text = notice.WRITE_DATE2 + "   |   " + notice.WRITER
-
-            var hms2 = notice.WRITE_DATE2 + " 00:00:00"
-            var writeDate = InitialRepository.sf.parse(hms2)
-            var calculateDate = (InitialRepository.todayDate.time - writeDate.time) / (60 * 60 * 24 * 1000)
-
-            if(calculateDate.toInt() == 0){
+            if(notice.isNew){
                 binding.ivNew.visibility = View.VISIBLE
             } else {
                 binding.ivNew.visibility = View.GONE
@@ -49,11 +44,9 @@ class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewH
             binding.layoutNotice.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
 
-                goPage.putExtra("url", baseUrl + notice.B_IDX)
+                goPage.putExtra("url", notice.url)
                 it.context.startActivity(goPage)
             }
-
-             */
         }
     }
 }

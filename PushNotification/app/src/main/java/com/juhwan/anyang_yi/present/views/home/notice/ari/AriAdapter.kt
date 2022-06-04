@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.data.model.AriNoticeList
 import com.juhwan.anyang_yi.databinding.ItemLoadingBinding
 import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
+import com.juhwan.anyang_yi.domain.model.Ari
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
 class AriAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -16,20 +16,16 @@ class AriAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_LOADING = 1
     private val baseUrl = "https://ari.anyang.ac.kr/user/bbs/notice/"
 
-    private var items = ArrayList<AriNoticeList>()
+    private var items = ArrayList<Ari>()
 
     inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(notice: AriNoticeList) {
+        fun bind(notice: Ari) {
             binding.tvNoticeTitle.text = notice.title
             binding.tvNoticeDate.text = notice.date
 
-            var hms2 = notice.date + " 00:00:00"
-            var writeDate = InitialRepository.sf.parse(hms2)
-            var calculateDate = (InitialRepository.todayDate.time - writeDate.time) / (60 * 60 * 24 * 1000)
-
-            if(calculateDate.toInt() == 0){
+            if(notice.date == "0"){
                 binding.ivNew.visibility = View.VISIBLE
             } else {
                 binding.ivNew.visibility = View.GONE
@@ -84,7 +80,7 @@ class AriAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setList(notice: ArrayList<AriNoticeList>) {
+    fun setList(notice: List<Ari>) {
         items.addAll(notice)
     }
 
