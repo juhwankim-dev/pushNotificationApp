@@ -36,7 +36,7 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
         viewModel.univNoticeList.observe(this) {
             univAdapter.setList(it)
             isListEmpty = false
-            univAdapter.notifyItemRangeInserted(offset * 10, 10)
+            univAdapter.notifyDataSetChanged()
         }
 
         viewModel.problem.observe(this) {
@@ -88,7 +88,7 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
                     else -> ALL
                 }
 
-                offset = 1
+                offset = 0
                 univAdapter.resetList()
                 isListEmpty = true
                 univAdapter.notifyDataSetChanged()
