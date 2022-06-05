@@ -29,8 +29,9 @@ class NonsubjectAdapter : RecyclerView.Adapter<NonsubjectAdapter.AllApplyViewHol
         holder.bind(items[position])
     }
 
-    fun setList(nonsubjectEntity: List<Nonsubject>) {
-        items.addAll(nonsubjectEntity)
+    fun setList(list: List<Nonsubject>) {
+        items.addAll(list)
+        notifyDataSetChanged()
     }
 
     fun arrangeList(position: Int) {

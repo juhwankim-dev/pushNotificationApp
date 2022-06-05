@@ -28,6 +28,7 @@ class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewH
 
     fun setList(notice: List<Univ>) {
         items.addAll(notice)
+        notifyDataSetChanged()
     }
 
     inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
