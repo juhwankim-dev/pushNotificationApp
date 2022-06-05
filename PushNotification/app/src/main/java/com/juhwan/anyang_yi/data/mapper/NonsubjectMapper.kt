@@ -22,12 +22,12 @@ object NonsubjectMapper {
             val trainingPeriod = elementTitle[i].text()
             list.add(
                 Nonsubject (
-                    title = elementImage[i].attr("src"),
-                    trainingPeriod = "기간: " + trainingPeriod.substring(5, trainingPeriod.length),
-                    applicant = "인원: " + elementDDay[i].text().replace("ay", "").replace("종료", "0"),
-                    leftDay = elementUrl[i].attr("href"),
-                    imageUrl = Constants.NONSUBJECT_IMAGE_BASE_URL + elementPeriod[i * 2 + 1].text(),
-                    webLink = Constants.NONSUBJECT_BASE_URL + elementApplicant[i * 2].text() + "/" + elementApplicant[i * 2 + 1].text()
+                    title = trainingPeriod.substring(5, trainingPeriod.length),
+                    trainingPeriod = "기간: " + elementPeriod[i * 2 + 1].text(),
+                    applicant = "인원: " + elementApplicant[i * 2].text() + "/" + elementApplicant[i * 2 + 1].text(),
+                    leftDay = elementDDay[i].text().replace("ay", "").replace("종료", "0"),
+                    imageUrl = Constants.NONSUBJECT_IMAGE_BASE_URL + elementImage[i].attr("src"),
+                    webLink = Constants.NONSUBJECT_BASE_URL + elementUrl[i].attr("href")
                 )
             )
         }
