@@ -28,6 +28,7 @@ class RecentAriAdapter : RecyclerView.Adapter<RecentAriAdapter.AriNoticeViewHold
 
     fun setList(ariNotice: List<Ari>) {
         items.addAll(ariNotice)
+        notifyDataSetChanged()
     }
 
     inner class AriNoticeViewHolder(private val binding: ItemNoticeBinding):RecyclerView.ViewHolder(binding.root){

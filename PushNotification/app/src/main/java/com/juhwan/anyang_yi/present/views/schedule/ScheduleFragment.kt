@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentScheduleBinding
+import com.juhwan.anyang_yi.domain.model.Schedule
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import xyz.sangcomz.stickytimelineview.callback.SectionCallback
 import xyz.sangcomz.stickytimelineview.model.SectionInfo
@@ -15,16 +16,16 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(ScheduleRepository_.isFinished.value == null){
-            ScheduleRepository_.loadSchedule()
-            binding!!.lottieSheep.visibility = View.VISIBLE
-            binding!!.lottieSheep.playAnimation()
-        }
-
-        ScheduleRepository_.isFinished.observe(viewLifecycleOwner, Observer{
-            binding!!.lottieSheep.visibility = View.GONE
-            initRecyclerView()
-        })
+//        if(ScheduleRepository_.isFinished.value == null){
+//            ScheduleRepository_.loadSchedule()
+//            binding!!.lottieSheep.visibility = View.VISIBLE
+//            binding!!.lottieSheep.playAnimation()
+//        }
+//
+//        ScheduleRepository_.isFinished.observe(viewLifecycleOwner, Observer{
+//            binding!!.lottieSheep.visibility = View.GONE
+//            initRecyclerView()
+//        })
     }
 
     private fun initRecyclerView() {
@@ -34,7 +35,8 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment
     }
 
     private fun getSectionCallback(): SectionCallback {
-        var items = ScheduleRepository_.schedule
+        //var items = ScheduleRepository_.schedule
+        var items = ArrayList<Schedule>()
 
         return object : SectionCallback {
             //In your data, implement a method to determine if this is a section.

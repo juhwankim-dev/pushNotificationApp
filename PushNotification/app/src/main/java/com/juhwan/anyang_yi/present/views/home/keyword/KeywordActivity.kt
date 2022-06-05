@@ -53,33 +53,33 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
 
         initRecyclerView()
 
-        model.getAll().observe(this, Observer {
-            adapter.setList(it)
-            adapter.notifyDataSetChanged()
-            binding.tvRegisteredKeyword.text = it.size.toString()
-            myKeywordList.clear()
-            myKeywordList.addAll(it)
-        })
-
-        model.getResult().observe(this, Observer{
-            var enteredKeyword = binding.etKeyword.text.toString()
-
-            if(it.resultList.isEmpty()){
-                hideProgress()
-                val dialog = KeywordDialog(this, this)
-                dialog.myDig(enteredKeyword)
-            } else {
-                if (isValidKeyword(enteredKeyword)) {
-                    subscribe(enteredKeyword)
-                }
-            }
-        })
-
-        binding.btnSubscribe.setOnClickListener {
-            showProgress()
-            var enteredKeyword = binding.etKeyword.text.toString()
-            model.searchKeyword(enteredKeyword) // 공지 이력 확인
-        }
+//        model.getAll().observe(this, Observer {
+//            adapter.setList(it)
+//            adapter.notifyDataSetChanged()
+//            binding.tvRegisteredKeyword.text = it.size.toString()
+//            myKeywordList.clear()
+//            myKeywordList.addAll(it)
+//        })
+//
+//        model.getResult().observe(this, Observer{
+//            var enteredKeyword = binding.etKeyword.text.toString()
+//
+//            if(it.resultList.isEmpty()){
+//                hideProgress()
+//                val dialog = KeywordDialog(this, this)
+//                dialog.myDig(enteredKeyword)
+//            } else {
+//                if (isValidKeyword(enteredKeyword)) {
+//                    subscribe(enteredKeyword)
+//                }
+//            }
+//        })
+//
+//        binding.btnSubscribe.setOnClickListener {
+//            showProgress()
+//            var enteredKeyword = binding.etKeyword.text.toString()
+//            model.searchKeyword(enteredKeyword) // 공지 이력 확인
+//        }
 
         binding.etKeyword.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -148,7 +148,7 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
 
                     lifecycleScope.launch(Dispatchers.IO){
                         databaseReference.child("keywords").child(enteredKeyword).setValue(num)
-                        model.insert(Keyword(enteredKeyword))
+                        //model.insert(Keyword(enteredKeyword))
                     }
 
                 } else {
@@ -169,7 +169,7 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
                     lifecycleScope.launch(Dispatchers.IO){
                         var num = map.getValue(keyword).toInt() - 1 // 구독자 수 -1
                         databaseReference.child("keywords").child(keyword).setValue(num.toString())
-                        model.deleteKeywordByTitle(keyword)
+                        //model.deleteKeywordByTitle(keyword)
                     }
                 } else {
                     showMessage("네트워크 상태가 불안정 합니다.")

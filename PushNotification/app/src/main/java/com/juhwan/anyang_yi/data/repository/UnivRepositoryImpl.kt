@@ -6,15 +6,23 @@ import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.domain.repository.UnivRepository
 import com.juhwan.anyang_yi.present.utils.Result
 import com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class UnivRepositoryImpl @Inject constructor(
     private val univRemoteDataSource: UnivRemoteDataSource
 ) : UnivRepository {
-    override fun getUnivNoticeList(categoryId: String, offset: Int): Result<List<Univ>> {
-
+    override suspend fun getUnivNoticeList(categoryId: String?, offset: Int): Result<List<Univ>> {
         return try {
-            val response = univRemoteDataSource.getUnivNoticeList(categoryId, offset.toString())
+            val response = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                if(categoryId == null || categoryId == UnivActivity.ALL) {
+                    univRemoteDataSource.getUnivNoticeList(null, offset.toString())
+                } else {
+                    univRemoteDataSource.getUnivNoticeList(categoryId, offset.toString())
+                }
+            }
 
             if(response.isSuccessful && response.body() != null) {
                 Result.success(UnivMapper(response.body()!!))
@@ -26,11 +34,14 @@ class UnivRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getRecentUnivNoticeList(): Result<List<Univ>> {
-        val result = getUnivNoticeList(UnivActivity.ALL, 0)
+    override suspend fun getRecentUnivNoticeList(): Result<List<Univ>> {
+        val result = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+            getUnivNoticeList(null, 0)
+        }
+
         return result.apply {
-            if(this.data != null && this.data.size > 5) {
-                this.data.subList(0, 5)
+            if(this.data != null && this.data!!.size > 5) {
+                this.data = this.data!!.subList(0, 5)
             }
         }
     }

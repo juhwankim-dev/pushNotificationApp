@@ -7,8 +7,8 @@ import retrofit2.http.Query
 
 interface UnivApi {
     @GET("notice.do?mode=list")
-    fun getUnivNoticeList(
-        @Query("srCategory") categoryId: String,
+    suspend fun getUnivNoticeList(
+        @Query("srCategoryId") categoryId: String?,
         @Query("article.offset") offset: String
     ): Response<ResponseBody>
 }

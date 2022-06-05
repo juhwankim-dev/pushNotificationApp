@@ -11,7 +11,7 @@ class ContactAdapter(listener: ContactFragment) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     var mCallback = listener
-    var items = ContactRepository_.departmentList
+    var items = ArrayList<String>()
     private var selectedPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -26,6 +26,10 @@ class ContactAdapter(listener: ContactFragment) :
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bind(items[position], position)
+    }
+
+    fun setList(list: List<String>) {
+        items.addAll(list)
     }
 
     inner class ContactViewHolder(private val binding: ItemContactBinding) :

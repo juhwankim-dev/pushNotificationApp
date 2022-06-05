@@ -1,6 +1,7 @@
 package com.juhwan.anyang_yi.present.views.home.notice
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,8 +29,9 @@ class RecentNonsubjectAdapter : RecyclerView.Adapter<RecentNonsubjectAdapter.App
         holder.bind(items[position])
     }
 
-    fun setList(nonsubjectEntity: List<Nonsubject>) {
-        items.addAll(nonsubjectEntity)
+    fun setList(list: List<Nonsubject>) {
+        items.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class ApplyViewHolder(private val binding: ItemRecentNonsubjectBinding) :

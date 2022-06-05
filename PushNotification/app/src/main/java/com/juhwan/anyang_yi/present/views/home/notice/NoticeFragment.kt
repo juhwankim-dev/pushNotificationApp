@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
@@ -12,7 +11,9 @@ import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.notice.ari.AriActivity
 import com.juhwan.anyang_yi.present.views.home.notice.nonsubject.NonsubjectActivity
 import com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_notice) {
     private val viewModel: NoticeViewModel by viewModels()
     private lateinit var recentNonsubjectAdapter: RecentNonsubjectAdapter
@@ -22,6 +23,9 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getRecentAriNoticeList()
+        viewModel.getRecentNonsubjectNoticeList()
+        viewModel.getRecentUnivNoticeList()
         initView()
         initEvent()
     }
@@ -31,9 +35,9 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         recentAriAdapter = RecentAriAdapter()
         binding!!.rvAri.adapter = recentAriAdapter
 
-        binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context)
+        binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recentNonsubjectAdapter = RecentNonsubjectAdapter()
-        binding!!.rvNonsubject.adapter = recentAriAdapter
+        binding!!.rvNonsubject.adapter = recentNonsubjectAdapter
 
         binding!!.rvUniv.layoutManager = LinearLayoutManager(context)
         recentUnivAdapter = RecentUnivAdapter()
@@ -51,6 +55,10 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
 
         viewModel.recentUnivNoticeList.observe(viewLifecycleOwner) {
             recentUnivAdapter.setList(it)
+        }
+
+        viewModel.problem.observe(viewLifecycleOwner) {
+            showToastMessage(resources.getString(R.string.network_error))
         }
 
         binding!!.tvSeeAllNonsubject.setOnClickListener {

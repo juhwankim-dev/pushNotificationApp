@@ -11,7 +11,9 @@ import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentSocialBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_social) {
     private val viewModel: SocialViewModel by viewModels()
     private lateinit var eduAdapter: KakaoAdapter

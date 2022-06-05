@@ -8,5 +8,5 @@ object Constants {
     const val NONSUBJECT_IMAGE_BASE_URL = "http://ari.anyang.ac.kr"
     const val SCHEDULE_BASE_URL = "https://webcache.googleusercontent.com/"
     const val UNIV_BASE_URL = "https://www.anyang.ac.kr/main/communication/"
-
+    const val UNIV_WEB_LINK_BASE_URL = "https://www.anyang.ac.kr/main/communication/notice.do"
 }

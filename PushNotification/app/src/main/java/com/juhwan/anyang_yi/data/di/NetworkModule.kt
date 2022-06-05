@@ -2,6 +2,11 @@ package com.juhwan.anyang_yi.data.di
 
 import com.juhwan.anyang_yi.BuildConfig
 import com.juhwan.anyang_yi.data.api.*
+import com.juhwan.anyang_yi.present.config.Constants
+import com.juhwan.anyang_yi.present.config.Constants.ARI_BASE_URL
+import com.juhwan.anyang_yi.present.config.Constants.KAKAO_BASE_URL
+import com.juhwan.anyang_yi.present.config.Constants.NONSUBJECT_BASE_URL
+import com.juhwan.anyang_yi.present.config.Constants.UNIV_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,6 +16,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -33,57 +40,127 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(
-        baseUrl: String,
+    @Named("Ari")
+    fun provideAriRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(ARI_BASE_URL)
             .client(okHttpClient)
             .client(provideHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideConverterFactory(): GsonConverterFactory {
-//        return GsonConverterFactory.create()
-//    }
+    @Singleton
+    @Provides
+    @Named("Contact")
+    fun provideContactRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(ARI_BASE_URL)
+            .client(okHttpClient)
+            .client(provideHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("Kakao")
+    fun provideKakaoRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(KAKAO_BASE_URL)
+            .client(okHttpClient)
+            .client(provideHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("Nonsubject")
+    fun provideNonsubjectRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(NONSUBJECT_BASE_URL)
+            .client(okHttpClient)
+            .client(provideHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("Schedule")
+    fun provideScheduleRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(UNIV_BASE_URL)
+            .client(okHttpClient)
+            .client(provideHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("Univ")
+    fun provideUnivRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(UNIV_BASE_URL)
+            .client(okHttpClient)
+            .client(provideHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun provideAriApiService(retrofit: Retrofit): AriApi {
+    fun provideConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAriApiService(@Named("Ari") retrofit: Retrofit): AriApi {
         return retrofit.create(AriApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideContactApiService(retrofit: Retrofit): ContactApi {
+    fun provideContactApiService(@Named("Contact") retrofit: Retrofit): ContactApi {
         return retrofit.create(ContactApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideKakaoApiService(retrofit: Retrofit): KakaoApi {
+    fun provideKakaoApiService(@Named("Kakao") retrofit: Retrofit): KakaoApi {
         return retrofit.create(KakaoApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideNonsubjectApiService(retrofit: Retrofit): NonsubjectApi {
+    fun provideNonsubjectApiService(@Named("Nonsubject") retrofit: Retrofit): NonsubjectApi {
         return retrofit.create(NonsubjectApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideScheduleApiService(retrofit: Retrofit): ScheduleApi {
+    fun provideScheduleApiService(@Named("Schedule") retrofit: Retrofit): ScheduleApi {
         return retrofit.create(ScheduleApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideUnivApiService(retrofit: Retrofit): UnivApi {
+    fun provideUnivApiService(@Named("Univ") retrofit: Retrofit): UnivApi {
         return retrofit.create(UnivApi::class.java)
     }
 
