@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetRecentUnivListUseCase @Inject constructor(
     private val univRepository: UnivRepository
 ) {
-    operator fun invoke(): Result<List<Univ>> = univRepository.getRecentUnivNoticeList()
+    suspend operator fun invoke(): Result<List<Univ>> = univRepository.getRecentUnivNoticeList()
 }

@@ -11,8 +11,7 @@ import javax.inject.Inject
 class UnivRepositoryImpl @Inject constructor(
     private val univRemoteDataSource: UnivRemoteDataSource
 ) : UnivRepository {
-    override fun getUnivNoticeList(categoryId: String, offset: Int): Result<List<Univ>> {
-
+    override suspend fun getUnivNoticeList(categoryId: String?, offset: Int): Result<List<Univ>> {
         return try {
             val response = univRemoteDataSource.getUnivNoticeList(categoryId, offset.toString())
 

@@ -11,7 +11,7 @@ class NonsubjectRepositoryImpl @Inject constructor(
     private val nonsubjectRemoteDataSource: NonsubjectRemoteDataSource
 ) : NonsubjectRepository {
 
-    override fun getNonsubjectNoticeList(): Result<List<Nonsubject>> {
+    override suspend fun getNonsubjectNoticeList(): Result<List<Nonsubject>> {
         val field = hashMapOf("now" to "0")
 
         return try {
@@ -27,11 +27,14 @@ class NonsubjectRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getRecentNonsubjectNoticeList(): Result<List<Nonsubject>> {
-        val result = getNonsubjectNoticeList()
-        return result.apply {
-            if(this.data != null && this.data.size > 10) {
-                this.data.subList(0, 10)
+    override suspend fun getRecentNonsubjectNoticeList(): Result<List<Nonsubject>> {
+        val result = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                getNonsubjectNoticeList()
+        }
+
+        return result!!.apply {
+            if(this.data != null && this.data!!.size > 10) {
+                this.data!!.subList(0, 10)
             }
         }
     }

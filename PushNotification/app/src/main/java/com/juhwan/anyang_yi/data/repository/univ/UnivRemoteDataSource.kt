@@ -4,5 +4,5 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 interface UnivRemoteDataSource {
-    fun getUnivNoticeList(categoryId: String, offset: String): Response<ResponseBody>
+    suspend fun getUnivNoticeList(categoryId: String?, offset: String): Response<ResponseBody>
 }
