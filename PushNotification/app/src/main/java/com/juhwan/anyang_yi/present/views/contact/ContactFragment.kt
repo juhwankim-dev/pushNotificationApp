@@ -2,13 +2,12 @@ package com.juhwan.anyang_yi.present.views.contact
 
 import android.Manifest
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentContactBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,60 +15,34 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_contact),
     SelectDepartmentListener  {
-
-    private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)
-
-    private var binding: FragmentContactBinding? = null
+    private val viewModel: ContactViewModel by viewModels()
+    //private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)
     private lateinit var adapter: ContactAdapter
     private lateinit var filterAdapter: ContactFilterAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentContactBinding.inflate(inflater, container, false)
-
-        return binding?.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(ContactRepository_.isFinished.value == null){
-            ContactRepository_.requestPost()
-            binding!!.lottieSheep.visibility = View.VISIBLE
-            binding!!.lottieSheep.playAnimation()
-        }
+//        if(ContactRepository_.isFinished.value == null){
+//            ContactRepository_.requestPost()
+//            binding!!.lottieSheep.visibility = View.VISIBLE
+//            binding!!.lottieSheep.playAnimation()
+//        }
+//
+//        ContactRepository_.isFinished.observe(viewLifecycleOwner, Observer{
+//            binding!!.lottieSheep.visibility = View.GONE
+//            initRecyclerView()
+//        })
 
-        ContactRepository_.isFinished.observe(viewLifecycleOwner, Observer{
-            binding!!.lottieSheep.visibility = View.GONE
-            initRecyclerView()
-        })
+        //requestPermissions(requiredPermissions, 0) // 전화 권한 동의
+        viewModel.getContact()
+        initView()
+        initEvent()
+    }
 
-        requestPermissions(requiredPermissions, 0) // 전화 권한 동의
-
+    private fun initView() {
         binding!!.searchViewContact.maxWidth = Int.MAX_VALUE
 
-        binding!!.searchViewContact.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-                filterAdapter.filter(getCleanKeyword(newText))
-
-                return true
-            }
-        })
-    }
-
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
-    }
-
-    private fun initRecyclerView() {
         binding!!.rvContactLClass.layoutManager = LinearLayoutManager(context)
         adapter = ContactAdapter(this)
         binding!!.rvContactLClass.adapter = adapter
@@ -77,6 +50,24 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
         binding!!.rvContactMClass.layoutManager = LinearLayoutManager(context)
         filterAdapter = ContactFilterAdapter()
         binding!!.rvContactMClass.adapter = filterAdapter
+    }
+
+    private fun initEvent() {
+        viewModel.contact.observe(viewLifecycleOwner) {
+            adapter.setList(it.category)
+            filterAdapter.setList(it.departmentList)
+        }
+
+        binding!!.searchViewContact.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterAdapter.filter(getCleanKeyword(newText))
+                return true
+            }
+        })
     }
 
     override fun selectDepartment(department: String) {
