@@ -23,6 +23,9 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getRecentAriNoticeList()
+        viewModel.getRecentNonsubjectNoticeList()
+        viewModel.getRecentUnivNoticeList()
         initView()
         initEvent()
     }
@@ -32,9 +35,9 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
         recentAriAdapter = RecentAriAdapter()
         binding!!.rvAri.adapter = recentAriAdapter
 
-        binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context)
+        binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recentNonsubjectAdapter = RecentNonsubjectAdapter()
-        binding!!.rvNonsubject.adapter = recentAriAdapter
+        binding!!.rvNonsubject.adapter = recentNonsubjectAdapter
 
         binding!!.rvUniv.layoutManager = LinearLayoutManager(context)
         recentUnivAdapter = RecentUnivAdapter()
@@ -52,6 +55,10 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
 
         viewModel.recentUnivNoticeList.observe(viewLifecycleOwner) {
             recentUnivAdapter.setList(it)
+        }
+
+        viewModel.problem.observe(viewLifecycleOwner) {
+            showToastMessage(resources.getString(R.string.network_error))
         }
 
         binding!!.tvSeeAllNonsubject.setOnClickListener {
