@@ -13,7 +13,9 @@ import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.keyword.KeywordActivity
 import com.juhwan.anyang_yi.present.views.home.notice.NoticeFragment
 import com.juhwan.anyang_yi.present.views.home.social.SocialFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -10,8 +10,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.databinding.FragmentContactBinding
+import com.juhwan.anyang_yi.present.config.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class ContactFragment : Fragment(),
+@AndroidEntryPoint
+class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_contact),
     SelectDepartmentListener  {
 
     private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)

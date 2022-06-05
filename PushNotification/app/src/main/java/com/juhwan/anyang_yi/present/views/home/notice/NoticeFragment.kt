@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentNoticeBinding
@@ -12,7 +11,9 @@ import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.notice.ari.AriActivity
 import com.juhwan.anyang_yi.present.views.home.notice.nonsubject.NonsubjectActivity
 import com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_notice) {
     private val viewModel: NoticeViewModel by viewModels()
     private lateinit var recentNonsubjectAdapter: RecentNonsubjectAdapter
