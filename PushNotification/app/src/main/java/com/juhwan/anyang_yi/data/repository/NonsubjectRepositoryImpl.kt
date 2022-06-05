@@ -5,6 +5,9 @@ import com.juhwan.anyang_yi.data.repository.nonsubject.NonsubjectRemoteDataSourc
 import com.juhwan.anyang_yi.domain.model.Nonsubject
 import com.juhwan.anyang_yi.domain.repository.NonsubjectRepository
 import com.juhwan.anyang_yi.present.utils.Result
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class NonsubjectRepositoryImpl @Inject constructor(
@@ -15,7 +18,9 @@ class NonsubjectRepositoryImpl @Inject constructor(
         val field = hashMapOf("now" to "0")
 
         return try {
-            val response = nonsubjectRemoteDataSource.getNonsubjectNoticeList(field)
+            val response = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                nonsubjectRemoteDataSource.getNonsubjectNoticeList(field)
+            }
 
             if(response.isSuccessful && response.body() != null) {
                 Result.success(NonsubjectMapper(response.body()!!))
@@ -29,7 +34,7 @@ class NonsubjectRepositoryImpl @Inject constructor(
 
     override suspend fun getRecentNonsubjectNoticeList(): Result<List<Nonsubject>> {
         val result = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                getNonsubjectNoticeList()
+            getNonsubjectNoticeList()
         }
 
         return result!!.apply {
