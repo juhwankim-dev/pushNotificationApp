@@ -80,7 +80,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     // jsoup
-    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'org.jsoup:jsoup:1.14.3'
 
     // floating button
     implementation 'com.getbase:floatingactionbutton:1.10.1'
