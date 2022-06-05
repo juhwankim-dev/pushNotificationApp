@@ -9,7 +9,7 @@ class NonsubjectRemoteDataSourceImpl @Inject constructor(
     private val nonsubjectApi: NonsubjectApi
 ) : NonsubjectRemoteDataSource {
 
-    override fun getNonsubjectNoticeList(fields: MutableMap<String, String>): Response<ResponseBody> {
+    override suspend fun getNonsubjectNoticeList(fields: MutableMap<String, String>): Response<ResponseBody> {
         return nonsubjectApi.getNonsubjectNoticeList(fields)
     }
 }

@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetRecentNonsubjectListUseCase @Inject constructor(
     private val nonsubjectRepository: NonsubjectRepository
 ) {
-    operator fun invoke(): Result<List<Nonsubject>> = nonsubjectRepository.getRecentNonsubjectNoticeList()
+    suspend operator fun invoke(): Result<List<Nonsubject>> = nonsubjectRepository.getRecentNonsubjectNoticeList()
 }

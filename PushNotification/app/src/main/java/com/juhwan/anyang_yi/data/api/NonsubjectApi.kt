@@ -9,5 +9,5 @@ import retrofit2.http.POST
 interface NonsubjectApi {
     @FormUrlEncoded
     @POST("indexProc.do")
-    fun getNonsubjectNoticeList(@FieldMap fields: MutableMap<String, String>): Response<ResponseBody>
+    suspend fun getNonsubjectNoticeList(@FieldMap fields: MutableMap<String, String>): Response<ResponseBody>
 }

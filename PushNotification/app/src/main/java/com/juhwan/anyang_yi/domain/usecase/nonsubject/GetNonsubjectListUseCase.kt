@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetNonsubjectListUseCase @Inject constructor(
     private val nonsubjectRepository: NonsubjectRepository
 ) {
-    operator fun invoke(): Result<List<Nonsubject>> = nonsubjectRepository.getNonsubjectNoticeList()
+    suspend operator fun invoke(): Result<List<Nonsubject>> = nonsubjectRepository.getNonsubjectNoticeList()
 }
