@@ -2,7 +2,7 @@ package com.juhwan.anyang_yi.present.utils
 
 data class Result<out T>(
     val status: Status,
-    val data: T?,
+    var data: @UnsafeVariance T?,
     val message:String?
 ){
     companion object{
