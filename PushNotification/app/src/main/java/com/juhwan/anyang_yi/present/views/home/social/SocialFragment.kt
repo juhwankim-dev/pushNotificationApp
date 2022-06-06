@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentSocialBinding
@@ -68,7 +67,6 @@ class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_soc
         }
 
         binding!!.tvSeeAllEdu.setOnClickListener {
-            //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.kakao.com/home/@jxehRd")))
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
         }
         binding!!.tvSeeAllJob.setOnClickListener {
