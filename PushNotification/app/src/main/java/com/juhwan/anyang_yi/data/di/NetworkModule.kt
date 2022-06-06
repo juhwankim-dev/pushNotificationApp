@@ -6,6 +6,7 @@ import com.juhwan.anyang_yi.present.config.Constants
 import com.juhwan.anyang_yi.present.config.Constants.ARI_BASE_URL
 import com.juhwan.anyang_yi.present.config.Constants.KAKAO_BASE_URL
 import com.juhwan.anyang_yi.present.config.Constants.NONSUBJECT_BASE_URL
+import com.juhwan.anyang_yi.present.config.Constants.SCHEDULE_BASE_URL
 import com.juhwan.anyang_yi.present.config.Constants.UNIV_BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -101,7 +102,7 @@ class NetworkModule {
         okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(UNIV_BASE_URL)
+            .baseUrl(SCHEDULE_BASE_URL)
             .client(okHttpClient)
             .client(provideHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
