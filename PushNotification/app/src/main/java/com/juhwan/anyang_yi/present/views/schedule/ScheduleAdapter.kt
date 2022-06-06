@@ -23,10 +23,15 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>
         holder.bind(items[position])
     }
 
+    fun setList(list: List<Schedule>) {
+        items.clear()
+        items.addAll(list)
+    }
+
     inner class ScheduleViewHolder(private val binding: ItemScheduleBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(schedule: Schedule) {
             binding.tvScheduleTitle.text = schedule.content
-            binding.tvScheduleDate.text = schedule.date
+            binding.tvScheduleDate.text = schedule.period
         }
     }
 }
