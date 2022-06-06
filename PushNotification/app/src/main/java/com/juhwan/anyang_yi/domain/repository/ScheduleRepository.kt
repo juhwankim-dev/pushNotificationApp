@@ -4,5 +4,5 @@ import com.juhwan.anyang_yi.domain.model.Schedule
 import com.juhwan.anyang_yi.present.utils.Result
 
 interface ScheduleRepository {
-    fun getScheduleList(): Result<List<Schedule>>
+    suspend fun getScheduleList(start: String, end: String): Result<List<Schedule>>
 }

@@ -8,15 +8,15 @@ import javax.inject.Inject
 class KakaoRemoteDataSourceImpl @Inject constructor(
     private val kakaoApi: KakaoApi
 ) : KakaoRemoteDataSource {
-    override fun getEduNoticeList(): Response<KakaoEntity> {
+    override suspend fun getEduNoticeList(): Response<KakaoEntity> {
         return kakaoApi.getEduNoticeList()
     }
 
-    override fun getJobNoticeList(): Response<KakaoEntity> {
+    override suspend fun getJobNoticeList(): Response<KakaoEntity> {
         return kakaoApi.getJobNoticeList()
     }
 
-    override fun getAriPanelNoticeList(): Response<KakaoEntity> {
+    override suspend fun getAriPanelNoticeList(): Response<KakaoEntity> {
         return kakaoApi.getAriPanelNoticeList()
     }
 }

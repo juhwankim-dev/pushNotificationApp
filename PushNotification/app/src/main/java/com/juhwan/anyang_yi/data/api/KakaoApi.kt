@@ -6,11 +6,11 @@ import retrofit2.http.GET
 
 interface KakaoApi {
     @GET("_jxehRd")
-    fun getEduNoticeList(): Response<KakaoEntity>
+    suspend fun getEduNoticeList(): Response<KakaoEntity>
 
     @GET("_iMxaFC")
-    fun getJobNoticeList(): Response<KakaoEntity>
+    suspend fun getJobNoticeList(): Response<KakaoEntity>
 
     @GET("_lNmNd")
-    fun getAriPanelNoticeList(): Response<KakaoEntity>
+    suspend fun getAriPanelNoticeList(): Response<KakaoEntity>
 }

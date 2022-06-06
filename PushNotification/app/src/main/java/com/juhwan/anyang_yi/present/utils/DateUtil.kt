@@ -21,4 +21,12 @@ object DateUtil {
 
         return calculateDate.toInt()
     }
+
+    fun getFirstDayOfThisYear(): String {
+        return "${LocalDate.now().year}-01-01"
+    }
+
+    fun getLastDayOfThisYear(): String {
+        return "${LocalDate.now().year}-12-31"
+    }
 }

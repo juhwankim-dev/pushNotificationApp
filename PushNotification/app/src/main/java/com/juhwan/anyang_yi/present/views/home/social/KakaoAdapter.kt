@@ -33,6 +33,7 @@ class KakaoAdapter : RecyclerView.Adapter<KakaoAdapter.KakaoViewHolder>() {
     fun setList(list: List<Kakao>) {
         items.clear()
         items.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class KakaoViewHolder(private val binding: ItemKakaoBinding) :

@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface KakaoRemoteDataSource {
-    fun getEduNoticeList(): Response<KakaoEntity>
-    fun getJobNoticeList(): Response<KakaoEntity>
-    fun getAriPanelNoticeList(): Response<KakaoEntity>
+    suspend fun getEduNoticeList(): Response<KakaoEntity>
+    suspend fun getJobNoticeList(): Response<KakaoEntity>
+    suspend fun getAriPanelNoticeList(): Response<KakaoEntity>
 }

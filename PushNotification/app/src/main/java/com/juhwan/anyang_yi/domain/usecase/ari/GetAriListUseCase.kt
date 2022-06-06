@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetAriListUseCase @Inject constructor(
     private val ariRepository: AriRepository
 ) {
-    operator fun invoke(page: Int): Result<List<Ari>> = ariRepository.getAriNoticeList(page)
+    suspend operator fun invoke(page: Int): Result<List<Ari>> = ariRepository.getAriNoticeList(page)
 }

@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetScheduleListUseCase @Inject constructor(
     private val scheduleRepository: ScheduleRepository
 ) {
-    operator fun invoke(): Result<List<Schedule>> = scheduleRepository.getScheduleList()
+    suspend operator fun invoke(start: String, end: String): Result<List<Schedule>> = scheduleRepository.getScheduleList(start, end)
 }

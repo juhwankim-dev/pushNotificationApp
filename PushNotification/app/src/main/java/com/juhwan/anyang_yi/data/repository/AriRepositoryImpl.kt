@@ -14,7 +14,7 @@ class AriRepositoryImpl @Inject constructor(
     private val ariRemoteDataSource: AriRemoteDataSource
 ) : AriRepository {
 
-    override fun getAriNoticeList(page: Int): Result<List<Ari>> {
+    override suspend fun getAriNoticeList(page: Int): Result<List<Ari>> {
         val field: MutableMap<String, String> = HashMap()
         field["schWord"] = "empty"
         field["noneChk"] = "2"
@@ -36,14 +36,14 @@ class AriRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getRecentAriNoticeList(): Result<List<Ari>> {
+    override suspend fun getRecentAriNoticeList(): Result<List<Ari>> {
         val result = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
             getAriNoticeList(1)
         }
 
         return result.apply {
             if(this.data != null && this.data!!.size > 5) {
-                this.data!!.subList(0, 5)
+                this.data = this.data!!.subList(0, 5)
             }
         }
     }

@@ -4,7 +4,7 @@ data class KakaoEntity(
     val posts: Posts
 )
 
-data class Posts (
+data class Posts(
     val items: ArrayList<Item>
 )
 
@@ -16,5 +16,10 @@ data class Item(
 )
 
 data class Media(
+    val medium: Medium,
+    val small_url: String
+)
+
+data class Medium(
     val small_url: String
 )

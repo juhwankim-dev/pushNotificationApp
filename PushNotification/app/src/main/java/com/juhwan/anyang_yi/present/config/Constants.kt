@@ -6,7 +6,7 @@ object Constants {
     const val KAKAO_BASE_URL = "https://pf-wapi.kakao.com/web/profiles/"
     const val NONSUBJECT_BASE_URL = "https://ari.anyang.ac.kr/user/subject/nsubject/"
     const val NONSUBJECT_IMAGE_BASE_URL = "http://ari.anyang.ac.kr"
-    const val SCHEDULE_BASE_URL = "https://webcache.googleusercontent.com/"
+    const val SCHEDULE_BASE_URL = "https://www.anyang.ac.kr/main/academic/"
     const val UNIV_BASE_URL = "https://www.anyang.ac.kr/main/communication/"
     const val UNIV_WEB_LINK_BASE_URL = "https://www.anyang.ac.kr/main/communication/notice.do"
 }

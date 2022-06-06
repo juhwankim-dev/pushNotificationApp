@@ -9,5 +9,5 @@ import retrofit2.http.POST
 interface AriApi {
     @FormUrlEncoded
     @POST("indexProc.do")
-    fun getAriNoticeList(@FieldMap fields: MutableMap<String, String>): Response<ResponseBody>
+    suspend fun getAriNoticeList(@FieldMap fields: MutableMap<String, String>): Response<ResponseBody>
 }

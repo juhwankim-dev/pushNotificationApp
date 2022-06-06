@@ -1,11 +1,9 @@
 package com.juhwan.anyang_yi.present.views.contact
 
-import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentContactBinding

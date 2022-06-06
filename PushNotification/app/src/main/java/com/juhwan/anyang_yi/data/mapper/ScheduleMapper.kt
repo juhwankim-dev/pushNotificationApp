@@ -1,26 +1,27 @@
 package com.juhwan.anyang_yi.data.mapper
 
+import com.juhwan.anyang_yi.data.model.ScheduleEntity
 import com.juhwan.anyang_yi.domain.model.Schedule
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 
 object ScheduleMapper {
-    operator fun invoke(responseBody: ResponseBody): List<Schedule> {
+    operator fun invoke(scheduleEntity: ScheduleEntity): List<Schedule> {
         var list = ArrayList<Schedule>()
 
-        var doc = Jsoup.parse(responseBody.toString())
-        var elementDate = doc.select(".calListTableDate")
-        var elementContent = doc.select(".calListTableCon")
-
-        for (i in 0 until elementContent.size) {
-            if (elementDate[i].text().isEmpty()) { // 내용이 길어 2줄로 이어지는 경우
-                var dateBackup = list[list.lastIndex].date
-                var contentBackup = list[list.lastIndex].content
-                list.removeAt(list.lastIndex)
-                list.add(Schedule(dateBackup, contentBackup + elementContent[i].text()))
-            } else {
-                list.add(Schedule(elementDate[i].text(), elementContent[i].text()))
-            }
+        scheduleEntity.items.forEach {
+            list.add(
+                Schedule (
+                    startYear = it.startDate.substring(0, 4),
+                    startMonth = it.startDate.substring(5, 7),
+                    startDay = it.startDate.substring(8, 10),
+                    endYear = it.endDate.substring(0, 4),
+                    endMonth = it.endDate.substring(5, 7),
+                    endDay = it.endDate.substring(8, 10),
+                    period = it.startDate.substring(5, it.startDate.length) + "~" + it.endDate.substring(5, it.endDate.length),
+                    content = it.title
+                )
+            )
         }
 
         return list
