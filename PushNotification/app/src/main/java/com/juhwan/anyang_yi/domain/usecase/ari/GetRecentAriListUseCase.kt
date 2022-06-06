@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetRecentAriListUseCase @Inject constructor(
     private val ariRepository: AriRepository
 ) {
-    operator fun invoke(): Result<List<Ari>> = ariRepository.getRecentAriNoticeList()
+    suspend operator fun invoke(): Result<List<Ari>> = ariRepository.getRecentAriNoticeList()
 }

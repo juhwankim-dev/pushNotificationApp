@@ -9,7 +9,7 @@ class AriRemoteDataSourceImpl @Inject constructor(
     private val ariApi: AriApi
 ) : AriRemoteDataSource {
 
-    override fun getAriNoticeList(fields: MutableMap<String, String>): Response<ResponseBody> {
+    override suspend fun getAriNoticeList(fields: MutableMap<String, String>): Response<ResponseBody> {
         return ariApi.getAriNoticeList(fields)
     }
 }

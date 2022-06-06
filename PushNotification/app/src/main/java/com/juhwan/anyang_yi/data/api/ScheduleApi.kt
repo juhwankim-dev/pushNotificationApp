@@ -1,12 +1,15 @@
 package com.juhwan.anyang_yi.data.api
 
-import okhttp3.ResponseBody
+import com.juhwan.anyang_yi.data.model.ScheduleEntity
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface ScheduleApi {
-    @Headers("Accept-Language: ko, en-US")
-    @GET("search?q=cache:https://sub.anyang.ac.kr/AYUhub_web/support/collegeInfo/coll0101.asp")
-    fun getScheduleList(): Response<ResponseBody>
+    @GET("academic-schedule.do?")
+    suspend fun getScheduleList(
+        @Query("mode") mode: String,
+        @Query("start") start: String,
+        @Query("end") end: String
+    ): Response<ScheduleEntity>
 }

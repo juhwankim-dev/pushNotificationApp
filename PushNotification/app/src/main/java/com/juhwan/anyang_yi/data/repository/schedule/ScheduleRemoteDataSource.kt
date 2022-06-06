@@ -1,8 +1,8 @@
 package com.juhwan.anyang_yi.data.repository.schedule
 
-import okhttp3.ResponseBody
+import com.juhwan.anyang_yi.data.model.ScheduleEntity
 import retrofit2.Response
 
 interface ScheduleRemoteDataSource {
-    fun getScheduleList(): Response<ResponseBody>
+    suspend fun getScheduleList(mode: String, start: String, end: String): Response<ScheduleEntity>
 }

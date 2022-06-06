@@ -1,8 +1,7 @@
 package com.juhwan.anyang_yi.data.repository.schedule
 
 import com.juhwan.anyang_yi.data.api.ScheduleApi
-import io.reactivex.Single
-import okhttp3.ResponseBody
+import com.juhwan.anyang_yi.data.model.ScheduleEntity
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -10,7 +9,7 @@ class ScheduleRemoteDataSourceImpl @Inject constructor(
     private val scheduleApi: ScheduleApi
 ) : ScheduleRemoteDataSource {
 
-    override fun getScheduleList(): Response<ResponseBody> {
-        return scheduleApi.getScheduleList()
+    override suspend fun getScheduleList(mode: String, start: String, end: String): Response<ScheduleEntity> {
+        return scheduleApi.getScheduleList(mode, start, end)
     }
 }

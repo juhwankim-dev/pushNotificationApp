@@ -4,5 +4,5 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 interface AriRemoteDataSource {
-    fun getAriNoticeList(fields: MutableMap<String, String>): Response<ResponseBody>
+    suspend fun getAriNoticeList(fields: MutableMap<String, String>): Response<ResponseBody>
 }
