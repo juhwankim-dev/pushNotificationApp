@@ -7,17 +7,38 @@ import com.juhwan.anyang_yi.present.utils.DateUtil
 object KakaoMapper {
     operator fun invoke(kakaoEntity: KakaoEntity): List<Kakao> {
         var newList = arrayListOf<Kakao>()
+        var size = if(kakaoEntity.posts.items.size > 10) {
+            10
+        } else {
+            kakaoEntity.posts.items.size
+        }
 
-        kakaoEntity.posts.items.forEach { i ->
-            newList.add(
-                Kakao(
-                    isNew = DateUtil.getLeftDay(i.created_at) < 2,
-                    url = i.media[0].small_url,
-                    title = i.title,
-                    date = DateUtil.millisecondToDate(i.created_at),
-                    webLink = i.permalink
+        for ((index, value) in kakaoEntity.posts.items.withIndex()) {
+            if(index == size) {
+                break
+            }
+
+            try {
+                val url = if(value.media == null) {
+                    null
+                } else if(value.media[0].small_url == null) {
+                    value.media[0].medium.small_url
+                } else {
+                    value.media[0].small_url
+                }
+
+                newList.add(
+                    Kakao(
+                        isNew = DateUtil.getLeftDay(value.created_at) < 2,
+                        url = url,
+                        title = value.title,
+                        date = DateUtil.millisecondToDate(value.created_at),
+                        webLink = value.permalink
+                    )
                 )
-            )
+            } catch (e: Exception) {
+
+            }
         }
 
         return newList
