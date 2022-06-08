@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemLicenseBinding
+import com.juhwan.anyang_yi.domain.model.License
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 import com.juhwan.anyang_yi.present.views.setting.license.detail.LicenseDetailActivity
 

@@ -14,7 +14,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
 
         binding!!.rvSetting.adapter = SettingAdapter()
         binding!!.rvSetting.layoutManager = LinearLayoutManager(context)
-        binding!!.tvCopyright.text = "현재 버전 " + getAppVersion(requireContext())
+        binding!!.tvVersion.text = "현재 버전 " + getAppVersion(requireContext())
     }
 
     private fun getAppVersion(context: Context): String? {

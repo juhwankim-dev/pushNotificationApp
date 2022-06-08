@@ -1,6 +1,5 @@
 package com.juhwan.anyang_yi.present.views.setting.appnotice
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityAppNoticeBinding
+import com.juhwan.anyang_yi.domain.model.AppNotice
 import com.juhwan.anyang_yi.present.config.BaseActivity
 
 class AppNoticeActivity : BaseActivity<ActivityAppNoticeBinding>(R.layout.activity_app_notice) {
