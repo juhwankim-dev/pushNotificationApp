@@ -12,4 +12,8 @@ class UnivRemoteDataSourceImpl @Inject constructor(
     override suspend fun getUnivNoticeList(categoryId: String?, offset: String): Response<ResponseBody> {
         return univApi.getUnivNoticeList(categoryId, offset)
     }
+
+    override suspend fun getSearchResultList(keyword: String, offset: String): Response<ResponseBody> {
+        return univApi.getSearchResultList(keyword, offset)
+    }
 }

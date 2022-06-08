@@ -5,4 +5,5 @@ import retrofit2.Response
 
 interface UnivRemoteDataSource {
     suspend fun getUnivNoticeList(categoryId: String?, offset: String): Response<ResponseBody>
+    suspend fun getSearchResultList(keyword: String, offset: String): Response<ResponseBody>
 }
