@@ -1,6 +1,11 @@
 package com.juhwan.anyang_yi.domain.model
 
 data class Contact(
-    val departmentList: List<Department>,
-    val category: List<String>
+    val category: String,
+    val subCategory: String,
+    val department: String,
+    val job: String,
+    val location: String,
+    val tel: String,
+    val representTel: String
 )
