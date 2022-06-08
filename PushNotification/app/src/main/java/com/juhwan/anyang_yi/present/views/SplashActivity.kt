@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.google.firebase.auth.FirebaseAuth
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivitySplashBinding
+import com.juhwan.anyang_yi.present.config.ApplicationClass.Companion.authReference
 import com.juhwan.anyang_yi.present.config.BaseActivity
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
@@ -24,13 +24,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun userIdCheck() {
-        var auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-
-        if (user != null) { // 이미 가입한 회원인 경우
+        if (authReference.currentUser != null) { // 이미 가입한 회원인 경우
             //userId = user.uid
         } else {
-            auth.signInAnonymously()
+            authReference.signInAnonymously()
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         //userId = auth.currentUser!!.uid
@@ -39,6 +36,5 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     }
                 }
         }
-
     }
 }
