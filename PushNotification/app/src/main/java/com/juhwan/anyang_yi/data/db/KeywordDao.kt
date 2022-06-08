@@ -1,17 +1,20 @@
 package com.juhwan.anyang_yi.data.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
-import com.juhwan.anyang_yi.data.db.Keyword
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.juhwan.anyang_yi.data.model.KeywordEntity
+import com.juhwan.anyang_yi.present.config.Constants.TABLE_NAME
 
 @Dao
 interface KeywordDao {
-    @Query("SELECT * FROM Keyword")
-    fun getAll(): LiveData<List<Keyword>>
+    @Query("SELECT * FROM $TABLE_NAME")
+    fun readKeywordList(): LiveData<List<KeywordEntity>>
 
     @Insert
-    fun insert(todo: Keyword)
+    suspend fun writeKeyword(keywordEntity: KeywordEntity)
 
-    @Query("DELETE FROM Keyword WHERE keyword = :keyword")
-    fun deleteKeywordByTitle(keyword: String)
+    @Query("DELETE FROM $TABLE_NAME WHERE keyword = :keyword")
+    suspend fun deleteKeyword(keyword: String)
 }

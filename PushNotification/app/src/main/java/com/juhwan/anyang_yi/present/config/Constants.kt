@@ -8,4 +8,7 @@ object Constants {
     const val SCHEDULE_BASE_URL = "https://www.anyang.ac.kr/main/academic/"
     const val UNIV_BASE_URL = "https://www.anyang.ac.kr/main/communication/"
     const val UNIV_WEB_LINK_BASE_URL = "https://www.anyang.ac.kr/main/communication/notice.do"
+
+    const val DB_NAME = "anyang_yi_keyword"
+    const val TABLE_NAME = "notification"
 }
