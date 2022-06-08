@@ -11,4 +11,10 @@ interface UnivApi {
         @Query("srCategoryId") categoryId: String?,
         @Query("article.offset") offset: String
     ): Response<ResponseBody>
+
+    @GET("notice.do?mode=list")
+    suspend fun getSearchResultList(
+        @Query("srSearchVal") srSearchVal: String,
+        @Query("article.offset") offset: String
+    ): Response<ResponseBody>
 }
