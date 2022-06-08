@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -9,13 +10,14 @@
 
         <TextView
             style="@style/bodyText"
-            android:id="@+id/tv_contact"
+            android:id="@+id/tv_sub_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:includeFontPadding="false"
             android:padding="16dp"
             android:textColor="@color/colorBlack"
             android:background="@color/clickable_background"
+            tools:text="학생지원"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
