@@ -45,4 +45,20 @@ class UnivRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun getSearchResultList(keyword: String, offset: Int): Result<List<Univ>> {
+        return try {
+            val response = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                univRemoteDataSource.getSearchResultList(keyword, offset.toString())
+            }
+
+            if(response.isSuccessful && response.body() != null) {
+                Result.success(UnivMapper(response.body()!!))
+            } else {
+                Result.error(response.errorBody().toString(), null)
+            }
+        } catch (error: Exception) {
+            Result.fail()
+        }
+    }
 }
