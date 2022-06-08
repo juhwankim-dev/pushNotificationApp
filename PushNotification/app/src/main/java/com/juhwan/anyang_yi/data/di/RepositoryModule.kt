@@ -3,6 +3,7 @@ package com.juhwan.anyang_yi.data.di
 import com.juhwan.anyang_yi.data.repository.*
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.kakao.KakaoRemoteDataSource
+import com.juhwan.anyang_yi.data.repository.keyword.KeywordLocalDataSource
 import com.juhwan.anyang_yi.data.repository.nonsubject.NonsubjectRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.schedule.ScheduleRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.univ.UnivRemoteDataSource
@@ -44,5 +45,11 @@ class RepositoryModule {
     @Singleton
     fun provideUnivRepository(univRemoteDataSource: UnivRemoteDataSource): UnivRepository {
         return UnivRepositoryImpl(univRemoteDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideKeywordRepository(keywordLocalDataSource: KeywordLocalDataSource): KeywordRepository {
+        return KeywordRepositoryImpl(keywordLocalDataSource)
     }
 }
