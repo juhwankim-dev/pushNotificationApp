@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="keyword"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +19,8 @@
             android:id="@+id/tv_info"
             style="@style/bodyText"
             android:layout_width="match_parent"
-            android:text="\'keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?"
+            android:text="@{@string/keyword_subscribe_info(keyword)}"
+            tools:text="\'keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?"
             android:textSize="16sp"
             android:maxLines="3"
             android:includeFontPadding="false"
