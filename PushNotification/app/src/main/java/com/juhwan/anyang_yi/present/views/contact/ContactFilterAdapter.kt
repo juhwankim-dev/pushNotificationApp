@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemContactFilterBinding
-import com.juhwan.anyang_yi.domain.model.Department
+import com.juhwan.anyang_yi.domain.model.Contact
 
 class ContactFilterAdapter:
     RecyclerView.Adapter<ContactFilterAdapter.ContactFilterViewHolder>() {
-    var allList = ArrayList<Department>()
-    var filteredList = ArrayList<Department>()
+    private lateinit var itemClickListener: ItemClickListener
+    var allList = ArrayList<Contact>()
+    var filteredList = ArrayList<Contact>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactFilterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,18 +26,24 @@ class ContactFilterAdapter:
         holder.bind(filteredList[position])
     }
 
-    fun setList(list: List<Department>) {
+    fun setList(list: List<Contact>) {
+        allList.clear()
         allList.addAll(list)
+        selectDepartment("")
+        notifyDataSetChanged()
     }
 
-    fun filter(keyword: String) {
+    fun search(keyword: String) {
         filteredList.clear()
         if (keyword.isEmpty()) {
             filteredList.addAll(allList)
         } else {
-            for (contact in allList) {
-                if (contact.mClass.contains(keyword) || contact.sClass.contains(keyword) || contact.tel.replace("-", "").contains(keyword))
-                    filteredList.add(contact)
+            allList.forEach {
+                if(it.department != null && it.department.contains(keyword)
+                    || it.job != null && it.job.contains(keyword)
+                    || it.tel != null && it.tel.replace("-", "").contains(keyword)) {
+                    filteredList.add(it)
+                }
             }
         }
         notifyDataSetChanged()
@@ -44,35 +51,30 @@ class ContactFilterAdapter:
 
     fun selectDepartment(keyword: String){
         filteredList.clear()
-
         if(keyword == ""){
             filteredList.addAll(allList)
         } else {
-            for (contact in allList) {
-                if (contact.lClass == keyword)
-                    filteredList.add(contact)
-            }
+            filteredList.addAll(allList.filter { it.category == keyword })
         }
-
         notifyDataSetChanged()
     }
 
     inner class ContactFilterViewHolder(private val binding: ItemContactFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(department: Department) {
+        fun bind(contact: Contact) {
+            binding.tvSubCategory.text = contact.subCategory
 
-            var msClass = if (department.mClass.isNotEmpty() && department.sClass.isNotEmpty()) {
-                department.mClass + "・" + department.sClass
-            } else {
-                department.mClass + department.sClass
-            }
-
-            binding.tvContact.text = msClass
-
-            binding.tvContact.setOnClickListener {
-                val dialog = ContactDialog(it.context)
-                dialog.myDig(department.lClass, msClass, department.tel)
+            binding.tvSubCategory.setOnClickListener {
+                itemClickListener.onClick(contact)
             }
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick(contact: Contact)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }

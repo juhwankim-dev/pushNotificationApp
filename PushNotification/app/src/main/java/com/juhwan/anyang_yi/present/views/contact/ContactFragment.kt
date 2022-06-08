@@ -1,39 +1,31 @@
 package com.juhwan.anyang_yi.present.views.contact
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.juhwan.anyang_yi.R
+import com.juhwan.anyang_yi.data.mapper.ContactMapper
+import com.juhwan.anyang_yi.data.model.ContactEntity
 import com.juhwan.anyang_yi.databinding.FragmentContactBinding
+import com.juhwan.anyang_yi.domain.model.Contact
+import com.juhwan.anyang_yi.present.config.ApplicationClass.Companion.databaseReference
 import com.juhwan.anyang_yi.present.config.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_contact),
     SelectDepartmentListener  {
-    private val viewModel: ContactViewModel by viewModels()
-    //private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)
+    private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)
     private lateinit var adapter: ContactAdapter
     private lateinit var filterAdapter: ContactFilterAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if(ContactRepository_.isFinished.value == null){
-//            ContactRepository_.requestPost()
-//            binding!!.lottieSheep.visibility = View.VISIBLE
-//            binding!!.lottieSheep.playAnimation()
-//        }
-//
-//        ContactRepository_.isFinished.observe(viewLifecycleOwner, Observer{
-//            binding!!.lottieSheep.visibility = View.GONE
-//            initRecyclerView()
-//        })
-
-        //requestPermissions(requiredPermissions, 0) // 전화 권한 동의
-        viewModel.getContact()
+        requestPermissions(requiredPermissions, 0) // 전화 권한 동의
         initView()
         initEvent()
     }
@@ -48,13 +40,17 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
         binding!!.rvContactMClass.layoutManager = LinearLayoutManager(context)
         filterAdapter = ContactFilterAdapter()
         binding!!.rvContactMClass.adapter = filterAdapter
+
+        binding!!.lottieSheep.visibility = View.VISIBLE
+        binding!!.lottieSheep.playAnimation()
     }
 
     private fun initEvent() {
-        viewModel.contact.observe(viewLifecycleOwner) {
-            adapter.setList(it.category)
-            filterAdapter.setList(it.departmentList)
-        }
+        filterAdapter.setItemClickListener(object : ContactFilterAdapter.ItemClickListener{
+            override fun onClick(contact: Contact) {
+                ContactDialog(requireActivity()).createDialog(contact)
+            }
+        })
 
         binding!!.searchViewContact.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -62,14 +58,46 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterAdapter.filter(getCleanKeyword(newText))
+                filterAdapter.search(getCleanKeyword(newText))
                 return true
+            }
+        })
+
+        databaseReference.child("contact").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val contactList = ArrayList<Contact>()
+
+                for(child in snapshot.children) {
+                    var map = child.value as HashMap<String, String>
+
+                    contactList.add(
+                        ContactMapper(
+                            ContactEntity(
+                                category = map["대분류"] ?: "",
+                                department = map["부서명"] ?: "",
+                                job = map["업무직책"] ?: "",
+                                location = map["위치"] ?: "",
+                                tel = map["전화번호"] ?: "",
+                            )
+                        )
+                    )
+                }
+
+                adapter.setList(contactList)
+                filterAdapter.setList(contactList)
+
+                binding!!.lottieSheep.visibility = View.GONE
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                binding!!.lottieSheep.visibility = View.GONE
+                showToastMessage(resources.getString(R.string.network_error))
             }
         })
     }
 
     override fun selectDepartment(department: String) {
-        filterAdapter.selectDepartment(department)
+       filterAdapter.selectDepartment(department)
     }
 
     private fun getCleanKeyword(str: String?): String {
