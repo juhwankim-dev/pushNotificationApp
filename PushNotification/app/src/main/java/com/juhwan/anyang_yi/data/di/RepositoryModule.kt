@@ -2,7 +2,6 @@ package com.juhwan.anyang_yi.data.di
 
 import com.juhwan.anyang_yi.data.repository.*
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
-import com.juhwan.anyang_yi.data.repository.contact.ContactRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.kakao.KakaoRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.nonsubject.NonsubjectRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.schedule.ScheduleRemoteDataSource
@@ -21,12 +20,6 @@ class RepositoryModule {
     @Singleton
     fun provideAriRepository(ariRemoteDataSource: AriRemoteDataSource): AriRepository {
         return AriRepositoryImpl(ariRemoteDataSource)
-    }
-
-    @Provides
-    @Singleton
-    fun provideContactRepository(contactRemoteDataSource: ContactRemoteDataSource): ContactRepository {
-        return ContactRepositoryImpl(contactRemoteDataSource)
     }
 
     @Provides

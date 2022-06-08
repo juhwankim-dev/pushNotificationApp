@@ -3,8 +3,6 @@ package com.juhwan.anyang_yi.data.di
 import com.juhwan.anyang_yi.data.api.*
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSourceImpl
-import com.juhwan.anyang_yi.data.repository.contact.ContactRemoteDataSource
-import com.juhwan.anyang_yi.data.repository.contact.ContactRemoteDataSourceImpl
 import com.juhwan.anyang_yi.data.repository.kakao.KakaoRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.kakao.KakaoRemoteDataSourceImpl
 import com.juhwan.anyang_yi.data.repository.nonsubject.NonsubjectRemoteDataSource
@@ -26,12 +24,6 @@ class RemoteDataModule {
     @Singleton
     fun provideAriRemoteDataSource(ariApi: AriApi): AriRemoteDataSource {
         return AriRemoteDataSourceImpl(ariApi)
-    }
-
-    @Provides
-    @Singleton
-    fun provideContactRemoteDataSource(contactApi: ContactApi): ContactRemoteDataSource {
-        return ContactRemoteDataSourceImpl(contactApi)
     }
 
     @Provides

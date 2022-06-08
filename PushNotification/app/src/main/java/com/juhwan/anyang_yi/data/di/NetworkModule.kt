@@ -55,20 +55,6 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    @Named("Contact")
-    fun provideContactRetrofit(
-        okHttpClient: OkHttpClient
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(ARI_BASE_URL)
-            .client(okHttpClient)
-            .client(provideHttpClient())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    @Singleton
-    @Provides
     @Named("Kakao")
     fun provideKakaoRetrofit(
         okHttpClient: OkHttpClient
@@ -133,12 +119,6 @@ class NetworkModule {
     @Singleton
     fun provideAriApiService(@Named("Ari") retrofit: Retrofit): AriApi {
         return retrofit.create(AriApi::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideContactApiService(@Named("Contact") retrofit: Retrofit): ContactApi {
-        return retrofit.create(ContactApi::class.java)
     }
 
     @Provides
