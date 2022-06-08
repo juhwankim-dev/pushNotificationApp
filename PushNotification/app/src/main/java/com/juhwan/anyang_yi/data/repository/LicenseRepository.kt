@@ -1,6 +1,6 @@
 package com.juhwan.anyang_yi.data.repository
 
-import com.juhwan.anyang_yi.present.views.setting.license.License
+import com.juhwan.anyang_yi.domain.model.License
 
 class LicenseRepository {
     fun requestLicense(): List<License> {

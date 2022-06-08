@@ -9,6 +9,8 @@
     <string name="my_comment">\"앞으로도 많이 이용해주세요\"</string>
     <string name="helper_comment">\"도와주셔서 감사합니다\"</string>
     <string name="network_error">네트워크 상태를 확인해주세요</string>
+    <string name="database_error">키워드를 등록하지 못했습니다</string>
+    <string name="keyword_subscribe_info">\`%s\`(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?</string>
 
     <string name="mit_license">MIT License\n\n
 

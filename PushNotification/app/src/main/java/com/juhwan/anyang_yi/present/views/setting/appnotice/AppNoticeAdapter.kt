@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemAppNoticeBinding
+import com.juhwan.anyang_yi.domain.model.AppNotice
 import com.juhwan.anyang_yi.present.views.setting.appnotice.detail.AppNoticeDetailActivity
 
 class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
