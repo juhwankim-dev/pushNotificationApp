@@ -13,12 +13,12 @@ import com.github.kimcore.inko.Inko
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.data.db.Keyword
 import com.juhwan.anyang_yi.databinding.ActivityKeywordBinding
+import com.juhwan.anyang_yi.present.config.ApplicationClass.Companion.databaseReference
 import com.juhwan.anyang_yi.present.config.BaseActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,8 +29,6 @@ const val KEYWORD_LIMIT = 10
 class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_keyword), DeleteButtonListener, SignUpListener {
 
     private lateinit var map: Map<String, String>// 서버에 있는 키워드를 가져와서 저장할 변수
-
-    private val databaseReference = FirebaseDatabase.getInstance().reference
     private val model: KeywordViewModel by viewModels()
     private lateinit var adapter: KeywordAdapter
     private var myKeywordList = arrayListOf<Keyword>()
@@ -39,7 +37,7 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FirebaseDatabase.getInstance().reference
+        databaseReference
             .child("keywords")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {

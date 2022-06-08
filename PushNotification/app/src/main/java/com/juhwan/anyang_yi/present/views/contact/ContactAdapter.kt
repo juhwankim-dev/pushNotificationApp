@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ItemContactBinding
+import com.juhwan.anyang_yi.domain.model.Contact
 
 class ContactAdapter(listener: ContactFragment) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
@@ -28,8 +29,15 @@ class ContactAdapter(listener: ContactFragment) :
         holder.bind(items[position], position)
     }
 
-    fun setList(list: List<String>) {
-        items.addAll(list)
+    fun setList(list: List<Contact>) {
+        items.clear()
+        items.add("전체")
+        list.forEach {
+            if(!items.contains(it.category) && it.category != null) {
+                items.add(it.category)
+            }
+        }
+        notifyDataSetChanged()
     }
 
     inner class ContactViewHolder(private val binding: ItemContactBinding) :
