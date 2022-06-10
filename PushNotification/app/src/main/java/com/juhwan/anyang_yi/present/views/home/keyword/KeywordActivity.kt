@@ -3,7 +3,6 @@ package com.juhwan.anyang_yi.present.views.home.keyword
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -23,10 +22,10 @@ import com.juhwan.anyang_yi.present.utils.KeywordChecker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_keyword), DeleteButtonListener, SignUpListener {
+class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_keyword), SignUpListener {
     private lateinit var map: Map<String, String>// 서버에 있는 키워드를 가져와서 저장할 변수
     private val viewModel: KeywordViewModel by viewModels()
-    private lateinit var adapter: KeywordAdapter
+    private lateinit var keywordAdapter: KeywordAdapter
     private var registeredKeywordList = arrayListOf<KeywordEntity>()
     private val inko = Inko()
 
@@ -39,8 +38,8 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
 
     private fun initView() {
         binding.rvKeyword.layoutManager = LinearLayoutManager(this)
-        adapter = KeywordAdapter(this)
-        binding.rvKeyword.adapter = adapter
+        keywordAdapter = KeywordAdapter()
+        binding.rvKeyword.adapter = keywordAdapter
     }
 
     private fun initEvent() {
@@ -70,8 +69,14 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
             }
         })
 
+        keywordAdapter.setItemClickListener(object : KeywordAdapter.ItemClickListener{
+            override fun onClick(keyword: String) {
+                unSubscribe(keyword)
+            }
+        })
+
         viewModel.readKeywordList().observe(this) {
-            adapter.setList(it)
+            keywordAdapter.setList(it)
             binding.tvRegisteredKeyword.text = it.size.toString()
             registeredKeywordList.clear()
             registeredKeywordList.addAll(it)
@@ -99,7 +104,6 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
 
         viewModel.problem.observe(this) {
             showToastMessage(resources.getString(R.string.database_error))
-            Log.d("주환", "initEvent: ${it.message}")
         }
 
         binding.ivBack.setOnClickListener {
@@ -129,7 +133,7 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
         binding.etKeyword.text = null
     }
 
-    override fun unSubscribe(keyword: String) {
+    private fun unSubscribe(keyword: String) {
         showProgress()
         var englishKeyword = inko.ko2en(keyword)
 

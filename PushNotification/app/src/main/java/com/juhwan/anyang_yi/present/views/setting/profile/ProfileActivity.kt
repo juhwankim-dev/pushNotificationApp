@@ -15,11 +15,20 @@ import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
+        initView()
+        initEvent()
+    }
+
+    private fun initView() {
         binding.layout1.visibility = View.INVISIBLE
         binding.layout2.visibility = View.INVISIBLE
         binding.layout3.visibility = View.INVISIBLE
 
+        binding.tvAppVersion.text = "현재 버전 " + getAppVersion(this)
+    }
+
+    private fun initEvent() {
         var ani = AnimationUtils.loadAnimation(this, R.anim.fadein)
         var ani2 = AnimationUtils.loadAnimation(this, R.anim.fadein)
         var ani3 = AnimationUtils.loadAnimation(this, R.anim.fadein)
@@ -58,7 +67,6 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>(R.layout.activity_p
             it.context.startActivity(goPage)
         }
 
-        binding.tvAppVersion.text = "현재 버전 " + getAppVersion(this)
     }
 
     private fun getAppVersion(context: Context): String? {

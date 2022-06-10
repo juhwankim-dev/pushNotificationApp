@@ -9,6 +9,11 @@ class LicenseDetailActivity : BaseActivity<ActivityLicenseDetailBinding>(R.layou
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initView()
+        initEvent()
+    }
+
+    private fun initView() {
         binding.tvLicenseCopyright.text = intent.getStringExtra("copyright")
 
         var licenseContent = " "
@@ -24,7 +29,9 @@ class LicenseDetailActivity : BaseActivity<ActivityLicenseDetailBinding>(R.layou
             }
         }
         binding.tvLicenseContent.text = licenseContent
+    }
 
+    private fun initEvent() {
         binding.ivBack.setOnClickListener {
             finish()
         }

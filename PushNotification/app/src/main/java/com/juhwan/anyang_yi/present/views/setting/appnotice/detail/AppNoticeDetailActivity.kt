@@ -9,10 +9,17 @@ class AppNoticeDetailActivity : BaseActivity<ActivityAppNoticeDetailBinding>(R.l
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initView()
+        initEvent()
+    }
+
+    private fun initView() {
         binding.tvAppNoticeTitle.text = intent.getStringExtra("title")
         binding.tvAppNoticeDate.text = intent.getStringExtra("date")
         binding.tvAppNoticeContent.text = intent.getStringExtra("content")
+    }
 
+    private fun initEvent() {
         binding.ivBack.setOnClickListener {
             finish()
         }

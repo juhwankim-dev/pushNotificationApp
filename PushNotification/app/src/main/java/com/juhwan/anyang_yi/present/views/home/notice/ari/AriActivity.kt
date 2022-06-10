@@ -18,12 +18,12 @@ class AriActivity : BaseActivity<ActivityAriBinding>(R.layout.activity_ari) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initRecyclerView()
+        initView()
         initEvent()
         viewModel.getAriNoticeList(page)
     }
 
-    private fun initRecyclerView(){
+    private fun initView(){
         binding.rvAriNotice.layoutManager = LinearLayoutManager(this)
         ariAdapter = AriAdapter()
         binding.rvAriNotice.adapter = ariAdapter

@@ -16,10 +16,9 @@ import com.juhwan.anyang_yi.domain.model.Contact
 import com.juhwan.anyang_yi.present.config.ApplicationClass.Companion.databaseReference
 import com.juhwan.anyang_yi.present.config.BaseFragment
 
-class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_contact),
-    SelectDepartmentListener  {
+class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_contact) {
     private val requiredPermissions = arrayOf(Manifest.permission.CALL_PHONE)
-    private lateinit var adapter: ContactAdapter
+    private lateinit var contactAdapter: ContactAdapter
     private lateinit var filterAdapter: ContactFilterAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,8 +33,8 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
         binding!!.searchViewContact.maxWidth = Int.MAX_VALUE
 
         binding!!.rvContactLClass.layoutManager = LinearLayoutManager(context)
-        adapter = ContactAdapter(this)
-        binding!!.rvContactLClass.adapter = adapter
+        contactAdapter = ContactAdapter()
+        binding!!.rvContactLClass.adapter = contactAdapter
 
         binding!!.rvContactMClass.layoutManager = LinearLayoutManager(context)
         filterAdapter = ContactFilterAdapter()
@@ -46,6 +45,12 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
     }
 
     private fun initEvent() {
+        contactAdapter.setItemClickListener(object : ContactAdapter.ItemClickListener{
+            override fun onClick(category: String) {
+                filterAdapter.selectDepartment(category)
+            }
+        })
+
         filterAdapter.setItemClickListener(object : ContactFilterAdapter.ItemClickListener{
             override fun onClick(contact: Contact) {
                 ContactDialog(requireActivity()).createDialog(contact)
@@ -58,7 +63,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterAdapter.search(getCleanKeyword(newText))
+                filterAdapter.search(getArrangedKeyword(newText))
                 return true
             }
         })
@@ -83,7 +88,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
                     )
                 }
 
-                adapter.setList(contactList)
+                contactAdapter.setList(contactList)
                 filterAdapter.setList(contactList)
 
                 binding!!.lottieSheep.visibility = View.GONE
@@ -96,11 +101,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding>(R.layout.fragment_c
         })
     }
 
-    override fun selectDepartment(department: String) {
-       filterAdapter.selectDepartment(department)
-    }
-
-    private fun getCleanKeyword(str: String?): String {
-        return str.toString().replace(" ","").replace("-", "").replace("031", "")
+    private fun getArrangedKeyword(str: String?): String {
+        return str.toString().replace(" ","").replace("-", "")
     }
 }
