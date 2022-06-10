@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="kakao"
+            type="com.juhwan.anyang_yi.domain.model.Kakao" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +21,7 @@
             android:id="@+id/iv_thumbnail"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            bindImageUrl="@{kakao.url}"
             tools:srcCompat="@tools:sample/avatars"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,10 +31,11 @@
             android:id="@+id/tv_title"
             style="@style/bodyText"
             android:layout_width="150dp"
-            tools:text="2021-1학기 ARI 멘토링\n2줄"
             android:layout_marginTop="4dp"
             android:layout_marginStart="12dp"
             android:maxLines="2"
+            android:text="@{kakao.title}"
+            tools:text="2021-1학기 ARI 멘토링\n2줄"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -39,7 +44,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="9dp"
-            android:visibility="gone"
+            android:visibility="@{kakao.isNew ? View.VISIBLE : View.INVISIBLE}"
             app:srcCompat="@drawable/label_new"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
@@ -47,8 +52,9 @@
         <TextView
             style="@style/explainText"
             android:id="@+id/tv_date"
-            tools:text="2020/03/12"
             android:includeFontPadding="false"
+            android:text="@{kakao.date}"
+            tools:text="2020/03/12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />

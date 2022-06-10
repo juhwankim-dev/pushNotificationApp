@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="nonsubject"
+            type="com.juhwan.anyang_yi.domain.model.Nonsubject" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_nonsubject"
         android:background="@color/clickable_background"
@@ -15,6 +21,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="2dp"
+            bindImageUrl="@{nonsubject.imageUrl}"
             tools:srcCompat="@tools:sample/avatars"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,32 +31,34 @@
             android:id="@+id/tv_title"
             style="@style/bodyText"
             android:layout_width="150dp"
-            tools:text="2021-1학기 ARI 멘토링\n2줄"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="12dp"
             android:maxLines="2"
+            android:text="@{nonsubject.title}"
+            tools:text="2021-1학기 ARI 멘토링\n2줄"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_d_day"
+            android:id="@+id/iv_left_day"
             android:layout_width="40dp"
             android:layout_height="35dp"
             app:srcCompat="@drawable/d_day"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tv_d_day" />
+            app:layout_constraintEnd_toEndOf="@id/tv_left_day" />
 
         <TextView
-            android:id="@+id/tv_d_day"
+            android:id="@+id/tv_left_day"
             style="@style/toolBarText"
             android:includeFontPadding="false"
-            android:text="D-23"
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
             android:layout_marginTop="3dp"
-            app:layout_constraintEnd_toEndOf="@+id/iv_d_day"
-            app:layout_constraintStart_toStartOf="@+id/iv_d_day"
+            android:text="@{nonsubject.leftDay}"
+            tools:text="D-23"
+            app:layout_constraintEnd_toEndOf="@+id/iv_left_day"
+            app:layout_constraintStart_toStartOf="@+id/iv_left_day"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

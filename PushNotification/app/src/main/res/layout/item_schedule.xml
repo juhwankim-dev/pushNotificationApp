@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="schedule"
+            type="com.juhwan.anyang_yi.domain.model.Schedule" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,8 +24,9 @@
             <TextView
                 style="@style/bodyText"
                 android:id="@+id/tv_schedule_title"
-                tools:text="스케쥴"
                 android:includeFontPadding="false"
+                android:text="@{schedule.content}"
+                tools:text="스케쥴"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tv_schedule_date" />
@@ -27,11 +34,12 @@
             <TextView
                 android:id="@+id/tv_schedule_date"
                 style="@style/explainText"
-                tools:text="2019-09-30~2019-10-30"
                 android:textSize="12sp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="20dp"
                 android:includeFontPadding="false"
+                android:text="@{schedule.period}"
+                tools:text="2019-09-30~2019-10-30"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_schedule_title" />
