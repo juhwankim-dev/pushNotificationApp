@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
+import com.juhwan.anyang_yi.databinding.ItemUnivBinding
 import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
@@ -13,8 +13,7 @@ class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewH
     private val items = ArrayList<Univ>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : MainNoticeViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemNoticeBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemUnivBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainNoticeViewHolder(binding)
     }
 
@@ -31,21 +30,12 @@ class RecentUnivAdapter : RecyclerView.Adapter<RecentUnivAdapter.MainNoticeViewH
         notifyDataSetChanged()
     }
 
-    inner class MainNoticeViewHolder(private val binding: ItemNoticeBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(notice: Univ){
-            binding.tvNoticeTitle.text = notice.title
-            binding.tvNoticeDate.text = notice.date
-
-            if(notice.isNew){
-                binding.ivNew.visibility = View.VISIBLE
-            } else {
-                binding.ivNew.visibility = View.GONE
-            }
-
+    inner class MainNoticeViewHolder(private val binding: ItemUnivBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(univ: Univ){
+            binding.univ = univ
             binding.layoutNotice.setOnClickListener {
                 var goPage = Intent(it.context, WebViewActivity::class.java)
-
-                goPage.putExtra("url", notice.url)
+                goPage.putExtra("url", univ.url)
                 it.context.startActivity(goPage)
             }
         }

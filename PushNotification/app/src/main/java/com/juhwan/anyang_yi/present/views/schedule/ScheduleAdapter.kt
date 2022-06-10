@@ -10,8 +10,7 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>
     var items = ArrayList<Schedule>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ScheduleViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemScheduleBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ScheduleViewHolder(binding)
     }
 
@@ -30,8 +29,7 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>
 
     inner class ScheduleViewHolder(private val binding: ItemScheduleBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(schedule: Schedule) {
-            binding.tvScheduleTitle.text = schedule.content
-            binding.tvScheduleDate.text = schedule.period
+            binding.schedule = schedule
         }
     }
 }

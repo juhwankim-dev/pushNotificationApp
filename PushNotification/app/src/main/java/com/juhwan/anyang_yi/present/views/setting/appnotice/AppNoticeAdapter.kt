@@ -9,14 +9,11 @@ import com.juhwan.anyang_yi.databinding.ItemAppNoticeBinding
 import com.juhwan.anyang_yi.domain.model.AppNotice
 import com.juhwan.anyang_yi.present.views.setting.appnotice.detail.AppNoticeDetailActivity
 
-class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
-    RecyclerView.Adapter<AppNoticeAdapter.AppNoticeViewHolder>() {
-
-    var items = notices
+class AppNoticeAdapter : RecyclerView.Adapter<AppNoticeAdapter.AppNoticeViewHolder>() {
+    var items = ArrayList<AppNotice>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : AppNoticeViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemAppNoticeBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemAppNoticeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AppNoticeViewHolder(binding)
     }
 
@@ -28,13 +25,13 @@ class AppNoticeAdapter(notices: ArrayList<AppNotice>) :
         holder.bind(items[position])
     }
 
+    fun setList(list: List<AppNotice>) {
+        items.addAll(list.reversed())
+    }
+
     inner class AppNoticeViewHolder(private val binding: ItemAppNoticeBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(appNotice: AppNotice) {
-            binding.tvAppNoticeTitle.text = appNotice.title
-            binding.tvAppNoticeDate.text = appNotice.date
-
-            if(appNotice.isNew == "true") binding.ivNew.visibility = View.VISIBLE
-
+            binding.appNotice = appNotice
             binding.layoutAppNotice.setOnClickListener {
                 var intent = Intent(it.context, AppNoticeDetailActivity::class.java)
                 intent.putExtra("title", appNotice.title)
