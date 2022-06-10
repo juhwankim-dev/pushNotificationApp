@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="totalCnt"
+            type="Integer" />
+    </data>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,10 +88,11 @@
 
                     <TextView
                         style="@style/headerText"
-                        android:id="@+id/tv_number"
-                        tools:text="32"
+                        android:id="@+id/tv_total_cnt"
+                        android:text="@{Integer.toString(totalCnt)}"
                         android:textSize="14sp"
                         android:layout_marginStart="4dp"
+                        tools:text="32"
                         app:layout_constraintLeft_toRightOf="@id/tv_total"
                         app:layout_constraintTop_toTopOf="@id/tv_total"
                         app:layout_constraintBottom_toBottomOf="@id/tv_total" />
@@ -93,9 +100,9 @@
                     <TextView
                         style="@style/bodyText"
                         android:text="건"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_number"
-                        app:layout_constraintLeft_toRightOf="@id/tv_number"
-                        app:layout_constraintTop_toTopOf="@id/tv_number" />
+                        app:layout_constraintBottom_toBottomOf="@id/tv_total_cnt"
+                        app:layout_constraintLeft_toRightOf="@id/tv_total_cnt"
+                        app:layout_constraintTop_toTopOf="@id/tv_total_cnt" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_filter"

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="license"
+            type="com.juhwan.anyang_yi.domain.model.License" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,8 +19,9 @@
             android:id="@+id/tv_library_name"
             style="@style/bodyText"
             android:layout_width="0dp"
-            tools:text="라이브러리1"
             android:layout_marginStart="16dp"
+            android:text="@{license.owner}"
+            tools:text="라이브러리1"
             app:layout_constraintRight_toLeftOf="@id/iv_next"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

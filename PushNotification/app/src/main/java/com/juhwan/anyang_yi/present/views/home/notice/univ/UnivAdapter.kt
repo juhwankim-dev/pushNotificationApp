@@ -2,11 +2,10 @@ package com.juhwan.anyang_yi.present.views.home.notice.univ
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemLoadingBinding
-import com.juhwan.anyang_yi.databinding.ItemNoticeBinding
+import com.juhwan.anyang_yi.databinding.ItemUnivBinding
 import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
 
@@ -16,23 +15,14 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = ArrayList<Univ>()
 
-    inner class NoticeViewHolder(private val binding: ItemNoticeBinding) :
+    inner class NoticeViewHolder(private val binding: ItemUnivBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(notice: Univ) {
-            binding.tvNoticeTitle.text = notice.title
-            binding.tvNoticeDate.text = notice.date
-
-            if(notice.isNew){
-                binding.ivNew.visibility = View.VISIBLE
-            } else {
-                binding.ivNew.visibility = View.GONE
-            }
-
+        fun bind(univ: Univ) {
+            binding.univ = univ
             binding.layoutNotice.setOnClickListener {
                 var goUnivHomepage = Intent(it.context, WebViewActivity::class.java)
-
-                goUnivHomepage.putExtra("url", notice.url)
+                goUnivHomepage.putExtra("url", univ.url)
                 it.context.startActivity(goUnivHomepage)
             }
         }
@@ -55,13 +45,11 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_ITEM -> {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemNoticeBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemUnivBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 NoticeViewHolder(binding)
             }
             else -> {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemLoadingBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 LoadingViewHolder(binding)
             }
         }
@@ -85,6 +73,7 @@ class UnivAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun resetList() {
         items.clear()
+        notifyDataSetChanged()
     }
 
     fun deleteLoading(){

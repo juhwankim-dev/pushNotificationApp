@@ -8,16 +8,13 @@ import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ItemContactBinding
 import com.juhwan.anyang_yi.domain.model.Contact
 
-class ContactAdapter(listener: ContactFragment) :
-    RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
-
-    var mCallback = listener
+class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+    private lateinit var itemClickListener: ItemClickListener
     var items = ArrayList<String>()
     private var selectedPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemContactBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ContactViewHolder(binding)
     }
 
@@ -42,27 +39,33 @@ class ContactAdapter(listener: ContactFragment) :
 
     inner class ContactViewHolder(private val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(str: String, position: Int) {
-            if (position == 0) {
-                binding.tvContact.text = "전체"
+        fun bind(category: String, position: Int) {
+            binding.category = if (position == 0) {
+                "전체"
             } else {
-                binding.tvContact.text = str
+                category
             }
 
             binding.layoutContact.setOnClickListener {
                 selectedPosition = position
-                notifyDataSetChanged()
-
-                mCallback.selectDepartment(str)
+                itemClickListener.onClick(category)
             }
 
             if (selectedPosition == position) {
                 binding.layoutContact.setBackgroundResource(R.color.colorWhite)
-                binding.tvContact.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorBlack))
+                binding.tvCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorBlack))
             } else {
                 binding.layoutContact.setBackgroundResource(R.color.lightGray)
-                binding.tvContact.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorBlackDisabled2))
+                binding.tvCategory.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorBlackDisabled2))
             }
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick(category: String)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }

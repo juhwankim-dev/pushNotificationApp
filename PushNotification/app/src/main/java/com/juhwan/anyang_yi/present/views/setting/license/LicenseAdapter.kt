@@ -13,8 +13,7 @@ class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseA
     var items = licenseList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : LicenseViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemLicenseBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemLicenseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LicenseViewHolder(binding)
     }
 
@@ -28,7 +27,7 @@ class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseA
 
     inner class LicenseViewHolder(private val binding: ItemLicenseBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(license: License) {
-            binding.tvLibraryName.text = license.owner
+            binding.license = license
             binding.layoutLibrary.setOnClickListener {
                 if(license.type == "firebase"){
                     var intent = Intent(it.context, WebViewActivity::class.java)

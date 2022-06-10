@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.data.model.KeywordEntity
 import com.juhwan.anyang_yi.databinding.ItemKeywordBinding
 
-class KeywordAdapter(listener: DeleteButtonListener) : RecyclerView.Adapter<KeywordAdapter.KeywordsViewHolder>() {
+class KeywordAdapter : RecyclerView.Adapter<KeywordAdapter.KeywordsViewHolder>() {
+    private lateinit var itemClickListener: ItemClickListener
     private val items = ArrayList<KeywordEntity>()
-    private val mCallback = listener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : KeywordsViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemKeywordBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemKeywordBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return KeywordsViewHolder(binding)
     }
 
@@ -21,7 +20,7 @@ class KeywordAdapter(listener: DeleteButtonListener) : RecyclerView.Adapter<Keyw
     }
 
     override fun onBindViewHolder(holder: KeywordsViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position].keyword)
     }
 
     fun setList(list: List<KeywordEntity>) {
@@ -31,11 +30,19 @@ class KeywordAdapter(listener: DeleteButtonListener) : RecyclerView.Adapter<Keyw
     }
 
     inner class KeywordsViewHolder(private val binding: ItemKeywordBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(keywordEntityList: KeywordEntity){
-            binding.tvKeyword.text = keywordEntityList.keyword
+        fun bind(keyword: String){
+            binding.keyword = keyword
             binding.ivDelete.setOnClickListener {
-                mCallback.unSubscribe(keywordEntityList.keyword)
+                itemClickListener.onClick(keyword)
             }
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick(keyword: String)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }

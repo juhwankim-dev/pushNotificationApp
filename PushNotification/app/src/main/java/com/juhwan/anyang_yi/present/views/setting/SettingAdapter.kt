@@ -13,8 +13,7 @@ class SettingAdapter : RecyclerView.Adapter<SettingAdapter.SettingViewHolder>() 
     var items = listOf("앱 공지사항", "개발자 정보", "오픈소스 라이센스")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemSettingBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemSettingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SettingViewHolder(binding)
     }
 

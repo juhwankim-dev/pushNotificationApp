@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.FragmentSocialBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
-import com.juhwan.anyang_yi.present.views.home.WebViewActivity
+import com.juhwan.anyang_yi.present.config.Constants.ARI_PANEL_KAKAO_CHANNEL_URL
+import com.juhwan.anyang_yi.present.config.Constants.EDU_KAKAO_CHANNEL_URL
+import com.juhwan.anyang_yi.present.config.Constants.JOB_KAKAO_CHANNEL_URL
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -67,20 +69,13 @@ class SocialFragment : BaseFragment<FragmentSocialBinding>(R.layout.fragment_soc
         }
 
         binding!!.tvSeeAllEdu.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_jxehRd")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(EDU_KAKAO_CHANNEL_URL)))
         }
         binding!!.tvSeeAllJob.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_iMxaFC")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(JOB_KAKAO_CHANNEL_URL)))
         }
         binding!!.tvSeeAllAriPanel.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://pf.kakao.com/_lNmNd")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ARI_PANEL_KAKAO_CHANNEL_URL)))
         }
-    }
-
-    private fun goPage(url: String){
-        var goPage = Intent(context, WebViewActivity::class.java)
-
-        goPage.putExtra("url", url)
-        startActivity(goPage)
     }
 }

@@ -21,16 +21,8 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if(ScheduleRepository_.isFinished.value == null){
-//            ScheduleRepository_.loadSchedule()
-//            binding!!.lottieSheep.visibility = View.VISIBLE
-//            binding!!.lottieSheep.playAnimation()
-//        }
-//
-//        ScheduleRepository_.isFinished.observe(viewLifecycleOwner, Observer{
-//            binding!!.lottieSheep.visibility = View.GONE
-//            initRecyclerView()
-//        })
+        binding!!.lottieSheep.visibility = View.VISIBLE
+        binding!!.lottieSheep.playAnimation()
         viewModel.getScheduleList(DateUtil.getFirstDayOfThisYear(), DateUtil.getLastDayOfThisYear())
         initView()
         initEvent()
@@ -46,6 +38,7 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(R.layout.fragment
         viewModel.scheduleList.observe(viewLifecycleOwner) {
             scheduleAdapter.setList(it)
             binding!!.rvTimeline.addItemDecoration(getSectionCallback(it))
+            binding!!.lottieSheep.visibility = View.GONE
         }
 
         viewModel.problem.observe(viewLifecycleOwner) {

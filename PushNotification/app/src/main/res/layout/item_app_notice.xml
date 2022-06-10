@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="appNotice"
+            type="com.juhwan.anyang_yi.domain.model.AppNotice" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,9 +20,10 @@
         <TextView
             style="@style/bodyText"
             android:id="@+id/tv_app_notice_title"
-            tools:text="앱 공지사항 예시"
             android:includeFontPadding="false"
             android:layout_marginStart="16dp"
+            android:text="@{appNotice.title}"
+            tools:text="앱 공지사항 예시"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tv_app_notice_date" />
@@ -26,8 +34,9 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="20dp"
             android:includeFontPadding="false"
-            tools:text="2019-09-30"
             android:textSize="12sp"
+            android:text="@{appNotice.date}"
+            tools:text="2019-09-30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/tv_app_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_app_notice_title" />
@@ -36,8 +45,8 @@
             android:id="@+id/iv_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginStart="8dp"
+            android:visibility="@{appNotice.isNew ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_app_notice_title"
             app:layout_constraintLeft_toRightOf="@id/tv_app_notice_title"
             app:layout_constraintTop_toTopOf="@+id/tv_app_notice_title"

@@ -24,17 +24,20 @@ class WebViewActivity : BaseActivity<ActivityWebViewBinding>(R.layout.activity_w
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        url = intent.getStringExtra("url").toString()
-
-        binding.webView.webViewClient = WebViewClient()
-        binding.webView.settings.javaScriptEnabled = true // to load mobile version
-
-        binding.webView.setDownloadListener { _, userAgent, contentDisposition, mimeType, _ ->
-            setDownloadLogic(userAgent, contentDisposition, mimeType)
+        if(intent.hasExtra("url")) {
+            binding.webView.apply {
+                webViewClient = WebViewClient()
+                settings.javaScriptEnabled = true // to load mobile version
+                setDownloadListener { _, userAgent, contentDisposition, mimeType, _ ->
+                    setDownloadLogic(userAgent, contentDisposition, mimeType)
+                }
+                loadUrl(intent.getStringExtra("url").toString())
+            }
+            initEvent()
         }
+    }
 
-        binding.webView.loadUrl(url)
-
+    private fun initEvent() {
         binding.fabBrowser.setOnClickListener {
             var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)

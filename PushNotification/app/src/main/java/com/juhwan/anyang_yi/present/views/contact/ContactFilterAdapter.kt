@@ -13,8 +13,7 @@ class ContactFilterAdapter:
     var filteredList = ArrayList<Contact>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactFilterViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemContactFilterBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemContactFilterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ContactFilterViewHolder(binding)
     }
 

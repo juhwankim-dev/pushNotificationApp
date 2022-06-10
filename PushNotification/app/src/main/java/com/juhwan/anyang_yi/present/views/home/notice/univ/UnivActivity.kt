@@ -24,7 +24,6 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
         initRecyclerView()
         initTabLayout()
         viewModel.getUnivNoticeList(categoryId, offset)
-
         initEvent()
     }
 
@@ -91,7 +90,6 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
                 offset = 0
                 univAdapter.resetList()
                 isListEmpty = true
-                univAdapter.notifyDataSetChanged()
                 viewModel.getUnivNoticeList(categoryId, offset)
             }
         })
