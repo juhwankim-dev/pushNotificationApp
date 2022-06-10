@@ -22,8 +22,8 @@ object NonsubjectMapper {
             val trainingPeriod = elementTitle[i].text()
             list.add(
                 Nonsubject (
-                    title = trainingPeriod.substring(5, trainingPeriod.length),
-                    trainingPeriod = "기간: " + elementPeriod[i * 2 + 1].text(),
+                    title = trainingPeriod,
+                    trainingPeriod = elementPeriod[i * 2 + 1].text().replace("교육기간 ", ""),
                     applicant = "인원: " + elementApplicant[i * 2].text() + "/" + elementApplicant[i * 2 + 1].text(),
                     leftDay = elementDDay[i].text().replace("ay", "").replace("종료", "0"),
                     imageUrl = Constants.NONSUBJECT_IMAGE_BASE_URL + elementImage[i].attr("src"),

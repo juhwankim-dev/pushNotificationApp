@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juhwan.anyang_yi.domain.model.Ari
 import com.juhwan.anyang_yi.domain.usecase.ari.GetAriListUseCase
-import com.juhwan.anyang_yi.domain.usecase.nonsubject.GetNonsubjectListUseCase
-import com.juhwan.anyang_yi.domain.usecase.univ.GetUnivListUseCase
 import com.juhwan.anyang_yi.present.utils.Result
 import com.juhwan.anyang_yi.present.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,9 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AriViewModel @Inject constructor(
-    private val getAriListUseCase: GetAriListUseCase,
-    private val getNonsubjectListUseCase: GetNonsubjectListUseCase,
-    private val getUnivListUseCase: GetUnivListUseCase
+    private val getAriListUseCase: GetAriListUseCase
 ): ViewModel() {
     private val _ariNoticeList = MutableLiveData<List<Ari>>()
     val ariNoticeList: LiveData<List<Ari>> get() = _ariNoticeList

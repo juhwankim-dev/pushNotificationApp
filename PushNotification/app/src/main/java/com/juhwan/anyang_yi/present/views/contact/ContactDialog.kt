@@ -37,7 +37,6 @@ class ContactDialog(context: Context) {
         dialog.window!!.attributes = params as WindowManager.LayoutParams
 
         dialog.setContentView(binding.root)
-        //dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)

@@ -16,7 +16,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// TODO: searchUsecase로 만들기, keywordUsecase 만들기
 @HiltViewModel
 class KeywordViewModel @Inject constructor(
     private val deleteKeywordUseCase: DeleteKeywordUseCase,
