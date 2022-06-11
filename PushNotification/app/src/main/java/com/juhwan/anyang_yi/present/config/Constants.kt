@@ -9,6 +9,10 @@ object Constants {
     const val UNIV_BASE_URL = "https://www.anyang.ac.kr/main/communication/"
     const val UNIV_WEB_LINK_BASE_URL = "https://www.anyang.ac.kr/main/communication/notice.do"
 
+    const val EDU_KAKAO_CHANNEL_URL = "https://pf.kakao.com/_jxehRd"
+    const val JOB_KAKAO_CHANNEL_URL = "https://pf.kakao.com/_iMxaFC"
+    const val ARI_PANEL_KAKAO_CHANNEL_URL = "https://pf.kakao.com/_lNmNd"
+
     const val DB_NAME = "anyang_yi_keyword"
     const val TABLE_NAME = "notification"
 }

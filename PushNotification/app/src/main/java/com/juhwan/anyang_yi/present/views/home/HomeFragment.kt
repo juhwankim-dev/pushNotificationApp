@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         val tabTextList = arrayListOf("홈페이지", "SNS")
 
         binding!!.vpHome.adapter = CustomFragmentStateAdapter(requireActivity())
-        //binding!!.viewPagerNotice.isUserInputEnabled = false // 스와이프 막는 설정
+        binding!!.vpHome.isUserInputEnabled = false
         TabLayoutMediator(binding!!.tlHome, binding!!.vpHome) {
                 tab, position ->
             tab.text = tabTextList[position]

@@ -1,6 +1,8 @@
 package com.juhwan.anyang_yi.data.mapper
 
 import com.juhwan.anyang_yi.domain.model.Ari
+import com.juhwan.anyang_yi.present.config.Constants.ARI_BASE_URL
+import com.juhwan.anyang_yi.present.utils.DateUtil
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 
@@ -13,9 +15,10 @@ object AriMapper {
         var elementDate = doc.select(".alignC")
 
         for((i, e) in elementTitle.withIndex()){
-            list.add(Ari(e.attr("href"), e.text(), elementDate[i * 4 + 2].text().replace("/", "-")))
+            val date = elementDate[i * 4 + 2].text().replace("/", "-")
+            list.add(Ari(ARI_BASE_URL + e.attr("href"), e.text(), date, DateUtil.getLeftDay(date) == 0))
         }
-        list.add(Ari(" ", " ", " ")) // 프로그레스바를 위치할 곳
+        list.add(Ari(" ", " ", " ", false)) // 프로그레스바를 위치할 곳
 
         return list
     }
