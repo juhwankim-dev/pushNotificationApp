@@ -5,6 +5,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityMainBinding
+import com.juhwan.anyang_yi.present.config.ApplicationClass.Companion.authReference
 import com.juhwan.anyang_yi.present.config.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,5 +20,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val navController = navHostFragment.navController
         // 바템 네비게이션 뷰와 네비게이션을 묶어준다.
         NavigationUI.setupWithNavController(binding.bnvMain, navController)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if(authReference.currentUser != null) {
+            authReference.currentUser!!.delete()
+        }
     }
 }
