@@ -30,7 +30,7 @@ object KakaoMapper {
                 newList.add(
                     Kakao(
                         isNew = DateUtil.getLeftDay(value.created_at) < 2,
-                        url = url,
+                        url = url ?: " ",
                         title = value.title,
                         date = DateUtil.millisecondToDate(value.created_at),
                         webLink = value.permalink
