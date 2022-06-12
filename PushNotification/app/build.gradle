@@ -101,4 +101,7 @@ dependencies {
 
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }
