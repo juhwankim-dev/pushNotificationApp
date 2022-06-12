@@ -1,5 +1,6 @@
 package com.juhwan.anyang_yi.data.di
 
+import com.juhwan.anyang_yi.data.api.AriApi
 import com.juhwan.anyang_yi.data.api.UnivApi
 import com.juhwan.anyang_yi.data.repository.*
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
@@ -20,8 +21,8 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    fun provideAriRepository(ariRemoteDataSource: AriRemoteDataSource): AriRepository {
-        return AriRepositoryImpl(ariRemoteDataSource)
+    fun provideAriRepository(ariApi: AriApi, ariRemoteDataSource: AriRemoteDataSource): AriRepository {
+        return AriRepositoryImpl(ariApi, ariRemoteDataSource)
     }
 
     @Provides
