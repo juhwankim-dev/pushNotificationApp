@@ -20,10 +20,11 @@ class UnivRepositoryImpl @Inject constructor(
     private val univApi: UnivApi,
     private val univRemoteDataSource: UnivRemoteDataSource
 ) : UnivRepository {
+
     override fun getUnivNoticeList(categoryId: String?): Flow<PagingData<Univ>> {
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE
+                pageSize = UNIV_NETWORK_PAGE_SIZE
             ),
             pagingSourceFactory = { UnivPagingDataSource(univApi, categoryId) }
         ).flow
@@ -66,6 +67,6 @@ class UnivRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        const val NETWORK_PAGE_SIZE = 10
+        const val UNIV_NETWORK_PAGE_SIZE = 10
     }
 }
