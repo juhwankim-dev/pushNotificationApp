@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/noticeFragment"
-        android:name="com.juhwan.anyang_yi.ui.notice.NoticeFragment"
+        android:name="com.juhwan.anyang_yi.present.views.home.HomeFragment"
         android:label="fragment_notice"
-        tools:layout="@layout/fragment_notice" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.juhwan.anyang_yi.ui.schedule.ScheduleFragment"
+        android:name="com.juhwan.anyang_yi.present.views.schedule.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.juhwan.anyang_yi.ui.contact.ContactFragment"
+        android:name="com.juhwan.anyang_yi.present.views.contact.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.juhwan.anyang_yi.ui.setting.SettingFragment"
+        android:name="com.juhwan.anyang_yi.present.views.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 
