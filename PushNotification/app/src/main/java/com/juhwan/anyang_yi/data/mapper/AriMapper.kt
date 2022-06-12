@@ -18,7 +18,6 @@ object AriMapper {
             val date = elementDate[i * 4 + 2].text().replace("/", "-")
             list.add(Ari(ARI_BASE_URL + e.attr("href"), e.text(), date, DateUtil.getLeftDay(date) == 0))
         }
-        list.add(Ari(" ", " ", " ", false)) // 프로그레스바를 위치할 곳
 
         return list
     }
