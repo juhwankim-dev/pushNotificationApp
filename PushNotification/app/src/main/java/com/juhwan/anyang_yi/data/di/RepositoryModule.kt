@@ -1,5 +1,6 @@
 package com.juhwan.anyang_yi.data.di
 
+import com.juhwan.anyang_yi.data.api.UnivApi
 import com.juhwan.anyang_yi.data.repository.*
 import com.juhwan.anyang_yi.data.repository.ari.AriRemoteDataSource
 import com.juhwan.anyang_yi.data.repository.kakao.KakaoRemoteDataSource
@@ -43,8 +44,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUnivRepository(univRemoteDataSource: UnivRemoteDataSource): UnivRepository {
-        return UnivRepositoryImpl(univRemoteDataSource)
+    fun provideUnivRepository(univApi: UnivApi, univRemoteDataSource: UnivRemoteDataSource): UnivRepository {
+        return UnivRepositoryImpl(univApi, univRemoteDataSource)
     }
 
     @Provides
