@@ -13,6 +13,9 @@ interface UnivApi {
     ): Response<ResponseBody>
 
     @GET("notice.do?mode=list")
+    suspend fun getRecentUnivNoticeList(): Response<ResponseBody>
+
+    @GET("notice.do?mode=list")
     suspend fun getSearchResultList(
         @Query("srSearchVal") srSearchVal: String,
         @Query("article.offset") offset: String
