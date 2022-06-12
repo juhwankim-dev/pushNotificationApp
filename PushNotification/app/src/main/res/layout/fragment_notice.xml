@@ -3,98 +3,132 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="model"
-            type="com.juhwan.anyang_yi.ui.notice.NoticeViewModel" />
-    </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/colorWhite"
-        android:id="@+id/noticeFragment"
-        tools:context="com.juhwan.anyang_yi.ui.notice.NoticeFragment">
+        tools:context=".present.views.home.notice.NoticeFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:fitsSystemWindows="true">
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                style="@style/toolBarText"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/appBarMargin"
-                app:layout_scrollFlags="scroll|enterAlways"
-                android:layout_gravity="center"
-                android:contentInsetLeft="0dp"
-                android:contentInsetStart="0dp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp"
-                android:contentInsetRight="0dp"
-                android:contentInsetEnd="0dp"
-                app:contentInsetRight="0dp"
-                app:contentInsetEnd="0dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp">
 
                     <TextView
-                        style="@style/toolBarText"
-                        android:text="공지사항"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:id="@+id/tv_nonsubject"
+                        style="@style/headerText"
+                        android:layout_marginStart="16dp"
+                        android:text="비교과 프로그램 신청"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/iv_notification"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_notification"
+                    <TextView
+                        android:id="@+id/tv_see_all_nonsubject"
+                        style="@style/bodyText"
+                        android:layout_marginEnd="16dp"
+                        android:text="전체보기"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_nonsubject"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="@+id/tv_nonsubject" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_nonsubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:overScrollMode="never"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_nonsubject"/>
+
+                    <View
+                        android:id="@+id/divide_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/lightGray"
+                        app:layout_constraintTop_toBottomOf="@+id/rv_nonsubject" />
+
+                    <TextView
+                        android:id="@+id/tv_univ"
+                        style="@style/headerText"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="16dp"
+                        android:text="학교 공지사항"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divide_1" />
+
+                    <TextView
+                        android:id="@+id/tv_see_all_univ"
+                        style="@style/bodyText"
+                        android:layout_marginEnd="16dp"
+                        android:text="전체보기"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_univ"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_univ" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_univ"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_univ"/>
+
+                    <View
+                        android:id="@+id/divide_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/lightGray"
+                        app:layout_constraintTop_toBottomOf="@+id/rv_univ" />
+
+                    <TextView
+                        android:id="@+id/tv_ari"
+                        style="@style/headerText"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="16dp"
+                        android:text="아리 포트폴리오 공지사항"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divide_2" />
+
+                    <TextView
+                        android:id="@+id/tv_see_all_ari"
+                        style="@style/bodyText"
+                        android:layout_marginEnd="16dp"
+                        android:text="전체보기"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_ari"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_ari" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_ari"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_ari"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:orientation="vertical">
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout_notice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/mainBlue"
-                app:tabIndicatorHeight="3dp"
-                app:tabTextAppearance="@style/tab_text">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="홈페이지" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="SNS" />
-            </com.google.android.material.tabs.TabLayout>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager_notice"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_sheep"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_sheep"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

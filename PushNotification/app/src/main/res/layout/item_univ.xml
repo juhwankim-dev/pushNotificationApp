@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="univ"
+            type="com.juhwan.anyang_yi.domain.model.Univ" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/clickable_background"
+        android:paddingTop="20dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:id="@+id/layout_notice">
+
+        <TextView
+            style="@style/bodyText"
+            android:id="@+id/tv_notice_title"
+            android:includeFontPadding="false"
+            android:text="@{univ.title}"
+            tools:text="2021-2 장학금 안내"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_notice_date"/>
+
+        <TextView
+            android:id="@+id/tv_notice_date"
+            style="@style/explainText"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:includeFontPadding="false"
+            android:text="@{univ.date}"
+            tools:text="2022-06-09"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_notice_title"/>
+
+        <ImageView
+            android:id="@+id/iv_new"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="1dp"
+            android:visibility="@{univ.isNew ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_notice_date"
+            app:layout_constraintLeft_toRightOf="@id/tv_notice_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_notice_date"
+            app:srcCompat="@drawable/ic_new" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:background="@color/colorBlackDisabled2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

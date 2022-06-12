@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="nonsubject"
+            type="com.juhwan.anyang_yi.domain.model.Nonsubject" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_apply"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginStart="8dp">
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="2dp"
+            bindImageUrl="@{nonsubject.imageUrl}"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/bodyText"
+            android:layout_width="150dp"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:text="@{nonsubject.title}"
+            tools:text="2021-1학기 ARI 멘토링"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
+
+        <TextView
+            style="@style/explainText"
+            android:id="@+id/tv_training_period"
+            android:includeFontPadding="false"
+            android:text="@{nonsubject.trainingPeriod}"
+            tools:text="2020/03/12 ~ 2020/03/15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_applicant"
+            style="@style/explainText"
+            android:includeFontPadding="false"
+            android:text="@{nonsubject.applicant}"
+            tools:text="인원 23 / 40"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_training_period"
+            app:layout_constraintTop_toBottomOf="@id/tv_training_period" />
+
+        <ImageView
+            android:id="@+id/iv_left_day"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="121dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/d_day" />
+
+        <TextView
+            style="@style/toolBarText"
+            android:layout_marginTop="2dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:text="@{nonsubject.leftDay}"
+            tools:text="D-23"
+            app:layout_constraintEnd_toEndOf="@+id/iv_left_day"
+            app:layout_constraintStart_toStartOf="@+id/iv_left_day"
+            app:layout_constraintTop_toTopOf="@+id/iv_left_day" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

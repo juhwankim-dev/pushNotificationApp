@@ -1,70 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/alert_white_round_border"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_info"
-        style="@style/bodyText"
+    <data>
+        <variable
+            name="keyword"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:text="\'keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?"
-        android:textSize="16sp"
-        android:maxLines="3"
-        android:includeFontPadding="false"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/alert_white_round_border"
+        android:orientation="vertical">
 
-    <View
-        android:id="@+id/divide_1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="46dp"
-        android:background="@color/colorBlackDisabled2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/bodyText"
+            android:layout_width="match_parent"
+            android:text="@{@string/keyword_subscribe_info(keyword)}"
+            tools:text="\'keyword\'(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?"
+            android:textSize="16sp"
+            android:maxLines="3"
+            android:includeFontPadding="false"
+            android:layout_marginTop="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-        android:id="@+id/btn_cancel"
-        style="@style/headerText"
-        android:layout_width="0dp"
-        android:background="@color/clickable_background_dialog"
-        android:gravity="center"
-        android:text="취소"
-        android:padding="4dp"
-        android:textColor="@color/mainBlue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/divide_2"
-        app:layout_constraintTop_toBottomOf="@id/divide_1" />
+        <View
+            android:id="@+id/divide_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="46dp"
+            android:background="@color/colorBlackDisabled2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
-    <View
-        android:id="@+id/divide_2"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/colorBlackDisabled2"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_cancel"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divide_1" />
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/headerText"
+            android:layout_width="0dp"
+            android:background="@color/clickable_background_dialog"
+            android:gravity="center"
+            android:text="취소"
+            android:padding="4dp"
+            android:textColor="@color/mainBlue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/divide_2"
+            app:layout_constraintTop_toBottomOf="@id/divide_1" />
 
-    <TextView
-        android:id="@+id/btn_sign_up"
-        style="@style/headerText"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:background="@color/clickable_background_dialog"
-        android:gravity="center"
-        android:text="등록"
-        android:textColor="@color/mainBlue"
-        android:padding="4dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/divide_2"
-        app:layout_constraintTop_toBottomOf="@id/divide_1"/>
+        <View
+            android:id="@+id/divide_2"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/colorBlackDisabled2"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cancel"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divide_1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_sign_up"
+            style="@style/headerText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/clickable_background_dialog"
+            android:gravity="center"
+            android:text="등록"
+            android:textColor="@color/mainBlue"
+            android:padding="4dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/divide_2"
+            app:layout_constraintTop_toBottomOf="@id/divide_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

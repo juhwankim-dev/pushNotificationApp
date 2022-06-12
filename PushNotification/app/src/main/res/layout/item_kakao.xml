@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_kakao_notice"
-    android:background="@color/clickable_background"
-    android:layout_width="170dp"
-    android:layout_marginStart="8dp"
-    android:layout_height="240dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/iv_thumbnail"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        tools:srcCompat="@tools:sample/avatars"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="kakao"
+            type="com.juhwan.anyang_yi.domain.model.Kakao" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/bodyText"
-        android:layout_width="150dp"
-        tools:text="2021-1학기 ARI 멘토링\n2줄"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="12dp"
-        android:maxLines="2"
-        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_kakao_notice"
+        android:background="@color/clickable_background"
+        android:layout_width="170dp"
+        android:layout_marginStart="8dp"
+        android:layout_height="240dp">
 
-    <ImageView
-        android:id="@+id/iv_new"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="9dp"
-        android:visibility="gone"
-        app:srcCompat="@drawable/label_new"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            bindImageUrl="@{kakao.url}"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-        style="@style/explainText"
-        android:id="@+id/tv_date"
-        tools:text="2020/03/12"
-        android:includeFontPadding="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/bodyText"
+            android:layout_width="150dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="12dp"
+            android:maxLines="2"
+            android:text="@{kakao.title}"
+            tools:text="2021-1학기 ARI 멘토링\n2줄"
+            app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_new"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="9dp"
+            android:visibility="@{kakao.isNew ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@drawable/label_new"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            style="@style/explainText"
+            android:id="@+id/tv_date"
+            android:includeFontPadding="false"
+            android:text="@{kakao.date}"
+            tools:text="2020/03/12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
