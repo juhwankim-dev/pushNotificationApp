@@ -2,62 +2,34 @@ package com.juhwan.anyang_yi.present.views.home.notice.univ
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.juhwan.anyang_yi.R
 import com.juhwan.anyang_yi.databinding.ActivityUnivBinding
 import com.juhwan.anyang_yi.present.config.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
     private val viewModel: UnivViewModel by viewModels()
     private lateinit var univAdapter: UnivAdapter
-    private var isListEmpty = true
-    private var categoryId = ALL
-    private var offset = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initRecyclerView()
         initTabLayout()
-        viewModel.getUnivNoticeList(categoryId, offset)
         initEvent()
+        changeCategory(ALL)
     }
 
     private fun initEvent() {
         binding.ivBack.setOnClickListener {
             finish()
         }
-
-        viewModel.univNoticeList.observe(this) {
-            univAdapter.setList(it)
-            isListEmpty = false
-            univAdapter.notifyDataSetChanged()
-        }
-
-        viewModel.problem.observe(this) {
-            showToastMessage(resources.getString(R.string.network_error))
-        }
-
-        binding.rvUnivNotice.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val lastVisibleItemPosition =
-                    (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
-                val itemTotalCount = recyclerView.adapter!!.itemCount-1
-
-                if (!binding.rvUnivNotice.canScrollVertically(1) &&
-                    lastVisibleItemPosition == itemTotalCount && !isListEmpty
-                ) {
-                    univAdapter.deleteLoading()
-                    viewModel.getUnivNoticeList(categoryId, ++offset)
-                }
-            }
-        })
     }
 
     private fun initRecyclerView() {
@@ -78,7 +50,7 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                categoryId = when(tab!!.position){
+                val categoryId = when(tab!!.position){
                     1 -> UNIV
                     2 -> BACHELOR
                     3 -> GRADUATE_SCHOOL
@@ -87,12 +59,17 @@ class UnivActivity : BaseActivity<ActivityUnivBinding>(R.layout.activity_univ) {
                     else -> ALL
                 }
 
-                offset = 0
-                univAdapter.resetList()
-                isListEmpty = true
-                viewModel.getUnivNoticeList(categoryId, offset)
+                changeCategory(categoryId)
             }
         })
+    }
+
+    private fun changeCategory(categoryId: String) {
+        lifecycleScope.launch {
+            viewModel.changeCategory(categoryId).collectLatest {
+                univAdapter.submitData(lifecycle, it)
+            }
+        }
     }
 
     // 전체(null), 대학교(17), 학사(18), 대학원(19), 취업정보(20), 입찰채용(21)
