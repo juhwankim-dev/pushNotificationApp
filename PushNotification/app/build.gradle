@@ -19,7 +19,7 @@ android {
         applicationId "com.juhwan.anyang_yi"
         minSdk 26
         targetSdk 32
-        versionCode 5
+        versionCode 6
         versionName "1.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
