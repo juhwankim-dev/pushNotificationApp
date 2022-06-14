@@ -15,6 +15,11 @@ object KeywordChecker {
         if(isRegistered(keyword, registeredKeywordList)) throw RegisteredException()
     }
 
+    fun searchCheck(keyword: String) {
+        if(isShort(keyword)) throw ShortException()
+        if(isOutOfMatch(keyword)) throw OutOfMatchException()
+    }
+
     private fun isShort(keyword: String): Boolean {
         return keyword.length < KEYWORD_MIN_LEN
     }
