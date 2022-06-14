@@ -3,7 +3,9 @@ package com.juhwan.anyang_yi.present.views.home.search
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.juhwan.anyang_yi.R
@@ -47,11 +49,11 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
                             univAdapter.submitData(lifecycle, it)
                         }
                     }
-//                lifecycleScope.launch {
-//                    viewModel.getSearchUnivPagingData(keyword).collectLatest {
-//                        univAdapter.submitData(lifecycle, it)
-//                    }
-//                }
+                    lifecycleScope.launch {
+                        viewModel.getSearchAriPagingData(query!!).collectLatest {
+                            ariAdapter.submitData(lifecycle, it)
+                        }
+                    }
                 } catch (e: Exception) {
                     showToastMessage(e.message.toString())
                 }
@@ -63,6 +65,17 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
                 return true
             }
         })
+
+        univAdapter.addLoadStateListener {
+            if(it.refresh is LoadState.NotLoading) {
+                binding.tvNoResult.isVisible = univAdapter.itemCount < 1
+            }
+        }
+        ariAdapter.addLoadStateListener {
+            if(it.refresh is LoadState.NotLoading) {
+                binding.tvNoResult.isVisible = ariAdapter.itemCount < 1
+            }
+        }
     }
 
     private fun initTabLayout() {
@@ -88,8 +101,10 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_sea
     private fun changeCategory(category: String) {
         if(category == UNIV) {
             binding.rvSearch.adapter = univAdapter
+            binding.tvNoResult.isVisible = univAdapter.itemCount < 1
         } else {
             binding.rvSearch.adapter = ariAdapter
+            binding.tvNoResult.isVisible = ariAdapter.itemCount < 1
         }
     }
 

@@ -26,7 +26,16 @@ class AriRepositoryImpl @Inject constructor(
             config = PagingConfig(
                 pageSize = ARI_NETWORK_PAGE_SIZE
             ),
-            pagingSourceFactory = { AriPagingDataSource(ariApi) }
+            pagingSourceFactory = { AriPagingDataSource(ariApi, null) }
+        ).flow
+    }
+
+    override fun getSearchAriNoticeList(keyword: String): Flow<PagingData<Ari>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = ARI_NETWORK_PAGE_SIZE
+            ),
+            pagingSourceFactory = { AriPagingDataSource(ariApi, keyword) }
         ).flow
     }
 
