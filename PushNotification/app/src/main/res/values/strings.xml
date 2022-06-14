@@ -12,6 +12,7 @@
     <string name="database_error">키워드를 등록하지 못했습니다</string>
     <string name="keyword_subscribe_info">\`%s\`(은)는\n공지에 등록된 이력이 없는 키워드입니다\n그래도 등록하시겠습니까?</string>
     <string name="call_error">사용하시는 모델은 통화를 지원하지 않습니다</string>
+    <string name="search_result_empty">검색 결과가 없습니다</string>
 
     <string name="mit_license">MIT License\n\n
 

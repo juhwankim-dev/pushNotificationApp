@@ -7,5 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AriRepository {
     fun getAriNoticeList(): Flow<PagingData<Ari>>
+    fun getSearchAriNoticeList(keyword: String): Flow<PagingData<Ari>>
     suspend fun getRecentAriNoticeList(): Result<List<Ari>>
 }

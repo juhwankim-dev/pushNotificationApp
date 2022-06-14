@@ -36,7 +36,7 @@ class AriActivity : BaseActivity<ActivityAriBinding>(R.layout.activity_ari) {
         }
 
         lifecycleScope.launch {
-            viewModel.getePagingData().collectLatest {
+            viewModel.getPagingData().collectLatest {
                 ariAdapter.submitData(lifecycle, it)
             }
         }
