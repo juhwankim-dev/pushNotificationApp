@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.juhwan.anyang_yi.databinding.ItemLicenseBinding
 import com.juhwan.anyang_yi.domain.model.License
 import com.juhwan.anyang_yi.present.views.home.WebViewActivity
-import com.juhwan.anyang_yi.present.views.setting.license.detail.LicenseDetailActivity
 
 class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseAdapter.LicenseViewHolder>() {
     var items = licenseList
@@ -29,14 +28,9 @@ class LicenseAdapter(licenseList: List<License>) : RecyclerView.Adapter<LicenseA
         fun bind(license: License) {
             binding.license = license
             binding.layoutLibrary.setOnClickListener {
-                if(license.type == "firebase"){
+                if(license.webLink != null) {
                     var intent = Intent(it.context, WebViewActivity::class.java)
-                    intent.putExtra("url", "https://firebase.google.com/terms?hl=ko")
-                    it.context.startActivity(intent)
-                } else {
-                    var intent = Intent(it.context, LicenseDetailActivity::class.java)
-                    intent.putExtra("type", license.type)
-                    intent.putExtra("copyright", license.copyright)
+                    intent.putExtra("url", license.webLink)
                     it.context.startActivity(intent)
                 }
             }

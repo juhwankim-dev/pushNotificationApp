@@ -13,10 +13,17 @@ class LicenseActivity : BaseActivity<ActivityLicenseBinding>(R.layout.activity_l
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initView()
+        initEvent()
+    }
+
+    private fun initView() {
         var licenseList = model.requestLicense()
         binding.rvLicense.adapter = LicenseAdapter(licenseList)
         binding.rvLicense.layoutManager = LinearLayoutManager(this)
+    }
 
+    private fun initEvent() {
         binding.ivBack.setOnClickListener {
             finish()
         }
