@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juhwan.anyang_yi.data.model.KeywordEntity
-import com.juhwan.anyang_yi.domain.model.Univ
 import com.juhwan.anyang_yi.domain.usecase.keyword.DeleteKeywordUseCase
 import com.juhwan.anyang_yi.domain.usecase.keyword.ReadKeywordListUseCase
 import com.juhwan.anyang_yi.domain.usecase.keyword.WriteKeywordUseCase
-import com.juhwan.anyang_yi.domain.usecase.univ.GetSearchResultListUseCase
+import com.juhwan.anyang_yi.domain.usecase.univ.HasSearchResultUseCase
+import com.juhwan.anyang_yi.present.config.SingleLiveEvent
 import com.juhwan.anyang_yi.present.utils.Result
 import com.juhwan.anyang_yi.present.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,12 +21,12 @@ class KeywordViewModel @Inject constructor(
     private val deleteKeywordUseCase: DeleteKeywordUseCase,
     private val readKeywordListUseCase: ReadKeywordListUseCase,
     private val writeKeywordUseCase: WriteKeywordUseCase,
-    private val getSearchResultListUseCase: GetSearchResultListUseCase
+    private val hasSearchResultUseCase: HasSearchResultUseCase
 ): ViewModel() {
     private val keywordList: LiveData<List<KeywordEntity>> = readKeywordListUseCase.invoke()
 
-    private val _searchResultList = MutableLiveData<List<Univ>>()
-    val searchResultList: LiveData<List<Univ>> get() = _searchResultList
+    private val _searchResult = SingleLiveEvent<Boolean>()
+    val searchResult: LiveData<Boolean> get() = _searchResult
 
     private val _problem = MutableLiveData<Result<Any>>()
     val problem: LiveData<Result<Any>> get() = _problem
@@ -54,11 +54,11 @@ class KeywordViewModel @Inject constructor(
         }
     }
 
-    fun getSearchResultList(keyword: String, offset: Int) {
+    fun getSearchResult(keyword: String) {
         viewModelScope.launch {
-            val result = getSearchResultListUseCase(keyword, offset)
+            val result = hasSearchResultUseCase(keyword)
             if(result.status == Status.SUCCESS) {
-                result.data.let { _searchResultList.postValue(it) }
+                result.data.let { _searchResult.postValue(it) }
             } else {
                 _problem.postValue(result)
             }
