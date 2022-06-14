@@ -5,22 +5,17 @@ import androidx.paging.PagingState
 import com.juhwan.anyang_yi.data.api.UnivApi
 import com.juhwan.anyang_yi.data.mapper.UnivMapper
 import com.juhwan.anyang_yi.domain.model.Univ
-import com.juhwan.anyang_yi.present.views.home.notice.univ.UnivActivity
 import javax.inject.Inject
 
-class UnivPagingDataSource @Inject constructor(
+class SearchUnivPagingDataSource @Inject constructor(
     private val univApi: UnivApi,
-    private val categoryId: String?,
+    private val keyword: String,
 ) : PagingSource<Int, Univ>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Univ> {
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = if(categoryId == null || categoryId == UnivActivity.ALL) {
-                univApi.getUnivNoticeList(null, page.toString())
-            } else {
-                univApi.getUnivNoticeList(categoryId, page.toString())
-            }
+            val response = univApi.getSearchResultList(keyword, page.toString())
 
             LoadResult.Page(
                 data = UnivMapper(response.body()!!),
