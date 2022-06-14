@@ -14,7 +14,7 @@ import javax.inject.Inject
 class AriViewModel @Inject constructor(
     private val getAriListUseCase: GetAriListUseCase
 ): ViewModel() {
-    fun getePagingData(): Flow<PagingData<Ari>> {
+    fun getPagingData(): Flow<PagingData<Ari>> {
         return getAriListUseCase().cachedIn(viewModelScope)
     }
 }
