@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/version-v1.1.0-blue"> <img src="https://img.shields.io/badge/license-Apache--2.0-green">
+    <img src="https://img.shields.io/badge/version-v1.2.0-blue"> <img src="https://img.shields.io/badge/license-Apache--2.0-green">
 </p>
 
 <p align="center">
@@ -20,6 +20,8 @@
 | Version | Release Date | Changes | Detail |
 |--------|--------------|---------|--------|
 | v1.1.0  | 2021.03.29   | 더 다양한 공지사항 확인, 연락처 검색, MVVM 구조로 변환, 버그 수정|[Blog](https://todaycode.tistory.com/37)
+| v1.1.1  | 2021.08.03   | 연락처 무한 로딩 버그, 앱 강제 종료 버그 수정 |[Blog](https://todaycode.tistory.com/69)
+| v1.2.0  | 2022.06.13   | 홈페이지 리뉴얼 대응, 스크롤 딜레이 제거, 리팩터링(Clean Architecture, Hilt 등) |[Blog](https://todaycode.tistory.com/169)
 
 ## Features
 
@@ -43,15 +45,33 @@
 
 ViewModel, LiveData, Repository을 사용하여 MVVM 구조 기반으로 앱을 제작하였습니다.
 
+<img src="https://user-images.githubusercontent.com/76620764/173916726-c5eb0aa0-603b-46b4-ba00-920f10ed2dba.png" width="100%">
+
+크게 Data, Domain, Presentation로 나누고 Clean Architecture를 적용하여 의존성을 낮췄습니다.
+
 ## Tech
 
 적용한 기술들을 나열하였습니다.
 
-* Architecture
-  - Livecycle
-  - Livedata
+* Jetpack
+  - Data Binding
+  - LiveData
   - Navigation
+  - Paging
+  - Room
   - ViewModel
+  - Multidex
+
+* Third Party
+  - Firebase (FCM, Auth, Database)
+  - Retrofit2
+  - Dagger Hilt
+  - Jsoup
+  - Glide
+  - Kotlin Coroutine
+  - Lottie
+  - Room
+  - Inko
 
 * UI
   - ConstraintLayout
@@ -65,15 +85,11 @@ ViewModel, LiveData, Repository을 사용하여 MVVM 구조 기반으로 앱을 
   - Segmented button (custom)
   - Transition animation
 
-* Third Party
-  - Firebase
-  - Retrofit2
-  - Jsoup
-  - Glide
-  - Kotlin Coroutine
-  - Lottie
-  - Room
-  - Inko
+* ETC
+  - Clean Architecture
+  - BindingAdapter
+  - Push Notification
+  - BaseXXX Pattern
 
 ## Problem
 
