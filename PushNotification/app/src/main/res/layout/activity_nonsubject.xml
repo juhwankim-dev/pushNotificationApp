@@ -153,6 +153,44 @@
                         android:layout_marginTop="@dimen/activity_margin_20"
                         app:layout_constraintTop_toBottomOf="@id/tv_total" />
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/sfl_nonsubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_margin_20"
+                        app:layout_constraintTop_toBottomOf="@id/tv_total">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

@@ -1,6 +1,7 @@
 package com.juhwan.anyang_yi.present.views.home.notice.nonsubject
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.juhwan.anyang_yi.R
@@ -24,6 +25,7 @@ class NonsubjectActivity : BaseActivity<ActivityNonsubjectBinding>(R.layout.acti
     }
 
     private fun initView(){
+        binding.sflNonsubject.visibility = View.VISIBLE
         binding.rvNonsubject.layoutManager = GridLayoutManager(this, 2)
         nonsubjectAdapter = NonsubjectAdapter()
         binding.rvNonsubject.adapter = nonsubjectAdapter
@@ -40,6 +42,7 @@ class NonsubjectActivity : BaseActivity<ActivityNonsubjectBinding>(R.layout.acti
         viewModel.nonsubjectNoticeList.observe(this) {
             nonsubjectAdapter.setList(it)
             binding.totalCnt = it.size
+            binding.sflNonsubject.visibility = View.GONE
         }
 
         viewModel.problem.observe(this) {

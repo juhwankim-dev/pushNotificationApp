@@ -104,4 +104,7 @@ dependencies {
 
     // Paging
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 }
