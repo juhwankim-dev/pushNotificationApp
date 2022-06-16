@@ -15,6 +15,10 @@
     <color name="colorBlackDisabled">#66000000</color>
     <color name="colorBlackDisabled2">#33000000</color>
 
+    <color name="black_high_emphasis">#D9000000</color>
+    <color name="black_medium_emphasis">#99000000</color>
+    <color name="black_low_emphasis">#66000000</color>
+
     <!-- for floating button -->
     <color name="black_semi_transparent">#B2000000</color>
     <color name="background">#e5e5e5</color>

@@ -96,9 +96,9 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
             var keyword = binding.etKeyword.text.toString()
 
             if(it){
-                KeywordDialog(this, this).createDialog(keyword)
-            } else {
                 subscribe(keyword)
+            } else {
+                KeywordDialog(this, this).createDialog(keyword)
             }
         }
 

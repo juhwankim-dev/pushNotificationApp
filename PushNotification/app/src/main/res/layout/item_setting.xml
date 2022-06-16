@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="name"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/clickable_background"
-        android:id="@+id/layout_setting">
+        android:id="@+id/cl_menu">
 
         <TextView
             android:id="@+id/tv_setting"
             style="@style/bodyText"
             android:layout_width="0dp"
-            tools:text="설정"
+            android:text="@{name}"
             android:layout_marginStart="16dp"
+            tools:text="설정"
             app:layout_constraintRight_toLeftOf="@id/iv_next"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

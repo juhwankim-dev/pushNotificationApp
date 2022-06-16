@@ -47,7 +47,7 @@
             android:background="@color/clickable_background_dialog"
             android:gravity="center"
             android:text="취소"
-            android:padding="4dp"
+            android:padding="@dimen/activity_margin_12"
             android:textColor="@color/mainBlue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/divide_2"
@@ -72,7 +72,7 @@
             android:gravity="center"
             android:text="등록"
             android:textColor="@color/mainBlue"
-            android:padding="4dp"
+            android:padding="@dimen/activity_margin_12"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@id/divide_2"
             app:layout_constraintTop_toBottomOf="@id/divide_1" />

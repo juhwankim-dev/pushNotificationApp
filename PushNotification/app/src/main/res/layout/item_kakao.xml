@@ -31,7 +31,7 @@
             android:id="@+id/tv_title"
             style="@style/bodyText"
             android:layout_width="150dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/activity_margin_12"
             android:layout_marginStart="12dp"
             android:maxLines="2"
             android:text="@{kakao.title}"
@@ -52,9 +52,9 @@
         <TextView
             style="@style/explainText"
             android:id="@+id/tv_date"
-            android:includeFontPadding="false"
             android:text="@{kakao.date}"
             tools:text="2020/03/12"
+            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
