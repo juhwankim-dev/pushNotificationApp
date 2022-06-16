@@ -18,6 +18,7 @@
     <color name="black_high_emphasis">#D9000000</color>
     <color name="black_medium_emphasis">#99000000</color>
     <color name="black_low_emphasis">#66000000</color>
+    <color name="gray_shimmer">#efefef</color>
 
     <!-- for floating button -->
     <color name="black_semi_transparent">#B2000000</color>
