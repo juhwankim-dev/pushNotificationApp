@@ -23,25 +23,27 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         viewModel.getRecentAriNoticeList()
         viewModel.getRecentNonsubjectNoticeList()
         viewModel.getRecentUnivNoticeList()
-        initView()
         initEvent()
     }
 
     private fun initView(){
-        binding!!.rvAri.layoutManager = LinearLayoutManager(context)
+        binding.sflNonsubject.visibility = View.VISIBLE
+
+        binding.rvAri.layoutManager = LinearLayoutManager(context)
         recentAriAdapter = RecentAriAdapter()
-        binding!!.rvAri.adapter = recentAriAdapter
+        binding.rvAri.adapter = recentAriAdapter
 
-        binding!!.rvNonsubject.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNonsubject.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recentNonsubjectAdapter = RecentNonsubjectAdapter()
-        binding!!.rvNonsubject.adapter = recentNonsubjectAdapter
+        binding.rvNonsubject.adapter = recentNonsubjectAdapter
 
-        binding!!.rvUniv.layoutManager = LinearLayoutManager(context)
+        binding.rvUniv.layoutManager = LinearLayoutManager(context)
         recentUnivAdapter = RecentUnivAdapter()
-        binding!!.rvUniv.adapter = recentUnivAdapter
+        binding.rvUniv.adapter = recentUnivAdapter
     }
 
     private fun initEvent() {
@@ -51,6 +53,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
 
         viewModel.recentNonsubjectNoticeList.observe(viewLifecycleOwner) {
             recentNonsubjectAdapter.setList(it)
+            binding.sflNonsubject.visibility = View.GONE
         }
 
         viewModel.recentUnivNoticeList.observe(viewLifecycleOwner) {
@@ -61,15 +64,15 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>(R.layout.fragment_not
             showToastMessage(resources.getString(R.string.network_error))
         }
 
-        binding!!.tvSeeAllNonsubject.setOnClickListener {
+        binding.tvSeeAllNonsubject.setOnClickListener {
             startActivity(Intent(context, NonsubjectActivity::class.java))
         }
 
-        binding!!.tvSeeAllUniv.setOnClickListener {
+        binding.tvSeeAllUniv.setOnClickListener {
             startActivity(Intent(context, UnivActivity::class.java))
         }
 
-        binding!!.tvSeeAllAri.setOnClickListener {
+        binding.tvSeeAllAri.setOnClickListener {
             startActivity(Intent(context, AriActivity::class.java))
         }
     }
