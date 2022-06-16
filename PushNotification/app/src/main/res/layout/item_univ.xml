@@ -23,7 +23,6 @@
         <TextView
             style="@style/bodyText"
             android:id="@+id/tv_notice_title"
-            android:includeFontPadding="false"
             android:text="@{univ.title}"
             tools:text="2021-2 장학금 안내"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +35,6 @@
             android:textSize="12sp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="20dp"
-            android:includeFontPadding="false"
             android:text="@{univ.date}"
             tools:text="2022-06-09"
             app:layout_constraintBottom_toBottomOf="parent"

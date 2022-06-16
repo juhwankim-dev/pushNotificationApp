@@ -30,7 +30,7 @@ class NonsubjectActivity : BaseActivity<ActivityNonsubjectBinding>(R.layout.acti
     }
 
     private fun initEvent() {
-        binding.radioGroupFilter.setOnCheckedChangeListener { _, checkedId ->
+        binding.rgFilter.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId){
                 R.id.rb_new -> nonsubjectAdapter.sortList(RECENT_ORDER)
                 R.id.rb_deadline -> nonsubjectAdapter.sortList(DEADLINE_ORDER)

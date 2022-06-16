@@ -50,6 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:overScrollMode="never"
+                        android:layout_marginTop="@dimen/activity_margin_12"
                         app:layout_constraintTop_toBottomOf="@+id/tv_edu" />
 
                     <View
@@ -82,6 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:overScrollMode="never"
+                        android:layout_marginTop="@dimen/activity_margin_12"
                         app:layout_constraintTop_toBottomOf="@+id/tv_job" />
 
                     <View
@@ -114,6 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:overScrollMode="never"
+                        android:layout_marginTop="@dimen/activity_margin_12"
                         app:layout_constraintTop_toBottomOf="@+id/tv_ari_panel" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

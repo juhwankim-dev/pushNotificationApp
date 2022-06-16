@@ -90,7 +90,7 @@
                 android:maxLines="1"
                 android:padding="12dp"
                 android:textSize="14sp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/activity_margin_20"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/btn_subscribe"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:text="알림 받을 키워드"
                 android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/activity_margin_20"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/tv_registered_keyword"
                 app:layout_constraintTop_toBottomOf="@id/et_keyword" />
@@ -154,6 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
+                android:layout_marginTop="@dimen/activity_margin_narrow"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_guide" />
         </androidx.constraintlayout.widget.ConstraintLayout>

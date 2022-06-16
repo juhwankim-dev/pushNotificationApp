@@ -31,7 +31,7 @@
             android:id="@+id/tv_title"
             style="@style/bodyText"
             android:layout_width="150dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/activity_margin_12"
             android:maxLines="2"
             android:text="@{nonsubject.title}"
             tools:text="2021-1학기 ARI 멘토링"
@@ -42,9 +42,9 @@
         <TextView
             style="@style/explainText"
             android:id="@+id/tv_training_period"
-            android:includeFontPadding="false"
             android:text="@{nonsubject.trainingPeriod}"
             tools:text="2020/03/12 ~ 2020/03/15"
+            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -52,7 +52,6 @@
         <TextView
             android:id="@+id/tv_applicant"
             style="@style/explainText"
-            android:includeFontPadding="false"
             android:text="@{nonsubject.applicant}"
             tools:text="인원 23 / 40"
             app:layout_constraintLeft_toLeftOf="parent"

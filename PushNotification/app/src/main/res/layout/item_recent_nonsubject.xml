@@ -31,7 +31,7 @@
             android:id="@+id/tv_title"
             style="@style/bodyText"
             android:layout_width="150dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/activity_margin_12"
             android:layout_marginLeft="12dp"
             android:maxLines="2"
             android:text="@{nonsubject.title}"

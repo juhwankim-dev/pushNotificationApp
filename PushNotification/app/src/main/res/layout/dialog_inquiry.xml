@@ -10,9 +10,9 @@
 
         <ImageView
             android:id="@+id/iv_cancel"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:padding="@dimen/activity_margin_narrow"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
             android:layout_marginStart="@dimen/activity_margin_narrow"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
             style="@style/headerText"
             android:text="건의사항"
             android:textAlignment="center"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,8 +32,7 @@
         <TextView
             android:id="@+id/tv_send"
             style="@style/bodyText"
-            android:paddingHorizontal="@dimen/activity_margin_default"
-            android:paddingVertical="@dimen/activity_margin_4"
+            android:padding="16dp"
             android:text="전송"
             android:textColor="@color/mainBlue"
             android:textStyle="bold"
