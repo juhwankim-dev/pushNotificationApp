@@ -40,6 +40,7 @@
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
         <item name="background">@color/mainBlue</item>
         <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="headerText">
@@ -48,6 +49,7 @@
         <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
         <item name="android:fontFamily">@font/noto_sans_bold</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="bodyText">
@@ -56,6 +58,7 @@
         <item name="android:textSize">@dimen/bodyTextSize</item>
         <item name="android:textColor">@color/colorBlackHighEmphasis</item>
         <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="explainText">
@@ -64,6 +67,7 @@
         <item name="android:textSize">@dimen/explainTextSize</item>
         <item name="android:textColor">@color/colorBlackDisabled</item>
         <item name="android:fontFamily">@font/noto_sans_regular</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">

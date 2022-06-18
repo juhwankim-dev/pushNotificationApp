@@ -6,44 +6,56 @@ class LicenseRepository {
     fun requestLicense(): List<License> {
         return listOf(
             License(
-                "firebase",
-                "firebase",
-                " "
+                "dagger hilt",
+                null
             ),
             License(
-                "jsoup",
-                "mit",
-                "Copyright © 2009 - 2021 Jonathan Hedley (https://jsoup.org/)"
+                "paging",
+                null
+            ),
+            License(
+                "livedata",
+                null
+            ),
+            License(
+                "room",
+                null
             ),
             License(
                 "retrofit2",
-                "apache",
-                "Copyright 2013 Square, Inc."
+                "https://github.com/square/retrofit/blob/master/LICENSE.txt"
             ),
             License(
-                "rxjava2",
-                "apache",
-                "Copyright (c) 2016-present, RxJava Contributors."
+                "coroutine",
+                "https://github.com/Kotlin/kotlinx.coroutines/blob/master/LICENSE.txt"
+            ),
+            License(
+                "glide",
+                "https://github.com/bumptech/glide/blob/master/LICENSE"
+            ),
+            License(
+                "firebase",
+                "https://firebase.google.com/terms?hl=ko"
+            ),
+            License(
+                "jsoup",
+                "https://github.com/jhy/jsoup/blob/master/LICENSE"
             ),
             License(
                 "lottie",
-                "lottie",
-                "Copyright 2018 Airbnb, Inc."
+                "https://github.com/airbnb/lottie-android/blob/master/LICENSE"
             ),
             License(
                 "inko",
-                "mit",
-                "Copyright (c) 2020 kimcore"
+                "https://github.com/kimcore/inko.kt/blob/master/LICENSE"
             ),
             License(
                 "FloatingActionButton",
-                "apache",
-                "Copyright 2014 Zendesk"
+                "https://github.com/zendesk/android-floating-action-button/blob/master/LICENSE"
             ),
             License(
                 "StickyTimeLine",
-                "apache",
-                "Copyright 2019 Jeong Seok-Won"
+                "https://github.com/sangcomz/StickyTimeLine/blob/master/LICENSE"
             )
         )
     }

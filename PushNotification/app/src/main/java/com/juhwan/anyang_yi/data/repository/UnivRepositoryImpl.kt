@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.juhwan.anyang_yi.data.api.UnivApi
 import com.juhwan.anyang_yi.data.mapper.UnivMapper
+import com.juhwan.anyang_yi.data.paging.SearchUnivPagingDataSource
 import com.juhwan.anyang_yi.data.paging.UnivPagingDataSource
 import com.juhwan.anyang_yi.data.repository.univ.UnivRemoteDataSource
 import com.juhwan.anyang_yi.domain.model.Univ
@@ -50,20 +51,29 @@ class UnivRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSearchResultList(keyword: String, offset: Int): Result<List<Univ>> {
+    override suspend fun hasSearchResult(keyword: String): Result<Boolean> {
         return try {
             val response = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                univRemoteDataSource.getSearchResultList(keyword, offset.toString())
+                univRemoteDataSource.getSearchResultList(keyword, "0")
             }
 
             if(response.isSuccessful && response.body() != null) {
-                Result.success(UnivMapper(response.body()!!))
+                Result.success(UnivMapper(response.body()!!).isNotEmpty())
             } else {
                 Result.error(response.errorBody().toString(), null)
             }
         } catch (error: Exception) {
             Result.fail()
         }
+    }
+
+    override fun getSearchResultList(keyword: String): Flow<PagingData<Univ>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = UNIV_NETWORK_PAGE_SIZE
+            ),
+            pagingSourceFactory = { SearchUnivPagingDataSource(univApi, keyword) }
+        ).flow
     }
 
     companion object {
