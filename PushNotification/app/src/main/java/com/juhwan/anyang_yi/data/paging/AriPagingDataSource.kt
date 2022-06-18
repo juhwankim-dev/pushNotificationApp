@@ -9,16 +9,19 @@ import javax.inject.Inject
 
 class AriPagingDataSource @Inject constructor(
     private val ariApi: AriApi,
+    private val keyword: String?
 ) : PagingSource<Int, Ari>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Ari> {
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
             val field: MutableMap<String, String> = HashMap()
-            field["schWord"] = "empty"
+            field["schWord"] = keyword ?: "empty"
             field["noneChk"] = "2"
-            field["bbsidx"] = "21"
             field["pageNo"] = page.toString()
+            if(keyword != null) {
+                field["schKeyM"] = "CONT"
+            }
 
             val response = ariApi.getAriNoticeList(field)
             LoadResult.Page(

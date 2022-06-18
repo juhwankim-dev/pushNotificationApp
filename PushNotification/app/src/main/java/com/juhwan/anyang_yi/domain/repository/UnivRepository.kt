@@ -8,5 +8,6 @@ import kotlinx.coroutines.flow.Flow
 interface UnivRepository {
     fun getUnivNoticeList(categoryId: String?): Flow<PagingData<Univ>>
     suspend fun getRecentUnivNoticeList(): Result<List<Univ>>
-    suspend fun getSearchResultList(keyword: String, offset: Int): Result<List<Univ>>
+    suspend fun hasSearchResult(keyword: String): Result<Boolean>
+    fun getSearchResultList(keyword: String): Flow<PagingData<Univ>>
 }

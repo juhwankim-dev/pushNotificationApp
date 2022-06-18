@@ -12,6 +12,7 @@ import com.juhwan.anyang_yi.databinding.FragmentHomeBinding
 import com.juhwan.anyang_yi.present.config.BaseFragment
 import com.juhwan.anyang_yi.present.views.home.keyword.KeywordActivity
 import com.juhwan.anyang_yi.present.views.home.notice.NoticeFragment
+import com.juhwan.anyang_yi.present.views.home.search.SearchActivity
 import com.juhwan.anyang_yi.present.views.home.social.SocialFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,14 +21,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewPager2()
+        initView()
+        initEvent()
+    }
 
+    private fun initEvent() {
         binding!!.ivNotification.setOnClickListener {
             startActivity(Intent(context, KeywordActivity::class.java))
         }
+
+        binding!!.ivSearch.setOnClickListener {
+            startActivity(Intent(context, SearchActivity::class.java))
+        }
     }
 
-    private fun initViewPager2() {
+    private fun initView() {
         binding!!.tlHome.tabTextColors = resources.getColorStateList(R.color.tab_icon, null)
         val tabTextList = arrayListOf("홈페이지", "SNS")
 

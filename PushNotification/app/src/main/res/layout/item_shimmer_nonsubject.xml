@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="nonsubject"
-            type="com.juhwan.anyang_yi.domain.model.Nonsubject" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_nonsubject"
         android:background="@color/clickable_background"
@@ -21,21 +15,18 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="2dp"
-            bindImageUrl="@{nonsubject.imageUrl}"
-            tools:srcCompat="@tools:sample/avatars"
+            android:background="@color/gray_shimmer"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/bodyText"
+        <ImageView
+            android:id="@+id/iv_title"
+            android:layout_height="@dimen/activity_margin_24"
             android:layout_width="150dp"
             android:layout_marginTop="@dimen/activity_margin_12"
             android:layout_marginLeft="12dp"
-            android:maxLines="2"
-            android:text="@{nonsubject.title}"
-            tools:text="2021-1학기 ARI 멘토링\n2줄"
+            android:background="@color/gray_shimmer"
             app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -55,7 +46,6 @@
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
             android:layout_marginTop="3dp"
-            android:text="@{nonsubject.leftDay}"
             tools:text="D-23"
             app:layout_constraintEnd_toEndOf="@+id/iv_left_day"
             app:layout_constraintStart_toStartOf="@+id/iv_left_day"

@@ -86,19 +86,19 @@ class KeywordActivity : BaseActivity<ActivityKeywordBinding>(R.layout.activity_k
             var keyword = binding.etKeyword.text.toString()
             try {
                 KeywordChecker.check(keyword, registeredKeywordList)
-                viewModel.getSearchResultList(keyword, 0)
+                viewModel.getSearchResult(keyword)
             } catch (e: Exception) {
                 showToastMessage(e.message.toString())
             }
         }
 
-        viewModel.searchResultList.observe(this) {
+        viewModel.searchResult.observe(this) {
             var keyword = binding.etKeyword.text.toString()
 
-            if(it.isEmpty()){
-                KeywordDialog(this, this).createDialog(keyword)
-            } else {
+            if(it){
                 subscribe(keyword)
+            } else {
+                KeywordDialog(this, this).createDialog(keyword)
             }
         }
 

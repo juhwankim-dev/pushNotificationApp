@@ -79,12 +79,13 @@
                     android:layout_marginBottom="16dp">
 
                     <TextView
-                        style="@style/bodyText"
                         android:id="@+id/tv_total"
+                        style="@style/bodyText"
                         android:text="총"
-                        android:layout_marginStart="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent" />
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        app:layout_constraintBottom_toBottomOf="@+id/rg_filter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rg_filter" />
 
                     <TextView
                         style="@style/headerText"
@@ -105,15 +106,15 @@
                         app:layout_constraintTop_toTopOf="@id/tv_total_cnt" />
 
                     <RadioGroup
-                        android:id="@+id/radio_group_filter"
+                        android:id="@+id/rg_filter"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_total"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_total">
+                        android:layout_marginTop="@dimen/activity_margin_narrow"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
 
                         <RadioButton
                             android:id="@+id/rb_new"
@@ -149,8 +150,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/activity_margin_20"
                         app:layout_constraintTop_toBottomOf="@id/tv_total" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/sfl_nonsubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_margin_20"
+                        app:layout_constraintTop_toBottomOf="@id/tv_total">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center">
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                                <include layout="@layout/item_shimmer_nonsubject"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
